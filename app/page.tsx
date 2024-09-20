@@ -7,12 +7,10 @@ const Home = async () => {
   const currentUser = await getCurrentUser();
   return currentUser ? (
     <>
-      <Header />
       <LogoutButton />
     </>
   ) : (
     <>
-      <Header />
       <GoogleLoginForm />
     </>
   );
