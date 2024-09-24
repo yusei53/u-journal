@@ -2,10 +2,10 @@ import { Button } from "@mui/material";
 
 type MenuButtonProps = {
   title: string;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const MenuButton: React.FC<MenuButtonProps> = ({ title }) => {
+const MenuButton: React.FC<MenuButtonProps> = ({ title, onClick }) => {
   return (
     <Button
       sx={{
@@ -18,6 +18,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ title }) => {
         borderColor: "#D8DADF",
         minWidth: "120px",
       }}
+      onClick={onClick}
     >
       {title}
     </Button>

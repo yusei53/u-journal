@@ -1,11 +1,15 @@
-import { AppBar, Box, Button, Link, Toolbar, Typography } from "@mui/material";
+"use client";
+import { AppBar, Box, Link, Toolbar } from "@mui/material";
 import MenuButton from "./MenuButton";
 import { signIn, signOut } from "next-auth/react";
 import getCurrentUser from "../actions/getCurrentUser";
+import { User } from "next-auth";
 
-const Header = async () => {
-  const currentUser = await getCurrentUser();
+type HeaderProps = {
+  currentUser: User | null;
+};
 
+const Header: React.FC<HeaderProps> = ({ currentUser }) => {
   return currentUser ? (
     <AppBar position="static" sx={{ backgroundColor: "#f0f7ff" }}>
       <Toolbar sx={{ position: "relative" }}>
@@ -24,7 +28,7 @@ const Header = async () => {
           </Link>
         </Box>
         <Box position={"absolute"} right={"20px"}>
-          <MenuButton title="振り返る" />
+          <MenuButton onClick={() => {}} title="振り返る" />
           <MenuButton title="ログアウト" onClick={() => signOut()} />
         </Box>
       </Toolbar>
