@@ -2,7 +2,6 @@
 import { AppBar, Box, Link, Toolbar } from "@mui/material";
 import MenuButton from "./MenuButton";
 import { signIn, signOut } from "next-auth/react";
-import getCurrentUser from "../actions/getCurrentUser";
 import { User } from "next-auth";
 
 type HeaderProps = {
