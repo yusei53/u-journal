@@ -1,16 +1,15 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
+import { PostCardDataProps } from "../const/PostCardData";
 
 type PostCardProps = {
-  title: string;
-  day: string;
-  href: string;
+  postCardData: PostCardDataProps;
 };
 
-const PostCard: React.FC<PostCardProps> = ({ title, day, href }) => {
+const PostCard: React.FC<PostCardProps> = ({ postCardData }) => {
   return (
     <Box marginBottom={3}>
-      <Link href={href}>
+      <Link href={postCardData.href}>
         <Box
           bgcolor={"#f0f7ff"}
           width={252}
@@ -19,14 +18,14 @@ const PostCard: React.FC<PostCardProps> = ({ title, day, href }) => {
         ></Box>
       </Link>
       <Box my={1}>
-        <Link href={href} style={{ textDecoration: "none" }}>
+        <Link href={postCardData.href} style={{ textDecoration: "none" }}>
           <Typography letterSpacing={2} color="black">
-            {title}
+            {postCardData.title}
           </Typography>
         </Link>
       </Box>
       <Typography color="#8D9298" marginY={1}>
-        {day}
+        {postCardData.day}
       </Typography>
     </Box>
   );
