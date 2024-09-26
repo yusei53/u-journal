@@ -6,7 +6,7 @@ const Loading = () => {
       display={"flex"}
       alignItems={"center"}
       justifyContent={"center"}
-      height={"100vh"}
+      height={700}
     >
       <CircularProgress size={100} />
     </Box>

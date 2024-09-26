@@ -7,7 +7,7 @@ const NotFound = () => {
       textAlign={"center"}
       justifyContent={"center"}
       flexDirection={"column"}
-      height={"100vh"}
+      height={700}
     >
       <Typography fontWeight={"bold"} fontSize={35}>
         404 Not Found
