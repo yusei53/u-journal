@@ -9,7 +9,9 @@ const Home = async () => {
       <LogoutButton />
     </>
   ) : (
-    <GoogleLoginForm />
+    <>
+      <GoogleLoginForm />
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import Button from "./Button";
 import { signOut } from "next-auth/react";
 
-const GoogleLogoutButton = () => {
+const LogoutButton = () => {
   return (
     <Box>
       <Button
@@ -17,4 +17,4 @@ const GoogleLogoutButton = () => {
   );
 };
 
-export default GoogleLogoutButton;
+export default LogoutButton;
