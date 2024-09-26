@@ -9,35 +9,33 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ currentUser }) => {
-  return currentUser ? (
+  return (
     <AppBar position="static" sx={{ backgroundColor: "#f0f7ff" }}>
-      <Toolbar sx={{ position: "relative" }}>
-        <Box marginLeft={{ md: "10vw", xs: "0px" }}>
-          <Link underline="none" color="#32383F" marginX={"30px"} href="/">
-            振り返り一覧
-          </Link>
-          <Link
-            underline="none"
-            color="#32383F"
-            href="/"
-            marginX={"30px"}
-            marginLeft={"15px"}
-          >
-            カレンダー
-          </Link>
-        </Box>
-        <Box position={"absolute"} right={"20px"}>
-          <MenuButton onClick={() => {}} title="振り返る" />
-          <MenuButton title="ログアウト" onClick={() => signOut()} />
-        </Box>
-      </Toolbar>
-    </AppBar>
-  ) : (
-    <AppBar position="static" sx={{ backgroundColor: "#f0f7ff" }}>
-      <Toolbar>
-        <Box marginLeft={{ md: "0vw", xs: "0" }}>
-          <MenuButton title="ログイン" onClick={() => signIn()} />
-        </Box>
+      <Toolbar sx={{ display: "flex" }}>
+        {currentUser ? (
+          <>
+            <Box marginLeft={{ md: "10vw", xs: "0px" }} flexGrow={1}>
+              <Link underline="none" color="#32383F" marginX={"30px"} href="/">
+                振り返り一覧
+              </Link>
+              <Link
+                underline="none"
+                color="#32383F"
+                href="/"
+                marginX={"30px"}
+                marginLeft={"15px"}
+              >
+                カレンダー
+              </Link>
+            </Box>
+            <MenuButton onClick={() => {}} title="振り返る" />
+            <MenuButton title="ログアウト" onClick={() => signOut()} />
+          </>
+        ) : (
+          <Box marginLeft={{ md: "0vw", xs: "0" }}>
+            <MenuButton title="ログイン" onClick={() => signIn()} />
+          </Box>
+        )}
       </Toolbar>
     </AppBar>
   );
