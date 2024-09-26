@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-const SearchBar = () => {
+const UserNameBar = () => {
   return (
     <Box display={"flex"} alignItems={"center"} marginTop={3}>
       <Box
@@ -11,14 +11,11 @@ const SearchBar = () => {
         alignSelf={"center"}
         borderRadius={30}
       />
-      <Typography marginLeft={3} marginRight={{ xs: 20, md: 85 }}>
+      <Typography marginLeft={3} marginRight={{ xs: 20, md: 90 }}>
         名前
       </Typography>
-      <Box alignSelf={"center"}>
-        <img src="./SearchIcon.png" />
-      </Box>
     </Box>
   );
 };
 
-export default SearchBar;
+export default UserNameBar;
