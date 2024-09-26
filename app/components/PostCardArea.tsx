@@ -8,7 +8,7 @@ const PostCardArea = () => {
     <Box px={{ xs: 10, md: 35 }}>
       <Grid container>
         {PostcardData.map((data, index) => (
-          <Grid item xs={12} sm={4} md={4} key={index}>
+          <Grid item xs={12} sm={4} key={index}>
             <PostCard title={data.title} day={data.day} href={data.href} />
           </Grid>
         ))}
