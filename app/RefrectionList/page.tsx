@@ -1,6 +1,6 @@
 import RefrectionListPage from "../components/RefrectionListPage";
 
-const page = async () => {
+const page = () => {
   return <RefrectionListPage />;
 };
 
