@@ -11,12 +11,12 @@ const MenuButton: React.FC<MenuButtonProps> = ({ title, onClick }) => {
       sx={{
         backgroundColor: "white",
         color: "#030A12",
-        borderRadius: "20px",
-        paddingX: "20px",
-        marginLeft: "8px",
+        borderRadius: 20,
+        paddingX: 3,
+        marginLeft: 1,
         border: 1,
         borderColor: "#D8DADF",
-        minWidth: "120px",
+        minWidth: 120,
       }}
       onClick={onClick}
     >

@@ -14,17 +14,11 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
       <Toolbar sx={{ display: "flex" }}>
         {currentUser ? (
           <>
-            <Box marginLeft={{ md: "10vw", xs: "0px" }} flexGrow={1}>
-              <Link underline="none" color="#32383F" marginX={"30px"} href="/">
+            <Box marginLeft={{ md: 30, xs: 0 }} flexGrow={1}>
+              <Link underline="none" color="#32383F" marginX={5} href="/">
                 振り返り一覧
               </Link>
-              <Link
-                underline="none"
-                color="#32383F"
-                href="/"
-                marginX={"30px"}
-                marginLeft={"15px"}
-              >
+              <Link underline="none" color="#32383F" href="/" marginX={2}>
                 カレンダー
               </Link>
             </Box>
@@ -32,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
             <MenuButton title="ログアウト" onClick={() => signOut()} />
           </>
         ) : (
-          <Box marginLeft={{ md: "0vw", xs: "0" }}>
+          <Box>
             <MenuButton title="ログイン" onClick={() => signIn()} />
           </Box>
         )}
