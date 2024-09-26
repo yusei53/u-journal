@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
       <Toolbar sx={{ display: "flex" }}>
         {currentUser ? (
           <>
-            <Box marginLeft={{ md: 30, xs: 0 }} flexGrow={1}>
+            <Box marginLeft={{ md: 30 }} flexGrow={1}>
               <Link underline="none" color="#32383F" marginX={5} href="/">
                 振り返り一覧
               </Link>
