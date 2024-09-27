@@ -14,7 +14,7 @@ const PostCardArea: React.FC<PostCardAreaProps> = ({ postcardData }) => {
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
-        marginY={5}
+        my={5}
         flexDirection={"column"}
       >
         <Typography fontSize={20} textAlign={"center"}>

@@ -8,7 +8,7 @@ type PostCardProps = {
 
 const PostCard: React.FC<PostCardProps> = ({ postCardData }) => {
   return (
-    <Box marginBottom={3}>
+    <Box mb={3}>
       <Link href={postCardData.href}>
         <Box
           bgcolor={"#f0f7ff"}
@@ -24,7 +24,7 @@ const PostCard: React.FC<PostCardProps> = ({ postCardData }) => {
           </Typography>
         </Link>
       </Box>
-      <Typography color="#8D9298" marginY={1}>
+      <Typography color="#8D9298" my={1}>
         {postCardData.day}
       </Typography>
     </Box>
