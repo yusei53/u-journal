@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import { PostCardDataProps } from "../const/PostCardData";
+import { PostCardDataProps } from "../types/types";
 
 type PostCardProps = {
   postCardData: PostCardDataProps;

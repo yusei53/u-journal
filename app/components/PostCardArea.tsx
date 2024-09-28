@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import PostCard from "./PostCard";
-import { PostCardDataProps } from "../const/PostCardData";
 import UserNameBar from "./UserNameBar";
+import { PostCardDataProps } from "../types/types";
 
 type PostCardAreaProps = {
   postcardData: PostCardDataProps[];
