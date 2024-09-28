@@ -1,9 +1,6 @@
-export type PostCardDataProps = {
-  title: string;
-  day: string;
-  href: string;
-};
-export const PostcardData: PostCardDataProps[] = [
+import { ReflectionCardDataProps } from "../types/types";
+
+export const ReflectionCardData: ReflectionCardDataProps[] = [
   {
     title: "Discordの説明",
     day: "2024/9/20",

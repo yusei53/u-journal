@@ -1,20 +1,22 @@
 import { Box, Grid, Typography } from "@mui/material";
-import PostCard from "./PostCard";
-import { PostCardDataProps } from "../const/PostCardData";
+import ReflectionCard from "./ReflectionCard";
 import UserNameBar from "./UserNameBar";
+import { ReflectionCardDataProps } from "../types/types";
 
-type PostCardAreaProps = {
-  postcardData: PostCardDataProps[];
+type ReflectionCardAreaProps = {
+  ReflectionCardData: ReflectionCardDataProps[];
 };
 
-const PostCardArea: React.FC<PostCardAreaProps> = ({ postcardData }) => {
+const ReflectionCardArea: React.FC<ReflectionCardAreaProps> = ({
+  ReflectionCardData,
+}) => {
   return (
     <Box>
       <Box
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
-        marginY={5}
+        my={5}
         flexDirection={"column"}
       >
         <Typography fontSize={20} textAlign={"center"}>
@@ -24,7 +26,7 @@ const PostCardArea: React.FC<PostCardAreaProps> = ({ postcardData }) => {
       </Box>
       <Box px={{ xs: 10, md: 35 }}>
         <Grid container>
-          {postcardData.map((data, index) => (
+          {ReflectionCardData.map((data, index) => (
             <Grid item xs={12} sm={4} key={index}>
               <Box
                 display={"flex"}
@@ -32,7 +34,7 @@ const PostCardArea: React.FC<PostCardAreaProps> = ({ postcardData }) => {
                 alignItems={"center"}
                 justifyContent={"center"}
               >
-                <PostCard postCardData={data} />
+                <ReflectionCard ReflectionCardData={data} />
               </Box>
             </Grid>
           ))}
@@ -42,4 +44,4 @@ const PostCardArea: React.FC<PostCardAreaProps> = ({ postcardData }) => {
   );
 };
 
-export default PostCardArea;
+export default ReflectionCardArea;

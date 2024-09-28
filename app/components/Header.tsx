@@ -15,10 +15,10 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
         {currentUser ? (
           <>
             <Box marginLeft={{ md: 30 }} flexGrow={1}>
-              <Link underline="none" color="#32383F" marginX={5} href="/">
+              <Link underline="none" color="#32383F" mx={5} href="/">
                 振り返り一覧
               </Link>
-              <Link underline="none" color="#32383F" href="/" marginX={2}>
+              <Link underline="none" color="#32383F" href="/" mx={2}>
                 カレンダー
               </Link>
             </Box>

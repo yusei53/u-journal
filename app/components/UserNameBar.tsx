@@ -3,7 +3,7 @@ import React from "react";
 
 const UserNameBar = () => {
   return (
-    <Box display={"flex"} alignItems={"center"} marginTop={3}>
+    <Box display={"flex"} alignItems={"center"} mt={3}>
       <Box
         width={30}
         height={30}
@@ -11,7 +11,7 @@ const UserNameBar = () => {
         alignSelf={"center"}
         borderRadius={30}
       />
-      <Typography marginLeft={3} marginRight={{ xs: 20, md: 90 }}>
+      <Typography ml={3} mr={{ xs: 20, md: 90 }}>
         名前
       </Typography>
     </Box>
