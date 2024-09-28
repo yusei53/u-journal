@@ -1,7 +1,7 @@
-import RefrectionListPage from "../components/RefrectionListPage";
+import ReflectionListPage from "../components/ReflectionListPage";
 
 const page = () => {
-  return <RefrectionListPage />;
+  return <ReflectionListPage />;
 };
 
 export default page;

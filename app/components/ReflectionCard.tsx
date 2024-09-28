@@ -1,15 +1,17 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import { PostCardDataProps } from "../types/types";
+import { ReflectionCardDataProps } from "../types/types";
 
-type PostCardProps = {
-  postCardData: PostCardDataProps;
+type ReflectionCardProps = {
+  ReflectionCardData: ReflectionCardDataProps;
 };
 
-const PostCard: React.FC<PostCardProps> = ({ postCardData }) => {
+const ReflectionCard: React.FC<ReflectionCardProps> = ({
+  ReflectionCardData,
+}) => {
   return (
     <Box mb={3}>
-      <Link href={postCardData.href}>
+      <Link href={ReflectionCardData.href}>
         <Box
           bgcolor={"#f0f7ff"}
           width={252}
@@ -18,17 +20,17 @@ const PostCard: React.FC<PostCardProps> = ({ postCardData }) => {
         ></Box>
       </Link>
       <Box my={1}>
-        <Link href={postCardData.href} style={{ textDecoration: "none" }}>
+        <Link href={ReflectionCardData.href} style={{ textDecoration: "none" }}>
           <Typography letterSpacing={2} color="black">
-            {postCardData.title}
+            {ReflectionCardData.title}
           </Typography>
         </Link>
       </Box>
       <Typography color="#8D9298" my={1}>
-        {postCardData.day}
+        {ReflectionCardData.day}
       </Typography>
     </Box>
   );
 };
 
-export default PostCard;
+export default ReflectionCard;
