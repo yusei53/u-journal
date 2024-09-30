@@ -1,4 +1,4 @@
-import { PostReflectionPosts, ReflectionPosts } from "../types/types";
+import { PostReflectionPosts, ReflectionPosts } from "@/app/types/types";
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
 
