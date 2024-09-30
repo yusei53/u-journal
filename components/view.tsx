@@ -1,7 +1,7 @@
 // 投稿された内容を表示するコンポーネント
 import React from "react";
 import HtmlContent from "./html";
-import reflectionPostsAPI from "../hooks/reflection-post-api";
+import reflectionPostsAPI from "@/hooks/reflection-post-api";
 
 const DisplayContent = async () => {
   const data = await reflectionPostsAPI.getReflectionPosts();
