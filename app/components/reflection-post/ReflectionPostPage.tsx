@@ -1,13 +1,11 @@
-import { Box, Typography, Button, TextField } from "@mui/material";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
-import getCurrentUser from "@/app/actions/getCurrentUser";
 import reflectionPostsAPI from "@/app/hooks/reflection-post-api";
 import GoogleLoginForm from "../GoogleLoginForm";
 import { useRouter } from "next/navigation";
 import { User } from "next-auth";
-import { PostReflectionPosts, ReflectionPosts } from "@/app/types/types";
+import ReflectionPostForm from "./ReflectionPostForm";
 
 export const formSchema = z.object({
   title: z
@@ -42,7 +40,6 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
 
   const onSubmit = async (formData: any) => {
     console.log(formData);
-    // POSTリクエストなどをここで呼び出す
     await reflectionPostsAPI.postReflectionPosts({
       title: formData.title,
       content: formData.content,
@@ -51,51 +48,11 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
 
   return { currentUser } ? (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Box display={"flex"} flexDirection={"column"}>
-          {/* Title Field */}
-          <Controller
-            name="title"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                id={"title"}
-                label="Title"
-                error={!!errors.title}
-                helperText={errors.title ? errors.title.message : ""}
-                sx={{ alignSelf: "center", mb: 2 }}
-              />
-            )}
-          />
-
-          {/* Content Field */}
-          <Controller
-            name="content"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                id="content"
-                label="Content"
-                multiline
-                rows={4}
-                error={!!errors.content}
-                helperText={errors.content ? errors.content.message : ""}
-                sx={{ alignSelf: "center", mb: 2 }}
-              />
-            )}
-          />
-
-          {/* Submit Button */}
-          <Button
-            type="submit"
-            sx={{ bgcolor: "blue", color: "white", alignSelf: "center" }}
-          >
-            投稿
-          </Button>
-        </Box>
-      </form>
+      <ReflectionPostForm
+        onSubmit={handleSubmit(onSubmit)}
+        control={control}
+        errors={errors}
+      />
     </>
   ) : (
     <>
