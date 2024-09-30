@@ -1,13 +1,13 @@
 "use client";
 import { Box } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
-import Button from "./Button";
 import { signIn } from "next-auth/react";
+import { AuthButton } from "../shared/button";
 
 const GoogleLoginButton = () => {
   return (
     <Box px={{ xs: 2, md: 5 }}>
-      <Button
+      <AuthButton
         label="Googleでログイン"
         icon={FcGoogle}
         onClick={() =>

@@ -1,5 +1,5 @@
-import ReflectionPostPage from "@/src/components/reflection-post/ReflectionPostPage";
-import getCurrentUser from "@/utils/actions/getCurrentUser";
+import ReflectionPostPage from "@/src/components/reflection/ReflectionPostPage";
+import getCurrentUser from "@/src/utils/actions/get-current-user";
 
 const page = async () => {
   const currentUser = await getCurrentUser();

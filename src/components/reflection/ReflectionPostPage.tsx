@@ -1,6 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import GoogleLoginForm from "../GoogleLoginForm";
+import GoogleLoginForm from "../auth/GoogleLoginForm";
 import { useRouter } from "next/navigation";
 import { User } from "next-auth";
 import ReflectionPostForm from "./ReflectionPostForm";

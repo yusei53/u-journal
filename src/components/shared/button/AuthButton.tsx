@@ -8,7 +8,12 @@ type TProps = {
   sx?: SxProps;
 };
 
-const CustomButton: React.FC<TProps> = ({ label, onClick, icon: Icon, sx }) => {
+export const AuthButton: React.FC<TProps> = ({
+  label,
+  onClick,
+  icon: Icon,
+  sx,
+}) => {
   return (
     <MuiButton
       onClick={onClick}
@@ -28,5 +33,3 @@ const CustomButton: React.FC<TProps> = ({ label, onClick, icon: Icon, sx }) => {
     </MuiButton>
   );
 };
-
-export default CustomButton;

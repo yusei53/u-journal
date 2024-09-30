@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
-import Editor from "../editor/Editor";
+import Editor from "../markdown-editor/Editor";
 
 type RefrectionPostFormProps = {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;

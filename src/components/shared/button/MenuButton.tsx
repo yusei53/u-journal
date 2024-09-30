@@ -5,7 +5,7 @@ type MenuButtonProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const MenuButton: React.FC<MenuButtonProps> = ({ title, onClick }) => {
+export const MenuButton: React.FC<MenuButtonProps> = ({ title, onClick }) => {
   return (
     <Button
       sx={{
@@ -24,5 +24,3 @@ const MenuButton: React.FC<MenuButtonProps> = ({ title, onClick }) => {
     </Button>
   );
 };
-
-export default MenuButton;
