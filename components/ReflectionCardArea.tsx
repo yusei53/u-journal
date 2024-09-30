@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import ReflectionCard from "./ReflectionCard";
 import UserNameBar from "./UserNameBar";
-import { ReflectionCardDataProps } from "../types/types";
+import { ReflectionCardDataProps } from "@/app/const/ReflectionCardData";
 
 type ReflectionCardAreaProps = {
   ReflectionCardData: ReflectionCardDataProps[];
