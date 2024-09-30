@@ -1,4 +1,4 @@
 {
   // tiptap is a library name, disabling lint warning
-  "cSpell.words": ["tiptap"]
+  "cSpell.words": ["tiptap", "nextauth"]
 }
