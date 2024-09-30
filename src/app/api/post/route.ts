@@ -1,5 +1,5 @@
 import prisma from "@/src/lib/prisma";
-import getCurrentUser from "@/src/utils/actions/getCurrentUser";
+import getCurrentUser from "@/src/utils/actions/get-current-user";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {

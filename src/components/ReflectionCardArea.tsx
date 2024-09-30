@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import ReflectionCard from "./ReflectionCard";
 import UserNameBar from "./UserNameBar";
-import { ReflectionCardDataProps } from "../mock/ReflectionCardData";
+import { ReflectionCardDataProps } from "../mock/reflection-card-data";
 
 type ReflectionCardAreaProps = {
   ReflectionCardData: ReflectionCardDataProps[];

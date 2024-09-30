@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 
 import ReflectionCardArea from "./ReflectionCardArea";
-import getCurrentUser from "../utils/actions/getCurrentUser";
-import { ReflectionCardData } from "../mock/ReflectionCardData";
+import getCurrentUser from "../utils/actions/get-current-user";
+import { ReflectionCardData } from "../mock/reflection-card-data";
 
 const ReflectionListPage = async () => {
   const currentUser = await getCurrentUser();

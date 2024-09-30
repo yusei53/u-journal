@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import { ReflectionCardDataProps } from "../mock/ReflectionCardData";
+import { ReflectionCardDataProps } from "../mock/reflection-card-data";
 
 type ReflectionCardProps = {
   ReflectionCardData: ReflectionCardDataProps;
