@@ -2,13 +2,13 @@ import { Box, Button, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
 import Editor from "../markdown-editor/Editor";
 
-type RefrectionPostFormProps = {
+type ReflectionPostFormProps = {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   control: any;
   errors: any;
 };
 
-const ReflectionPostForm: React.FC<RefrectionPostFormProps> = ({
+const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   onSubmit,
   control,
   errors,
