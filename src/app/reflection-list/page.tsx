@@ -1,4 +1,4 @@
-import ReflectionListPage from "../components/ReflectionListPage";
+import ReflectionListPage from "@/src/components/pages/ReflectionListPage";
 
 const page = () => {
   return <ReflectionListPage />;

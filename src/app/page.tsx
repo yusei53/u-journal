@@ -1,12 +1,11 @@
-import GoogleLoginForm from "../components/GoogleLoginForm";
-import LogoutButton from "../components/LogoutButton";
-import DisplayContent from "../components/view";
-import reflectionPostsAPI from "../hooks/reflection-post-api";
-import getCurrentUser from "../utils/actions/getCurrentUser";
+import React from "react";
+import GoogleLoginForm from "../components/auth/GoogleLoginForm";
+import LogoutButton from "../components/auth/LogoutButton";
+import DisplayContent from "../components/reflection/view";
+import getCurrentUser from "../utils/actions/get-current-user";
 
 const Home = async () => {
   const currentUser = await getCurrentUser();
-  const data = await reflectionPostsAPI.getReflectionPosts();
   return currentUser ? (
     <>
       <LogoutButton />

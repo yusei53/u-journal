@@ -1,12 +1,12 @@
 "use client";
 import { Box } from "@mui/material";
-import Button from "./Button";
 import { signOut } from "next-auth/react";
+import { AuthButton } from "../shared/button";
 
 const LogoutButton = () => {
   return (
     <Box>
-      <Button
+      <AuthButton
         label="ログアウト"
         onClick={() => signOut()}
         sx={{
