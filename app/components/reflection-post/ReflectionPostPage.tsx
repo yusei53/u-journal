@@ -1,3 +1,4 @@
+"use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -30,6 +31,7 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,12 +40,20 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
     },
   });
 
-  const onSubmit = async (formData: any) => {
+  const onSubmit = (formData: any) => {
     console.log(formData);
-    await reflectionPostsAPI.postReflectionPosts({
-      title: formData.title,
-      content: formData.content,
-    });
+    reflectionPostsAPI
+      .postReflectionPosts({
+        title: formData.title,
+        content: formData.content,
+      })
+      .then(() => {
+        reset();
+        alert("投稿が完了しました");
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
 
   return { currentUser } ? (
