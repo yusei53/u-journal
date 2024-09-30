@@ -1,4 +1,8 @@
-import { ReflectionCardDataProps } from "../types/types";
+export type ReflectionCardDataProps = {
+  title: string;
+  day: string;
+  href: string;
+};
 
 export const ReflectionCardData: ReflectionCardDataProps[] = [
   {
