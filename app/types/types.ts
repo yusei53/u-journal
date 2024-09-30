@@ -10,3 +10,8 @@ export type ReflectionPosts = {
   title: string;
   content: string;
 };
+
+export type PostReflectionPosts = {
+  title: string;
+  content: string;
+};
