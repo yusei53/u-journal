@@ -1,7 +1,7 @@
 "use server";
-import { getServerSession } from "next-auth/next";
-import prisma from "@/lib/prisma";
-import authOptions from "@/app/api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth";
+import authOptions from "../../app/api/auth/[...nextauth]/options";
+import prisma from "@/src/lib/prisma";
 
 const getCurrentUser = async () => {
   try {

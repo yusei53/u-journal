@@ -1,4 +1,4 @@
-import ReflectionPostPage from "@/components/reflection-post/ReflectionPostPage";
+import ReflectionPostPage from "@/src/components/reflection-post/ReflectionPostPage";
 import getCurrentUser from "@/utils/actions/getCurrentUser";
 
 const page = async () => {
