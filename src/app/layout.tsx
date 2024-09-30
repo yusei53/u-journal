@@ -1,4 +1,3 @@
-import getCurrentUser from "@/utils/actions/getCurrentUser";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -14,7 +13,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body style={{ margin: 0 }}>{children}</body>
