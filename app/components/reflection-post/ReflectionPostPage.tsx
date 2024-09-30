@@ -1,12 +1,13 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import reflectionPostsAPI from "@/app/hooks/reflection-post-api";
 import GoogleLoginForm from "../GoogleLoginForm";
 import { useRouter } from "next/navigation";
 import { User } from "next-auth";
 import ReflectionPostForm from "./ReflectionPostForm";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 
 export const formSchema = z.object({
   title: z
@@ -32,7 +33,7 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
     control,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<FieldValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
@@ -56,7 +57,7 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
       });
   };
 
-  return { currentUser } ? (
+  return currentUser ? (
     <>
       <ReflectionPostForm
         onSubmit={handleSubmit(onSubmit)}
