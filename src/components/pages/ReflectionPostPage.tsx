@@ -6,7 +6,7 @@ import { User } from "next-auth";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
-import reflectionPostsAPI from "@/src/hooks/reflection-post-api";
+import reflectionPostsAPI from "@/src/hooks/reflection-api";
 import ReflectionPostForm from "../reflection/ReflectionPostForm";
 import React from "react";
 
@@ -45,10 +45,7 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
   const onSubmit = (formData: any) => {
     console.log(formData);
     reflectionPostsAPI
-      .postReflectionPosts({
-        title: formData.title,
-        content: formData.content,
-      })
+      .postReflectionPosts({ title: formData.title, content: formData.content })
       .then(() => {
         reset();
         alert("投稿が完了しました");

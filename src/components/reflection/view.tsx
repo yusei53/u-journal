@@ -1,7 +1,5 @@
-// 投稿された内容を表示するコンポーネント
-import React from "react";
 import HtmlContent from "./html";
-import reflectionPostsAPI from "../../hooks/reflection-post-api";
+import reflectionPostsAPI from "../../hooks/reflection-api";
 
 const DisplayContent = async () => {
   const data = await reflectionPostsAPI.getReflectionPosts();
@@ -11,9 +9,10 @@ const DisplayContent = async () => {
       <h1>投稿内容の表示</h1>
       <ul>
         {data.map((post) => (
-          <li key={post.id}>
+          <li key={post.reflectionUUID}>
             <h2>{post.title}</h2>
             <HtmlContent title={post.title} content={post.content} />
+            <p>{post.createdAt}</p>
           </li>
         ))}
       </ul>
