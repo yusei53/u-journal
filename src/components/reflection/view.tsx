@@ -1,5 +1,5 @@
 import HtmlContent from "./html";
-import reflectionPostsAPI from "../../hooks/reflection-api";
+import reflectionPostsAPI from "../../hooks/api/reflection-api";
 
 const DisplayContent = async () => {
   const data = await reflectionPostsAPI.getReflectionPosts();
