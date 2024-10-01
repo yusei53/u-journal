@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const allReflectionPosts = await prisma.post.findMany();
-    return NextResponse.json(allReflectionPosts);
+    const response = await prisma.reflection.findMany();
+    return NextResponse.json(response);
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "Error get posts" }, { status: 500 });
@@ -22,10 +22,11 @@ export async function POST(req: NextRequest) {
       return new NextResponse("認証されていません", { status: 401 });
     }
 
-    const response = await prisma.post.create({
+    const response = await prisma.reflection.create({
       data: {
         title,
         content,
+        createdAt: new Date(),
         userId: currentUser.id,
       },
     });
