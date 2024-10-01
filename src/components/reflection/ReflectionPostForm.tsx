@@ -1,6 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
-import Editor from "../markdown-editor/Editor";
+import Editor from "../markdown-editor/MarkdownEditor";
+import MarkdownEditor from "../markdown-editor/MarkdownEditor";
 
 type ReflectionPostFormProps = {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -34,7 +35,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
           name="content"
           control={control}
           render={({ field }) => (
-            <Editor value={field.value} onChange={field.onChange} />
+            <MarkdownEditor value={field.value} onChange={field.onChange} />
           )}
         />
         <Button

@@ -11,7 +11,7 @@ type EditorProps = {
   onChange: (content: string) => void;
 };
 
-const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
+const MarkdownEditor: React.FC<EditorProps> = ({ value, onChange }) => {
   const editor = useEditor({
     extensions: [StarterKit, Highlight, Typography],
     content: value,
@@ -27,4 +27,4 @@ const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
   );
 };
 
-export default Editor;
+export default MarkdownEditor;
