@@ -22,10 +22,10 @@ model User {
   hashedPassword String?
   createdAt      DateTime  @default(now())
   accounts       Account[]
-  posts          Post[]
+  reflections          Reflection[]
 }
 
-model Post {
+model Reflection {
   id        String  @id @default(uuid())
   userId    String
   title     String
