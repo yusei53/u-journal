@@ -22,15 +22,17 @@ export async function POST(req: NextRequest) {
       return new NextResponse("認証されていません", { status: 401 });
     }
 
+    const now = new Date();
+    const jstDate = new Date(now.getTime() + 9 * 60 * 60 * 1000); // UTCに9時間を加える
+
     const response = await prisma.reflection.create({
       data: {
         title,
         content,
-        createdAt: new Date(),
+        createdAt: jstDate, // JSTの日時を使用
         userId: currentUser.id,
       },
     });
-
     return NextResponse.json(response, { status: 201 });
   } catch (error) {
     console.error(error);
