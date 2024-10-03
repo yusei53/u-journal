@@ -5,9 +5,6 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
   "& .ProseMirror": {
     outline: "none",
   },
-  "& .code": {
-    backgroundColor: "#f0f0f0",
-  },
   "&": {
     "&:first-child": {
       marginTop: 2,
@@ -73,7 +70,6 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
       "& code": {
         backgroundColor: "transparent",
         fontSize: "0.8rem",
-        padding: 0,
       },
     },
 
