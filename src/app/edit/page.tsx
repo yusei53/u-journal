@@ -1,7 +1,7 @@
-import Editor from "../components/editor/Editor";
+import MarkdownEditor from "@/src/components/markdown-editor/MarkdownEditor";
 
 const page = () => {
-  return <Editor />;
+  return <MarkdownEditor />;
 };
 
 export default page;

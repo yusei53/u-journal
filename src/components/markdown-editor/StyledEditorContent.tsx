@@ -2,10 +2,12 @@ import { styled } from "@mui/material/styles";
 import { EditorContent } from "@tiptap/react";
 
 const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
-  // https://github.com/ueberdosis/tiptap/blob/main/demos/src/Examples/MarkdownShortcuts/React/styles.scss
+  "& .ProseMirror": {
+    outline: "none",
+  },
   "&": {
     "&:first-child": {
-      marginTop: 0,
+      marginTop: 2,
     },
 
     /* List styles */
@@ -27,9 +29,9 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     },
 
     "h1, h2": {
-      marginTop: "3.5rem",
+      marginTop: "4rem",
       marginBottom: "1.5rem",
-      borderBottom: "1px solid black",
+      borderBottom: "1px solid #e0e0e0",
     },
 
     h1: {
@@ -50,7 +52,7 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
 
     /* Code and preformatted text styles */
     code: {
-      backgroundColor: "var(--purple-light)",
+      backgroundColor: "#f0f0f0",
       borderRadius: "0.4rem",
       color: "var(--black)",
       fontSize: "0.85rem",
@@ -58,37 +60,35 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     },
 
     pre: {
-      background: "var(--black)",
-      borderRadius: "0.5rem",
-      color: "var(--white)",
+      background: "#1e1e1e",
+      color: "white",
       fontFamily: "'JetBrainsMono', monospace",
+      borderRadius: "0.4rem",
       margin: "1.5rem 0",
       padding: "0.75rem 1rem",
 
       "& code": {
-        background: "none",
-        color: "inherit",
+        backgroundColor: "transparent",
         fontSize: "0.8rem",
-        padding: 0,
       },
     },
 
     mark: {
-      backgroundColor: "#FAF594",
+      backgroundColor: "#fffbc4",
       borderRadius: "0.4rem",
       boxDecorationBreak: "clone",
       padding: "0.1rem 0.3rem",
     },
 
     blockquote: {
-      borderLeft: "3px solid var(--gray-3)",
+      borderLeft: "3px solid grey",
       margin: "1.5rem 0",
       paddingLeft: "1rem",
     },
 
     hr: {
-      border: "none",
-      borderTop: "1px solid var(--gray-2)",
+      border: "#7d8186",
+      borderTop: "1px solid grey",
       margin: "2rem 0",
     },
   },
