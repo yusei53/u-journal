@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export type Reflection = {
   reflectionUUID: string;
   title: string;
@@ -5,32 +7,28 @@ export type Reflection = {
   createdAt: string;
 };
 
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
-
-const reflectionAPI = {
-  async getReflectionPosts(): Promise<Reflection[]> {
-    const response = await fetch(`${baseURL}/api/reflection`, {
-      method: "GET",
-    });
-    return response.json();
-  },
-
-  async postReflectionPosts({
-    title,
-    content,
-  }: {
-    title: string;
-    content: string;
-  }): Promise<Reflection> {
-    const response = await fetch(`${baseURL}/api/reflection`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, content }),
-    });
-    return response.json();
-  },
+export type ReflectionGetResponse = {
+  reflections: Reflection[];
 };
 
-export default reflectionAPI;
+export const reflectionAPI = {
+  async getReflections() {
+    const response = await axios.request<ReflectionGetResponse>({
+      url: `/api/reflection`,
+      method: "GET",
+    });
+    return response.data.reflections;
+  },
+
+  async postReflection({ title, content }: { title: string; content: string }) {
+    const response = await axios.request<Reflection>({
+      url: `/api/reflection`,
+      method: "POST",
+      data: {
+        title,
+        content,
+      },
+    });
+    return response.data;
+  },
+};
