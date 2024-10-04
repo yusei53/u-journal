@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, originalUserId, email } = await req.json();
+    const { originalUserId } = await req.json();
 
     const currentUser = await getCurrentUser();
 
@@ -12,13 +12,15 @@ export async function POST(req: NextRequest) {
       return new NextResponse("認証されていません", { status: 401 });
     }
 
-    const response = await prisma.user.create({
+    const response = await prisma.user.update({
+      where: {
+        id: currentUser.id,
+      },
       data: {
-        email,
-        name,
-        originalUserId: originalUserId,
+        originalUserId: originalUserId, // originalUserId を保存
       },
     });
+
     return NextResponse.json(response, { status: 201 });
   } catch (error) {
     console.error(error);
