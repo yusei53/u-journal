@@ -8,7 +8,7 @@ const Page = () => {
   const [userId, setUserId] = useState("");
 
   const SubmitOriginalUserId = async (event: React.FormEvent) => {
-    event.preventDefault;
+    event.preventDefault();
     originalUserIdAPI
       .postOriginalUserId({ originalUserId: userId })
       .then(() => {
