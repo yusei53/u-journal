@@ -20,7 +20,13 @@ export const reflectionAPI = {
     return response.data.reflections;
   },
 
-  async postReflection({ title, content }: { title: string; content: string }) {
+  async createReflection({
+    title,
+    content,
+  }: {
+    title: string;
+    content: string;
+  }) {
     const response = await axios.request<Reflection>({
       url: `/api/reflection`,
       method: "POST",
