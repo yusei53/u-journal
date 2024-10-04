@@ -6,9 +6,8 @@ import { User } from "next-auth";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
-import reflectionPostsAPI from "@/src/hooks/api/reflection-api";
 import ReflectionPostForm from "../reflection/ReflectionPostForm";
-import React from "react";
+import { useCreateReflection } from "@/src/hooks/reflection/useCreateReflection";
 
 export const formSchema = z.object({
   title: z
@@ -33,7 +32,6 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
     handleSubmit,
     control,
     formState: { errors },
-    reset,
   } = useForm<FieldValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,31 +40,30 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
     },
   });
 
+  const createReflectionMutation = useCreateReflection();
+
   const onSubmit = (formData: any) => {
-    console.log(formData);
-    reflectionPostsAPI
-      .postReflectionPosts({ title: formData.title, content: formData.content })
-      .then(() => {
-        reset();
-        alert("投稿が完了しました");
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
+    createReflectionMutation.mutate(
+      {
+        title: formData.title,
+        content: formData.content,
+      },
+      {
+        onSuccess: () => {
+          router.push("/reflection-list");
+        },
+      }
+    );
   };
 
   return currentUser ? (
-    <>
-      <ReflectionPostForm
-        onSubmit={handleSubmit(onSubmit)}
-        control={control}
-        errors={errors}
-      />
-    </>
+    <ReflectionPostForm
+      onSubmit={handleSubmit(onSubmit)}
+      control={control}
+      errors={errors}
+    />
   ) : (
-    <>
-      <GoogleLoginForm />
-    </>
+    <GoogleLoginForm />
   );
 };
 

@@ -6,7 +6,8 @@ import { ReflectionCardData } from "../../mock/reflection-card-data";
 
 const ReflectionListPage = async () => {
   const currentUser = await getCurrentUser();
-  // ここでReflectioncardDataを取得する処理を書く
+  // const { reflections, isLoading, error } = useReflection();
+  // ここでReflectionCardDataを取得する処理を書く
   return currentUser ? (
     <ReflectionCardArea ReflectionCardData={ReflectionCardData} />
   ) : (
