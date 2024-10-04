@@ -20,6 +20,7 @@
     "@tiptap/pm": "^2.7.2",
     "@tiptap/react": "^2.7.2",
     "@tiptap/starter-kit": "^2.7.2",
+    "axios": "^1.7.7",
     "next": "14.2.7",
     "next-auth": "^4.24.7",
     "prisma": "^5.19.0",
