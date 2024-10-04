@@ -6,7 +6,7 @@ import { User } from "next-auth";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
-import reflectionPostsAPI from "@/src/hooks/api/reflection-api";
+import reflectionPostsAPI from "@/src/api/reflection-api";
 import ReflectionPostForm from "../reflection/ReflectionPostForm";
 import React from "react";
 
