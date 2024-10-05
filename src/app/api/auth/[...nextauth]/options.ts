@@ -4,11 +4,8 @@ import GoogleProvider from "next-auth/providers/google";
 import prisma from "@/src/lib/prisma";
 
 const authOptions: NextAuthOptions = {
-  //prismaを使うための設定
   adapter: PrismaAdapter(prisma),
-  //認証プロバイダー
   providers: [
-    // Google認証
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
@@ -17,6 +14,37 @@ const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
+  },
+  callbacks: {
+    async signIn({ user }) {
+      // 前提usernameはNOT NULL制約あり
+      // 初回ログイン時にusernameが設定されないため、自動で設定しておく
+      if (!user.username) {
+        const generatedUsername = `${user.id.slice(0, 8)}`;
+        try {
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { username: generatedUsername },
+          });
+        } catch (error) {
+          console.error("Error setting username:", error);
+          return false;
+        }
+      }
+      return true;
+    },
+    async session({ session, user }) {
+      if (session.user && user) {
+        session.user.username = user.username;
+      }
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.username = user.username;
+      }
+      return token;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
