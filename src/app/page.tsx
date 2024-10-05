@@ -1,21 +1,36 @@
-import React from "react";
+"use client";
+import Image from "next/image";
 import GoogleLoginForm from "../components/auth/GoogleLoginForm";
 import LogoutButton from "../components/auth/LogoutButton";
 import DisplayContent from "../components/reflection/view";
-import getCurrentUser from "../utils/actions/get-current-user";
+import { useSession } from "next-auth/react";
+import React from "react";
 
-const Home = async () => {
-  const currentUser = await getCurrentUser();
-  return currentUser ? (
-    <>
-      <LogoutButton />
-      <DisplayContent />
-    </>
-  ) : (
-    <>
+const Home = () => {
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  {
+    return session ? (
+      <>
+        <div>
+          <Image
+            src={session.user?.image ?? ""}
+            alt={session.user?.name ?? ""}
+            width={40}
+            height={40}
+          />
+        </div>
+        <LogoutButton />
+        <DisplayContent />
+      </>
+    ) : (
       <GoogleLoginForm />
-    </>
-  );
+    );
+  }
 };
 
 export default Home;
