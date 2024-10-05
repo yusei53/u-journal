@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
         id: currentUser.id,
       },
       data: {
-        originalUserId: originalUserId, // originalUserId を保存
+        username: originalUserId,
       },
     });
 

@@ -24,22 +24,20 @@ const ReflectionCardArea: React.FC<ReflectionCardAreaProps> = ({
         </Typography>
         <UserNameBar />
       </Box>
-      <Box px={{ xs: 10, md: 35 }}>
-        <Grid container>
-          {ReflectionCardData.map((data, index) => (
-            <Grid item xs={12} sm={4} key={index}>
-              <Box
-                display={"flex"}
-                flexDirection={"column"}
-                alignItems={"center"}
-                justifyContent={"center"}
-              >
-                <ReflectionCard ReflectionCardData={data} />
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <Grid container>
+        {ReflectionCardData.map((data, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <ReflectionCard ReflectionCardData={data} />
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 };
