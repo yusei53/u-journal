@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export type Reflection = {
-  reflectionUUID: string;
+  reflectionCUID: string;
   title: string;
   content: string;
   createdAt: string;
