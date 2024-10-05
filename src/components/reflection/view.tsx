@@ -15,7 +15,7 @@ const DisplayContent = () => {
   }
 
   if (!reflections) {
-    return <div>データがありません。</div>;
+    return undefined;
   }
 
   return (
