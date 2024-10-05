@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import authOptions from "../../app/api/auth/[...nextauth]/options";
 import prisma from "@/src/lib/prisma";
 
+// APIルートやサーバーサイドででユーザー情報が必要な場合に使用
 const getCurrentUser = async () => {
   try {
     //セッション情報取得

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { NextAuthProvider, ReactQueryProvider } from "../providers";
 import { getServerSession } from "next-auth";
 import authOptions from "./api/auth/[...nextauth]/options";
+import { Container } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +21,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body style={{ margin: 0 }}>
-        <NextAuthProvider session={session}>
-          <ReactQueryProvider>{children}</ReactQueryProvider>
+        <NextAuthProvider>
+          <ReactQueryProvider>
+            <Container maxWidth="md" sx={{ my: 6 }}>
+              {children}
+            </Container>
+          </ReactQueryProvider>
         </NextAuthProvider>
       </body>
     </html>
