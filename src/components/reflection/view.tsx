@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/src/app/loading";
 import HtmlContent from "./html";
 import { useReflections } from "@/src/hooks/reflection/useReflections";
 
@@ -6,7 +7,7 @@ const DisplayContent = () => {
   const { data: reflections, isLoading, error } = useReflections();
 
   if (isLoading) {
-    return <div>読み込み中...</div>;
+    return <Loading />;
   }
 
   if (error) {

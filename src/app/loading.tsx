@@ -8,7 +8,7 @@ const Loading = () => {
       justifyContent={"center"}
       height={"100vh"}
     >
-      <CircularProgress size={100} />
+      <CircularProgress size={50} />
     </Box>
   );
 };
