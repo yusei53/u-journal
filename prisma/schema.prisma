@@ -27,12 +27,12 @@ model User {
 }
 
 model Reflection {
-  reflectionUUID        String  @id @default(uuid())
-  userId    String
-  title     String
-  content   String
-  createdAt DateTime @default(now())
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reflectionCUID String   @id @default(cuid()) @db.VarChar(30)
+  userId         String
+  title          String
+  content        String
+  createdAt      DateTime @default(now())
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Account {
