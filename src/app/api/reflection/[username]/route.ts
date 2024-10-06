@@ -15,28 +15,34 @@ export async function GET(
   }
 
   try {
-    const user = await prisma.user.findUnique({
+    const userWithReflections = await prisma.user.findUnique({
       where: { username },
+      select: {
+        image: true,
+        reflections: {
+          orderBy: { createdAt: "desc" },
+          select: {
+            reflectionCUID: true,
+            title: true,
+            createdAt: true,
+          },
+        },
+      },
     });
-
-    if (!user) {
+    if (!userWithReflections) {
       return NextResponse.json(
         { message: "ユーザーが見つかりません" },
         { status: 404 }
       );
     }
 
-    const reflections = await prisma.reflection.findMany({
-      where: { userId: user.id },
-      orderBy: { createdAt: "desc" },
-      select: {
-        reflectionCUID: true,
-        title: true,
-        createdAt: true,
+    return NextResponse.json(
+      {
+        reflections: userWithReflections.reflections,
+        userImage: userWithReflections.image,
       },
-    });
-
-    return NextResponse.json({ reflections }, { status: 200 });
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Error fetching reflections:", error);
     return NextResponse.json(
