@@ -28,7 +28,7 @@ model User {
 
 model Reflection {
   reflectionCUID String   @id @default(cuid()) @db.VarChar(30)
-  userId       String
+  userId         String
   title          String
   content        String
   createdAt      DateTime @default(now())
