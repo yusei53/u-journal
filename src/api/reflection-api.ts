@@ -1,25 +1,22 @@
 import axios from "axios";
 
-export type Reflection = {
+export type ReflectionDetail = {
   reflectionCUID: string;
   title: string;
   content: string;
   createdAt: string;
 };
 
-export type Reflections = {
-  reflectionCUID: string;
-  title: string;
-  createdAt: string;
-};
+export type Reflection = Omit<ReflectionDetail, "content">;
 
-export type ReflectionGetResponse = {
-  reflections: Reflections[];
+export type Reflections = {
+  userImage: string;
+  reflections: Reflection[];
 };
 
 export const reflectionAPI = {
   async getReflections() {
-    const response = await axios.request<ReflectionGetResponse>({
+    const response = await axios.request<Reflections>({
       url: `/api/reflection`,
       method: "GET",
     });
@@ -27,11 +24,11 @@ export const reflectionAPI = {
   },
 
   async getReflectionsByUsername(username: string) {
-    const response = await axios.request<ReflectionGetResponse>({
+    const response = await axios.request<Reflections>({
       url: `/api/reflection/${username}`,
       method: "GET",
     });
-    return response.data.reflections;
+    return response.data;
   },
 
   async createReflection({
@@ -41,7 +38,7 @@ export const reflectionAPI = {
     title: string;
     content: string;
   }) {
-    const response = await axios.request<Reflection>({
+    const response = await axios.request<ReflectionDetail>({
       url: `/api/reflection`,
       method: "POST",
       data: {
