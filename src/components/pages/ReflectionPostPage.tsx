@@ -20,7 +20,7 @@ export const formSchema = z.object({
 });
 
 type ReflectionPostPageProps = {
-  currentUser: User | null;
+  currentUser: User["id"] | undefined;
 };
 
 const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
