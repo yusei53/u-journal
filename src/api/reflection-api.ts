@@ -7,14 +7,28 @@ export type Reflection = {
   createdAt: string;
 };
 
+export type Reflections = {
+  reflectionCUID: string;
+  title: string;
+  createdAt: string;
+};
+
 export type ReflectionGetResponse = {
-  reflections: Reflection[];
+  reflections: Reflections[];
 };
 
 export const reflectionAPI = {
   async getReflections() {
     const response = await axios.request<ReflectionGetResponse>({
       url: `/api/reflection`,
+      method: "GET",
+    });
+    return response.data.reflections;
+  },
+
+  async getReflectionsByUsername(username: string) {
+    const response = await axios.request<ReflectionGetResponse>({
+      url: `/api/reflection/${username}`,
       method: "GET",
     });
     return response.data.reflections;
