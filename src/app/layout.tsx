@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { NextAuthProvider, ReactQueryProvider } from "../providers";
-import { getServerSession } from "next-auth";
-import authOptions from "./api/auth/[...nextauth]/options";
-import { Container } from "@mui/material";
+import { Container, CssBaseline, ThemeProvider } from "@mui/material";
+import { theme } from "../utils/theme/theme";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,15 +16,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <body style={{ margin: 0 }}>
         <NextAuthProvider>
           <ReactQueryProvider>
-            <Container maxWidth="md" sx={{ my: 6 }}>
-              {children}
-            </Container>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Container maxWidth="md" sx={{ my: 6 }}>
+                {children}
+              </Container>
+            </ThemeProvider>
           </ReactQueryProvider>
         </NextAuthProvider>
       </body>
