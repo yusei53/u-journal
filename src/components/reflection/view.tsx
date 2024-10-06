@@ -23,11 +23,7 @@ const DisplayContent = () => {
       <h1>投稿内容の表示</h1>
       {reflections.map((post) => (
         <div key={post.reflectionCUID}>
-          <HtmlContent
-            title={post.title}
-            content={post.content}
-            createdAt={post.createdAt}
-          />
+          <HtmlContent title={post.title} createdAt={post.createdAt} />
         </div>
       ))}
     </div>
