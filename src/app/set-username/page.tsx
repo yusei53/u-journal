@@ -1,24 +1,26 @@
 "use client";
 
-import usernameAPI from "@/src/hooks/api/username-api";
+import { useSetUsername } from "@/src/hooks/username/useSetUsername";
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
 
 const Page = () => {
   const [username, setUserName] = useState("");
+  const setUsernameMutation = useSetUsername();
 
   const Submitusername = async (event: React.FormEvent) => {
     event.preventDefault();
-    usernameAPI
-      .postusername({ username: username })
-      .then(() => {
-        console.log("userId:", username);
-        setUserName("");
-        alert("設定しました");
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
+    setUsernameMutation.mutate(
+      {
+        username: username,
+      },
+      {
+        onSuccess: () => {
+          alert("設定しました");
+          setUserName("");
+        },
+      }
+    );
   };
 
   return (
