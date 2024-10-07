@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { originalUserId } = await req.json();
+    const { username } = await req.json();
 
     const currentUser = await getCurrentUser();
 
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
         id: currentUser.id,
       },
       data: {
-        username: originalUserId,
+        username: username,
       },
     });
 

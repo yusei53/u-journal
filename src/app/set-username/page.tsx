@@ -1,19 +1,19 @@
 "use client";
 
-import originalUserIdAPI from "@/src/hooks/api/original-user-api";
+import usernameAPI from "@/src/hooks/api/username-api";
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
 
 const Page = () => {
-  const [userId, setUserId] = useState("");
+  const [username, setUserName] = useState("");
 
-  const SubmitOriginalUserId = async (event: React.FormEvent) => {
+  const Submitusername = async (event: React.FormEvent) => {
     event.preventDefault();
-    originalUserIdAPI
-      .postOriginalUserId({ originalUserId: userId })
+    usernameAPI
+      .postusername({ username: username })
       .then(() => {
-        console.log("userId:", userId);
-        setUserId("");
+        console.log("userId:", username);
+        setUserName("");
         alert("設定しました");
       })
       .catch((error) => {
@@ -24,12 +24,12 @@ const Page = () => {
   return (
     <>
       <Typography>ユーザIDを設定してください</Typography>
-      <form onSubmit={SubmitOriginalUserId}>
+      <form onSubmit={Submitusername}>
         <Box display={"flex"} flexDirection={"column"}>
           <input
             type="text"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
+            value={username}
+            onChange={(e) => setUserName(e.target.value)}
           ></input>
           <Button
             type="submit"
