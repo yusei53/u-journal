@@ -1,19 +1,17 @@
+import axios from "axios";
+
 export type User = {
   username: string;
 };
 
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
-
 const usernameAPI = {
-  async postusername({ username }: { username: String }): Promise<User> {
-    const response = await fetch(`${baseURL}/api/username`, {
+  async postUsername({ username }: { username: string }) {
+    const response = await axios.request<User>({
+      url: `/api/username`,
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username }),
+      data: { username },
     });
-    return response.json();
+    return response.data;
   },
 };
 
