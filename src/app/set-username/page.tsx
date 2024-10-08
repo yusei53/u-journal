@@ -1,12 +1,12 @@
 "use client";
 
-import { useSetUsername } from "@/src/hooks/username/useSetUsername";
+import { useUsername } from "@/src/hooks/username/useUsername";
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
 
 const Page = () => {
   const [username, setUserName] = useState("");
-  const setUsernameMutation = useSetUsername();
+  const setUsernameMutation = useUsername();
 
   const Submitusername = async (event: React.FormEvent) => {
     event.preventDefault();
