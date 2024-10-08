@@ -5,10 +5,10 @@ export type User = {
 };
 
 const usernameAPI = {
-  async postUsername({ username }: { username: string }) {
+  async updateUsername({ username }: { username: string }) {
     const response = await axios.request<User>({
       url: `/api/username`,
-      method: "POST",
+      method: "PATCH",
       data: { username },
     });
     return response.data;

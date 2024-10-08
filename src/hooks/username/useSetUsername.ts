@@ -4,6 +4,6 @@ import usernameAPI from "../api/username-api";
 export const useSetUsername = () => {
   return useMutation({
     mutationFn: ({ username }: { username: string }) =>
-      usernameAPI.postUsername({ username }),
+      usernameAPI.updateUsername({ username }),
   });
 };
