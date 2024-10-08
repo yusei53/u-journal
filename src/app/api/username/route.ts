@@ -2,9 +2,9 @@ import prisma from "@/src/lib/prisma";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function PATCH(req: NextRequest) {
   try {
-    const { originalUserId } = await req.json();
+    const { username } = await req.json();
 
     const currentUser = await getCurrentUser();
 
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
         id: currentUser.id,
       },
       data: {
-        username: originalUserId,
+        username: username,
       },
     });
 
