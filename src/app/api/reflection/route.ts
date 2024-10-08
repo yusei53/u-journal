@@ -1,5 +1,6 @@
 import prisma from "@/src/lib/prisma";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
+import { toJST } from "@/src/utils/date-helper";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -23,13 +24,13 @@ export async function POST(req: NextRequest) {
     }
 
     const now = new Date();
-    const jstDate = new Date(now.getTime() + 9 * 60 * 60 * 1000); // UTCに9時間を加える
+    const jstDate = toJST(now);
 
     const reflection = await prisma.reflection.create({
       data: {
         title,
         content,
-        createdAt: jstDate, // JSTの日時を使用
+        createdAt: jstDate,
         userId: currentUser.id,
       },
     });
