@@ -4,7 +4,7 @@ export const reflectionsKeys = {
   byUser: (username: string) =>
     [...reflectionsKeys.all, "byUser", username] as const,
   detail: (reflectionUUID: number) =>
-    [...reflectionsKeys.details(), reflectionUUID] as const,
+    [...reflectionsKeys.all, "detail", reflectionUUID] as const,
 };
 
 /*
