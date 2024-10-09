@@ -1,8 +1,8 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { reflectionAPI } from "@/src/api/reflection-api";
 import { reflectionsKeys } from "@/src/utils/query-key/reflections-keys";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export const useCreateReflection = () => {
+export const useCreateReflection = (username: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -10,6 +10,12 @@ export const useCreateReflection = () => {
       reflectionAPI.createReflection({ title, content }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: reflectionsKeys.lists() });
+      queryClient.invalidateQueries({
+        queryKey: reflectionsKeys.countsByUser(username),
+      });
+      queryClient.invalidateQueries({
+        queryKey: reflectionsKeys.byUser(username),
+      });
     },
   });
 };
