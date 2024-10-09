@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/src/lib/prisma";
+import { getUserIdByUsername } from "@/src/utils/actions/get-userId-by-username";
 
 export async function GET(
   req: NextRequest,
@@ -14,9 +15,18 @@ export async function GET(
     );
   }
 
+  const userId = await getUserIdByUsername(username);
+
+  if (!userId) {
+    return NextResponse.json(
+      { message: "ユーザーが見つかりません" },
+      { status: 404 }
+    );
+  }
+
   try {
     const userWithReflections = await prisma.user.findUnique({
-      where: { username },
+      where: { id: userId },
       select: {
         image: true,
         reflections: {
