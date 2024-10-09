@@ -20,11 +20,13 @@ export const formSchema = z.object({
 });
 
 type ReflectionPostPageProps = {
-  currentUser: User["id"] | undefined;
+  currentUserId: User["id"] | null;
+  username: string | undefined;
 };
 
 const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
-  currentUser,
+  currentUserId,
+  username,
 }) => {
   const router = useRouter();
 
@@ -50,13 +52,13 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
       },
       {
         onSuccess: () => {
-          router.push("/reflection-list");
+          router.push(`/${username}`);
         },
       }
     );
   };
 
-  return currentUser ? (
+  return currentUserId ? (
     <ReflectionPostForm
       onSubmit={handleSubmit(onSubmit)}
       control={control}
