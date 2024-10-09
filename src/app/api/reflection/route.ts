@@ -22,12 +22,6 @@ export async function POST(req: NextRequest) {
     if (!currentUser?.id || !currentUser?.email) {
       return new NextResponse("認証されていません", { status: 401 });
     }
-
-    if (!currentUser.username) {
-      return new NextResponse("ユーザーネームが設定されていません", {
-        status: 400,
-      });
-    }
     const now = new Date();
     const jstDate = toJST(now);
 
@@ -36,7 +30,7 @@ export async function POST(req: NextRequest) {
         title,
         content,
         createdAt: jstDate,
-        username: currentUser.username,
+        userId: currentUser.id,
       },
     });
     return NextResponse.json(reflection, { status: 201 });
