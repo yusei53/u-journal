@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useReflections = () => {
   const { data, isLoading, error } = useQuery({
-    queryKey: reflectionsKeys.all,
+    queryKey: reflectionsKeys.lists(),
     queryFn: reflectionAPI.getReflections,
   });
 
