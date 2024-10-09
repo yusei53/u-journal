@@ -23,16 +23,27 @@ export async function GET(
       },
     });
 
-    // 日付ごとにグループ化して投稿数を集計(groupBy)
-    const countPerDate = reflectionsDateByUsername.reduce((acc, reflection) => {
-      const date = reflection.createdAt.toISOString().split("T")[0];
-      if (!acc[date]) {
-        acc[date] = 1;
-      } else {
-        acc[date]++;
-      }
-      return acc;
-    }, {} as Record<string, number>);
+    type DateCountMap = Record<string, number>;
+    const formatDate = (createdAt: Date) =>
+      createdAt.toISOString().split("T")[0];
+
+    // 日付ごとにグループ化して投稿数を計算(groupBy)
+    const countPerDate: DateCountMap = reflectionsDateByUsername.reduce(
+      (dateCounts, currentValue) => {
+        const date = formatDate(currentValue.createdAt);
+
+        // 存在する日付の場合はカウントを増やす
+        if (dateCounts[date]) {
+          dateCounts[date] = dateCounts[date] + 1;
+        } else {
+          dateCounts[date] = 1;
+        }
+
+        return dateCounts;
+      },
+      // initialValue(初期値)として空のオブジェクトを渡す
+      {} as DateCountMap
+    );
 
     // 配列に変換
     const countReflectionsPerDate = Object.entries(countPerDate).map(
