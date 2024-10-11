@@ -29,6 +29,7 @@ const SetUserNamePage = () => {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm<FieldValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,7 +45,7 @@ const SetUserNamePage = () => {
       {
         onSuccess: () => {
           alert("設定しました");
-          formData.username = "";
+          reset();
         },
       }
     );
