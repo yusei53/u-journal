@@ -30,9 +30,6 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
   handleClose,
   open,
 }) => {
-  // const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
   return (
     <>
       <Box bgcolor={"#13396E"} color={"white"}>

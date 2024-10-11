@@ -1,11 +1,10 @@
 "use client";
 
 import { useUsername } from "@/src/hooks/username/useUsername";
-import { Button, TextField, Typography } from "@mui/material";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
 import UsernameForm from "../username/UsernameForm";
 import React from "react";
