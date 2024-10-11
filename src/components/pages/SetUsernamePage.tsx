@@ -8,6 +8,7 @@ import { z } from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
 import UsernameForm from "../username/UsernameForm";
+import React from "react";
 
 export const formSchema = z.object({
   username: z
@@ -21,6 +22,9 @@ export const formSchema = z.object({
 const SetUserNamePage = () => {
   const setUsernameMutation = useUsername();
   const router = useRouter();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const {
     handleSubmit,
@@ -52,6 +56,9 @@ const SetUserNamePage = () => {
       SubmitUsername={handleSubmit(SubmitUsername)}
       control={control}
       errors={errors}
+      handleOpen={handleOpen}
+      handleClose={handleClose}
+      open={open}
     />
   );
 };

@@ -6,6 +6,9 @@ type UsernameFormProps = {
   SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
   control: any;
   errors: any;
+  handleOpen: () => void;
+  handleClose: () => void;
+  open: boolean;
 };
 
 const style = {
@@ -23,10 +26,13 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
   SubmitUsername,
   control,
   errors,
+  handleOpen,
+  handleClose,
+  open,
 }) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
   return (
     <>
       <Box bgcolor={"#13396E"} color={"white"}>
@@ -63,7 +69,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
             />
             <Button
               type="submit"
-              sx={{ bgcolor: "blue", color: "white", alignSelf: "center" }}
+              sx={{ bgcolor: "#13396E", color: "white", alignSelf: "center" }}
             >
               設定する
             </Button>
