@@ -9,6 +9,16 @@ export const toJST = (date: Date): Date => {
 };
 
 /**
+ * 今日から1年前の日付を取得する関数（JST）
+ * @returns {Date} 1年前の日付
+ */
+export const getOneYearAgo = (): Date => {
+  const now = new Date();
+  const oneYearAgo = new Date(now.setFullYear(now.getFullYear() - 1));
+  return toJST(oneYearAgo);
+};
+
+/**
  * 今日から半年前の日付を取得する関数（JST）
  * @returns {Date} 半年前の日付
  */
