@@ -41,35 +41,48 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Box
+          sx={style}
+          display={"flex"}
+          alignItems={"center"}
+          flexDirection={"column"}
+        >
+          <Typography id="modal-modal-title" variant="h6" component="h2" m={2}>
             ユーザーネームを設定してください
           </Typography>
+
           <form onSubmit={SubmitUsername}>
-            <Controller
-              name="username"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  id="username"
-                  label="username"
-                  error={!!errors.username}
-                  helperText={
-                    typeof errors.username?.message === "string"
-                      ? errors.username.message
-                      : ""
-                  }
-                  sx={{ alignSelf: "center", mb: 2 }}
-                />
-              )}
-            />
-            <Button
-              type="submit"
-              sx={{ bgcolor: "#13396E", color: "white", alignSelf: "center" }}
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              flexDirection={"column"}
             >
-              設定する
-            </Button>
+              <Controller
+                name="username"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    id="username"
+                    label="username"
+                    error={!!errors.username}
+                    helperText={
+                      typeof errors.username?.message === "string"
+                        ? errors.username.message
+                        : ""
+                    }
+                    sx={{ alignSelf: "center", mb: 2 }}
+                  />
+                )}
+              />
+              <Button
+                type="submit"
+                sx={{ bgcolor: "#13396E", color: "white", alignSelf: "center" }}
+              >
+                設定する
+              </Button>
+            </Box>
           </form>
         </Box>
       </Modal>
