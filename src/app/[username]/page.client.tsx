@@ -2,10 +2,10 @@
 import { useParams } from "next/navigation";
 import { useReflectionsByUsername } from "@/src/hooks/reflection/useReflectionsByUsername";
 import UserReflectionListArea from "@/src/components/reflection/UserReflectionListArea";
+import { Calendar } from "@/src/components/calendar";
 
 const UserReflectionListPage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
-
   const {
     data: reflectionsWithUser,
     isLoading,
@@ -28,14 +28,15 @@ const UserReflectionListPage: React.FC = () => {
     return <div>このユーザーはまだ投稿をしていません。</div>;
   }
 
-  console.log(reflectionsWithUser.userImage);
-
   return (
-    <UserReflectionListArea
-      userImage={reflectionsWithUser.userImage}
-      username={username}
-      reflections={reflectionsWithUser.reflections}
-    />
+    <>
+      <UserReflectionListArea
+        userImage={reflectionsWithUser.userImage}
+        username={username}
+        reflections={reflectionsWithUser.reflections}
+      />
+      <Calendar username={username} />
+    </>
   );
 };
 
