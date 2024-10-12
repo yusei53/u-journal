@@ -1,13 +1,13 @@
 "use client";
 
 import { useUsername } from "@/src/hooks/username/useUsername";
-import { Button, TextField, Typography } from "@mui/material";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
 import UsernameForm from "../username/UsernameForm";
+import React from "react";
 
 export const formSchema = z.object({
   username: z
@@ -21,11 +21,15 @@ export const formSchema = z.object({
 const SetUserNamePage = () => {
   const setUsernameMutation = useUsername();
   const router = useRouter();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm<FieldValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,7 +45,7 @@ const SetUserNamePage = () => {
       {
         onSuccess: () => {
           alert("設定しました");
-          formData.username = "";
+          reset();
         },
       }
     );
@@ -52,6 +56,9 @@ const SetUserNamePage = () => {
       SubmitUsername={handleSubmit(SubmitUsername)}
       control={control}
       errors={errors}
+      handleOpen={handleOpen}
+      handleClose={handleClose}
+      open={open}
     />
   );
 };
