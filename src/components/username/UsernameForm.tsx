@@ -11,6 +11,9 @@ type UsernameFormProps = {
 };
 
 const modalStyle = {
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "column",
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -34,16 +37,10 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         <Button onClick={() => handleOpenAndClose(true)}>Open modal</Button>
       </Box>
       <Modal open={modalOpen} onClose={() => handleOpenAndClose(false)}>
-        <Box
-          sx={modalStyle}
-          display={"flex"}
-          alignItems={"center"}
-          flexDirection={"column"}
-        >
-          <Typography variant="h6" component="h2" m={2}>
+        <Box sx={modalStyle}>
+          <Typography fontSize={17} m={2}>
             ユーザーネームを設定してください
           </Typography>
-
           <form onSubmit={SubmitUsername}>
             <Box
               display={"flex"}
@@ -65,14 +62,11 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
                         ? errors.username.message
                         : ""
                     }
-                    sx={{ alignSelf: "center", mb: 2 }}
+                    sx={{ mb: 2 }}
                   />
                 )}
               />
-              <Button
-                type="submit"
-                sx={{ bgcolor: "#13396E", color: "white", alignSelf: "center" }}
-              >
+              <Button type="submit" sx={{ bgcolor: "#13396E", color: "white" }}>
                 設定する
               </Button>
             </Box>
