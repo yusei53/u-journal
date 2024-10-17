@@ -14,14 +14,11 @@ const modalStyle = {
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
+  width: { xs: 400, md: 500 },
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
+  mt: { xs: 50, md: 30 },
 };
 
 const UsernameForm: React.FC<UsernameFormProps> = ({
@@ -37,38 +34,43 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         <Button onClick={() => handleOpenAndClose(true)}>Open modal</Button>
       </Box>
       <Modal open={modalOpen} onClose={() => handleOpenAndClose(false)}>
-        <Box sx={modalStyle}>
-          <Typography fontSize={17} m={2}>
-            ユーザーネームを設定してください
-          </Typography>
-          <Box component={"form"} onSubmit={SubmitUsername}>
-            <Box
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"center"}
-              flexDirection={"column"}
-            >
-              <Controller
-                name="username"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    id="username"
-                    label="username"
-                    error={!!errors.username}
-                    helperText={
-                      typeof errors.username?.message === "string"
-                        ? errors.username.message
-                        : ""
-                    }
-                    sx={{ mb: 2 }}
-                  />
-                )}
-              />
-              <Button type="submit" sx={{ bgcolor: "#13396E", color: "white" }}>
-                設定する
-              </Button>
+        <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
+          <Box sx={modalStyle}>
+            <Typography fontSize={17} m={2}>
+              ユーザーネームを設定してください
+            </Typography>
+            <Box component={"form"} onSubmit={SubmitUsername}>
+              <Box
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"center"}
+                flexDirection={"column"}
+              >
+                <Controller
+                  name="username"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      id="username"
+                      label="username"
+                      error={!!errors.username}
+                      helperText={
+                        typeof errors.username?.message === "string"
+                          ? errors.username.message
+                          : ""
+                      }
+                      sx={{ mb: 2 }}
+                    />
+                  )}
+                />
+                <Button
+                  type="submit"
+                  sx={{ bgcolor: "#13396E", color: "white" }}
+                >
+                  設定する
+                </Button>
+              </Box>
             </Box>
           </Box>
         </Box>
