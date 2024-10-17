@@ -21,8 +21,8 @@ export const formSchema = z.object({
 const SetUserNamePage = () => {
   const setUsernameMutation = useUsername();
   const router = useRouter();
-  const [open, setOpen] = React.useState(false);
-  const handleOpenAndClose = (boolean: boolean) => setOpen(boolean);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const handleOpenAndClose = (boolean: boolean) => setModalOpen(boolean);
 
   const {
     handleSubmit,
@@ -55,7 +55,7 @@ const SetUserNamePage = () => {
       SubmitUsername={handleSubmit(SubmitUsername)}
       control={control}
       errors={errors}
-      open={open}
+      modalOpen={modalOpen}
       handleOpenAndClose={handleOpenAndClose}
     />
   );

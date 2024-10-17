@@ -7,7 +7,7 @@ type UsernameFormProps = {
   control: any;
   errors: any;
   handleOpenAndClose: (boolean: boolean) => void;
-  open: boolean;
+  modalOpen: boolean;
 };
 
 const modalStyle = {
@@ -26,26 +26,21 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
   control,
   errors,
   handleOpenAndClose,
-  open,
+  modalOpen,
 }) => {
   return (
     <>
       <Box bgcolor={"#13396E"} color={"white"}>
         <Button onClick={() => handleOpenAndClose(true)}>Open modal</Button>
       </Box>
-      <Modal
-        open={open}
-        onClose={() => handleOpenAndClose(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={modalOpen} onClose={() => handleOpenAndClose(false)}>
         <Box
           sx={modalStyle}
           display={"flex"}
           alignItems={"center"}
           flexDirection={"column"}
         >
-          <Typography id="modal-modal-title" variant="h6" component="h2" m={2}>
+          <Typography variant="h6" component="h2" m={2}>
             ユーザーネームを設定してください
           </Typography>
 
