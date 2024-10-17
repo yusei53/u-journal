@@ -41,7 +41,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
           <Typography fontSize={17} m={2}>
             ユーザーネームを設定してください
           </Typography>
-          <form onSubmit={SubmitUsername}>
+          <Box component={"form"} onSubmit={SubmitUsername}>
             <Box
               display={"flex"}
               alignItems={"center"}
@@ -70,7 +70,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
                 設定する
               </Button>
             </Box>
-          </form>
+          </Box>
         </Box>
       </Modal>
     </>
