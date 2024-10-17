@@ -10,7 +10,7 @@ type UsernameFormProps = {
   open: boolean;
 };
 
-const style = {
+const modalStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -40,7 +40,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         aria-describedby="modal-modal-description"
       >
         <Box
-          sx={style}
+          sx={modalStyle}
           display={"flex"}
           alignItems={"center"}
           flexDirection={"column"}
