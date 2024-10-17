@@ -22,8 +22,7 @@ const SetUserNamePage = () => {
   const setUsernameMutation = useUsername();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpenAndClose = (boolean: boolean) => setOpen(boolean);
 
   const {
     handleSubmit,
@@ -56,9 +55,8 @@ const SetUserNamePage = () => {
       SubmitUsername={handleSubmit(SubmitUsername)}
       control={control}
       errors={errors}
-      handleOpen={handleOpen}
-      handleClose={handleClose}
       open={open}
+      handleOpenAndClose={handleOpenAndClose}
     />
   );
 };
