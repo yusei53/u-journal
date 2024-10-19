@@ -28,7 +28,9 @@ const Home = () => {
         <DisplayContent />
       </>
     ) : (
-      <GoogleLoginForm />
+      <>
+        <GoogleLoginForm />
+      </>
     );
   }
 };

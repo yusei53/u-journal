@@ -1,6 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
+import DiscordProvider from "next-auth/providers/discord";
 import prisma from "@/src/lib/prisma";
 
 const authOptions: NextAuthOptions = {
@@ -10,7 +11,10 @@ const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-    // TODO: discord認証もやりたい
+    DiscordProvider({
+      clientId: process.env.AUTH_DISCORD_ID as string,
+      clientSecret: process.env.AUTH_DISCORD_SECRET as string,
+    }),
   ],
   session: {
     strategy: "jwt",

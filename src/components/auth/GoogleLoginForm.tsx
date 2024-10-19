@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import GoogleLoginButton from "./GoogleLoginButton";
+import DiscordLoginButton from "./DiscordLoginButton";
 
 const GoogleLoginForm = () => {
   return (
@@ -18,6 +19,7 @@ const GoogleLoginForm = () => {
         ログインすると〇〇の機能が使えるようになります
       </Typography>
       <GoogleLoginButton />
+      <DiscordLoginButton />
     </Box>
   );
 };
