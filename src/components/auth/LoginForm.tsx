@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import GoogleLoginButton from "./GoogleLoginButton";
 import DiscordLoginButton from "./DiscordLoginButton";
 
-const GoogleLoginForm = () => {
+const LoginForm = () => {
   return (
     <Box
       mt={15}
@@ -24,4 +24,4 @@ const GoogleLoginForm = () => {
   );
 };
 
-export default GoogleLoginForm;
+export default LoginForm;

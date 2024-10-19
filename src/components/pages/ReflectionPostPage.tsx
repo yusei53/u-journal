@@ -1,6 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import GoogleLoginForm from "../auth/GoogleLoginForm";
+import LoginForm from "../auth/LoginForm";
 import { useRouter } from "next/navigation";
 import { User } from "next-auth";
 import { z } from "zod";
@@ -65,7 +65,7 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
       errors={errors}
     />
   ) : (
-    <GoogleLoginForm />
+    <LoginForm />
   );
 };
 

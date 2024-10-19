@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import GoogleLoginForm from "../components/auth/GoogleLoginForm";
+import LoginForm from "../components/auth/LoginForm";
 import LogoutButton from "../components/auth/LogoutButton";
 import DisplayContent from "../components/reflection/view";
 import { useSession } from "next-auth/react";
@@ -29,7 +29,7 @@ const Home = () => {
       </>
     ) : (
       <>
-        <GoogleLoginForm />
+        <LoginForm />
       </>
     );
   }
