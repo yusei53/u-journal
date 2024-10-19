@@ -6,7 +6,7 @@ import { AuthButton } from "../shared/button";
 
 const GoogleLoginButton = () => {
   return (
-    <Box px={{ xs: 2, md: 5 }}>
+    <Box px={{ xs: 2, md: 5 }} mt={2}>
       <AuthButton
         label="Googleでログイン"
         icon={FcGoogle}
