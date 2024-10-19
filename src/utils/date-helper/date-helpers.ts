@@ -14,28 +14,29 @@ export const toJST = (date: Date): Date => {
  */
 export const getOneYearAgo = (): Date => {
   const now = new Date();
-  const oneYearAgo = new Date(now.setFullYear(now.getFullYear() - 1));
-  return toJST(oneYearAgo);
+  const oneYearAgo = new Date(now);
+  oneYearAgo.setFullYear(now.getFullYear() - 1);
+  return oneYearAgo;
 };
 
 /**
+ * 現在未使用
  * 今日から半年前の日付を取得する関数（JST）
  * @returns {Date} 半年前の日付
  */
 export const getHalfYearAgo = (): Date => {
   const now = new Date();
-  const halfYearAgo = new Date(now.setMonth(now.getMonth() - 6));
-  return toJST(halfYearAgo);
+  return new Date(now.setMonth(now.getMonth() - 6));
 };
 
 /**
+ * 現在未使用
  * 今日から半年後の日付を取得する関数（JST）
  * @returns {Date} 半年後の日付
  */
 export const getHalfYearLater = (): Date => {
   const now = new Date();
-  const halfYearLater = new Date(now.setMonth(now.getMonth() + 6));
-  return toJST(halfYearLater);
+  return new Date(now.setMonth(now.getMonth() + 6));
 };
 
 /**
@@ -43,6 +44,6 @@ export const getHalfYearLater = (): Date => {
  * @returns {string} yyyy/MM/dd形式の日付文字列
  */
 export const formatDate = (isoString: string): string => {
-  const date = new Date(isoString);
+  const date = new Date(isoString).toISOString().split("T")[0];
   return format(date, "yyyy/MM/dd");
 };
