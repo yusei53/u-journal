@@ -1,1 +1,1 @@
-export { Calendar } from "./Calendar";
+export { CalendarFetcher } from "./CalendarFetcher";
