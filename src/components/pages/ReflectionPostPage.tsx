@@ -41,8 +41,7 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
       content: "",
     },
   });
-
-  const createReflectionMutation = useCreateReflection();
+  const createReflectionMutation = useCreateReflection(username ?? ""); // usernameがundefinedの場合があるため
 
   const onSubmit = (formData: any) => {
     createReflectionMutation.mutate(

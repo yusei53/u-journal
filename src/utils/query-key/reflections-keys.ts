@@ -1,9 +1,12 @@
 export const reflectionsKeys = {
   all: ["reflections"] as const,
   lists: () => [...reflectionsKeys.all, "lists"] as const,
+  // counts: () => [...reflectionsKeys.all, "counts"] as const,
+  countsByUser: (username: string) =>
+    [...reflectionsKeys.all, "countsByUser", username] as const,
   byUser: (username: string) =>
     [...reflectionsKeys.all, "byUser", username] as const,
-  detail: (reflectionUUID: number) =>
+  detail: (reflectionUUID: string) =>
     [...reflectionsKeys.all, "detail", reflectionUUID] as const,
 };
 
