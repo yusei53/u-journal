@@ -1,16 +1,16 @@
 import { Box } from "@mui/material";
-import { FcGoogle } from "react-icons/fc";
-import { signIn } from "next-auth/react";
 import { AuthButton } from "../shared/button";
+import { FaDiscord } from "react-icons/fa";
+import { signIn } from "next-auth/react";
 
-const GoogleLoginButton = () => {
+const DiscordLoginButton = () => {
   return (
     <Box px={{ xs: 2, md: 5 }} mt={2}>
       <AuthButton
-        label="Googleでログイン"
-        icon={FcGoogle}
+        label="Discordでログイン"
+        icon={FaDiscord}
         onClick={() =>
-          signIn("google", {
+          signIn("discord", {
             callbackUrl: "/",
           })
         }
@@ -24,4 +24,4 @@ const GoogleLoginButton = () => {
   );
 };
 
-export default GoogleLoginButton;
+export default DiscordLoginButton;
