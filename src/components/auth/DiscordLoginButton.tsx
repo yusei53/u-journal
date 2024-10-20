@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import React from "react";
 import { AuthButton } from "../shared/button";
 import { FaDiscord } from "react-icons/fa";
 import { signIn } from "next-auth/react";

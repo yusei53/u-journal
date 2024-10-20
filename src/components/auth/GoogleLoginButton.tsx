@@ -1,4 +1,3 @@
-"use client";
 import { Box } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
