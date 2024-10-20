@@ -3,7 +3,7 @@ import CalendarHeatmap, {
 } from "react-calendar-heatmap";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
 import "react-calendar-heatmap/dist/styles.css";
-import "@/src/utils/calendar-color-scale/calendar.css";
+import "@/src/utils/calendar/calendar.css";
 
 type HeatmapProps = {
   startDate: Date;

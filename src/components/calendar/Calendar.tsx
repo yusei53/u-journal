@@ -1,7 +1,7 @@
 import { useReflectionsCount } from "@/src/hooks/reflections-count/useReflectionsCount";
 import { getOneYearAgo } from "@/src/utils/date-helper/date-helpers";
 import Heatmap from "./Heatmap";
-import { getColor } from "@/src/utils/calendar-color-scale/get-color";
+import { getColor } from "@/src/utils/calendar/get-color";
 import { Tooltip } from "react-tooltip";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
