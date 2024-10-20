@@ -4,7 +4,6 @@ import GoogleLoginForm from "../components/auth/GoogleLoginForm";
 import LogoutButton from "../components/auth/LogoutButton";
 import DisplayContent from "../components/reflection/view";
 import { useSession } from "next-auth/react";
-import React from "react";
 
 const Home = () => {
   const { data: session, status } = useSession();

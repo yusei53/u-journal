@@ -1,5 +1,4 @@
 "use client";
-
 import { useUsername } from "@/src/hooks/username/useUsername";
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
