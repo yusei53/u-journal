@@ -2,7 +2,7 @@
 import { useParams } from "next/navigation";
 import { useReflectionsByUsername } from "@/src/hooks/reflection/useReflectionsByUsername";
 import UserReflectionListArea from "@/src/components/reflection/UserReflectionListArea";
-import { Calendar } from "@/src/components/calendar";
+import { CalendarFetcher } from "@/src/components/calendar";
 
 const UserReflectionListPage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
@@ -35,7 +35,7 @@ const UserReflectionListPage: React.FC = () => {
         username={username}
         reflections={reflectionsWithUser.reflections}
       />
-      <Calendar username={username} />
+      <CalendarFetcher username={username} />
     </>
   );
 };
