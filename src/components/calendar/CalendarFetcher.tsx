@@ -6,11 +6,13 @@ import { Tooltip } from "react-tooltip";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
 
-type CalendarProps = {
+type CalendarFetcherProps = {
   username: string;
 };
 
-export const CalendarFetcher: React.FC<CalendarProps> = ({ username }) => {
+export const CalendarFetcher: React.FC<CalendarFetcherProps> = ({
+  username,
+}) => {
   const startDate = getOneYearAgo();
   const endDate = new Date();
 
