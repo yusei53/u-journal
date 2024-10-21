@@ -7,7 +7,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
 import UsernameForm from "../username/UsernameForm";
-import React from "react";
+import { useState } from "react";
 
 export const formSchema = z.object({
   username: z
@@ -21,7 +21,7 @@ export const formSchema = z.object({
 const SetUserNamePage = () => {
   const setUsernameMutation = useUsername();
   const router = useRouter();
-  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const handleOpenAndClose = (boolean: boolean) => setModalOpen(boolean);
 
   const {
