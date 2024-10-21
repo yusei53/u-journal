@@ -10,7 +10,7 @@ type UsernameFormProps = {
   modalOpen: boolean;
 };
 
-const modalStyle = {
+const modal = {
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
@@ -35,7 +35,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
       </Box>
       <Modal open={modalOpen} onClose={() => handleToggle(false)}>
         <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
-          <Box sx={modalStyle}>
+          <Box sx={modal}>
             <Typography fontSize={17} m={2}>
               ユーザーネームを設定してください
             </Typography>
