@@ -14,11 +14,14 @@ const modal = {
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
-  width: { xs: 400, md: 500 },
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: { md: 500, xs: 360 },
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
-  mt: { xs: 50, md: 30 },
 };
 
 const UsernameForm: React.FC<UsernameFormProps> = ({
@@ -36,7 +39,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
       <Modal open={modalOpen} onClose={() => handleToggle(false)}>
         <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
           <Box sx={modal}>
-            <Typography fontSize={17} m={2}>
+            <Typography fontSize={{ md: 17 }} m={2}>
               ユーザーネームを設定してください
             </Typography>
             <Box component={"form"} onSubmit={SubmitUsername}>
