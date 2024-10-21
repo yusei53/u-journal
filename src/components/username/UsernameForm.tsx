@@ -6,7 +6,7 @@ type UsernameFormProps = {
   SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
   control: any;
   errors: any;
-  handleOpenAndClose: (boolean: boolean) => void;
+  handleToggle: (boolean: boolean) => void;
   modalOpen: boolean;
 };
 
@@ -25,15 +25,15 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
   SubmitUsername,
   control,
   errors,
-  handleOpenAndClose,
+  handleToggle,
   modalOpen,
 }) => {
   return (
     <>
       <Box bgcolor={"#13396E"} color={"white"}>
-        <Button onClick={() => handleOpenAndClose(true)}>Open modal</Button>
+        <Button onClick={() => handleToggle(true)}>Open modal</Button>
       </Box>
-      <Modal open={modalOpen} onClose={() => handleOpenAndClose(false)}>
+      <Modal open={modalOpen} onClose={() => handleToggle(false)}>
         <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
           <Box sx={modalStyle}>
             <Typography fontSize={17} m={2}>

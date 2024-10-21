@@ -56,7 +56,7 @@ const SetUserNamePage = () => {
       control={control}
       errors={errors}
       modalOpen={modalOpen}
-      handleOpenAndClose={handleOpenAndClose}
+      handleToggle={handleOpenAndClose}
     />
   );
 };
