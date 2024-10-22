@@ -22,7 +22,7 @@ const SetUserNamePage = () => {
   const setUsernameMutation = useUsername();
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
-  const handleOpenAndClose = (boolean: boolean) => setModalOpen(boolean);
+  const handleToggle = (boolean: boolean) => setModalOpen(boolean);
 
   const {
     handleSubmit,
@@ -56,7 +56,7 @@ const SetUserNamePage = () => {
       control={control}
       errors={errors}
       modalOpen={modalOpen}
-      handleToggle={handleOpenAndClose}
+      handleToggle={handleToggle}
     />
   );
 };

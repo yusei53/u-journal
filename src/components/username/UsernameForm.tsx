@@ -1,5 +1,4 @@
 import { Button, Box } from "@mui/material";
-import React from "react";
 import UsernameModal from "./UsernameModal";
 
 export type UsernameFormProps = {
