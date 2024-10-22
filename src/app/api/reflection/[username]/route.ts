@@ -34,6 +34,7 @@ export async function GET(
           select: {
             reflectionCUID: true,
             title: true,
+            charStamp: true,
             createdAt: true,
           },
         },

@@ -4,6 +4,7 @@ export type ReflectionDetail = {
   reflectionCUID: string;
   title: string;
   content: string;
+  charStamp: string;
   createdAt: string;
 };
 
@@ -34,9 +35,11 @@ export const reflectionAPI = {
   async createReflection({
     title,
     content,
+    charStamp,
   }: {
     title: string;
     content: string;
+    charStamp: string;
   }) {
     const response = await axios.request<ReflectionDetail>({
       url: `/api/reflection`,
@@ -44,6 +47,7 @@ export const reflectionAPI = {
       data: {
         title,
         content,
+        charStamp,
       },
     });
     return response.data;
