@@ -32,40 +32,38 @@ const UsernameModal: React.FC<UsernameModalProps> = ({
 }) => {
   return (
     <Modal open={modalOpen} onClose={() => handleToggle(false)}>
-      <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
-        <Box sx={modal}>
-          <Typography fontSize={{ md: 17 }} m={2}>
-            ユーザーネームを設定してください
-          </Typography>
-          <Box component={"form"} onSubmit={SubmitUsername}>
-            <Box
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"center"}
-              flexDirection={"column"}
-            >
-              <Controller
-                name="username"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    id="username"
-                    label="username"
-                    error={!!errors.username}
-                    helperText={
-                      typeof errors.username?.message === "string"
-                        ? errors.username.message
-                        : ""
-                    }
-                    sx={{ mb: 2 }}
-                  />
-                )}
-              />
-              <Button type="submit" sx={{ bgcolor: "#13396E", color: "white" }}>
-                設定する
-              </Button>
-            </Box>
+      <Box sx={modal}>
+        <Typography fontSize={{ md: 17 }} m={2}>
+          ユーザーネームを設定してください
+        </Typography>
+        <Box component={"form"} onSubmit={SubmitUsername}>
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            flexDirection={"column"}
+          >
+            <Controller
+              name="username"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  id="username"
+                  label="username"
+                  error={!!errors.username}
+                  helperText={
+                    typeof errors.username?.message === "string"
+                      ? errors.username.message
+                      : ""
+                  }
+                  sx={{ mb: 2 }}
+                />
+              )}
+            />
+            <Button type="submit" sx={{ bgcolor: "#13396E", color: "white" }}>
+              設定する
+            </Button>
           </Box>
         </Box>
       </Box>
