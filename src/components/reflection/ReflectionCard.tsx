@@ -19,7 +19,16 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
         component={Link}
         href={`/${username}/${reflection.reflectionCUID}`}
         sx={articleImage}
-      />
+      >
+        <Typography
+          fontSize={{ xs: 26, sm: 26 }}
+          position={"absolute"}
+          left={"45%"}
+          top={"40%"}
+        >
+          {reflection.charStamp}
+        </Typography>
+      </Box>
       <Box my={0.5} ml={0.5} display={"flex"} flexDirection={"column"}>
         <Typography
           component={Link}
@@ -47,6 +56,7 @@ const articleImage = {
   borderRadius: 3,
   bgcolor: theme.palette.primary.main,
   display: "block", // aタグにblock要素を指定すると長方形が表示できる
+  position: "relative",
 };
 
 export default ReflectionCard;
