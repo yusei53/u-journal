@@ -24,6 +24,7 @@ const DisplayContent = () => {
       {reflections.map((post) => (
         <div key={post.reflectionCUID}>
           <HtmlContent title={post.title} createdAt={post.createdAt} />
+          <p>{post.charStamp}</p>
         </div>
       ))}
     </div>

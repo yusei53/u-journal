@@ -6,8 +6,15 @@ export const useCreateReflection = (username: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ title, content }: { title: string; content: string }) =>
-      reflectionAPI.createReflection({ title, content }),
+    mutationFn: ({
+      title,
+      content,
+      charStamp,
+    }: {
+      title: string;
+      content: string;
+      charStamp: string;
+    }) => reflectionAPI.createReflection({ title, content, charStamp }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: reflectionsKeys.lists() });
       queryClient.invalidateQueries({

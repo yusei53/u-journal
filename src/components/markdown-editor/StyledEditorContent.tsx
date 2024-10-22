@@ -6,7 +6,7 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     outline: "none",
   },
   "&": {
-    "&:first-child": {
+    "&:first-of-type": {
       marginTop: 2,
     },
 

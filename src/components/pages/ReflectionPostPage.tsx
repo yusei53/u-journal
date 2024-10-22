@@ -17,6 +17,7 @@ export const formSchema = z.object({
     .string()
     .min(10, { message: "本文は10文字以上で入力してください。" })
     .max(140, { message: "本文は140字以内で入力してください" }),
+  charStamp: z.string(),
 });
 
 type ReflectionPostPageProps = {
@@ -39,6 +40,7 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
     defaultValues: {
       title: "",
       content: "",
+      charStamp: "😊", // charStampの初期値をセット
     },
   });
   const createReflectionMutation = useCreateReflection(username ?? ""); // usernameがundefinedの場合があるため
@@ -48,6 +50,7 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
       {
         title: formData.title,
         content: formData.content,
+        charStamp: formData.charStamp,
       },
       {
         onSuccess: () => {
