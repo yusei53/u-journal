@@ -18,6 +18,7 @@ const MarkdownEditor: React.FC<EditorProps> = ({ value, onChange }) => {
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
     },
+    immediatelyRender: false,
   });
 
   return (
