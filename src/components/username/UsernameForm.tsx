@@ -1,47 +1,33 @@
-import { Typography, TextField, Button } from "@mui/material";
-import React from "react";
-import { Controller } from "react-hook-form";
+import { Button, Box } from "@mui/material";
+import UsernameModal from "./UsernameModal";
 
 type UsernameFormProps = {
   SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
   control: any;
   errors: any;
+  handleToggle: (boolean: boolean) => void;
+  modalOpen: boolean;
 };
 
 const UsernameForm: React.FC<UsernameFormProps> = ({
   SubmitUsername,
   control,
   errors,
+  handleToggle,
+  modalOpen,
 }) => {
   return (
     <>
-      <Typography>ユーザIDを設定してください</Typography>
-      <form onSubmit={SubmitUsername}>
-        <Controller
-          name="username"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              id="username"
-              label="username"
-              error={!!errors.username}
-              helperText={
-                typeof errors.username?.message === "string"
-                  ? errors.username.message
-                  : ""
-              }
-              sx={{ alignSelf: "center", mb: 2 }}
-            />
-          )}
-        />
-        <Button
-          type="submit"
-          sx={{ bgcolor: "blue", color: "white", alignSelf: "center" }}
-        >
-          設定する
-        </Button>
-      </form>
+      <Box bgcolor={"#13396E"} color={"white"}>
+        <Button onClick={() => handleToggle(true)}>Open modal</Button>
+      </Box>
+      <UsernameModal
+        SubmitUsername={SubmitUsername}
+        control={control}
+        errors={errors}
+        handleToggle={handleToggle}
+        modalOpen={modalOpen}
+      />
     </>
   );
 };
