@@ -1,7 +1,7 @@
 import { Button, Box } from "@mui/material";
 import UsernameModal from "./UsernameModal";
 
-export type UsernameFormProps = {
+type UsernameFormProps = {
   SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
   control: any;
   errors: any;

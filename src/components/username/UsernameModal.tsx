@@ -1,6 +1,13 @@
 import { Modal, Box, Typography, TextField, Button } from "@mui/material";
 import { Controller } from "react-hook-form";
-import { UsernameFormProps } from "./UsernameForm";
+
+type UsernameModalProps = {
+  SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
+  control: any;
+  errors: any;
+  handleToggle: (boolean: boolean) => void;
+  modalOpen: boolean;
+};
 
 const modal = {
   display: "flex",
@@ -16,7 +23,7 @@ const modal = {
   p: 4,
 };
 
-const UsernameModal: React.FC<UsernameFormProps> = ({
+const UsernameModal: React.FC<UsernameModalProps> = ({
   SubmitUsername,
   control,
   errors,
