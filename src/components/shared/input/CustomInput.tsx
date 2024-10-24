@@ -10,7 +10,7 @@ type CustomInputProps = {
   onCompositionEnd?: () => void;
 };
 
-const CustomInput: React.FC<CustomInputProps> = ({
+export const CustomInput: React.FC<CustomInputProps> = ({
   id,
   placeholder,
   value,
@@ -36,5 +36,3 @@ const CustomInput: React.FC<CustomInputProps> = ({
     />
   );
 };
-
-export default CustomInput;
