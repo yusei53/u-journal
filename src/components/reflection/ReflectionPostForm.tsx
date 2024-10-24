@@ -1,38 +1,40 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { Controller } from "react-hook-form";
+import { useRef, useState } from "react";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import { useState } from "react";
-import MarkdownEditor from "../markdown-editor/MarkdownEditor";
+import { CustomInput } from "../shared/input";
+import { MarkdownEditor, MarkdownEditorRef } from "../markdown-editor";
 
-type ReflectionPostFormProps = {
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  control: any;
-  errors: any;
-};
-
-const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
-  onSubmit,
-  control,
-  errors,
-}) => {
+const ReflectionPostForm = ({ onSubmit, control, errors }: any) => {
   const [showPicker, setShowPicker] = useState(false);
+  const [isComposing, setIsComposing] = useState(false);
+
   const [selectedEmoji, setSelectedEmoji] = useState("😊");
+
+  const editorRef = useRef<MarkdownEditorRef>(null);
+
+  const handleEnterPress = () => {
+    if (editorRef.current && !isComposing) {
+      editorRef.current.focus();
+    }
+  };
 
   return (
     <form onSubmit={onSubmit}>
-      <Box display={"flex"} flexDirection={"column"}>
+      <Box display="flex" flexDirection="column">
         <Controller
           name="title"
           control={control}
           render={({ field }) => (
-            <TextField
-              {...field}
+            <CustomInput
               id="title"
-              label="Title"
-              error={!!errors.title}
-              helperText={errors.title ? errors.title.message : ""}
-              sx={{ alignSelf: "center", mb: 2 }}
+              placeholder="タイトル"
+              value={field.value}
+              onChange={field.onChange}
+              onEnter={handleEnterPress}
+              onCompositionStart={() => setIsComposing(true)}
+              onCompositionEnd={() => setIsComposing(false)}
             />
           )}
         />
@@ -40,7 +42,11 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
           name="content"
           control={control}
           render={({ field }) => (
-            <MarkdownEditor value={field.value} onChange={field.onChange} />
+            <MarkdownEditor
+              value={field.value}
+              ref={editorRef}
+              onChange={field.onChange}
+            />
           )}
         />
         <Controller
@@ -54,12 +60,10 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
               >
                 {selectedEmoji}
               </Button>
-
               {showPicker && (
                 <Box position="absolute" zIndex={10}>
                   <Picker
                     data={data}
-                    locale={"ja"}
                     onEmojiSelect={(emoji: any) => {
                       setSelectedEmoji(emoji.native);
                       field.onChange(emoji.native);
@@ -71,14 +75,9 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
             </Box>
           )}
         />
-
         <Button
           type="submit"
-          sx={{
-            bgcolor: "blue",
-            color: "white",
-            alignSelf: "center",
-          }}
+          sx={{ bgcolor: "blue", color: "white", alignSelf: "center" }}
         >
           投稿
         </Button>
