@@ -3,10 +3,8 @@ import { Controller } from "react-hook-form";
 import { useRef, useState } from "react";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import MarkdownEditor, {
-  MarkdownEditorRef,
-} from "../markdown-editor/MarkdownEditor";
 import { CustomInput } from "../shared/input";
+import { MarkdownEditor, MarkdownEditorRef } from "../markdown-editor";
 
 const ReflectionPostForm = ({ onSubmit, control, errors }: any) => {
   const [showPicker, setShowPicker] = useState(false);
