@@ -1,4 +1,5 @@
 .custom-input {
+  padding: 0;
   width: 100%;
   font-size: 1.2rem;
   border: none;
@@ -9,4 +10,5 @@
 .custom-input::placeholder {
   color: #adb5bd;
   font-size: 1.2rem;
+  font-weight: normal;
 }
