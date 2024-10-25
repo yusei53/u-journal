@@ -1,2 +1,2 @@
 export { AuthButton } from "./AuthButton";
-export { MenuButton } from "./MenuButton";
+export { Button } from "./Button";
