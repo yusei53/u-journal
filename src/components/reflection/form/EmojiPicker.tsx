@@ -4,13 +4,13 @@ import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import { theme } from "@/src/utils/theme/theme";
 
-type EmojiPickerWithButtonProps = {
+type EmojiPickerProps = {
   selectedEmoji: string;
   setSelectedEmoji: (emoji: string) => void;
   onChange: (emoji: string) => void;
 };
 
-const EmojiPicker: React.FC<EmojiPickerWithButtonProps> = ({
+const EmojiPicker: React.FC<EmojiPickerProps> = ({
   selectedEmoji,
   setSelectedEmoji,
   onChange,
