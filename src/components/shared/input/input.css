@@ -1,6 +1,7 @@
 .custom-input {
   padding: 0;
   width: 100%;
+  /* ここはtiptapの公式docsと揃えるためrem指定 */
   font-size: 1.2rem;
   border: none;
   outline: none;
@@ -9,6 +10,5 @@
 
 .custom-input::placeholder {
   color: #adb5bd;
-  font-size: 1.2rem;
   font-weight: normal;
 }

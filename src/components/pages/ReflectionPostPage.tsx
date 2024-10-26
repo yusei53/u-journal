@@ -40,7 +40,7 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
     defaultValues: {
       title: "",
       content: "",
-      charStamp: "😊",
+      charStamp: "💭",
     },
   });
   const createReflectionMutation = useCreateReflection(username ?? ""); // usernameがundefinedの場合があるため
