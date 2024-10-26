@@ -1,9 +1,9 @@
 import { Box, Container, Stack } from "@mui/material";
 import { Controller, Control, FieldErrors } from "react-hook-form";
-import { CustomInput } from "../shared/input";
-import { Button } from "../shared/button";
-import { ErrorMessage } from "../shared/alert";
-import { MarkdownEditor, MarkdownEditorRef } from "../markdown-editor";
+import { CustomInput } from "../../shared/input";
+import { Button } from "../../shared/button";
+import { ErrorMessage } from "../../shared/alert";
+import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
 import { useState } from "react";
 import EmojiPicker from "./EmojiPicker";
 
