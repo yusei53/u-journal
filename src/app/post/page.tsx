@@ -1,24 +1,7 @@
-"use client";
-import ReflectionPostPage from "@/src/components/pages/ReflectionPostPage";
-import { useSession } from "next-auth/react";
+import CreateReflectionPage from "./page.client";
 
-const Page = () => {
-  const { data: session, status } = useSession();
-
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  {
-    return session ? (
-      <ReflectionPostPage
-        currentUserId={session.user.id}
-        username={session.user.username}
-      />
-    ) : (
-      <div>ddd</div>
-    );
-  }
+const page = () => {
+  return <CreateReflectionPage />;
 };
 
-export default Page;
+export default page;

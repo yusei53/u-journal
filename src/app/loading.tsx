@@ -6,9 +6,9 @@ const Loading = () => {
       display={"flex"}
       alignItems={"center"}
       justifyContent={"center"}
-      height={"100vh"}
+      minHeight={"calc(100vh - 20vh)"}
     >
-      <CircularProgress size={50} />
+      <CircularProgress size={45} sx={{ color: "#8FC9F9" }} />
     </Box>
   );
 };
