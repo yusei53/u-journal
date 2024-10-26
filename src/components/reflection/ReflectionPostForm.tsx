@@ -1,34 +1,49 @@
 import { Box, Container, Stack } from "@mui/material";
-import { Controller } from "react-hook-form";
-import { useRef, useState } from "react";
+import { Controller, Control, FieldErrors } from "react-hook-form";
 import { CustomInput } from "../shared/input";
-import { MarkdownEditor, MarkdownEditorRef } from "../markdown-editor";
-import Emoji from "./EmojiPicker";
 import { Button } from "../shared/button";
 import { ErrorMessage } from "../shared/alert";
+import { MarkdownEditor, MarkdownEditorRef } from "../markdown-editor";
+import { useState } from "react";
+import EmojiPicker from "./EmojiPicker";
 
-const ReflectionPostForm = ({ onSubmit, control, errors }: any) => {
+type FormValues = {
+  title: string;
+  content: string;
+  charStamp: string;
+};
+
+type ReflectionPostFormProps = {
+  control: Control<FormValues>;
+  errors: FieldErrors<FormValues>;
+  isLoading: boolean;
+  onSubmit: (event: React.FormEvent) => Promise<void>;
+  onEnter: () => void;
+  editorRef: React.RefObject<MarkdownEditorRef>;
+};
+
+const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
+  control,
+  errors,
+  isLoading = false,
+  onEnter,
+  onSubmit,
+  editorRef,
+}: any) => {
   const [selectedEmoji, setSelectedEmoji] = useState("💭");
-  const [isComposing, setIsComposing] = useState(false);
-  const editorRef = useRef<MarkdownEditorRef>(null);
-
-  const handleEnterPress = () => {
-    if (editorRef.current && !isComposing) {
-      editorRef.current.focus();
-    }
-  };
 
   return (
     <Box component={"form"} onSubmit={onSubmit}>
       <Button
-        type="submit"
+        type={"submit"}
+        disabled={isLoading}
         sx={{
           position: "fixed",
           top: 25,
           right: 25,
         }}
       >
-        投稿する
+        {isLoading ? "投稿中..." : "投稿する"}
       </Button>
       <Container maxWidth="md" sx={{ my: 15 }}>
         <Stack gap={10} m={{ md: 10 }}>
@@ -36,16 +51,13 @@ const ReflectionPostForm = ({ onSubmit, control, errors }: any) => {
             name="title"
             control={control}
             render={({ field }) => (
-              // MEMO: エラーメッセージにStackが適用しないようにBoxでラップしてる
               <Box>
                 <CustomInput
                   id="title"
                   placeholder="タイトル"
                   value={field.value}
                   onChange={field.onChange}
-                  onEnter={handleEnterPress}
-                  onCompositionStart={() => setIsComposing(true)}
-                  onCompositionEnd={() => setIsComposing(false)}
+                  onEnter={onEnter}
                 />
                 {errors.title && (
                   <ErrorMessage message={errors.title.message} />
@@ -74,7 +86,7 @@ const ReflectionPostForm = ({ onSubmit, control, errors }: any) => {
             control={control}
             render={({ field }) => (
               <Box>
-                <Emoji
+                <EmojiPicker
                   selectedEmoji={selectedEmoji}
                   setSelectedEmoji={setSelectedEmoji}
                   onChange={field.onChange}

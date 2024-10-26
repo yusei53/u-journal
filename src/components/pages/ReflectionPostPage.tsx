@@ -1,24 +1,10 @@
 "use client";
-import { zodResolver } from "@hookform/resolvers/zod";
 import LoginForm from "../auth/LoginForm";
-import { useRouter } from "next/navigation";
 import { User } from "next-auth";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { FieldValues } from "react-hook-form";
 import ReflectionPostForm from "../reflection/ReflectionPostForm";
-import { useCreateReflection } from "@/src/hooks/reflection/useCreateReflection";
-
-export const formSchema = z.object({
-  title: z
-    .string()
-    .min(2, { message: "タイトルは2文字以上で入力してください。" }),
-  content: z
-    .string()
-    .min(10, { message: "本文は10文字以上で入力してください。" })
-    .max(140, { message: "本文は140字以内で入力してください" }),
-  charStamp: z.string(),
-});
+import { useCreateReflectionForm } from "@/src/hooks/reflection/useCreateReflectionForm";
+import { useRef, useState } from "react";
+import { MarkdownEditorRef } from "../markdown-editor";
 
 type ReflectionPostPageProps = {
   currentUserId: User["id"] | null;
@@ -29,42 +15,31 @@ const ReflectionPostPage: React.FC<ReflectionPostPageProps> = ({
   currentUserId,
   username,
 }) => {
-  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const editorRef = useRef<MarkdownEditorRef>(null);
+  const { control, errors, onSubmit } = useCreateReflectionForm(username);
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FieldValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-      content: "",
-      charStamp: "💭",
-    },
-  });
-  const createReflectionMutation = useCreateReflection(username ?? ""); // usernameがundefinedの場合があるため
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    await onSubmit(e);
+    setIsLoading(false);
+  };
 
-  const onSubmit = (formData: any) => {
-    createReflectionMutation.mutate(
-      {
-        title: formData.title,
-        content: formData.content,
-        charStamp: formData.charStamp,
-      },
-      {
-        onSuccess: () => {
-          router.push(`/${username}`);
-        },
-      }
-    );
+  const handleEnter = () => {
+    if (editorRef.current) {
+      editorRef.current.focus();
+    }
   };
 
   return currentUserId ? (
     <ReflectionPostForm
-      onSubmit={handleSubmit(onSubmit)}
       control={control}
       errors={errors}
+      isLoading={isLoading}
+      onSubmit={handleSubmit}
+      onEnter={handleEnter}
+      editorRef={editorRef}
     />
   ) : (
     <LoginForm />
