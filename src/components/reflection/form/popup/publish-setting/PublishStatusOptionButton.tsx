@@ -31,7 +31,7 @@ const PublishStatusOptionButton: React.FC<PublishStatusOptionButtonProps> = ({
     }}
     disableRipple
   >
-    <Box display={"flex"} alignItems={"center"} color={"black"}>
+    <Box display={"flex"} alignItems={"center"}>
       <Image
         src={icon}
         alt={`${text} Icon`}

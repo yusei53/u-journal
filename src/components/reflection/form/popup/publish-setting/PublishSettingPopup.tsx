@@ -1,7 +1,8 @@
-import { Box, Button, Fade, Popper, Divider } from "@mui/material";
+import { Box, Fade, Popper, Divider } from "@mui/material";
 import Image from "next/image";
 import { theme } from "@/src/utils/theme/theme";
 import PublishStatusOptionButton from "./PublishStatusOptionButton";
+import { Button } from "@/src/components/shared/button";
 
 type PublishSettingPopupProps = {
   value: boolean;
@@ -31,7 +32,6 @@ const PublishSettingPopup: React.FC<PublishSettingPopupProps> = ({
           border: "none",
           display: "flex",
           alignItems: "center",
-          color: "black",
         }}
         disableRipple
       >
