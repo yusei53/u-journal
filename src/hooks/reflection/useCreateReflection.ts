@@ -10,11 +10,14 @@ export const useCreateReflection = (username: string) => {
       title,
       content,
       charStamp,
+      isPublic,
     }: {
       title: string;
       content: string;
       charStamp: string;
-    }) => reflectionAPI.createReflection({ title, content, charStamp }),
+      isPublic: boolean;
+    }) =>
+      reflectionAPI.createReflection({ title, content, charStamp, isPublic }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: reflectionsKeys.lists() });
       queryClient.invalidateQueries({

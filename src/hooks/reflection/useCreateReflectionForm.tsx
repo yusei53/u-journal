@@ -12,6 +12,7 @@ export const createReflectionSchema = z.object({
     .string()
     .min(3, { message: "本文は3文字以上で入力してください。" }),
   charStamp: z.string(),
+  isPublic: z.boolean(),
 });
 
 export type CreateReflectionSchemaType = z.infer<typeof createReflectionSchema>;
@@ -25,7 +26,7 @@ export const useCreateReflectionForm = (username: string | undefined) => {
     formState: { errors },
   } = useForm<CreateReflectionSchemaType>({
     resolver: zodResolver(createReflectionSchema),
-    defaultValues: { title: "", content: "", charStamp: "💭" },
+    defaultValues: { title: "", content: "", charStamp: "💭", isPublic: false },
   });
 
   const createReflectionMutation = useCreateReflection(username ?? ""); // usernameがundefinedの場合があるため
