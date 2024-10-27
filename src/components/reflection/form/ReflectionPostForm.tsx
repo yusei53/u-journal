@@ -6,11 +6,13 @@ import { ErrorMessage } from "../../shared/alert";
 import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
 import { useState } from "react";
 import EmojiPicker from "./EmojiPicker";
+import PublishSettingPopup from "./PublishSettingPopup";
 
 type FormValues = {
   title: string;
   content: string;
   charStamp: string;
+  isPublic: boolean;
 };
 
 type ReflectionPostFormProps = {
@@ -20,6 +22,8 @@ type ReflectionPostFormProps = {
   onSubmit: (event: React.FormEvent) => Promise<void>;
   onEnter: () => void;
   editorRef: React.RefObject<MarkdownEditorRef>;
+  onCompositionStart: () => void;
+  onCompositionEnd: () => void;
 };
 
 const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
@@ -29,22 +33,28 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   onEnter,
   onSubmit,
   editorRef,
-}: any) => {
+  onCompositionStart,
+  onCompositionEnd,
+}) => {
   const [selectedEmoji, setSelectedEmoji] = useState("💭");
 
   return (
     <Box component={"form"} onSubmit={onSubmit}>
-      <Button
-        type={"submit"}
-        disabled={isLoading}
-        sx={{
-          position: "fixed",
-          top: 25,
-          right: 25,
-        }}
-      >
-        {isLoading ? "投稿中..." : "投稿する"}
-      </Button>
+      <Box display={"flex"} position={"fixed"} top={25} right={35}>
+        <Controller
+          name="isPublic"
+          control={control}
+          render={({ field }) => (
+            <PublishSettingPopup
+              value={field.value}
+              onChange={field.onChange}
+            />
+          )}
+        />
+        <Button type={"submit"} disabled={isLoading}>
+          {isLoading ? "投稿中..." : "投稿する"}
+        </Button>
+      </Box>
       <Container maxWidth="md" sx={{ my: 15 }}>
         <Stack gap={10} m={{ md: 10 }}>
           <Controller
@@ -58,6 +68,8 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
                   value={field.value}
                   onChange={field.onChange}
                   onEnter={onEnter}
+                  onCompositionStart={onCompositionStart}
+                  onCompositionEnd={onCompositionEnd}
                 />
                 {errors.title && (
                   <ErrorMessage message={errors.title.message} />

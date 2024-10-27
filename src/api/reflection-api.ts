@@ -5,6 +5,7 @@ export type ReflectionDetail = {
   title: string;
   content: string;
   charStamp: string;
+  isPublic: boolean;
   createdAt: string;
 };
 
@@ -36,10 +37,12 @@ export const reflectionAPI = {
     title,
     content,
     charStamp,
+    isPublic,
   }: {
     title: string;
     content: string;
     charStamp: string;
+    isPublic: boolean;
   }) {
     const response = await axios.request<ReflectionDetail>({
       url: `/api/reflection`,
@@ -48,6 +51,7 @@ export const reflectionAPI = {
         title,
         content,
         charStamp,
+        isPublic,
       },
     });
     return response.data;

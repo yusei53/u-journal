@@ -11,6 +11,7 @@ const CreateReflectionPage = () => {
   const { data: session, status } = useSession();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isComposing, setIsComposing] = useState(false);
   const editorRef = useRef<MarkdownEditorRef>(null);
   const { control, errors, onSubmit } = useCreateReflectionForm(
     session?.user.username
@@ -24,9 +25,17 @@ const CreateReflectionPage = () => {
   };
 
   const handleEnter = () => {
-    if (editorRef.current) {
+    if (editorRef.current && !isComposing) {
       editorRef.current.focus();
     }
+  };
+
+  const handleCompositionStart = () => {
+    setIsComposing(true);
+  };
+
+  const handleCompositionEnd = () => {
+    setIsComposing(false);
   };
 
   if (status === "loading") {
@@ -42,6 +51,8 @@ const CreateReflectionPage = () => {
         onSubmit={handleSubmit}
         onEnter={handleEnter}
         editorRef={editorRef}
+        onCompositionStart={handleCompositionStart}
+        onCompositionEnd={handleCompositionEnd}
       />
     ) : (
       <LoginForm />

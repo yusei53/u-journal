@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const { title, content, charStamp } = await req.json();
+    const { title, content, charStamp, isPublic } = await req.json();
 
     const currentUser = await getCurrentUser();
 
@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
         title,
         content,
         charStamp,
+        isPublic,
         createdAt: jstDate,
         userId: currentUser.id,
       },

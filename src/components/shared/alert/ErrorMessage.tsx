@@ -1,11 +1,13 @@
 import { Typography } from "@mui/material";
 
 type ErrorMessageProps = {
-  message: string;
+  message: string | undefined;
 };
 
-export const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => (
-  <Typography color={"red"} fontSize={"0.9rem"} marginTop={"0.5rem"}>
-    {message}
-  </Typography>
-);
+export const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
+  return message ? (
+    <Typography color="error" variant="body2">
+      {message}
+    </Typography>
+  ) : null;
+};
