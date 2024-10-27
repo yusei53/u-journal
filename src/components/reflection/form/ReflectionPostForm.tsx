@@ -1,4 +1,4 @@
-import { Box, Container, Fade, Popper, Stack, Typography } from "@mui/material";
+import { Box, Container, Stack } from "@mui/material";
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import { CustomInput } from "../../shared/input";
 import { Button } from "../../shared/button";
@@ -6,9 +6,7 @@ import { ErrorMessage } from "../../shared/alert";
 import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
 import { useState } from "react";
 import EmojiPicker from "./EmojiPicker";
-import Image from "next/image";
-import { theme } from "@/src/utils/theme/theme";
-import CheckIcon from "@mui/icons-material/Check";
+import PublishSettingPopup from "./PublishSettingPopup";
 
 type FormValues = {
   title: string;
@@ -24,6 +22,8 @@ type ReflectionPostFormProps = {
   onSubmit: (event: React.FormEvent) => Promise<void>;
   onEnter: () => void;
   editorRef: React.RefObject<MarkdownEditorRef>;
+  onCompositionStart: () => void;
+  onCompositionEnd: () => void;
 };
 
 const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
@@ -33,134 +33,24 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   onEnter,
   onSubmit,
   editorRef,
-}: any) => {
+  onCompositionStart,
+  onCompositionEnd,
+}) => {
   const [selectedEmoji, setSelectedEmoji] = useState("💭");
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popper" : undefined;
 
   return (
     <Box component={"form"} onSubmit={onSubmit}>
-      <Box display={"flex"} position={"fixed"} top={25} right={35} gap={3}>
+      <Box display={"flex"} position={"fixed"} top={25} right={35}>
         <Controller
           name="isPublic"
           control={control}
           render={({ field }) => (
-            <>
-              <Button
-                aria-describedby={id}
-                onClick={handleClick}
-                onBlur={() => setAnchorEl(null)}
-                sx={{
-                  width: "100px",
-                  border: "none",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-                disableRipple
-              >
-                <Image
-                  src={field.value ? "/unlock.png" : "/lock.png"}
-                  alt="Lock Icon"
-                  width={18}
-                  height={18}
-                  style={{ marginRight: 4 }}
-                />
-                {field.value ? "公開" : "非公開"}
-              </Button>
-              <Popper id={id} open={open} anchorEl={anchorEl} transition>
-                {({ TransitionProps }) => (
-                  <Fade {...TransitionProps} timeout={250}>
-                    <Box boxShadow={1} borderRadius={2}>
-                      <Button
-                        onClick={() => {
-                          field.onChange(true);
-                          setAnchorEl(null);
-                        }}
-                        sx={{
-                          border: "none",
-                          display: "block",
-                          borderRadius: "none",
-                          textAlign: "left",
-                          width: "100%",
-                          "&:hover": {
-                            backgroundColor: theme.palette.primary.contrastText,
-                          },
-                        }}
-                        disableRipple
-                      >
-                        <Box display={"flex"} alignItems={"center"}>
-                          <Image
-                            src={"/unlock.png"}
-                            alt="Lock Icon"
-                            width={18}
-                            height={18}
-                            style={{
-                              marginRight: 4,
-                            }}
-                          />
-                          公開
-                          {field.value && (
-                            <CheckIcon fontSize="small" sx={{ ml: 1 }} />
-                          )}
-                        </Box>
-                        <Typography
-                          fontSize={12}
-                          color={theme.palette.grey[500]}
-                        >
-                          他の人も見えるようになります
-                        </Typography>
-                      </Button>
-                      <Button
-                        onClick={() => {
-                          field.onChange(false);
-                          setAnchorEl(null);
-                        }}
-                        sx={{
-                          border: "none",
-                          display: "block",
-                          borderRadius: "none",
-                          textAlign: "left",
-                          width: "100%",
-                          "&:hover": {
-                            backgroundColor: theme.palette.primary.contrastText,
-                          },
-                        }}
-                        disableRipple
-                      >
-                        <Box display={"flex"} alignItems={"center"}>
-                          <Image
-                            src={"/lock.png"}
-                            alt="Lock Icon"
-                            width={18}
-                            height={18}
-                            style={{ marginRight: 4, verticalAlign: "middle" }}
-                          />
-                          非公開
-                          {!field.value && (
-                            <CheckIcon fontSize="small" sx={{ ml: 1 }} />
-                          )}
-                        </Box>
-                        <Typography
-                          fontSize={12}
-                          color={theme.palette.grey[500]}
-                        >
-                          自分だけが見えるようになります
-                        </Typography>
-                      </Button>
-                    </Box>
-                  </Fade>
-                )}
-              </Popper>
-            </>
+            <PublishSettingPopup
+              value={field.value}
+              onChange={field.onChange}
+            />
           )}
         />
-
         <Button type={"submit"} disabled={isLoading}>
           {isLoading ? "投稿中..." : "投稿する"}
         </Button>
@@ -178,6 +68,8 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
                   value={field.value}
                   onChange={field.onChange}
                   onEnter={onEnter}
+                  onCompositionStart={onCompositionStart}
+                  onCompositionEnd={onCompositionEnd}
                 />
                 {errors.title && (
                   <ErrorMessage message={errors.title.message} />
