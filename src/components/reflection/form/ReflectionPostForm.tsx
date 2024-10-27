@@ -55,6 +55,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
               <Button
                 aria-describedby={id}
                 onClick={handleClick}
+                onBlur={() => setAnchorEl(null)}
                 sx={{
                   width: "100px",
                   border: "none",
