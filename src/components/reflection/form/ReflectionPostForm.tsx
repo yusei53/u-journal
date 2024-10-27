@@ -1,4 +1,4 @@
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, Fade, Popper, Stack } from "@mui/material";
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import { CustomInput } from "../../shared/input";
 import { Button } from "../../shared/button";
@@ -6,11 +6,13 @@ import { ErrorMessage } from "../../shared/alert";
 import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
 import { useState } from "react";
 import EmojiPicker from "./EmojiPicker";
+import Image from "next/image";
 
 type FormValues = {
   title: string;
   content: string;
   charStamp: string;
+  isPublic: boolean;
 };
 
 type ReflectionPostFormProps = {
@@ -31,20 +33,73 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   editorRef,
 }: any) => {
   const [selectedEmoji, setSelectedEmoji] = useState("💭");
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popper" : undefined;
 
   return (
     <Box component={"form"} onSubmit={onSubmit}>
-      <Button
-        type={"submit"}
-        disabled={isLoading}
-        sx={{
-          position: "fixed",
-          top: 25,
-          right: 25,
-        }}
-      >
-        {isLoading ? "投稿中..." : "投稿する"}
-      </Button>
+      <Box display={"flex"} position={"fixed"} top={25} right={35} gap={3}>
+        <Controller
+          name="isPublic"
+          control={control}
+          render={({ field }) => (
+            <>
+              <Button
+                aria-describedby={id}
+                onClick={handleClick}
+                sx={{ border: "none", display: "flex", alignItems: "center" }}
+                disableRipple
+              >
+                <Image
+                  src="/lock.png"
+                  alt="Lock Icon"
+                  width={18}
+                  height={18}
+                  style={{ marginRight: 4 }}
+                />
+                {field.value ? "公開" : "非公開"}
+              </Button>
+              <Popper id={id} open={open} anchorEl={anchorEl} transition>
+                {({ TransitionProps }) => (
+                  <Fade {...TransitionProps} timeout={250}>
+                    <Box sx={{ border: 1, p: 1, bgcolor: "background.paper" }}>
+                      <Button
+                        onClick={() => {
+                          field.onChange(true);
+                          setAnchorEl(null);
+                        }}
+                        sx={{ border: "none", display: "block", width: "100%" }}
+                        disableRipple
+                      >
+                        公開
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          field.onChange(false);
+                          setAnchorEl(null);
+                        }}
+                        sx={{ border: "none", display: "block", width: "100%" }}
+                        disableRipple
+                      >
+                        非公開
+                      </Button>
+                    </Box>
+                  </Fade>
+                )}
+              </Popper>
+            </>
+          )}
+        />
+        <Button type={"submit"} disabled={isLoading}>
+          {isLoading ? "投稿中..." : "投稿する"}
+        </Button>
+      </Box>
       <Container maxWidth="md" sx={{ my: 15 }}>
         <Stack gap={10} m={{ md: 10 }}>
           <Controller
