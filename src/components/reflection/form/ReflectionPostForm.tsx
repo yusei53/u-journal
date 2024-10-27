@@ -6,7 +6,7 @@ import { ErrorMessage } from "../../shared/alert";
 import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
 import { useState } from "react";
 import EmojiPicker from "./EmojiPicker";
-import { PublishSettingPopupContainer } from "./popup";
+import { PublishSettingPopupContainer } from "./popup/publish-setting";
 
 type FormValues = {
   title: string;
@@ -41,6 +41,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   return (
     <Box component={"form"} onSubmit={onSubmit}>
       <Box display={"flex"} position={"fixed"} top={25} right={35}>
+        {/* ここにテンプレートを使うボタンを追加 */}
         <Controller
           name="isPublic"
           control={control}
