@@ -15,6 +15,7 @@ const UserNameBar: React.FC<UserNameBarProps> = ({ userImage, username }) => {
         alt={`${username}の画像`}
         width={40}
         height={40}
+        priority
         style={{ borderRadius: 100, marginRight: 8 }}
       />
       <Typography fontSize={16}>{username}</Typography>
