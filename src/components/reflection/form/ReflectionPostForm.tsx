@@ -7,6 +7,8 @@ import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
 import { useState } from "react";
 import EmojiPicker from "./EmojiPicker";
 import { PublishSettingPopupContainer } from "./popup/publish-setting";
+import ReflectionTemplatePopup from "./popup/reflection-template/ReflectionTemplatePopup";
+import { REFLECTION_TEMPLATES } from "./popup/reflection-template/template";
 
 type FormValues = {
   title: string;
@@ -38,10 +40,20 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
 }) => {
   const [selectedEmoji, setSelectedEmoji] = useState("💭");
 
+  const insertTemplate = (template: string) => {
+    const editor = editorRef.current;
+    if (editor) {
+      editor.insertText(template);
+    }
+  };
+
   return (
     <Box component={"form"} onSubmit={onSubmit}>
       <Box display={"flex"} position={"fixed"} top={25} right={35}>
-        {/* ここにテンプレートを使うボタンを追加 */}
+        <ReflectionTemplatePopup
+          onInsertTemplate={insertTemplate}
+          templateData={REFLECTION_TEMPLATES}
+        />
         <Controller
           name="isPublic"
           control={control}

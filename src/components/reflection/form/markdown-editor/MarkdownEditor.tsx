@@ -13,6 +13,7 @@ type MarkdownEditorProps = {
 
 export type MarkdownEditorRef = {
   focus: () => void;
+  insertText: (text: string) => void;
 };
 
 export const MarkdownEditor = forwardRef<
@@ -39,9 +40,10 @@ export const MarkdownEditor = forwardRef<
     ref,
     () => ({
       focus: () => {
-        if (editor) {
-          editor.commands.focus();
-        }
+        editor?.commands.focus();
+      },
+      insertText: (text: string) => {
+        editor?.commands.insertContent(text);
       },
     }),
     [editor]
