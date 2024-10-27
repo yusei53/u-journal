@@ -1,4 +1,4 @@
-import { Box, Container, Fade, Popper, Stack } from "@mui/material";
+import { Box, Container, Fade, Popper, Stack, Typography } from "@mui/material";
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import { CustomInput } from "../../shared/input";
 import { Button } from "../../shared/button";
@@ -7,6 +7,8 @@ import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
 import { useState } from "react";
 import EmojiPicker from "./EmojiPicker";
 import Image from "next/image";
+import { theme } from "@/src/utils/theme/theme";
+import CheckIcon from "@mui/icons-material/Check";
 
 type FormValues = {
   title: string;
@@ -53,11 +55,16 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
               <Button
                 aria-describedby={id}
                 onClick={handleClick}
-                sx={{ border: "none", display: "flex", alignItems: "center" }}
+                sx={{
+                  width: "100px",
+                  border: "none",
+                  display: "flex",
+                  alignItems: "center",
+                }}
                 disableRipple
               >
                 <Image
-                  src="/lock.png"
+                  src={field.value ? "/unlock.png" : "/lock.png"}
                   alt="Lock Icon"
                   width={18}
                   height={18}
@@ -68,26 +75,82 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
               <Popper id={id} open={open} anchorEl={anchorEl} transition>
                 {({ TransitionProps }) => (
                   <Fade {...TransitionProps} timeout={250}>
-                    <Box sx={{ border: 1, p: 1, bgcolor: "background.paper" }}>
+                    <Box boxShadow={1} borderRadius={2}>
                       <Button
                         onClick={() => {
                           field.onChange(true);
                           setAnchorEl(null);
                         }}
-                        sx={{ border: "none", display: "block", width: "100%" }}
+                        sx={{
+                          border: "none",
+                          display: "block",
+                          borderRadius: "none",
+                          textAlign: "left",
+                          width: "100%",
+                          "&:hover": {
+                            backgroundColor: theme.palette.primary.contrastText,
+                          },
+                        }}
                         disableRipple
                       >
-                        公開
+                        <Box display={"flex"} alignItems={"center"}>
+                          <Image
+                            src={"/unlock.png"}
+                            alt="Lock Icon"
+                            width={18}
+                            height={18}
+                            style={{
+                              marginRight: 4,
+                            }}
+                          />
+                          公開
+                          {field.value && (
+                            <CheckIcon fontSize="small" sx={{ ml: 1 }} />
+                          )}
+                        </Box>
+                        <Typography
+                          fontSize={12}
+                          color={theme.palette.grey[500]}
+                        >
+                          他の人も見えるようになります
+                        </Typography>
                       </Button>
                       <Button
                         onClick={() => {
                           field.onChange(false);
                           setAnchorEl(null);
                         }}
-                        sx={{ border: "none", display: "block", width: "100%" }}
+                        sx={{
+                          border: "none",
+                          display: "block",
+                          borderRadius: "none",
+                          textAlign: "left",
+                          width: "100%",
+                          "&:hover": {
+                            backgroundColor: theme.palette.primary.contrastText,
+                          },
+                        }}
                         disableRipple
                       >
-                        非公開
+                        <Box display={"flex"} alignItems={"center"}>
+                          <Image
+                            src={"/lock.png"}
+                            alt="Lock Icon"
+                            width={18}
+                            height={18}
+                            style={{ marginRight: 4, verticalAlign: "middle" }}
+                          />
+                          非公開
+                          {!field.value && (
+                            <CheckIcon fontSize="small" sx={{ ml: 1 }} />
+                          )}
+                        </Box>
+                        <Typography
+                          fontSize={12}
+                          color={theme.palette.grey[500]}
+                        >
+                          自分だけが見えるようになります
+                        </Typography>
                       </Button>
                     </Box>
                   </Fade>
@@ -96,6 +159,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
             </>
           )}
         />
+
         <Button type={"submit"} disabled={isLoading}>
           {isLoading ? "投稿中..." : "投稿する"}
         </Button>
