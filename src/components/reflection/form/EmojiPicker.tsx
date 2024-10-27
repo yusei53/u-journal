@@ -38,7 +38,12 @@ const EmojiPicker: React.FC<EmojiPickerProps> = ({
       >
         {selectedEmoji}
       </MuiButton>
-      <Box component={"span"} color={"#adb5bd"} mx={3} fontSize={"0.8rem"}>
+      <Box
+        component={"span"}
+        color={theme.palette.grey[500]}
+        mx={3}
+        fontSize={"0.8rem"}
+      >
         この振り返りを一つの絵文字で表現してみよう!
       </Box>
       {showPicker && (

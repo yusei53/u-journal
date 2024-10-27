@@ -1,13 +1,14 @@
 "use client";
 import { createTheme } from "@mui/material";
-import { grey } from "@mui/material/colors";
 
 export const theme = createTheme({
   typography: {
     fontSize: 12.5,
   },
   palette: {
-    primary: { main: "#f0f7ff" },
-    grey: { 500: grey[500] },
+    // mainが背景色で、contrastTextがhover
+    primary: { main: "#f0f7ff", contrastText: "#F7FAFC" },
+    // 400がborder, 500が文字
+    grey: { 400: "#ededed", 500: "#adb5bd" },
   },
 });
