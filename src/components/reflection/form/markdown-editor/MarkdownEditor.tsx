@@ -14,6 +14,7 @@ type MarkdownEditorProps = {
 export type MarkdownEditorRef = {
   focus: () => void;
   insertText: (text: string) => void;
+  clearContent: () => void;
 };
 
 export const MarkdownEditor = forwardRef<
@@ -44,6 +45,9 @@ export const MarkdownEditor = forwardRef<
       },
       insertText: (text: string) => {
         editor?.commands.insertContent(text);
+      },
+      clearContent: () => {
+        editor?.commands.setContent("");
       },
     }),
     [editor]
