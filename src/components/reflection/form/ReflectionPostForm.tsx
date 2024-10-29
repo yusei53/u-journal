@@ -82,8 +82,8 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
           {isLoading ? "投稿中..." : "投稿する"}
         </Button>
       </Box>
-      <Container maxWidth="md" sx={{ my: 15 }}>
-        <Stack gap={10} m={{ md: 10 }}>
+      <Container maxWidth="sm" sx={{ my: 15 }}>
+        <Stack gap={4} m={{ md: 2 }}>
           <Controller
             name="title"
             control={control}
