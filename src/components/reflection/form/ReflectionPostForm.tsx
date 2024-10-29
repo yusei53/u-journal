@@ -6,7 +6,7 @@ import { ErrorMessage } from "../../shared/alert";
 import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
 import { useState } from "react";
 import EmojiPicker from "./EmojiPicker";
-import { PublishSettingPopupContainer } from "./popup/publish-setting";
+import { PublishSettingPopupAreaContainer } from "./popup/publish-setting";
 import {
   REFLECTION_TEMPLATES,
   ReflectionTemplatePopupAreaContainer,
@@ -60,7 +60,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
           name="isPublic"
           control={control}
           render={({ field }) => (
-            <PublishSettingPopupContainer
+            <PublishSettingPopupAreaContainer
               value={field.value}
               onChange={field.onChange}
             />

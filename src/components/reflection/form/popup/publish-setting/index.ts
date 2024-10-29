@@ -1,1 +1,1 @@
-export { PublishSettingPopupContainer } from "./PublishSettingPopupContainer";
+export { PublishSettingPopupAreaContainer } from "./PublishSettingPopupAreaContainer";
