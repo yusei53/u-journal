@@ -1,6 +1,6 @@
 import { Box, Fade, Popper, Divider } from "@mui/material";
 import Image from "next/image";
-import { theme } from "@/src/utils/theme/theme";
+import { theme } from "@/src/utils/theme";
 import PublishStatusOptionButton from "./PublishStatusOptionButton";
 import { Button } from "@/src/components/shared/button";
 

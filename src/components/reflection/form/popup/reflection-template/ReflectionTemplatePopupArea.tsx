@@ -4,7 +4,7 @@ import {
   ReflectionTemplateType,
   getReflectionTemplateName,
 } from "./reflection-templates";
-import { theme } from "@/src/utils/theme/theme";
+import { theme } from "@/src/utils/theme";
 import { Fragment } from "react";
 
 type ReflectionTemplatePopupAreaProps = {

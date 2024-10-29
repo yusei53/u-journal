@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import { theme } from "@/src/utils/theme/theme";
+import { theme } from "@/src/utils/theme";
 import { Reflection } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
 
