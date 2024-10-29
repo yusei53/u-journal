@@ -4,7 +4,7 @@ import { theme } from "@/src/utils/theme/theme";
 import PublishStatusOptionButton from "./PublishStatusOptionButton";
 import { Button } from "@/src/components/shared/button";
 
-type PublishSettingPopupProps = {
+type PublishSettingPopupAreaProps = {
   value: boolean;
   onChange: (value: boolean) => void;
   open: boolean;
@@ -13,7 +13,7 @@ type PublishSettingPopupProps = {
   onClose: () => void;
 };
 
-const PublishSettingPopup: React.FC<PublishSettingPopupProps> = ({
+const PublishSettingPopupArea: React.FC<PublishSettingPopupAreaProps> = ({
   value,
   onChange,
   open,
@@ -77,4 +77,4 @@ const PublishSettingPopup: React.FC<PublishSettingPopupProps> = ({
   );
 };
 
-export default PublishSettingPopup;
+export default PublishSettingPopupArea;
