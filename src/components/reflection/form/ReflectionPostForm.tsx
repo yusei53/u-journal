@@ -4,9 +4,13 @@ import { CustomInput } from "../../shared/input";
 import { Button } from "../../shared/button";
 import { ErrorMessage } from "../../shared/alert";
 import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import EmojiPicker from "./EmojiPicker";
-import { PublishSettingPopupContainer } from "./popup";
+import {
+  REFLECTION_TEMPLATES,
+  ReflectionTemplatePopupAreaContainer,
+} from "./popup/reflection-template";
+import { PublishSettingPopupAreaContainer } from "./popup/publish-setting";
 
 type FormValues = {
   title: string;
@@ -20,32 +24,55 @@ type ReflectionPostFormProps = {
   errors: FieldErrors<FormValues>;
   isLoading: boolean;
   onSubmit: (event: React.FormEvent) => Promise<void>;
-  onEnter: () => void;
-  editorRef: React.RefObject<MarkdownEditorRef>;
-  onCompositionStart: () => void;
-  onCompositionEnd: () => void;
 };
 
+// TODO: UIとロジックが微妙に混在気味なのでコンポーネント分割を検討
 const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   control,
   errors,
   isLoading = false,
-  onEnter,
   onSubmit,
-  editorRef,
-  onCompositionStart,
-  onCompositionEnd,
 }) => {
   const [selectedEmoji, setSelectedEmoji] = useState("💭");
+  const [isComposing, setIsComposing] = useState(false);
+  const editorRef = useRef<MarkdownEditorRef>(null);
+
+  const handleEnter = () => {
+    if (editorRef.current && !isComposing) {
+      editorRef.current.focus();
+    }
+  };
+
+  const handleCompositionStart = () => setIsComposing(true);
+  const handleCompositionEnd = () => setIsComposing(false);
+
+  const handleInsertTemplate = (template: string) => {
+    const editor = editorRef.current;
+    if (editor) {
+      editor.insertText(template);
+    }
+  };
+
+  const handleClearContent = () => {
+    const editor = editorRef.current;
+    if (editor) {
+      editor.clearContent();
+    }
+  };
 
   return (
     <Box component={"form"} onSubmit={onSubmit}>
       <Box display={"flex"} position={"fixed"} top={25} right={35}>
+        <ReflectionTemplatePopupAreaContainer
+          onInsertTemplate={handleInsertTemplate}
+          onClearContent={handleClearContent}
+          reflectionTemplateType={REFLECTION_TEMPLATES}
+        />
         <Controller
           name="isPublic"
           control={control}
           render={({ field }) => (
-            <PublishSettingPopupContainer
+            <PublishSettingPopupAreaContainer
               value={field.value}
               onChange={field.onChange}
             />
@@ -67,9 +94,9 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
                   placeholder="タイトル"
                   value={field.value}
                   onChange={field.onChange}
-                  onEnter={onEnter}
-                  onCompositionStart={onCompositionStart}
-                  onCompositionEnd={onCompositionEnd}
+                  onEnter={handleEnter}
+                  onCompositionStart={handleCompositionStart}
+                  onCompositionEnd={handleCompositionEnd}
                 />
                 {errors.title && (
                   <ErrorMessage message={errors.title.message} />

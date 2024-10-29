@@ -1,5 +1,5 @@
 import { Button } from "@/src/components/shared/button";
-import { theme } from "@/src/utils/theme/theme";
+import { theme } from "@/src/utils/theme";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import CheckIcon from "@mui/icons-material/Check";
@@ -31,7 +31,7 @@ const PublishStatusOptionButton: React.FC<PublishStatusOptionButtonProps> = ({
     }}
     disableRipple
   >
-    <Box display={"flex"} alignItems={"center"} color={"black"}>
+    <Box display={"flex"} alignItems={"center"}>
       <Image
         src={icon}
         alt={`${text} Icon`}
