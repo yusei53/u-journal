@@ -37,9 +37,12 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   const [isComposing, setIsComposing] = useState(false);
   const editorRef = useRef<MarkdownEditorRef>(null);
 
-  const handleEnter = () => {
-    if (editorRef.current && !isComposing) {
-      editorRef.current.focus();
+  const handleEnter = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (editorRef.current && !isComposing) {
+        editorRef.current.focus();
+      }
     }
   };
 
@@ -94,7 +97,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
                   placeholder="タイトル"
                   value={field.value}
                   onChange={field.onChange}
-                  onEnter={handleEnter}
+                  onEnter={(e) => handleEnter(e)}
                   onCompositionStart={handleCompositionStart}
                   onCompositionEnd={handleCompositionEnd}
                 />
