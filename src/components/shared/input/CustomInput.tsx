@@ -5,7 +5,7 @@ type CustomInputProps = {
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onEnter?: () => void;
+  onEnter?: (e: React.KeyboardEvent) => void;
   onCompositionStart?: () => void;
   onCompositionEnd?: () => void;
 };
@@ -27,7 +27,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
       onChange={onChange}
       onKeyDown={(e) => {
         if (e.key === "Enter" && onEnter) {
-          onEnter();
+          onEnter(e);
         }
       }}
       onCompositionStart={onCompositionStart}

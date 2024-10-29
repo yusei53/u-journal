@@ -37,9 +37,12 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   const [isComposing, setIsComposing] = useState(false);
   const editorRef = useRef<MarkdownEditorRef>(null);
 
-  const handleEnter = () => {
-    if (editorRef.current && !isComposing) {
-      editorRef.current.focus();
+  const handleEnter = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (editorRef.current && !isComposing) {
+        editorRef.current.focus();
+      }
     }
   };
 
@@ -82,8 +85,8 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
           {isLoading ? "投稿中..." : "投稿する"}
         </Button>
       </Box>
-      <Container maxWidth="md" sx={{ my: 15 }}>
-        <Stack gap={10} m={{ md: 10 }}>
+      <Container maxWidth="sm" sx={{ my: 15 }}>
+        <Stack gap={4} m={{ md: 2 }}>
           <Controller
             name="title"
             control={control}
@@ -94,7 +97,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
                   placeholder="タイトル"
                   value={field.value}
                   onChange={field.onChange}
-                  onEnter={handleEnter}
+                  onEnter={(e) => handleEnter(e)}
                   onCompositionStart={handleCompositionStart}
                   onCompositionEnd={handleCompositionEnd}
                 />
