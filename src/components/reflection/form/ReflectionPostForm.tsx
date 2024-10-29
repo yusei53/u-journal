@@ -7,8 +7,10 @@ import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
 import { useState } from "react";
 import EmojiPicker from "./EmojiPicker";
 import { PublishSettingPopupContainer } from "./popup/publish-setting";
-import ReflectionTemplatePopup from "./popup/reflection-template/ReflectionTemplatePopup";
-import { REFLECTION_TEMPLATES } from "./popup/reflection-template/template";
+import {
+  REFLECTION_TEMPLATES,
+  ReflectionTemplatePopupAreaContainer,
+} from "./popup/reflection-template";
 
 type FormValues = {
   title: string;
@@ -40,7 +42,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
 }) => {
   const [selectedEmoji, setSelectedEmoji] = useState("💭");
 
-  const insertTemplate = (template: string) => {
+  const handleInsertTemplate = (template: string) => {
     const editor = editorRef.current;
     if (editor) {
       editor.insertText(template);
@@ -50,9 +52,9 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   return (
     <Box component={"form"} onSubmit={onSubmit}>
       <Box display={"flex"} position={"fixed"} top={25} right={35}>
-        <ReflectionTemplatePopup
-          onInsertTemplate={insertTemplate}
-          templateData={REFLECTION_TEMPLATES}
+        <ReflectionTemplatePopupAreaContainer
+          onInsertTemplate={handleInsertTemplate}
+          reflectionTemplateType={REFLECTION_TEMPLATES}
         />
         <Controller
           name="isPublic"
