@@ -10,5 +10,7 @@ export const theme = createTheme({
     primary: { main: "#f0f7ff", contrastText: "#F7FAFC" },
     // 400がborder, 500が文字
     grey: { 400: "#ededed", 500: "#adb5bd" },
+    // リセットボタンのhoverで使用
+    warning: { main: "#FCECEC" },
   },
 });
