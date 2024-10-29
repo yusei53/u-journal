@@ -1,10 +1,11 @@
-import { Box, Popper, Fade } from "@mui/material";
+import { Box, Popper, Fade, Divider, Typography } from "@mui/material";
 import { Button } from "@/src/components/shared/button";
 import {
   ReflectionTemplateType,
   getReflectionTemplateName,
 } from "./reflection-templates";
 import { theme } from "@/src/utils/theme/theme";
+import { Fragment } from "react";
 
 type ReflectionTemplatePopupAreaProps = {
   anchorEl: HTMLElement | null;
@@ -15,6 +16,14 @@ type ReflectionTemplatePopupAreaProps = {
   onTemplateSelect: (
     categoryKey: keyof ReflectionTemplateType
   ) => Promise<void>;
+  onClearContent: () => void;
+};
+
+const button = {
+  border: "none",
+  display: "block",
+  textAlign: "left",
+  width: "100%",
 };
 
 const ReflectionTemplatePopupArea: React.FC<
@@ -26,6 +35,7 @@ const ReflectionTemplatePopupArea: React.FC<
   onClick,
   onClose,
   onTemplateSelect,
+  onClearContent,
 }) => {
   return (
     <>
@@ -45,31 +55,48 @@ const ReflectionTemplatePopupArea: React.FC<
           <Fade {...TransitionProps} timeout={250}>
             <Box boxShadow={1} bgcolor="white" borderRadius={1}>
               {Object.keys(reflectionTemplateType).map((categoryKey) => (
-                <Button
-                  key={categoryKey}
-                  onClick={() =>
-                    onTemplateSelect(
+                <Fragment key={categoryKey}>
+                  <Button
+                    onClick={() =>
+                      onTemplateSelect(
+                        categoryKey as keyof ReflectionTemplateType
+                      )
+                    }
+                    sx={{
+                      ...button,
+                      borderRadius: "none",
+                      "&:hover": {
+                        backgroundColor: theme.palette.primary.contrastText,
+                      },
+                    }}
+                    disableRipple
+                  >
+                    {getReflectionTemplateName(
                       categoryKey as keyof ReflectionTemplateType
-                    )
-                  }
-                  sx={{
-                    border: "none",
-                    display: "block",
-                    textAlign: "left",
-                    width: "100%",
-                    borderRadius: "none",
-                    p: 1.5,
-                    "&:hover": {
-                      backgroundColor: theme.palette.primary.contrastText,
-                    },
-                  }}
-                  disableRipple
-                >
-                  {getReflectionTemplateName(
-                    categoryKey as keyof ReflectionTemplateType
-                  )}
-                </Button>
+                    )}
+                  </Button>
+                  <Divider sx={{ borderColor: theme.palette.grey[400] }} />
+                </Fragment>
               ))}
+              <Button
+                onClick={onClearContent}
+                sx={{
+                  ...button,
+                  borderTopLeftRadius: 0,
+                  borderTopRightRadius: 0,
+                  borderBottomRightRadius: 2,
+                  borderBottomLeftRadius: 2,
+                  "&:hover": {
+                    backgroundColor: theme.palette.warning.main,
+                  },
+                }}
+                disableRipple
+              >
+                リセット
+                <Typography fontSize={10} color={theme.palette.grey[500]}>
+                  ※ 文章内の全ての文字が削除されるのでご注意ください
+                </Typography>
+              </Button>
             </Box>
           </Fade>
         )}

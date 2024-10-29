@@ -5,12 +5,13 @@ import { marked } from "marked";
 
 type ReflectionTemplatePopupAreaContainerProps = {
   onInsertTemplate: (template: string) => void;
+  onClearContent: () => void;
   reflectionTemplateType: ReflectionTemplateType;
 };
 
 export const ReflectionTemplatePopupAreaContainer: React.FC<
   ReflectionTemplatePopupAreaContainerProps
-> = ({ onInsertTemplate, reflectionTemplateType }) => {
+> = ({ onInsertTemplate, onClearContent, reflectionTemplateType }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -45,6 +46,7 @@ export const ReflectionTemplatePopupAreaContainer: React.FC<
       onClick={handleClick}
       onClose={handleClose}
       onTemplateSelect={handleTemplateSelect}
+      onClearContent={onClearContent}
     />
   );
 };

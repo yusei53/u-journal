@@ -53,11 +53,19 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
     }
   };
 
+  const handleClearContent = () => {
+    const editor = editorRef.current;
+    if (editor) {
+      editor.clearContent();
+    }
+  };
+
   return (
     <Box component={"form"} onSubmit={onSubmit}>
       <Box display={"flex"} position={"fixed"} top={25} right={35}>
         <ReflectionTemplatePopupAreaContainer
           onInsertTemplate={handleInsertTemplate}
+          onClearContent={handleClearContent}
           reflectionTemplateType={REFLECTION_TEMPLATES}
         />
         <Controller
