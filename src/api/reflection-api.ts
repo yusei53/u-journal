@@ -13,7 +13,7 @@ export type ReflectionDetail = {
 export type Reflection = Omit<ReflectionDetail, "content">;
 
 export type Reflections = {
-  userImage?: string;
+  userImage: string;
   reflections: Reflection[];
 };
 
