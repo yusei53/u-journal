@@ -5,7 +5,6 @@ import { useReflections } from "@/src/hooks/reflection/useReflections";
 
 const DisplayContent = () => {
   const { data: reflections, isLoading, error } = useReflections();
-
   if (isLoading) {
     return <Loading />;
   }
@@ -21,10 +20,12 @@ const DisplayContent = () => {
   return (
     <div>
       <h1>投稿内容の表示</h1>
-      {reflections.map((post) => (
+      {reflections.reflections.map((post) => (
         <div key={post.reflectionCUID}>
           <HtmlContent title={post.title} createdAt={post.createdAt} />
           <p>{post.charStamp}</p>
+          <p>{post.user?.username}</p>
+          <img src={post.user?.image} />
         </div>
       ))}
     </div>

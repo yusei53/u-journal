@@ -7,13 +7,19 @@ export type ReflectionDetail = {
   charStamp: string;
   isPublic: boolean;
   createdAt: string;
+  user?: User;
 };
 
 export type Reflection = Omit<ReflectionDetail, "content">;
 
 export type Reflections = {
-  userImage: string;
+  userImage?: string;
   reflections: Reflection[];
+};
+
+type User = {
+  username: string;
+  image: string;
 };
 
 export const reflectionAPI = {
@@ -22,7 +28,7 @@ export const reflectionAPI = {
       url: `/api/reflection`,
       method: "GET",
     });
-    return response.data.reflections;
+    return response.data;
   },
 
   async getReflectionsByUsername(username: string) {
