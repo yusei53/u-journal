@@ -2,7 +2,7 @@
 import { useParams } from "next/navigation";
 import { useReflectionsByUsername } from "@/src/hooks/reflection/useReflectionsByUsername";
 import UserReflectionListArea from "@/src/components/reflection/UserReflectionListArea";
-import { CalendarFetcher } from "@/src/components/calendar";
+import { CalendarFetcher } from "@/src/components/user-reflection-list/calendar";
 
 const UserReflectionListPage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
