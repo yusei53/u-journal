@@ -1,15 +1,17 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
-type UserNameBarProps = {
+type UserAvatarProps = {
   userImage: string;
   username: string;
 };
 
-const UserNameBar: React.FC<UserNameBarProps> = ({ userImage, username }) => {
+export const UserAvatar: React.FC<UserAvatarProps> = ({
+  userImage,
+  username,
+}) => {
   return (
     <Box display={"flex"} alignItems={"center"} mx={{ xs: 4, md: 3 }}>
-      {/* TODO: ここにGoogleアイコンやgithubアイコンが来る */}
       <Image
         src={userImage}
         alt={`${username}の画像`}
@@ -22,5 +24,3 @@ const UserNameBar: React.FC<UserNameBarProps> = ({ userImage, username }) => {
     </Box>
   );
 };
-
-export default UserNameBar;
