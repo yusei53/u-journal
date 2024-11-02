@@ -5,6 +5,7 @@ import { getColor } from "@/src/utils/calendar/get-color";
 import { Tooltip } from "react-tooltip";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
+import { LinearLoading } from "@/src/components/shared/loading/LinearLoading";
 
 type CalendarFetcherProps = {
   username: string;
@@ -24,7 +25,7 @@ export const CalendarFetcher: React.FC<CalendarFetcherProps> = ({
   if (!reflectionsCount) return undefined;
 
   if (isLoading) {
-    return <div>読み込み中...</div>;
+    return <LinearLoading />;
   }
 
   if (error) {
