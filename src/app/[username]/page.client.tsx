@@ -1,8 +1,9 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useReflectionsByUsername } from "@/src/hooks/reflection/useReflectionsByUsername";
-import UserReflectionListArea from "@/src/components/reflection/UserReflectionListArea";
-import { CalendarFetcher } from "@/src/components/user-reflection-list/calendar";
+import UserProfileArea from "@/src/components/user-reflection-list/profile/UserProfileArea";
+import ReflectionCardListArea from "@/src/components/user-reflection-list/reflection-list/ReflectionCardListArea";
+import Loading from "../loading";
 
 const UserReflectionListPage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
@@ -16,26 +17,29 @@ const UserReflectionListPage: React.FC = () => {
   }
 
   if (isLoading) {
-    return <div>読み込み中...</div>;
+    return <Loading />;
   }
 
   if (error) {
     // TODO: このエラーメッセージはいろんなところで使い回しできるので共通コンポーネント実装したい
     return <div>エラーが発生しました: {error.message}</div>;
   }
-  if (reflectionsWithUser?.reflections.length === 0) {
-    // TODO: このメッセージはデザイン含めもう少し工夫したい
-    return <div>このユーザーはまだ投稿をしていません。</div>;
-  }
 
   return (
     <>
-      <UserReflectionListArea
+      <UserProfileArea
         userImage={reflectionsWithUser.userImage}
         username={username}
-        reflections={reflectionsWithUser.reflections}
       />
-      <CalendarFetcher username={username} />
+      {reflectionsWithUser.reflections.length === 0 ? (
+        // TODO: このメッセージはデザイン含めもう少し工夫したい
+        <div>このユーザーはまだ投稿をしていません。</div>
+      ) : (
+        <ReflectionCardListArea
+          username={username}
+          reflections={reflectionsWithUser.reflections}
+        />
+      )}
     </>
   );
 };

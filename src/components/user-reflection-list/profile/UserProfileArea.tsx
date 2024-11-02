@@ -14,7 +14,7 @@ const UserProfileArea: React.FC<UserProfileAreaProps> = ({
   return (
     <>
       <UserAvatar userImage={userImage} username={username} />
-      <Box my={5}>
+      <Box my={5} mx={3}>
         <CalendarFetcher username={username} />
       </Box>
     </>
