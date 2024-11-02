@@ -5,13 +5,14 @@ import { Tooltip } from "react-tooltip";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
 import { LinearLoading } from "@/src/components/shared/loading/LinearLoading";
-import Calendar from "./Calendar";
+import CalendarArea from "./CalendarArea";
+import { Box } from "@mui/material";
 
-type CalendarFetcherProps = {
+type CalendarAreaFetcherProps = {
   username: string;
 };
 
-export const CalendarFetcher: React.FC<CalendarFetcherProps> = ({
+export const CalendarAreaFetcher: React.FC<CalendarAreaFetcherProps> = ({
   username,
 }) => {
   const startDate = getOneYearAgo();
@@ -57,7 +58,7 @@ export const CalendarFetcher: React.FC<CalendarFetcherProps> = ({
 
   return (
     <>
-      <Calendar
+      <CalendarArea
         startDate={startDate}
         endDate={endDate}
         values={reflectionsCount.reflectionsPerDate}
