@@ -1,8 +1,8 @@
-.react-calendar-heatmap rect:hover {
-  stroke: none;
-}
-
 .react-calendar-heatmap rect {
   user-select: none;
   outline: none;
+}
+
+.react-calendar-heatmap rect:hover {
+  stroke: none;
 }
