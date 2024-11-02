@@ -19,6 +19,7 @@ type CalendarProps = {
   tooltipDataAttrs: (
     value: ReactCalendarHeatmapValue<string> | undefined
   ) => Record<string, string>;
+  totalReflections: string;
 };
 
 const Calendar: React.FC<CalendarProps> = ({
@@ -27,6 +28,7 @@ const Calendar: React.FC<CalendarProps> = ({
   values,
   classForValue,
   tooltipDataAttrs,
+  totalReflections,
 }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -37,43 +39,58 @@ const Calendar: React.FC<CalendarProps> = ({
         scrollContainerRef.current!.scrollWidth;
     }, 0);
   }
-  const { calendarRef, handleToggleLabels } = useToggleJapaneseLabels();
+  const { calendarRef, isJapanese, handleToggleLabels } =
+    useToggleJapaneseLabels();
 
   return (
-    <Box
-      ref={calendarRef}
-      border={`1px solid ${theme.palette.grey[400]}`}
-      borderRadius={2}
-      p={2}
-      pl={0.5}
-    >
-      <Box textAlign={"right"} mb={1.2}>
-        <Typography component={"span"} fontSize={11} mr={0.8}>
-          日本語表示
-        </Typography>
-        <IOSSwitch onClick={handleToggleLabels} />
-      </Box>
-      {/* MEMO: 900px以下でスクロール可能にするにするためのBoxコンポーネント */}
+    <Box>
       <Box
-        ref={scrollContainerRef}
-        sx={{
-          overflowX: isSmallScreen ? "auto" : "visible",
-        }}
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        mb={0.5}
       >
+        <Typography mx={1} fontSize={isJapanese ? 14 : 15}>
+          {isJapanese
+            ? `直近1年間で ${totalReflections} 回振り返りをしています`
+            : `${totalReflections} reflections in the last year`}
+        </Typography>
         <Box
+          display={"flex"}
+          alignItems={"center"}
+          mx={0.5}
+          whiteSpace={"nowrap"}
+        >
+          <Typography fontSize={11} mr={0.8}>
+            日本語表示
+          </Typography>
+          <IOSSwitch onClick={handleToggleLabels} />
+        </Box>
+      </Box>
+      <Box
+        ref={calendarRef}
+        border={`1px solid ${theme.palette.grey[400]}`}
+        borderRadius={2}
+        p={"12px 16px 8px 4px"}
+      >
+        {/* MEMO: 900px以下でスクロール可能にするにするためのBoxコンポーネント */}
+        <Box
+          ref={scrollContainerRef}
           sx={{
-            minWidth: isSmallScreen ? "900px" : "100%",
+            overflowX: isSmallScreen ? "auto" : "visible",
           }}
         >
-          <CustomCalendarHeatmap
-            startDate={startDate}
-            endDate={endDate}
-            values={values}
-            classForValue={classForValue}
-            tooltipDataAttrs={tooltipDataAttrs}
-            showWeekdayLabels
-            gutterSize={2}
-          />
+          <Box minWidth={isSmallScreen ? "780px" : "100%"}>
+            <CustomCalendarHeatmap
+              startDate={startDate}
+              endDate={endDate}
+              values={values}
+              classForValue={classForValue}
+              tooltipDataAttrs={tooltipDataAttrs}
+              showWeekdayLabels
+              gutterSize={2}
+            />
+          </Box>
         </Box>
       </Box>
     </Box>

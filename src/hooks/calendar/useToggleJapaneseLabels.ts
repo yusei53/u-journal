@@ -72,5 +72,5 @@ export const useToggleJapaneseLabels = () => {
     setIsJapanese(!isJapanese);
   };
 
-  return { calendarRef, handleToggleLabels };
+  return { calendarRef, isJapanese, handleToggleLabels };
 };
