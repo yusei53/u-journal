@@ -63,6 +63,7 @@ export const CalendarFetcher: React.FC<CalendarFetcherProps> = ({
         values={reflectionsCount.reflectionsPerDate}
         classForValue={classForValue}
         tooltipDataAttrs={tooltipDataAttrs}
+        totalReflections={reflectionsCount.totalReflections}
       />
       <Tooltip id="tooltip-data-attrs" />
     </>
