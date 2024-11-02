@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
 import "react-calendar-heatmap/dist/styles.css";
-import "@/src/utils/calendar/calendar.css";
+import "./calendar.css";
 import { theme } from "@/src/utils/theme";
 import CustomCalendarHeatmap from "./CustomCalendarHeatmap";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
