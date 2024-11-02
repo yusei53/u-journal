@@ -1,11 +1,11 @@
 import { useReflectionsCount } from "@/src/hooks/reflections-count/useReflectionsCount";
 import { getOneYearAgo } from "@/src/utils/date-helper/date-helpers";
-import Heatmap from "./Calendar";
 import { getColor } from "@/src/utils/calendar/get-color";
 import { Tooltip } from "react-tooltip";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
 import { LinearLoading } from "@/src/components/shared/loading/LinearLoading";
+import Calendar from "./Calendar";
 
 type CalendarFetcherProps = {
   username: string;
@@ -57,7 +57,7 @@ export const CalendarFetcher: React.FC<CalendarFetcherProps> = ({
 
   return (
     <>
-      <Heatmap
+      <Calendar
         startDate={startDate}
         endDate={endDate}
         values={reflectionsCount.reflectionsPerDate}

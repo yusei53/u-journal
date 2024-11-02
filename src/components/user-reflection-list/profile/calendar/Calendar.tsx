@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
 import "react-calendar-heatmap/dist/styles.css";
 import "./calendar.css";
@@ -7,6 +7,7 @@ import CustomCalendarHeatmap from "./CustomCalendarHeatmap";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { IOSSwitch } from "@/src/components/shared/switch";
 import { useToggleJapaneseLabels } from "@/src/hooks/calendar/useToggleJapaneseLabels";
+import { useRef } from "react";
 
 type CalendarProps = {
   startDate: Date;
@@ -27,6 +28,15 @@ const Calendar: React.FC<CalendarProps> = ({
   classForValue,
   tooltipDataAttrs,
 }) => {
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  if (isSmallScreen) {
+    setTimeout(() => {
+      scrollContainerRef.current!.scrollLeft =
+        scrollContainerRef.current!.scrollWidth;
+    }, 0);
+  }
   const { calendarRef, handleToggleLabels } = useToggleJapaneseLabels();
 
   return (
@@ -43,15 +53,29 @@ const Calendar: React.FC<CalendarProps> = ({
         </Typography>
         <IOSSwitch onClick={handleToggleLabels} />
       </Box>
-      <CustomCalendarHeatmap
-        startDate={startDate}
-        endDate={endDate}
-        values={values}
-        classForValue={classForValue}
-        tooltipDataAttrs={tooltipDataAttrs}
-        showWeekdayLabels
-        gutterSize={2}
-      />
+      {/* MEMO: 900px以下でスクロール可能にするにするためのBoxコンポーネント */}
+      <Box
+        ref={scrollContainerRef}
+        sx={{
+          overflowX: isSmallScreen ? "auto" : "visible",
+        }}
+      >
+        <Box
+          sx={{
+            minWidth: isSmallScreen ? "900px" : "100%",
+          }}
+        >
+          <CustomCalendarHeatmap
+            startDate={startDate}
+            endDate={endDate}
+            values={values}
+            classForValue={classForValue}
+            tooltipDataAttrs={tooltipDataAttrs}
+            showWeekdayLabels
+            gutterSize={2}
+          />
+        </Box>
+      </Box>
     </Box>
   );
 };
