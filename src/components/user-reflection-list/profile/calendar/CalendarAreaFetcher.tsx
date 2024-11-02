@@ -1,16 +1,18 @@
 import { useReflectionsCount } from "@/src/hooks/reflections-count/useReflectionsCount";
 import { getOneYearAgo } from "@/src/utils/date-helper/date-helpers";
-import Heatmap from "./Calendar";
 import { getColor } from "@/src/utils/calendar/get-color";
 import { Tooltip } from "react-tooltip";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
+import { LinearLoading } from "@/src/components/shared/loading/LinearLoading";
+import CalendarArea from "./CalendarArea";
+import { Box } from "@mui/material";
 
-type CalendarFetcherProps = {
+type CalendarAreaFetcherProps = {
   username: string;
 };
 
-export const CalendarFetcher: React.FC<CalendarFetcherProps> = ({
+export const CalendarAreaFetcher: React.FC<CalendarAreaFetcherProps> = ({
   username,
 }) => {
   const startDate = getOneYearAgo();
@@ -24,7 +26,7 @@ export const CalendarFetcher: React.FC<CalendarFetcherProps> = ({
   if (!reflectionsCount) return undefined;
 
   if (isLoading) {
-    return <div>読み込み中...</div>;
+    return <LinearLoading />;
   }
 
   if (error) {
@@ -56,12 +58,13 @@ export const CalendarFetcher: React.FC<CalendarFetcherProps> = ({
 
   return (
     <>
-      <Heatmap
+      <CalendarArea
         startDate={startDate}
         endDate={endDate}
         values={reflectionsCount.reflectionsPerDate}
         classForValue={classForValue}
         tooltipDataAttrs={tooltipDataAttrs}
+        totalReflections={reflectionsCount.totalReflections}
       />
       <Tooltip id="tooltip-data-attrs" />
     </>

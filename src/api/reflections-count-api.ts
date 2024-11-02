@@ -6,7 +6,7 @@ export type ReflectionPerDate = {
 };
 
 export type ReflectionsCount = {
-  totalReflections: number;
+  totalReflections: string;
   reflectionsPerDate: ReflectionPerDate[];
 };
 
