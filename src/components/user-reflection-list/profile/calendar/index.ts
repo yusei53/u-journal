@@ -1,1 +1,1 @@
-export { CalendarFetcher } from "./CalendarFetcher";
+export { CalendarAreaFetcher } from "./CalendarAreaFetcher";
