@@ -2,8 +2,13 @@ type FetchMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
 export type FetchURLOptions = {
   method: FetchMethod;
+  cache?: RequestCache;
   body?: any;
   headers?: HeadersInit;
+  next?: {
+    revalidate?: number;
+    tags?: string[];
+  };
 };
 
 const defaultURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
