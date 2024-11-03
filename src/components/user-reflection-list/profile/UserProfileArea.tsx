@@ -1,6 +1,7 @@
-import { Box } from "@mui/material";
+import { Suspense } from "react";
 import { UserAvatar } from "./avatar";
 import { CalendarAreaFetcher } from "./calendar";
+import { LinearLoading } from "../../shared/loading";
 
 type UserProfileAreaProps = {
   userImage: string;
@@ -14,7 +15,9 @@ const UserProfileArea: React.FC<UserProfileAreaProps> = ({
   return (
     <>
       <UserAvatar userImage={userImage} username={username} />
-      <CalendarAreaFetcher username={username} />
+      <Suspense fallback={<LinearLoading />}>
+        <CalendarAreaFetcher username={username} />
+      </Suspense>
     </>
   );
 };
