@@ -2,6 +2,7 @@ import axios from "axios";
 import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
 
 export type ReflectionDetail = {
+  userImage: string;
   reflectionCUID: string;
   title: string;
   content: string;
@@ -10,7 +11,7 @@ export type ReflectionDetail = {
   createdAt: string;
 };
 
-export type Reflection = Omit<ReflectionDetail, "content">;
+export type Reflection = Omit<ReflectionDetail, "content" | "userImage">;
 
 export type Reflections = {
   userImage: string;
@@ -28,7 +29,10 @@ export const reflectionAPI = {
 
   async getReflectionsByUsername(username: string): Promise<Reflections> {
     const path = `/api/reflection/${username}`;
-    const options: FetchURLOptions = { method: "GET" };
+    const options: FetchURLOptions = {
+      method: "GET",
+      next: { tags: ["reflections-with-user"] },
+    };
     return await fetchURL<Reflections>(path, options);
   },
 

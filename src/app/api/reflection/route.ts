@@ -1,6 +1,7 @@
 import prisma from "@/src/lib/prisma";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
 import { toJST } from "@/src/utils/date-helper";
+import { revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -35,6 +36,9 @@ export async function POST(req: NextRequest) {
         userId: currentUser.id,
       },
     });
+
+    revalidateTag("reflections-with-user");
+
     return NextResponse.json(reflection, { status: 201 });
   } catch (error) {
     console.error(error);
