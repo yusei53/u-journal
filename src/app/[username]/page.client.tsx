@@ -3,21 +3,24 @@ import { useParams } from "next/navigation";
 import { useReflectionsByUsername } from "@/src/hooks/reflection/useReflectionsByUsername";
 import UserProfileArea from "@/src/components/user-reflection-list/profile/UserProfileArea";
 import ReflectionCardListArea from "@/src/components/user-reflection-list/reflection-list/ReflectionCardListArea";
-import Loading from "../loading";
+import { Suspense } from "react";
+import { Loader } from "@/src/components/shared/loading";
 
 const UserReflectionListPage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
   const {
     data: reflectionsWithUser,
+    isFetching,
     isLoading,
+    isPending,
     error,
   } = useReflectionsByUsername(username);
   if (!reflectionsWithUser) {
     return undefined;
   }
 
-  if (isLoading) {
-    return <Loading />;
+  if (isFetching || isLoading || isPending) {
+    return <Loader />;
   }
 
   if (error) {
@@ -35,10 +38,12 @@ const UserReflectionListPage: React.FC = () => {
         // TODO: このメッセージはデザイン含めもう少し工夫したい
         <div>このユーザーはまだ投稿をしていません。</div>
       ) : (
-        <ReflectionCardListArea
-          username={username}
-          reflections={reflectionsWithUser.reflections}
-        />
+        <Suspense fallback={<Loader />}>
+          <ReflectionCardListArea
+            username={username}
+            reflections={reflectionsWithUser.reflections}
+          />
+        </Suspense>
       )}
     </>
   );
