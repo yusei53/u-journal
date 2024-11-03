@@ -6,7 +6,6 @@ const CalendarAreaFetcher = dynamic(
   () => import("./calendar").then((mod) => mod.CalendarAreaFetcher),
   {
     loading: () => <Loader />,
-    ssr: false,
   }
 );
 

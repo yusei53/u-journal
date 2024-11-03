@@ -7,7 +7,13 @@ import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { IOSSwitch } from "@/src/components/shared/switch";
 import { useToggleJapaneseLabels } from "@/src/hooks/calendar/useToggleJapaneseLabels";
 import { memo, useRef } from "react";
-import Calendar from "./Calendar";
+import dynamic from "next/dynamic";
+import { LinearLoading } from "@/src/components/shared/loading";
+
+const Calendar = dynamic(() => import("./Calendar"), {
+  loading: () => <LinearLoading />,
+  ssr: false,
+});
 
 type CalendarAreaProps = {
   startDate: Date;
