@@ -49,7 +49,10 @@ export async function GET(
     }
 
     // 公開されておらず、かつログインユーザーが所有者でない場合は 404 を返す
-    return NextResponse.json({ status: 404 });
+    return NextResponse.json(
+      { message: "このページは見ることができません" },
+      { status: 404 }
+    );
   } catch (error) {
     console.error("Error fetching reflection:", error);
     return NextResponse.json(
