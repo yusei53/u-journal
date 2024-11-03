@@ -23,15 +23,6 @@ export const CalendarAreaFetcher: React.FC<CalendarAreaFetcherProps> = ({
     isLoading,
     error,
   } = useReflectionsCount(username);
-  if (!reflectionsCount) return undefined;
-
-  if (isLoading) {
-    return <LinearLoading />;
-  }
-
-  if (error) {
-    return <div>エラーが発生しました: {error.message}</div>;
-  }
 
   const classForValue = useCallback(
     (value: ReactCalendarHeatmapValue<string> | undefined): string => {
@@ -59,6 +50,16 @@ export const CalendarAreaFetcher: React.FC<CalendarAreaFetcherProps> = ({
     },
     []
   );
+
+  if (!reflectionsCount) return undefined;
+
+  if (isLoading) {
+    return <LinearLoading />;
+  }
+
+  if (error) {
+    return <div>エラーが発生しました: {error.message}</div>;
+  }
 
   return (
     <>
