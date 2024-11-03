@@ -6,7 +6,7 @@ import { theme } from "@/src/utils/theme";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { IOSSwitch } from "@/src/components/shared/switch";
 import { useToggleJapaneseLabels } from "@/src/hooks/calendar/useToggleJapaneseLabels";
-import { useRef } from "react";
+import { memo, useRef } from "react";
 import Calendar from "./Calendar";
 
 type CalendarAreaProps = {
@@ -109,4 +109,4 @@ const CalendarArea: React.FC<CalendarAreaProps> = ({
   );
 };
 
-export default CalendarArea;
+export default memo(CalendarArea);

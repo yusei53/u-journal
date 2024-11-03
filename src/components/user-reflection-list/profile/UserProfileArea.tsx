@@ -1,7 +1,14 @@
-import { Suspense } from "react";
 import { UserAvatar } from "./avatar";
-import { CalendarAreaFetcher } from "./calendar";
 import { LinearLoading } from "../../shared/loading";
+import dynamic from "next/dynamic";
+
+const CalendarAreaFetcher = dynamic(
+  () => import("./calendar").then((mod) => mod.CalendarAreaFetcher),
+  {
+    loading: () => <LinearLoading />,
+    ssr: false,
+  }
+);
 
 type UserProfileAreaProps = {
   userImage: string;
@@ -15,9 +22,7 @@ const UserProfileArea: React.FC<UserProfileAreaProps> = ({
   return (
     <>
       <UserAvatar userImage={userImage} username={username} />
-      <Suspense fallback={<LinearLoading />}>
-        <CalendarAreaFetcher username={username} />
-      </Suspense>
+      <CalendarAreaFetcher username={username} />
     </>
   );
 };
