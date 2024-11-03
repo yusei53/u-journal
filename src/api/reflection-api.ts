@@ -1,4 +1,5 @@
 import axios from "axios";
+import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
 
 export type ReflectionDetail = {
   reflectionCUID: string;
@@ -16,11 +17,6 @@ export type Reflections = {
   reflections: Reflection[];
 };
 
-export const defaultURL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-
-// MEMO: customFetchを作りたいが、レスポンスの速度が変わるため一旦nextのfetch
-
 export const reflectionAPI = {
   async getReflections() {
     const response = await axios.request<Reflections>({
@@ -31,9 +27,9 @@ export const reflectionAPI = {
   },
 
   async getReflectionsByUsername(username: string): Promise<Reflections> {
-    const res = await fetch(`${defaultURL}/api/reflection/${username}`);
-    const data = await res.json();
-    return data;
+    const path = `/api/reflection/${username}`;
+    const options: FetchURLOptions = { method: "GET" };
+    return await fetchURL<Reflections>(path, options);
   },
 
   async createReflection({

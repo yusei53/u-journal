@@ -1,4 +1,4 @@
-import axios from "axios";
+import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
 
 export type ReflectionPerDate = {
   date: string;
@@ -10,12 +10,10 @@ export type ReflectionsCount = {
   reflectionsPerDate: ReflectionPerDate[];
 };
 
-const defaultURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-
 export const reflectionsCountAPI = {
   async getReflectionsCount(username: string) {
-    const res = await fetch(`${defaultURL}/api/${username}/reflections-count`);
-    const data = await res.json();
-    return data;
+    const path = `/api/${username}/reflections-count`;
+    const options: FetchURLOptions = { method: "GET" };
+    return await fetchURL<ReflectionsCount>(path, options);
   },
 };
