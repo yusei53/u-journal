@@ -64,7 +64,6 @@ const CalendarArea: React.FC<CalendarAreaProps> = ({
             ? `直近1年間で ${totalReflections} 回振り返りをしています`
             : `${totalReflections} reflections in the last year`}
         </Typography>
-
         {!isSmallScreen && (
           <Box
             display={"flex"}

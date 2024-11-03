@@ -1,11 +1,11 @@
+import { Loader } from "../../shared/loading";
 import { UserAvatar } from "./avatar";
-import { LinearLoading } from "../../shared/loading";
 import dynamic from "next/dynamic";
 
 const CalendarAreaFetcher = dynamic(
   () => import("./calendar").then((mod) => mod.CalendarAreaFetcher),
   {
-    loading: () => <LinearLoading />,
+    loading: () => <Loader />,
     ssr: false,
   }
 );

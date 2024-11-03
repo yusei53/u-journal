@@ -4,9 +4,9 @@ import { getColor } from "@/src/utils/calendar/get-color";
 import { Tooltip } from "react-tooltip";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
-import { LinearLoading } from "@/src/components/shared/loading/LinearLoading";
 import CalendarArea from "./CalendarArea";
 import { useCallback } from "react";
+import { Loader } from "@/src/components/shared/loading";
 
 type CalendarAreaFetcherProps = {
   username: string;
@@ -54,7 +54,7 @@ export const CalendarAreaFetcher: React.FC<CalendarAreaFetcherProps> = ({
   if (!reflectionsCount) return undefined;
 
   if (isLoading) {
-    return <LinearLoading />;
+    return <Loader />;
   }
 
   if (error) {
