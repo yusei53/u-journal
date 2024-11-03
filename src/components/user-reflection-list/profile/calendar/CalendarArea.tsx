@@ -6,14 +6,8 @@ import { theme } from "@/src/utils/theme";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import { IOSSwitch } from "@/src/components/shared/switch";
 import { useToggleJapaneseLabels } from "@/src/hooks/calendar/useToggleJapaneseLabels";
-import { memo, useRef } from "react";
-import dynamic from "next/dynamic";
-import { LinearLoading } from "@/src/components/shared/loading";
-
-const Calendar = dynamic(() => import("./Calendar"), {
-  loading: () => <LinearLoading />,
-  ssr: false,
-});
+import { memo, useEffect, useRef } from "react";
+import Calendar from "./Calendar";
 
 type CalendarAreaProps = {
   startDate: Date;
@@ -39,12 +33,18 @@ const CalendarArea: React.FC<CalendarAreaProps> = ({
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  if (isSmallScreen) {
-    setTimeout(() => {
-      scrollContainerRef.current!.scrollLeft =
-        scrollContainerRef.current!.scrollWidth;
-    }, 0);
-  }
+  // MEMO: 画面幅が小さい場合、カレンダーのスクロールを右端に移動する。useEffectでエラー回避
+  useEffect(() => {
+    if (isSmallScreen && scrollContainerRef.current) {
+      requestAnimationFrame(() => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollLeft =
+            scrollContainerRef.current.scrollWidth;
+        }
+      });
+    }
+  }, [isSmallScreen]);
+
   const { calendarRef, isJapanese, handleToggleLabels } =
     useToggleJapaneseLabels();
 
