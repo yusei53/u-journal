@@ -1,9 +1,29 @@
+import { reflectionsCountAPI } from "@/src/api/reflections-count-api";
 import UserReflectionListPage from "./page.client";
+import { reflectionAPI } from "@/src/api/reflection-api";
 
-// TODO: ここにmetadataを追加する
+const page = async ({ params }: { params: { username: string } }) => {
+  const { username } = params;
 
-const page = () => {
-  return <UserReflectionListPage />;
+  const reflectionCountPromise =
+    reflectionsCountAPI.getReflectionsCount(username);
+  const reflectionsWithUserPromise =
+    reflectionAPI.getReflectionsByUsername(username);
+
+  // MEMO: 並列データフェッチ
+  const [reflectionCount, reflectionsWithUser] = await Promise.all([
+    reflectionCountPromise,
+    reflectionsWithUserPromise,
+  ]);
+
+  return (
+    <UserReflectionListPage
+      userImage={reflectionsWithUser.userImage}
+      username={username}
+      reflectionCount={reflectionCount}
+      reflections={reflectionsWithUser.reflections}
+    />
+  );
 };
 
 export default page;
