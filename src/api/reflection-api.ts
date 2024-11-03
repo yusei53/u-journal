@@ -16,6 +16,11 @@ export type Reflections = {
   reflections: Reflection[];
 };
 
+export const defaultURL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
+// MEMO: customFetchを作りたいが、レスポンスの速度が変わるため一旦nextのfetch
+
 export const reflectionAPI = {
   async getReflections() {
     const response = await axios.request<Reflections>({
@@ -25,12 +30,10 @@ export const reflectionAPI = {
     return response.data.reflections;
   },
 
-  async getReflectionsByUsername(username: string) {
-    const response = await axios.request<Reflections>({
-      url: `/api/reflection/${username}`,
-      method: "GET",
-    });
-    return response.data;
+  async getReflectionsByUsername(username: string): Promise<Reflections> {
+    const res = await fetch(`${defaultURL}/api/reflection/${username}`);
+    const data = await res.json();
+    return data;
   },
 
   async createReflection({

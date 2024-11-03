@@ -10,12 +10,12 @@ export type ReflectionsCount = {
   reflectionsPerDate: ReflectionPerDate[];
 };
 
+const defaultURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
 export const reflectionsCountAPI = {
   async getReflectionsCount(username: string) {
-    const response = await axios.request<ReflectionsCount>({
-      url: `/api/${username}/reflections-count`,
-      method: "GET",
-    });
-    return response.data;
+    const res = await fetch(`${defaultURL}/api/${username}/reflections-count`);
+    const data = await res.json();
+    return data;
   },
 };
