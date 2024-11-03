@@ -1,4 +1,4 @@
-import axios from "axios";
+import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
 
 export type ReflectionPerDate = {
   date: string;
@@ -12,10 +12,8 @@ export type ReflectionsCount = {
 
 export const reflectionsCountAPI = {
   async getReflectionsCount(username: string) {
-    const response = await axios.request<ReflectionsCount>({
-      url: `/api/${username}/reflections-count`,
-      method: "GET",
-    });
-    return response.data;
+    const path = `/api/${username}/reflections-count`;
+    const options: FetchURLOptions = { method: "GET" };
+    return await fetchURL<ReflectionsCount>(path, options);
   },
 };

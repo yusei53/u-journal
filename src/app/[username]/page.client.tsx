@@ -1,49 +1,34 @@
 "use client";
-import { useParams } from "next/navigation";
-import { useReflectionsByUsername } from "@/src/hooks/reflection/useReflectionsByUsername";
 import UserProfileArea from "@/src/components/user-reflection-list/profile/UserProfileArea";
 import ReflectionCardListArea from "@/src/components/user-reflection-list/reflection-list/ReflectionCardListArea";
-import { Suspense } from "react";
-import { Loader } from "@/src/components/shared/loading";
+import { Reflection } from "@/src/api/reflection-api";
+import { ReflectionsCount } from "@/src/api/reflections-count-api";
 
-const UserReflectionListPage: React.FC = () => {
-  const { username } = useParams<{ username: string }>();
-  const {
-    data: reflectionsWithUser,
-    isFetching,
-    isLoading,
-    isPending,
-    error,
-  } = useReflectionsByUsername(username);
-  if (!reflectionsWithUser) {
-    return undefined;
-  }
+type UserReflectionListPageProps = {
+  userImage: string;
+  username: string;
+  reflectionCount: ReflectionsCount;
+  reflections: Reflection[];
+};
 
-  if (isFetching || isLoading || isPending) {
-    return <Loader />;
-  }
-
-  if (error) {
-    // TODO: このエラーメッセージはいろんなところで使い回しできるので共通コンポーネント実装したい
-    return <div>エラーが発生しました: {error.message}</div>;
-  }
-
+const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
+  userImage,
+  username,
+  reflectionCount,
+  reflections,
+}) => {
   return (
     <>
       <UserProfileArea
-        userImage={reflectionsWithUser.userImage}
+        userImage={userImage}
         username={username}
+        reflectionCount={reflectionCount}
       />
-      {reflectionsWithUser.reflections.length === 0 ? (
+      {reflections.length === 0 ? (
         // TODO: このメッセージはデザイン含めもう少し工夫したい
         <div>このユーザーはまだ投稿をしていません。</div>
       ) : (
-        <Suspense fallback={<Loader />}>
-          <ReflectionCardListArea
-            username={username}
-            reflections={reflectionsWithUser.reflections}
-          />
-        </Suspense>
+        <ReflectionCardListArea username={username} reflections={reflections} />
       )}
     </>
   );

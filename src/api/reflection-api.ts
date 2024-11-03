@@ -1,4 +1,5 @@
 import axios from "axios";
+import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
 
 export type ReflectionDetail = {
   reflectionCUID: string;
@@ -25,12 +26,10 @@ export const reflectionAPI = {
     return response.data.reflections;
   },
 
-  async getReflectionsByUsername(username: string) {
-    const response = await axios.request<Reflections>({
-      url: `/api/reflection/${username}`,
-      method: "GET",
-    });
-    return response.data;
+  async getReflectionsByUsername(username: string): Promise<Reflections> {
+    const path = `/api/reflection/${username}`;
+    const options: FetchURLOptions = { method: "GET" };
+    return await fetchURL<Reflections>(path, options);
   },
 
   async createReflection({
