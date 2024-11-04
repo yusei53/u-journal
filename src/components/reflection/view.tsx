@@ -2,6 +2,8 @@
 import Loading from "@/src/app/loading";
 import HtmlContent from "./html";
 import { useReflections } from "@/src/hooks/reflection/useReflections";
+import UserReflectionListArea from "./UserReflectionListArea";
+import ReflectionCard from "./ReflectionCard";
 
 const DisplayContent = () => {
   const { data: reflections, isLoading, error } = useReflections();
@@ -20,13 +22,15 @@ const DisplayContent = () => {
   return (
     <div>
       <h1>投稿内容の表示</h1>
+
       {reflections.reflections.map((post) => (
-        <div key={post.reflectionCUID}>
-          <HtmlContent title={post.title} createdAt={post.createdAt} />
-          <p>{post.charStamp}</p>
-          <p>{post.user?.username}</p>
-          <img src={post.user?.image} />
-        </div>
+        <>
+          {/* <ReflectionCard
+            // username={post.user?.username}
+            reflection={post}
+            isTopPage={true}
+          /> */}
+        </>
       ))}
     </div>
   );
