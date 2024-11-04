@@ -8,8 +8,7 @@ type PageProps = {
   };
 };
 
-const defaultUrl =
-  process.env.NEXT_PUBLIC_DEFAULT_URL || "http://localhost:3000";
+const defaultUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 const Page = async ({ params }: PageProps) => {
   const { reflectionCUID } = params;
