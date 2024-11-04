@@ -10,8 +10,8 @@ export async function GET(
 
   if (!username) {
     return NextResponse.json(
-      { message: "ユーザー名が指定されていません" },
-      { status: 400 }
+      { message: "ユーザーが見つかりません" },
+      { status: 404 }
     );
   }
 

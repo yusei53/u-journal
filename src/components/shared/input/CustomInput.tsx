@@ -5,7 +5,7 @@ type CustomInputProps = {
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onEnter?: () => void;
+  onEnter?: (e: React.KeyboardEvent) => void;
   onCompositionStart?: () => void;
   onCompositionEnd?: () => void;
 };
@@ -20,6 +20,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
   onCompositionEnd,
 }) => {
   return (
+    // MEMO: MUIのTextFieldを使うとEditor用の入力ボックスがデザイン的に実現できないため、inputタグを使用し、CSSファイルでスタイルを設定
     <input
       id={id}
       value={value}
@@ -27,7 +28,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
       onChange={onChange}
       onKeyDown={(e) => {
         if (e.key === "Enter" && onEnter) {
-          onEnter();
+          onEnter(e);
         }
       }}
       onCompositionStart={onCompositionStart}

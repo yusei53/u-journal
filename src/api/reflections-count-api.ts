@@ -1,4 +1,5 @@
-import axios from "axios";
+import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
+import { Result } from "../utils/types/result";
 
 export type ReflectionPerDate = {
   date: string;
@@ -6,16 +7,19 @@ export type ReflectionPerDate = {
 };
 
 export type ReflectionsCount = {
-  totalReflections: number;
+  totalReflections: string;
   reflectionsPerDate: ReflectionPerDate[];
 };
 
 export const reflectionsCountAPI = {
-  async getReflectionsCount(username: string) {
-    const response = await axios.request<ReflectionsCount>({
-      url: `/api/${username}/reflections-count`,
+  async getReflectionsCount(
+    username: string
+  ): Promise<Result<ReflectionsCount, 404>> {
+    const path = `/api/${username}/reflections-count`;
+    const options: FetchURLOptions = {
       method: "GET",
-    });
-    return response.data;
+      next: { tags: ["reflections-with-user"] },
+    };
+    return await fetchURL<ReflectionsCount, 404>(path, options);
   },
 };

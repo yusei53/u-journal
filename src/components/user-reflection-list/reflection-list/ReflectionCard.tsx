@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import { theme } from "@/src/utils/theme/theme";
+import { theme } from "@/src/utils/theme";
 import { Reflection } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
 
@@ -17,7 +17,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
     <Box component={"article"}>
       <Box
         component={Link}
-        href={`/${username}/${reflection.reflectionCUID}`}
+        href={`/${username}/posts/${reflection.reflectionCUID}`}
         sx={articleImage}
       >
         <Typography
@@ -32,7 +32,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
       <Box my={0.5} ml={0.5} display={"flex"} flexDirection={"column"}>
         <Typography
           component={Link}
-          href={`/${username}/${reflection.reflectionCUID}`}
+          href={`/${username}/posts/${reflection.reflectionCUID}`}
           sx={link}
         >
           {reflection.title}

@@ -1,13 +1,13 @@
 import { useState } from "react";
-import PublishSettingPopup from "./PublishSettingPopup";
+import PublishSettingPopup from "./PublishSettingPopupArea";
 
-type PublishSettingPopupContainerProps = {
+type PublishSettingPopupAreaContainerProps = {
   value: boolean;
   onChange: (value: boolean) => void;
 };
 
-export const PublishSettingPopupContainer: React.FC<
-  PublishSettingPopupContainerProps
+export const PublishSettingPopupAreaContainer: React.FC<
+  PublishSettingPopupAreaContainerProps
 > = ({ value, onChange }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
