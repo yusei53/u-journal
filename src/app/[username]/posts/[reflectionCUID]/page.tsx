@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { reflectionAPI } from "@/src/api/reflection-api";
 
 type PageProps = {
   params: {
@@ -8,22 +9,13 @@ type PageProps = {
   };
 };
 
-const defaultUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-
 const Page = async ({ params }: PageProps) => {
   const { reflectionCUID } = params;
 
-  const response = await fetch(`${defaultUrl}/api/post/${reflectionCUID}`);
-
-  if (response.status === 404) {
-    notFound();
+  const reflection = await reflectionAPI.getReflectionByCUID(reflectionCUID);
+  if (reflection === 404) {
+    return notFound();
   }
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch reflection");
-  }
-
-  const reflection = await response.json();
 
   return (
     <div>
