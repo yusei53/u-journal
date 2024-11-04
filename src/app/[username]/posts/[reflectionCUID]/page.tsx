@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { reflectionAPI } from "@/src/api/reflection-api";
+import { getReflectionByCUID } from "@/src/utils/actions/get-reflection-by-cuid";
 
 type PageProps = {
   params: {
@@ -9,17 +9,24 @@ type PageProps = {
   };
 };
 
-const Page = async ({ params }: PageProps) => {
+const page = async ({ params }: PageProps) => {
   const { reflectionCUID } = params;
 
-  const reflection = await reflectionAPI.getReflectionByCUID(reflectionCUID);
-  if (reflection === 404) {
+  // TODO: fetchURLで実際にapi叩きたいけど何故か404しか返ってこないからserverActionで取得
+  const reflection = await getReflectionByCUID(reflectionCUID);
+  if (!reflection) {
     return notFound();
   }
 
   return (
     <div>
-      <Image src={reflection.userImage} alt="Image" width={100} height={100} />
+      <Image
+        src={reflection.user.image || ""}
+        alt="Image"
+        width={100}
+        height={100}
+      />
+      <p>{reflection.user.username}</p>
       <h1>{reflection.title}</h1>
       <p>{reflection.content}</p>
       <p>{reflection.charStamp}</p>
@@ -28,4 +35,4 @@ const Page = async ({ params }: PageProps) => {
   );
 };
 
-export default Page;
+export default page;
