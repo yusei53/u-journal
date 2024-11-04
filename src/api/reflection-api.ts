@@ -1,7 +1,19 @@
 import axios from "axios";
 import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
+import { ErrorCode, Result } from "../utils/types/result";
 
+// TODO: 投稿した時のレスポンスの型なので、命名を変更する
+// TODO: reflectionCUIDはReflectionで必要だけどReflectionDetailにはいらない
 export type ReflectionDetail = {
+  reflectionCUID: string;
+  title: string;
+  content: string;
+  charStamp: string;
+  isPublic: boolean;
+  createdAt: string;
+};
+
+export type ReflectionDetailV2 = {
   userImage: string;
   reflectionCUID: string;
   title: string;
@@ -27,13 +39,23 @@ export const reflectionAPI = {
     return response.data.reflections;
   },
 
-  async getReflectionsByUsername(username: string): Promise<Reflections> {
+  async getReflectionsByUsername(
+    username: string
+  ): Promise<Result<Reflections, 404>> {
     const path = `/api/reflection/${username}`;
     const options: FetchURLOptions = {
       method: "GET",
       next: { tags: ["reflections-with-user"] },
     };
-    return await fetchURL<Reflections>(path, options);
+    return await fetchURL<Reflections, 404>(path, options);
+  },
+
+  async getReflectionByCUID(
+    reflectionCUID: string
+  ): Promise<Result<ReflectionDetailV2, 404>> {
+    const path = `/api/post/${reflectionCUID}`;
+    const option: FetchURLOptions = { method: "GET" };
+    return await fetchURL<ReflectionDetailV2, 404>(path, option);
   },
 
   async createReflection({
