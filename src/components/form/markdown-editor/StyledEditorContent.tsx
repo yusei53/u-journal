@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { EditorContent } from "@tiptap/react";
 
-// MEMO: ここ書き換えたら、components/reflection-detail/SyledMarkdown.tsxも書き換える
+// MEMO: ここ書き換えたら、components/reflection-detail/StyledMarkdown.tsxも書き換える
 const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
   letterSpacing: "0.04em",
   lineHeight: 1.7,
