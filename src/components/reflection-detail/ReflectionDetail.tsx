@@ -1,5 +1,5 @@
 "use client";
-import { Box, Container, Stack, styled, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import "../shared/input/input.css";
 import StyledMarkdown from "./StyledMarkdown";
 import { theme } from "@/src/utils/theme";
@@ -8,7 +8,7 @@ import { formatDate } from "@/src/utils/date-helper";
 import Image from "next/image";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
-type HtmlContentProps = {
+type ReflectionDetailProps = {
   title: string;
   content: string;
   createdAt: string;
@@ -23,7 +23,7 @@ const link = {
   },
 };
 
-const HtmlContent: React.FC<HtmlContentProps> = ({
+export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
   title,
   userImage,
   username,
@@ -76,5 +76,3 @@ const HtmlContent: React.FC<HtmlContentProps> = ({
     </Container>
   );
 };
-
-export default HtmlContent;

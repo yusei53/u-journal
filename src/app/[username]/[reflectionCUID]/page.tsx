@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { getReflectionByCUID } from "@/src/utils/actions/get-reflection-by-cuid";
+import { ReflectionDetail } from "@/src/components/reflection-detail/";
 
 type PageProps = {
   params: {
@@ -19,19 +19,13 @@ const page = async ({ params }: PageProps) => {
   }
 
   return (
-    <div>
-      <Image
-        src={reflection.user.image || ""}
-        alt="Image"
-        width={100}
-        height={100}
-      />
-      <p>{reflection.user.username}</p>
-      <h1>{reflection.title}</h1>
-      <p>{reflection.content}</p>
-      <p>{reflection.charStamp}</p>
-      <p>{new Date(reflection.createdAt).toLocaleDateString()}</p>
-    </div>
+    <ReflectionDetail
+      title={reflection.title}
+      userImage={reflection.user.image || ""}
+      username={reflection.user.username || ""}
+      content={reflection.content}
+      createdAt={reflection.createdAt}
+    />
   );
 };
 
