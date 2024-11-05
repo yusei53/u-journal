@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     const reflections = await prisma.reflection.findMany({
+      orderBy: { createdAt: "desc" },
       select: {
         title: true,
         reflectionCUID: true,

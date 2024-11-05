@@ -20,8 +20,7 @@ export type ReflectionAll = {
   charStamp: string;
   isPublic: boolean;
   createdAt: string;
-  username: string;
-  image: string;
+  user: ReflectionUser;
 };
 
 export type ReflectionDetailV2 = {
@@ -41,14 +40,18 @@ export type Reflections = {
   reflections: Reflection[];
 };
 
-type User = {
+type ReflectionUser = {
   username: string;
   image: string;
 };
 
+type ReflectionAllList = {
+  reflections: ReflectionAll[];
+};
+
 export const reflectionAPI = {
   async getReflections() {
-    const response = await axios.request<ReflectionAll[]>({
+    const response = await axios.request<ReflectionAllList>({
       url: `/api/reflection`,
       method: "GET",
     });
