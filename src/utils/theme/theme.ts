@@ -8,7 +8,7 @@ export const theme = createTheme({
   palette: {
     // mainが背景色で、contrastTextがhover
     primary: { main: "#f0f7ff", contrastText: "#F7FAFC" },
-    // 400がborder, 500が文字
+    // 400がborder, 500がplaceholderや文字
     grey: { 400: "#ededed", 500: "#adb5bd" },
     // リセットボタンのhoverで使用
     warning: { main: "#FCECEC" },
