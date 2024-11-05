@@ -24,10 +24,10 @@ const UserProfileArea: React.FC<UserProfileAreaProps> = ({
   reflectionCount,
 }) => {
   return (
-    <Box mx={3}>
+    <>
       <UserAvatar userImage={userImage} username={username} />
       <CalendarAreaFetcher reflectionCount={reflectionCount} />
-    </Box>
+    </>
   );
 };
 

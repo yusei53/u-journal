@@ -49,7 +49,7 @@ const CalendarArea: React.FC<CalendarAreaProps> = ({
     useToggleJapaneseLabels();
 
   return (
-    <Box my={5}>
+    <Box my={5} mx={3}>
       {isSmallScreen && (
         // TODO: コンポーネント化する
         <Box display="flex" alignItems="center" mb={1} mx={1}>
