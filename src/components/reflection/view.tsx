@@ -18,18 +18,14 @@ const DisplayContent = () => {
   if (!reflections) {
     return undefined;
   }
-
+  console.log(reflections);
   return (
     <div>
       <h1>投稿内容の表示</h1>
 
-      {reflections.reflections.map((post) => (
+      {reflections.map((post) => (
         <>
-          {/* <ReflectionCard
-            // username={post.user?.username}
-            reflection={post}
-            isTopPage={true}
-          /> */}
+          <ReflectionCard username={post.username} reflection={post} />
         </>
       ))}
     </div>
