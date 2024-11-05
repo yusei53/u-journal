@@ -66,14 +66,6 @@ export const reflectionAPI = {
     return await fetchURL<Reflections, 404>(path, options);
   },
 
-  async getReflectionByCUID(
-    reflectionCUID: string
-  ): Promise<Result<ReflectionDetailV2, 404>> {
-    const path = `/api/post/${reflectionCUID}`;
-    const option: FetchURLOptions = { method: "GET" };
-    return await fetchURL<ReflectionDetailV2, 404>(path, option);
-  },
-
   async createReflection({
     title,
     content,

@@ -1,7 +1,12 @@
+import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { EditorContent } from "@tiptap/react";
 
-const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
+// MEMO: ここ書き換えたら、components/reflection/form/markdown-editor/StyledEditorContent.tsxも書き換える
+const StyledMarkdown = styled(Box)(({ theme }) => ({
+  letterSpacing: "0.04em",
+  lineHeight: 1.7,
+  fontSize: "0.9rem",
+  fontWeight: 500,
   ".tiptap p.is-editor-empty:first-of-type::before": {
     color: "#adb5bd",
     content: "attr(data-placeholder)",
@@ -16,11 +21,14 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     "&:first-of-type": {
       marginTop: 2,
     },
+    p: {
+      marginTop: "1em",
+      marginBottom: "2.5em",
+    },
     /* List styles */
     "ul, ol": {
       padding: "0 1rem",
-      margin: "1.25rem 1rem 1.25rem 0.4rem",
-
+      margin: "0.4rem 0rem 1.25rem 0.4rem",
       "& li p": {
         marginTop: "0.25em",
         marginBottom: "0.25em",
@@ -30,30 +38,30 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     /* Heading styles */
     "h1, h2, h3, h4, h5, h6": {
       lineHeight: 1.1,
-      marginTop: "2.5rem",
+      marginTop: "2rem",
       textWrap: "pretty",
     },
 
     "h1, h2": {
       marginTop: "4rem",
-      marginBottom: "1.5rem",
+      marginBottom: "1.2rem",
       borderBottom: "1px solid #e0e0e0",
     },
 
     h1: {
-      fontSize: "1.4rem",
-    },
-
-    h2: {
       fontSize: "1.2rem",
     },
 
-    h3: {
+    h2: {
       fontSize: "1.1rem",
     },
 
-    "h4, h5, h6": {
+    h3: {
       fontSize: "1rem",
+    },
+
+    "h4, h5, h6": {
+      fontSize: "0.8rem",
     },
 
     /* Code and preformatted text styles */
@@ -100,4 +108,4 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
   },
 }));
 
-export default StyledEditorContent;
+export default StyledMarkdown;

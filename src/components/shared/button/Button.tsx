@@ -14,7 +14,7 @@ export const Button: React.FC<CustomButtonProps> = ({
       color: "black",
       border: "1px solid #DCDFE3",
       borderRadius: 10,
-      padding: "8px 16px",
+      p: "8px 16px",
       ...sx,
     }}
     {...props}
