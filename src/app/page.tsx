@@ -2,7 +2,6 @@
 import Image from "next/image";
 import LoginForm from "../components/auth/LoginForm";
 import LogoutButton from "../components/auth/LogoutButton";
-import DisplayContent from "../components/reflection/view";
 import { useSession } from "next-auth/react";
 
 const Home = () => {
@@ -24,7 +23,6 @@ const Home = () => {
           />
         </div>
         <LogoutButton />
-        <DisplayContent />
       </>
     ) : (
       <>
