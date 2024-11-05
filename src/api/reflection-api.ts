@@ -60,17 +60,20 @@ export const reflectionAPI = {
     content: string;
     charStamp: string;
     isPublic: boolean;
-  }) {
-    const response = await axios.request<ReflectionDetail>({
-      url: `/api/reflection`,
+  }): Promise<Result<ReflectionDetail, 401>> {
+    const path = `/api/reflection`;
+    const options: FetchURLOptions = {
       method: "POST",
-      data: {
+      body: {
         title,
         content,
         charStamp,
         isPublic,
       },
-    });
-    return response.data;
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return await fetchURL<ReflectionDetail, 401>(path, options);
   },
 };
