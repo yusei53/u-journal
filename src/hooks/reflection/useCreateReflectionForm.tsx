@@ -23,7 +23,7 @@ export const useCreateReflectionForm = (username: string | undefined) => {
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { isSubmitting, errors },
   } = useForm<CreateReflectionSchemaType>({
     resolver: zodResolver(createReflectionSchema),
     defaultValues: { title: "", content: "", charStamp: "💭", isPublic: false },
@@ -39,6 +39,7 @@ export const useCreateReflectionForm = (username: string | undefined) => {
 
   return {
     control,
+    isSubmitting,
     errors,
     onSubmit,
   };
