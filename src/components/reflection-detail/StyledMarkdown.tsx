@@ -22,13 +22,13 @@ const StyledMarkdown = styled(Box)(({ theme }) => ({
       marginTop: 2,
     },
     p: {
-      marginTop: "1.2em",
+      marginTop: "1em",
       marginBottom: "2.5em",
     },
     /* List styles */
     "ul, ol": {
       padding: "0 1rem",
-      margin: "1.25rem 1rem 1.25rem 0.4rem",
+      margin: "0.4rem 0rem 1.25rem 0.4rem",
       "& li p": {
         marginTop: "0.25em",
         marginBottom: "0.25em",
@@ -38,13 +38,13 @@ const StyledMarkdown = styled(Box)(({ theme }) => ({
     /* Heading styles */
     "h1, h2, h3, h4, h5, h6": {
       lineHeight: 1.1,
-      marginTop: "2.4rem",
+      marginTop: "2rem",
       textWrap: "pretty",
     },
 
     "h1, h2": {
       marginTop: "4rem",
-      marginBottom: "1.5rem",
+      marginBottom: "1.2rem",
       borderBottom: "1px solid #e0e0e0",
     },
 
