@@ -17,11 +17,11 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
     <Box component={"article"}>
       <Box
         component={Link}
-        href={`/${username}/posts/${reflection.reflectionCUID}`}
+        href={`/${username}/${reflection.reflectionCUID}`}
         sx={articleImage}
       >
         <Typography
-          fontSize={{ xs: 26, sm: 26 }}
+          fontSize={26}
           position={"absolute"}
           left={"45%"}
           top={"40%"}
@@ -32,7 +32,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
       <Box my={0.5} ml={0.5} display={"flex"} flexDirection={"column"}>
         <Typography
           component={Link}
-          href={`/${username}/posts/${reflection.reflectionCUID}`}
+          href={`/${username}/${reflection.reflectionCUID}`}
           sx={link}
         >
           {reflection.title}
