@@ -13,7 +13,7 @@ export type FetchURLOptions = {
   };
 };
 
-const defaultURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+const defaultURL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function fetchURL<T, E extends ErrorCode>(
   path: string,
@@ -22,6 +22,10 @@ export async function fetchURL<T, E extends ErrorCode>(
   try {
     const response = await fetch(`${defaultURL}${path}`, {
       ...options,
+      headers: {
+        ...options.headers,
+      },
+      body: options.body ? JSON.stringify(options.body) : undefined,
     });
 
     if (!response.ok) {

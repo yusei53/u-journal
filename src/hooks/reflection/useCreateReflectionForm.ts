@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useRouter } from "next/navigation";
-import { useCreateReflection } from "@/src/hooks/reflection/useCreateReflection";
+import { notFound, useRouter } from "next/navigation";
+import { reflectionAPI } from "@/src/api/reflection-api";
 
-export const createReflectionSchema = z.object({
+const createReflectionSchema = z.object({
   title: z
     .string()
     .min(1, { message: "タイトルは1文字以上で入力してください。" }),
@@ -15,7 +15,7 @@ export const createReflectionSchema = z.object({
   isPublic: z.boolean(),
 });
 
-export type CreateReflectionSchemaType = z.infer<typeof createReflectionSchema>;
+type CreateReflectionSchemaType = z.infer<typeof createReflectionSchema>;
 
 export const useCreateReflectionForm = (username: string | undefined) => {
   const router = useRouter();
@@ -23,22 +23,27 @@ export const useCreateReflectionForm = (username: string | undefined) => {
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { isSubmitting, errors },
   } = useForm<CreateReflectionSchemaType>({
     resolver: zodResolver(createReflectionSchema),
     defaultValues: { title: "", content: "", charStamp: "💭", isPublic: false },
   });
 
-  const createReflectionMutation = useCreateReflection(username ?? ""); // usernameがundefinedの場合があるため
+  const onSubmit = handleSubmit(
+    async (formData: CreateReflectionSchemaType) => {
+      const res = await reflectionAPI.createReflection(formData);
 
-  const onSubmit = handleSubmit((formData: CreateReflectionSchemaType) => {
-    createReflectionMutation.mutate(formData, {
-      onSuccess: () => router.push(`/${username}`),
-    });
-  });
+      if (res === 401) {
+        return notFound();
+      } else {
+        router.push(`/${username}`);
+      }
+    }
+  );
 
   return {
     control,
+    isSubmitting,
     errors,
     onSubmit,
   };

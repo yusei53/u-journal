@@ -21,16 +21,16 @@ type FormValues = {
 
 type ReflectionPostFormProps = {
   control: Control<FormValues>;
+  isSubmitting: boolean;
   errors: FieldErrors<FormValues>;
-  isLoading: boolean;
   onSubmit: (event: React.FormEvent) => Promise<void>;
 };
 
 // TODO: UIとロジックが微妙に混在気味なのでコンポーネント分割を検討
 const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   control,
+  isSubmitting,
   errors,
-  isLoading = false,
   onSubmit,
 }) => {
   const [selectedEmoji, setSelectedEmoji] = useState("💭");
@@ -81,8 +81,8 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
             />
           )}
         />
-        <Button type={"submit"} disabled={isLoading}>
-          {isLoading ? "投稿中..." : "投稿する"}
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "投稿中..." : "投稿する"}
         </Button>
       </Box>
       <Container maxWidth="sm" sx={{ my: 15 }}>
