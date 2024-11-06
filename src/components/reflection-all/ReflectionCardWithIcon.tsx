@@ -1,15 +1,17 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { theme } from "@/src/utils/theme/theme";
-import { Reflection, ReflectionAll } from "@/src/api/reflection-api";
+import { ReflectionAll } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
 import Image from "next/image";
 
-type ReflectionCardProps = {
+type ReflectionCardWithIconProps = {
   reflection: ReflectionAll;
 };
 
-const ReflectionCard: React.FC<ReflectionCardProps> = ({ reflection }) => {
+const ReflectionCardWithIcon: React.FC<ReflectionCardWithIconProps> = ({
+  reflection,
+}) => {
   return (
     <Box component={"article"}>
       <Box
@@ -18,7 +20,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({ reflection }) => {
         sx={articleImage}
       >
         <Typography
-          fontSize={{ xs: 26, sm: 26 }}
+          fontSize={26}
           position={"absolute"}
           left={"45%"}
           top={"40%"}
@@ -34,7 +36,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({ reflection }) => {
           height={25}
           style={{ borderRadius: 20 }}
         />
-        <Box flexDirection={"column"} display={"flex"} ml={1}>
+        <Box display={"flex"} flexDirection={"column"} ml={1}>
           <Typography
             component={Link}
             href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
@@ -78,4 +80,4 @@ const articleImage = {
   position: "relative",
 };
 
-export default ReflectionCard;
+export default ReflectionCardWithIcon;
