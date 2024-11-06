@@ -4,14 +4,18 @@ import LoginForm from "../components/auth/LoginForm";
 import LogoutButton from "../components/auth/LogoutButton";
 import { useSession } from "next-auth/react";
 import ReflectionCardWithIconArea from "../components/reflection-all/ReflectionCardWithIconArea";
-import { reflectionAPI } from "../api/reflection-api";
+import { useReflections } from "../hooks/reflection/useReflections";
+import Loading from "./loading";
 
-const Home = async () => {
+const Home = () => {
   const { data: session, status } = useSession();
-  const reflections = await reflectionAPI.getReflections();
+  const { data: reflections, isLoading, error } = useReflections();
+  if (reflections === undefined) {
+    return <div>振り返りが見つかりません</div>;
+  }
 
-  if (status === "loading") {
-    return <div>Loading...</div>;
+  if (status === "loading" || isLoading) {
+    return <Loading />;
   }
 
   {
@@ -26,7 +30,7 @@ const Home = async () => {
           />
         </div>
         <LogoutButton />
-        <ReflectionCardWithIconArea reflections={reflections.reflections} />
+        <ReflectionCardWithIconArea reflections={reflections} />
       </>
     ) : (
       <>

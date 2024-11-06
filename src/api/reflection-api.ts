@@ -55,7 +55,7 @@ export const reflectionAPI = {
       url: `/api/reflection`,
       method: "GET",
     });
-    return response.data;
+    return response.data.reflections;
   },
 
   async getReflectionsByUsername(
