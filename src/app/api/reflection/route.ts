@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
       );
     }
     return NextResponse.json({
-      reflections: reflections,
+      reflections,
     });
   } catch (error) {
     console.error(error);
