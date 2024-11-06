@@ -6,8 +6,7 @@ import { useSession } from "next-auth/react";
 import ReflectionCardWithIconArea from "../components/reflection-all/ReflectionCardWithIconArea";
 import ReflectionAllPage from "../components/pages/ReflectionAllPage";
 
-const Home = async ({ params }: { params: { username: string } }) => {
-  const { username } = params;
+const Home = async () => {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
