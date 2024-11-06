@@ -3,6 +3,7 @@ import Link from "next/link";
 import { theme } from "@/src/utils/theme/theme";
 import { Reflection, ReflectionAll } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
+import Image from "next/image";
 
 type ReflectionCardProps = {
   reflection: ReflectionAll;
@@ -26,8 +27,9 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({ reflection }) => {
         </Typography>
       </Box>
       <Box display={"flex"} mt={1} ml={0.5}>
-        <img
+        <Image
           src={reflection.user.image}
+          alt={"アイコン"}
           width={25}
           height={25}
           style={{ borderRadius: 20 }}
