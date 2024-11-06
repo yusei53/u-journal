@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid2";
-import { Reflection, ReflectionAll } from "@/src/api/reflection-api";
+import { ReflectionAll } from "@/src/api/reflection-api";
 import ReflectionCardWithIcon from "./ReflectionCardWithIcon";
 
 type ReflectionCardListAreaProps = {
