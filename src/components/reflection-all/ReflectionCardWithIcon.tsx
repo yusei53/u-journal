@@ -45,7 +45,7 @@ const ReflectionCardWithIcon: React.FC<ReflectionCardWithIconProps> = ({
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
-              maxWidth: "200px", // 適宜調整
+              maxWidth: { xs: 260, md: 200 },
             }}
           >
             {reflection.title}
