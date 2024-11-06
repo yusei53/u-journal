@@ -6,8 +6,33 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const reflections = await prisma.reflection.findMany();
-    return NextResponse.json({ reflections });
+    const reflections = await prisma.reflection.findMany({
+      orderBy: { createdAt: "desc" },
+      select: {
+        title: true,
+        reflectionCUID: true,
+        charStamp: true,
+        createdAt: true,
+        content: true,
+        isPublic: true,
+        user: {
+          select: {
+            username: true,
+            image: true,
+          },
+        },
+      },
+    });
+
+    if (!reflections) {
+      return NextResponse.json(
+        { message: "振り返りが見つかりません" },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json({
+      reflections,
+    });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "Error get posts" }, { status: 500 });

@@ -13,6 +13,16 @@ export type ReflectionDetail = {
   createdAt: string;
 };
 
+export type ReflectionAll = {
+  reflectionCUID: string;
+  title: string;
+  content: string;
+  charStamp: string;
+  isPublic: boolean;
+  createdAt: string;
+  user: ReflectionUser;
+};
+
 export type ReflectionDetailV2 = {
   userImage: string;
   reflectionCUID: string;
@@ -30,9 +40,18 @@ export type Reflections = {
   reflections: Reflection[];
 };
 
+type ReflectionUser = {
+  username: string;
+  image: string;
+};
+
+type ReflectionAllList = {
+  reflections: ReflectionAll[];
+};
+
 export const reflectionAPI = {
   async getReflections() {
-    const response = await axios.request<Reflections>({
+    const response = await axios.request<ReflectionAllList>({
       url: `/api/reflection`,
       method: "GET",
     });

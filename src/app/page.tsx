@@ -3,14 +3,19 @@ import Image from "next/image";
 import LoginForm from "../components/auth/LoginForm";
 import LogoutButton from "../components/auth/LogoutButton";
 import { useSession } from "next-auth/react";
-import { IconButton, Tooltip } from "@mui/material";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import ReflectionCardWithIconArea from "../components/reflection-all/ReflectionCardWithIconArea";
+import { useReflections } from "../hooks/reflection/useReflections";
+import Loading from "./loading";
 
 const Home = () => {
   const { data: session, status } = useSession();
+  const { data: reflections, isLoading, error } = useReflections();
+  if (reflections === undefined) {
+    return <div>振り返りが見つかりません</div>;
+  }
 
-  if (status === "loading") {
-    return <div>Loading...</div>;
+  if (status === "loading" || isLoading) {
+    return <Loading />;
   }
 
   {
@@ -25,32 +30,7 @@ const Home = () => {
           />
         </div>
         <LogoutButton />
-        <Tooltip
-          title={"振り返りをする"}
-          slotProps={{
-            popper: {
-              modifiers: [
-                {
-                  name: "offset",
-                  options: {
-                    offset: [0, -10],
-                  },
-                },
-              ],
-            },
-          }}
-        >
-          <IconButton
-            aria-label="振り返りをする"
-            sx={{
-              border: "1px solid #DCDFE3",
-              borderRadius: 5,
-            }}
-            href="/post"
-          >
-            <AddOutlinedIcon />
-          </IconButton>
-        </Tooltip>
+        <ReflectionCardWithIconArea reflections={reflections} />
       </>
     ) : (
       <>
