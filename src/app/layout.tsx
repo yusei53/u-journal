@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { NextAuthProvider, ReactQueryProvider } from "../providers";
+import { NextAuthProvider } from "../providers";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../utils/theme/theme";
 
@@ -37,14 +37,12 @@ export default async function RootLayout({
       </head>
       <body style={{ margin: 0 }}>
         <NextAuthProvider>
-          <ReactQueryProvider>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Container maxWidth="md" sx={{ my: 6 }}>
-                {children}
-              </Container>
-            </ThemeProvider>
-          </ReactQueryProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Container maxWidth="md" sx={{ my: 6 }}>
+              {children}
+            </Container>
+          </ThemeProvider>
         </NextAuthProvider>
       </body>
     </html>

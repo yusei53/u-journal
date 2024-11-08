@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Result } from "../utils/types/result";
 import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
 
