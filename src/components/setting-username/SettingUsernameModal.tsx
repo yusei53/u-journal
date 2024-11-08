@@ -15,7 +15,6 @@ type SettingUsernameModalProps = {
   SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
   control: any;
   errors: FieldErrors<FormValues>;
-  username: string;
   open: boolean;
   onClose: () => void;
 };
@@ -40,7 +39,6 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
   SubmitUsername,
   control,
   errors,
-  username,
   open,
   onClose,
 }) => {

@@ -1,15 +1,24 @@
-import SettingUsernameModalContainer from "@/src/components/setting-username/SettingUsernameModalContainer";
+import { reflectionAPI } from "@/src/api/reflection-api";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
+import { notFound } from "next/navigation";
+import RootPage from "../../page.client";
 
-const Page = async () => {
+const page = async () => {
   const currentUser = await getCurrentUser();
 
+  const result = await reflectionAPI.getReflections();
+  if (result === 404) {
+    return notFound();
+  }
+
   return (
-    <SettingUsernameModalContainer
+    <RootPage
       open
       username={currentUser?.username || ""}
+      currentUser={currentUser?.id}
+      reflections={result.reflections}
     />
   );
 };
 
-export default Page;
+export default page;

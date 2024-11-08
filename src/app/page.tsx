@@ -12,7 +12,11 @@ const page = async () => {
   }
 
   return (
-    <RootPage currentUser={currentUser?.id} reflections={result.reflections} />
+    <RootPage
+      open={false}
+      currentUser={currentUser?.id}
+      reflections={result.reflections}
+    />
   );
 };
 

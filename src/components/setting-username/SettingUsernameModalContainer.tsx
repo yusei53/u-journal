@@ -1,4 +1,3 @@
-"use client";
 import { useUsername } from "@/src/hooks/username/useUsername";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -10,15 +9,15 @@ import { useRouter } from "next/navigation";
 export const formSchema = z.object({
   username: z
     .string()
-    .min(3, { message: "ユーザーネームは3文字以上で入力してください。" })
+    .min(4, { message: "4文字以上の英数字のみで入力してください。" })
     .regex(/^[a-zA-Z0-9]+$/, {
-      message: "ユーザーネームは英数字のみで入力してください。",
+      message: "英数字のみで入力してください。",
     }),
 });
 
 type SettingUsernameModalContainerProps = {
   open: boolean;
-  username: string;
+  username?: string;
 };
 
 const SettingUsernameModalContainer: React.FC<
@@ -60,7 +59,6 @@ const SettingUsernameModalContainer: React.FC<
       SubmitUsername={handleSubmit(SubmitUsername)}
       control={control}
       errors={errors}
-      username={username}
       open={open}
       onClose={handleClose}
     />
