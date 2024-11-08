@@ -34,6 +34,9 @@ const authOptions: NextAuthOptions = {
       }
       return session;
     },
+    async redirect({ baseUrl }) {
+      return `${baseUrl}/setting/username`;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
