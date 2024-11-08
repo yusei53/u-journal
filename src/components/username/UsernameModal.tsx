@@ -1,10 +1,20 @@
-import { Modal, Box, Typography, TextField, Button } from "@mui/material";
-import { Controller } from "react-hook-form";
+import { Modal, Box, Typography, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import Image from "next/image";
+import { Controller, FieldErrors } from "react-hook-form";
+import { CustomInput } from "../shared/input";
+import { theme } from "@/src/utils/theme";
+import { Button } from "../shared/button";
+import { ErrorMessage } from "../shared/alert";
+
+type FormValues = {
+  username: string;
+};
 
 type UsernameModalProps = {
   SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
   control: any;
-  errors: any;
+  errors: FieldErrors<FormValues>;
   handleToggle: (boolean: boolean) => void;
   modalOpen: boolean;
 };
@@ -12,15 +22,17 @@ type UsernameModalProps = {
 const modal = {
   display: "flex",
   alignItems: "center",
+  justifyContent: "center",
   flexDirection: "column",
   position: "absolute",
-  top: "50%",
+  top: "45%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: { md: 500, xs: 360 },
+  width: { xs: 360, md: 440 },
   bgcolor: "background.paper",
-  boxShadow: 24,
+  boxShadow: 4,
   p: 4,
+  borderRadius: 5,
 };
 
 const UsernameModal: React.FC<UsernameModalProps> = ({
@@ -31,37 +43,62 @@ const UsernameModal: React.FC<UsernameModalProps> = ({
   modalOpen,
 }) => {
   return (
-    <Modal open={modalOpen} onClose={() => handleToggle(false)}>
-      <Box sx={modal}>
-        <Typography fontSize={{ md: 17 }} m={2}>
-          ユーザーネームを設定してください
-        </Typography>
-        <Box component={"form"} onSubmit={SubmitUsername}>
-          <Box
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            flexDirection={"column"}
-          >
-            <Controller
-              name="username"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  id="username"
-                  label="username"
-                  error={!!errors.username}
-                  helperText={
-                    typeof errors.username?.message === "string"
-                      ? errors.username.message
-                      : ""
-                  }
-                  sx={{ mb: 2 }}
+    <Modal open={modalOpen} disableEscapeKeyDown>
+      <Box>
+        <IconButton
+          onClick={() => handleToggle(false)}
+          sx={{
+            position: "absolute",
+            top: 30,
+            right: 30,
+          }}
+        >
+          <CloseIcon
+            fontSize="large"
+            sx={{
+              color: "white",
+            }}
+          />
+        </IconButton>
+        <Box sx={modal}>
+          <Image
+            src={"./favicon.svg"}
+            alt={"u-journalのロゴ"}
+            width={80}
+            height={80}
+          />
+          <Box mt={3}>
+            <Typography>あなただけのURLを設定しましょう！</Typography>
+            <Typography fontSize={12} color={theme.palette.grey[500]}>
+              ※あとで変更可能です
+            </Typography>
+          </Box>
+          <Box component={"form"} onSubmit={SubmitUsername}>
+            <Box my={5}>
+              <Box display={"flex"} whiteSpace={"nowrap"}>
+                <Typography>u-journal.vercel.app/</Typography>
+                <Controller
+                  name="username"
+                  control={control}
+                  render={({ field }) => (
+                    <CustomInput
+                      id={"username"}
+                      placeholder={"example"}
+                      value={field.value}
+                      onChange={field.onChange}
+                      style={{
+                        fontSize: 12.5,
+                        borderBottom: `1.5px solid ${theme.palette.grey[400]}`,
+                      }}
+                    />
+                  )}
                 />
+              </Box>
+              {errors.username && (
+                <ErrorMessage message={errors.username.message} />
               )}
-            />
-            <Button type="submit" sx={{ bgcolor: "#13396E", color: "white" }}>
+            </Box>
+            <Button type="submit" sx={{ display: "block", margin: "auto" }}>
               設定する
             </Button>
           </Box>
