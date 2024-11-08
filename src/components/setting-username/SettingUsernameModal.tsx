@@ -86,12 +86,12 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
                     <CustomInput
                       id={"username"}
                       placeholder={"example"}
-                      value={field.value || username}
+                      value={field.value}
                       onChange={field.onChange}
                       style={{
                         fontSize: "0.9rem",
                         borderBottom: `1.5px solid ${theme.palette.grey[400]}`,
-                        marginTop: "1px",
+                        marginTop: "0.5px", // MEMO: URLとinputの間の隙間を調整
                       }}
                     />
                   )}

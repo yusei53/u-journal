@@ -34,7 +34,7 @@ const SettingUsernameModalContainer: React.FC<
   } = useForm<FieldValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      username: username,
     },
   });
 
