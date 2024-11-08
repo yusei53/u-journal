@@ -15,8 +15,8 @@ type UsernameModalProps = {
   SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
   control: any;
   errors: FieldErrors<FormValues>;
-  handleToggle: (boolean: boolean) => void;
-  modalOpen: boolean;
+  open: boolean;
+  onClose: () => void;
 };
 
 const modal = {
@@ -39,14 +39,14 @@ const UsernameModal: React.FC<UsernameModalProps> = ({
   SubmitUsername,
   control,
   errors,
-  handleToggle,
-  modalOpen,
+  open,
+  onClose,
 }) => {
   return (
-    <Modal open={modalOpen} disableEscapeKeyDown>
+    <Modal open={open} disableEscapeKeyDown>
       <Box>
         <IconButton
-          onClick={() => handleToggle(false)}
+          onClick={onClose}
           sx={{
             position: "absolute",
             top: 30,

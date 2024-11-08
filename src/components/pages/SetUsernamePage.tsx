@@ -1,13 +1,11 @@
 "use client";
-
 import { useUsername } from "@/src/hooks/username/useUsername";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
-import UsernameForm from "../username/UsernameForm";
-import { useState } from "react";
+import UsernameModal from "../username/UsernameModal";
+import { useRouter } from "next/navigation";
 
 export const formSchema = z.object({
   username: z
@@ -18,17 +16,18 @@ export const formSchema = z.object({
     }),
 });
 
-const SetUserNamePage = () => {
-  const setUsernameMutation = useUsername();
+type SetUserNamePage = {
+  open: boolean;
+};
+
+const SetUserNamePage: React.FC<SetUserNamePage> = ({ open }) => {
   const router = useRouter();
-  const [modalOpen, setModalOpen] = useState(false);
-  const handleToggle = (boolean: boolean) => setModalOpen(boolean);
+  const setUsernameMutation = useUsername();
 
   const {
     handleSubmit,
     control,
     formState: { errors },
-    reset,
   } = useForm<FieldValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,20 +42,23 @@ const SetUserNamePage = () => {
       },
       {
         onSuccess: () => {
-          alert("設定しました");
-          reset();
+          router.push(`/${formData.username}`);
         },
       }
     );
   };
 
+  const handleClose = () => {
+    router.push("/");
+  };
+
   return (
-    <UsernameForm
+    <UsernameModal
       SubmitUsername={handleSubmit(SubmitUsername)}
       control={control}
       errors={errors}
-      modalOpen={modalOpen}
-      handleToggle={handleToggle}
+      open={open}
+      onClose={handleClose}
     />
   );
 };
