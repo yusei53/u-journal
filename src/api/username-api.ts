@@ -1,17 +1,28 @@
 import axios from "axios";
+import { Result } from "../utils/types/result";
+import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
 
 export type Username = {
   username: string;
 };
 
 const usernameAPI = {
-  async updateUsername({ username }: { username: string }) {
-    const response = await axios.request<Username>({
-      url: `/api/username`,
+  async updateUsername({
+    username,
+  }: {
+    username: string;
+  }): Promise<Result<Username, 401>> {
+    const path = `/api/username`;
+    const options: FetchURLOptions = {
       method: "PATCH",
-      data: { username },
-    });
-    return response.data;
+      body: {
+        username,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return await fetchURL<Username, 401>(path, options);
   },
 };
 
