@@ -62,7 +62,7 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
         </IconButton>
         <Box sx={modal}>
           <Image
-            src={"./favicon.svg"}
+            src={"/favicon.svg"}
             alt={"u-journalのロゴ"}
             width={80}
             height={80}
@@ -87,8 +87,9 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
                       value={field.value}
                       onChange={field.onChange}
                       style={{
-                        fontSize: 12.5,
+                        fontSize: "0.9rem",
                         borderBottom: `1.5px solid ${theme.palette.grey[400]}`,
+                        marginTop: "1px",
                       }}
                     />
                   )}
