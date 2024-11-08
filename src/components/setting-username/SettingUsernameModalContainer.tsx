@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
-import UsernameModal from "../username/UsernameModal";
+import UsernameModal from "../setting-username/SettingUsernameModal";
 import { useRouter } from "next/navigation";
 
 export const formSchema = z.object({
@@ -16,11 +16,13 @@ export const formSchema = z.object({
     }),
 });
 
-type SetUserNamePage = {
+type SettingUsernameModalContainerProps = {
   open: boolean;
 };
 
-const SetUserNamePage: React.FC<SetUserNamePage> = ({ open }) => {
+const SettingUsernameModalContainer: React.FC<
+  SettingUsernameModalContainerProps
+> = ({ open }) => {
   const router = useRouter();
   const setUsernameMutation = useUsername();
 
@@ -63,4 +65,4 @@ const SetUserNamePage: React.FC<SetUserNamePage> = ({ open }) => {
   );
 };
 
-export default SetUserNamePage;
+export default SettingUsernameModalContainer;
