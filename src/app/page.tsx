@@ -1,34 +1,19 @@
-"use client";
-import LoginForm from "../components/auth/LoginForm";
-import LogoutButton from "../components/auth/LogoutButton";
-import { useSession } from "next-auth/react";
-import ReflectionCardWithIconArea from "../components/reflection-all/ReflectionCardWithIconArea";
-import { useReflections } from "../hooks/reflection/useReflections";
-import { Loading } from "../components/shared/loading";
+import { notFound } from "next/navigation";
+import { reflectionAPI } from "../api/reflection-api";
+import RootPage from "./page.client";
+import getCurrentUser from "../utils/actions/get-current-user";
 
-const Home = () => {
-  const { data: session, status } = useSession();
-  const { data: reflections, isLoading, error } = useReflections();
-  if (reflections === undefined) {
-    return <div>振り返りが見つかりません</div>;
+const page = async () => {
+  const currentUser = await getCurrentUser();
+
+  const result = await reflectionAPI.getReflections();
+  if (result === 404) {
+    return notFound();
   }
 
-  if (status === "loading" || isLoading) {
-    return <Loading />;
-  }
-
-  {
-    return session ? (
-      <>
-        <ReflectionCardWithIconArea reflections={reflections} />
-        <LogoutButton />
-      </>
-    ) : (
-      <>
-        <LoginForm />
-      </>
-    );
-  }
+  return (
+    <RootPage currentUser={currentUser?.id} reflections={result.reflections} />
+  );
 };
 
-export default Home;
+export default page;
