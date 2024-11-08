@@ -1,10 +1,4 @@
 {
-  // tiptap is a library name, disabling lint warning
-  "cSpell.words": [
-    "tiptap",
-    "nextauth",
-    "hookform",
-    "tanstack",
-    "googleusercontent"
-  ]
+  // disabling lint warning
+  "cSpell.words": ["tiptap", "nextauth", "hookform", "googleusercontent"]
 }
