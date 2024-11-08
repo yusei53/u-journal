@@ -4,7 +4,7 @@ import LogoutButton from "../components/auth/LogoutButton";
 import { useSession } from "next-auth/react";
 import ReflectionCardWithIconArea from "../components/reflection-all/ReflectionCardWithIconArea";
 import { useReflections } from "../hooks/reflection/useReflections";
-import Loading from "./loading";
+import { Loading } from "../components/shared/loading";
 
 const Home = () => {
   const { data: session, status } = useSession();
