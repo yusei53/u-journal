@@ -18,11 +18,12 @@ export const formSchema = z.object({
 
 type SettingUsernameModalContainerProps = {
   open: boolean;
+  username: string;
 };
 
 const SettingUsernameModalContainer: React.FC<
   SettingUsernameModalContainerProps
-> = ({ open }) => {
+> = ({ open, username }) => {
   const router = useRouter();
   const setUsernameMutation = useUsername();
 
@@ -59,6 +60,7 @@ const SettingUsernameModalContainer: React.FC<
       SubmitUsername={handleSubmit(SubmitUsername)}
       control={control}
       errors={errors}
+      username={username}
       open={open}
       onClose={handleClose}
     />

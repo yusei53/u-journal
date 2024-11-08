@@ -15,6 +15,7 @@ type SettingUsernameModalProps = {
   SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
   control: any;
   errors: FieldErrors<FormValues>;
+  username: string;
   open: boolean;
   onClose: () => void;
 };
@@ -39,6 +40,7 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
   SubmitUsername,
   control,
   errors,
+  username,
   open,
   onClose,
 }) => {
@@ -84,7 +86,7 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
                     <CustomInput
                       id={"username"}
                       placeholder={"example"}
-                      value={field.value}
+                      value={field.value || username}
                       onChange={field.onChange}
                       style={{
                         fontSize: "0.9rem",
