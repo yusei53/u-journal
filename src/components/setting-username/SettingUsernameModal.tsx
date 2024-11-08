@@ -11,7 +11,7 @@ type FormValues = {
   username: string;
 };
 
-type UsernameModalProps = {
+type SettingUsernameModalProps = {
   SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
   control: any;
   errors: FieldErrors<FormValues>;
@@ -35,7 +35,7 @@ const modal = {
   borderRadius: 5,
 };
 
-const UsernameModal: React.FC<UsernameModalProps> = ({
+const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
   SubmitUsername,
   control,
   errors,
@@ -108,4 +108,4 @@ const UsernameModal: React.FC<UsernameModalProps> = ({
   );
 };
 
-export default UsernameModal;
+export default SettingUsernameModal;
