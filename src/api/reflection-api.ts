@@ -1,6 +1,5 @@
-import axios from "axios";
 import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
-import { ErrorCode, Result } from "../utils/types/result";
+import { Result } from "../utils/types/result";
 
 // TODO: 投稿した時のレスポンスの型なので、命名を変更する
 // TODO: reflectionCUIDはReflectionで必要だけどReflectionDetailにはいらない
@@ -20,7 +19,10 @@ export type ReflectionAll = {
   charStamp: string;
   isPublic: boolean;
   createdAt: string;
-  user: ReflectionUser;
+  user: {
+    username: string;
+    image: string;
+  };
 };
 
 export type ReflectionDetailV2 = {
@@ -40,22 +42,17 @@ export type Reflections = {
   reflections: Reflection[];
 };
 
-type ReflectionUser = {
-  username: string;
-  image: string;
-};
-
 type ReflectionAllList = {
   reflections: ReflectionAll[];
 };
 
 export const reflectionAPI = {
-  async getReflections() {
-    const response = await axios.request<ReflectionAllList>({
-      url: `/api/reflection`,
+  async getReflections(): Promise<Result<ReflectionAllList, 404>> {
+    const path = `/api/reflection`;
+    const options: FetchURLOptions = {
       method: "GET",
-    });
-    return response.data.reflections;
+    };
+    return await fetchURL<ReflectionAllList, 404>(path, options);
   },
 
   async getReflectionsByUsername(

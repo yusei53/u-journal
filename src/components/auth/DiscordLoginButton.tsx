@@ -11,7 +11,7 @@ const DiscordLoginButton = () => {
         icon={FaDiscord}
         onClick={() =>
           signIn("discord", {
-            callbackUrl: "/",
+            callbackUrl: "/setting/username",
           })
         }
         sx={{

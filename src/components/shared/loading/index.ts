@@ -1,2 +1,2 @@
 export { LinearLoading } from "./LinearLoading";
-export { Loader } from "./Loader";
+export { Loading } from "./Loading";

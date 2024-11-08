@@ -28,6 +28,7 @@ export const PostNavigationButton: React.FC<PostNavigationButtonProps> = ({
       <IconButton
         aria-label={"post"}
         sx={{
+          bgcolor: "white",
           border: "1px solid #DCDFE3",
           borderRadius: 10,
           boxShadow: 1,

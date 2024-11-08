@@ -1,7 +1,7 @@
+import { reflectionAPI } from "@/src/api/reflection-api";
+import getCurrentUser from "@/src/utils/actions/get-current-user";
 import { notFound } from "next/navigation";
-import { reflectionAPI } from "../api/reflection-api";
-import RootPage from "./page.client";
-import getCurrentUser from "../utils/actions/get-current-user";
+import RootPage from "../../page.client";
 
 const page = async () => {
   const currentUser = await getCurrentUser();
@@ -13,7 +13,8 @@ const page = async () => {
 
   return (
     <RootPage
-      open={false}
+      open
+      username={currentUser?.username || ""}
       currentUser={currentUser?.id}
       reflections={result.reflections}
     />

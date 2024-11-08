@@ -6,6 +6,7 @@ type ReflectionCardListAreaProps = {
   reflections: ReflectionAll[];
 };
 
+// TODO: ReflectionAllAreaの方が直感的でいいかも
 const ReflectionCardListArea: React.FC<ReflectionCardListAreaProps> = ({
   reflections,
 }) => {

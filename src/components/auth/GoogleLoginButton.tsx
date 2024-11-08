@@ -11,7 +11,7 @@ const GoogleLoginButton = () => {
         icon={FcGoogle}
         onClick={() =>
           signIn("google", {
-            callbackUrl: "/",
+            callbackUrl: "/setting/username",
           })
         }
         sx={{

@@ -3,7 +3,7 @@ import { useCreateReflectionForm } from "@/src/hooks/reflection/useCreateReflect
 import ReflectionPostForm from "@/src/components/form/ReflectionPostForm";
 import LoginForm from "@/src/components/auth/LoginForm";
 import { useSession } from "next-auth/react";
-import Loading from "../loading";
+import { Loading } from "@/src/components/shared/loading";
 
 const ReflectionPostFormPage = () => {
   const { data: session, status } = useSession();
