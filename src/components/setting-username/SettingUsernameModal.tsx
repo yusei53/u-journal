@@ -1,7 +1,7 @@
 import { Modal, Box, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
-import { Controller, FieldErrors } from "react-hook-form";
+import { Control, Controller, FieldErrors } from "react-hook-form";
 import { CustomInput } from "../shared/input";
 import { theme } from "@/src/utils/theme";
 import { Button } from "../shared/button";
@@ -12,11 +12,12 @@ type FormValues = {
 };
 
 type SettingUsernameModalProps = {
-  SubmitUsername: (event: React.FormEvent<HTMLFormElement>) => void;
-  control: any;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  control: Control<FormValues>;
   errors: FieldErrors<FormValues>;
   open: boolean;
   onClose: () => void;
+  isSubmitting: boolean;
 };
 
 const modal = {
@@ -36,11 +37,12 @@ const modal = {
 };
 
 const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
-  SubmitUsername,
+  onSubmit,
   control,
   errors,
   open,
   onClose,
+  isSubmitting,
 }) => {
   return (
     <Modal open={open} disableEscapeKeyDown>
@@ -73,7 +75,7 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
               ※あとで変更可能です
             </Typography>
           </Box>
-          <Box component={"form"} onSubmit={SubmitUsername}>
+          <Box component={"form"} onSubmit={onSubmit}>
             <Box my={5}>
               <Box display={"flex"} whiteSpace={"nowrap"}>
                 <Typography>u-journal.vercel.app/</Typography>
@@ -99,8 +101,12 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
                 <ErrorMessage message={errors.username.message} />
               )}
             </Box>
-            <Button type="submit" sx={{ display: "block", margin: "auto" }}>
-              設定する
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              sx={{ display: "block", margin: "auto" }}
+            >
+              {isSubmitting ? "設定中..." : "設定する"}
             </Button>
           </Box>
         </Box>
