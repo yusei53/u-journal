@@ -6,7 +6,7 @@ import RootPage from "../../page.client";
 const page = async () => {
   const currentUser = await getCurrentUser();
 
-  const result = await reflectionAPI.getReflections();
+  const result = await reflectionAPI.getReflectionAll();
   if (result === 404) {
     return notFound();
   }

@@ -31,7 +31,7 @@ export type ReflectionDetail = Reflection & {
 };
 
 export const reflectionAPI = {
-  async getReflections(): Promise<Result<ReflectionAll, 404>> {
+  async getReflectionAll(): Promise<Result<ReflectionAll, 404>> {
     const path = `/api/reflection`;
     const options: FetchURLOptions = {
       method: "GET",
