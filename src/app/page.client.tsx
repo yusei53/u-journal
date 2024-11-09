@@ -19,19 +19,17 @@ const RootPage: React.FC<RootPageProps> = ({
   currentUser,
   reflections,
 }) => {
-  {
-    return currentUser ? (
-      <>
-        <SettingUsernameModalContainer open={open} username={username} />
-        <ReflectionCardWithIconArea reflections={reflections} />
-        <LogoutButton />
-      </>
-    ) : (
-      <>
-        <LoginForm />
-      </>
-    );
+  if (currentUser === undefined) {
+    return <LoginForm />;
   }
+
+  return (
+    <>
+      <SettingUsernameModalContainer open={open} username={username} />
+      <ReflectionCardWithIconArea reflections={reflections} />
+      <LogoutButton />
+    </>
+  );
 };
 
 export default RootPage;
