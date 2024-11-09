@@ -1,36 +1,12 @@
-"use client";
-import { useCreateReflectionForm } from "@/src/hooks/reflection/useCreateReflectionForm";
-import ReflectionPostForm from "@/src/components/form/ReflectionPostForm";
-import LoginForm from "@/src/components/auth/LoginForm";
-import { useSession } from "next-auth/react";
-import { Loading } from "@/src/components/shared/loading";
+import ReflectionPostFormPage from "./page.client";
+import getCurrentUser from "@/src/utils/actions/get-current-user";
 
-const ReflectionPostFormPage = () => {
-  const { data: session, status } = useSession();
+const page = async () => {
+  const currentUser = await getCurrentUser();
 
-  const { control, isSubmitting, errors, onSubmit } = useCreateReflectionForm(
-    session?.user.username
-  );
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await onSubmit(e);
-  };
-
-  if (status === "loading") {
-    return <Loading />;
-  }
-
-  return session?.user.username ? (
-    <ReflectionPostForm
-      control={control}
-      isSubmitting={isSubmitting}
-      errors={errors}
-      onSubmit={handleSubmit}
-    />
-  ) : (
-    <LoginForm />
+  return (
+    <ReflectionPostFormPage username={currentUser?.username || undefined} />
   );
 };
 
-export default ReflectionPostFormPage;
+export default page;
