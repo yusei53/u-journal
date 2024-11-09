@@ -26,8 +26,12 @@ export type Reflections = {
 };
 
 export type ReflectionDetail = Reflection & {
-  userImage: string;
   content: string;
+  userId: string;
+  user: {
+    image: string | null;
+    username: string | null;
+  };
 };
 
 export const reflectionAPI = {
@@ -49,6 +53,17 @@ export const reflectionAPI = {
       next: { tags: ["reflections-with-user"] },
     };
     return await fetchURL<Reflections, 404>(path, options);
+  },
+
+  async getReflectionByCUID(
+    reflectionCUID: string
+  ): Promise<Result<ReflectionDetail, 404>> {
+    const path = `/api/reflection/detail/${reflectionCUID}`;
+    const options: FetchURLOptions = {
+      method: "GET",
+      next: { tags: ["reflection-detail"] },
+    };
+    return await fetchURL<ReflectionDetail, 404>(path, options);
   },
 
   async createReflection({
