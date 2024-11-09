@@ -50,7 +50,7 @@ export const reflectionAPI = {
     const path = `/api/reflection/${username}`;
     const options: FetchURLOptions = {
       method: "GET",
-      next: { tags: ["reflections-with-user"] },
+      next: { tags: [`reflections-${username}`] },
     };
     return await fetchURL<Reflections, 404>(path, options);
   },

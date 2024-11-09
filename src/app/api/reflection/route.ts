@@ -62,7 +62,8 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    revalidateTag("reflections-with-user");
+    revalidateTag(`reflections-${currentUser.username}`);
+    revalidateTag("reflections-all");
 
     return NextResponse.json(reflection, { status: 201 });
   } catch (error) {
