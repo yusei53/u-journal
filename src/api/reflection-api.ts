@@ -1,59 +1,43 @@
 import { fetchURL, FetchURLOptions } from "../utils/fetchURL";
 import { Result } from "../utils/types/result";
 
-// TODO: 投稿した時のレスポンスの型なので、命名を変更する
-// TODO: reflectionCUIDはReflectionで必要だけどReflectionDetailにはいらない
-export type ReflectionDetail = {
+export type Reflection = {
   reflectionCUID: string;
   title: string;
-  content: string;
   charStamp: string;
   isPublic: boolean;
   createdAt: string;
 };
 
-export type ReflectionAll = {
-  reflectionCUID: string;
-  title: string;
-  content: string;
-  charStamp: string;
-  isPublic: boolean;
-  createdAt: string;
+export type ReflectionWithUser = Reflection & {
   user: {
     username: string;
     image: string;
   };
 };
 
-export type ReflectionDetailV2 = {
-  userImage: string;
-  reflectionCUID: string;
-  title: string;
-  content: string;
-  charStamp: string;
-  isPublic: boolean;
-  createdAt: string;
+type ReflectionAll = {
+  reflections: ReflectionWithUser[];
 };
-
-export type Reflection = Omit<ReflectionDetail, "content">;
 
 export type Reflections = {
   userImage: string;
   reflections: Reflection[];
 };
 
-type ReflectionAllList = {
-  reflections: ReflectionAll[];
+export type ReflectionDetail = Reflection & {
+  userImage: string;
+  content: string;
 };
 
 export const reflectionAPI = {
-  async getReflections(): Promise<Result<ReflectionAllList, 404>> {
+  async getReflections(): Promise<Result<ReflectionAll, 404>> {
     const path = `/api/reflection`;
     const options: FetchURLOptions = {
       method: "GET",
       next: { tags: ["reflections-all"] },
     };
-    return await fetchURL<ReflectionAllList, 404>(path, options);
+    return await fetchURL<ReflectionAll, 404>(path, options);
   },
 
   async getReflectionsByUsername(

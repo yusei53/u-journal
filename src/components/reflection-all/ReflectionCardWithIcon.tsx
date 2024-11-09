@@ -1,12 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { theme } from "@/src/utils/theme/theme";
-import { ReflectionAll } from "@/src/api/reflection-api";
+import { ReflectionWithUser } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
 import Image from "next/image";
 
 type ReflectionCardWithIconProps = {
-  reflection: ReflectionAll;
+  reflection: ReflectionWithUser;
 };
 
 const ReflectionCardWithIcon: React.FC<ReflectionCardWithIconProps> = ({

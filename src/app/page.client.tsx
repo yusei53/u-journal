@@ -2,15 +2,15 @@
 import LoginForm from "../components/auth/LoginForm";
 import LogoutButton from "../components/auth/LogoutButton";
 import ReflectionCardWithIconArea from "../components/reflection-all/ReflectionCardWithIconArea";
-import { ReflectionAll } from "../api/reflection-api";
 import { User } from "@prisma/client";
 import SettingUsernameModalContainer from "../components/setting-username/SettingUsernameModalContainer";
+import { ReflectionWithUser } from "../api/reflection-api";
 
 type RootPageProps = {
   open: boolean;
   username?: string;
   currentUser?: User["id"];
-  reflections: ReflectionAll[];
+  reflections: ReflectionWithUser[];
 };
 
 const RootPage: React.FC<RootPageProps> = ({

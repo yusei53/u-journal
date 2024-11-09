@@ -1,9 +1,9 @@
 import Grid from "@mui/material/Grid2";
-import { ReflectionAll } from "@/src/api/reflection-api";
+import { ReflectionWithUser } from "@/src/api/reflection-api";
 import ReflectionCardWithIcon from "./ReflectionCardWithIcon";
 
 type ReflectionCardListAreaProps = {
-  reflections: ReflectionAll[];
+  reflections: ReflectionWithUser[];
 };
 
 // TODO: ReflectionAllAreaの方が直感的でいいかも
