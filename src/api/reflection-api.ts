@@ -35,7 +35,7 @@ export type ReflectionDetailV2 = {
   createdAt: string;
 };
 
-export type Reflection = Omit<ReflectionDetail, "content" | "userImage">;
+export type Reflection = Omit<ReflectionDetail, "content">;
 
 export type Reflections = {
   userImage: string;
@@ -51,6 +51,7 @@ export const reflectionAPI = {
     const path = `/api/reflection`;
     const options: FetchURLOptions = {
       method: "GET",
+      next: { tags: ["reflections-all"] },
     };
     return await fetchURL<ReflectionAllList, 404>(path, options);
   },
@@ -76,7 +77,7 @@ export const reflectionAPI = {
     content: string;
     charStamp: string;
     isPublic: boolean;
-  }): Promise<Result<ReflectionDetail, 401>> {
+  }): Promise<Result<void, 401>> {
     const path = `/api/reflection`;
     const options: FetchURLOptions = {
       method: "POST",
@@ -90,6 +91,6 @@ export const reflectionAPI = {
         "Content-Type": "application/json",
       },
     };
-    return await fetchURL<ReflectionDetail, 401>(path, options);
+    return await fetchURL<void, 401>(path, options);
   },
 };
