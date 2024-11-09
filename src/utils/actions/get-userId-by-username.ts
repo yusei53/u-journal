@@ -1,6 +1,7 @@
 "use server";
 import prisma from "@/src/lib/prisma";
 
+// MEMO: route handlerで使用
 export const getUserIdByUsername = async (
   username: string
 ): Promise<string | null> => {
