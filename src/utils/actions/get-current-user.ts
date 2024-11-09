@@ -9,15 +9,14 @@ const getCurrentUser = async () => {
     //セッション情報取得
     const session = await getServerSession(authOptions);
 
-    //ログインしていない場合
-    if (!session?.user?.email) {
+    // MEM0: ほんとはemailの方が速いけどdiscordログインはemailがないパターンがありidにしている
+    if (!session?.user?.id) {
       return null;
     }
 
-    //ログインユーザー取得
     const response = await prisma.user.findUnique({
       where: {
-        email: session.user.email,
+        id: session.user.id,
       },
     });
 
