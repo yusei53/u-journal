@@ -1,3 +1,3 @@
 export type Result<T, E = number> = T | E;
 
-export type ErrorCode = 400 | 401 | 404 | 500;
+export type ErrorCode = 400 | 401 | 403 | 404 | 500;
