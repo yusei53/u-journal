@@ -36,7 +36,7 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     },
 
     a: {
-      color: "#0D83FD",
+      color: theme.palette.primary.light,
       textDecoration: "underline",
       cursor: "pointer",
     },
