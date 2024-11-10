@@ -1,32 +1,31 @@
 "use client";
-import LoginForm from "../components/auth/LoginForm";
 import LogoutButton from "../components/auth/LogoutButton";
-import ReflectionCardWithIconArea from "../components/reflection-all/ReflectionCardWithIconArea";
-import { User } from "@prisma/client";
 import SettingUsernameModalContainer from "../components/setting-username/SettingUsernameModalContainer";
 import { ReflectionWithUser } from "../api/reflection-api";
+import ReflectionAllArea from "../components/reflection-all/ReflectionAllArea";
+import { User } from "@prisma/client";
 
 type RootPageProps = {
   open: boolean;
-  username?: string;
-  currentUser?: User["id"];
+  currentUsername: User["username"];
   reflections: ReflectionWithUser[];
 };
 
 const RootPage: React.FC<RootPageProps> = ({
   open,
-  username,
-  currentUser,
+  currentUsername,
   reflections,
 }) => {
-  if (currentUser === undefined) {
-    return <LoginForm />;
-  }
-
   return (
     <>
-      <SettingUsernameModalContainer open={open} username={username} />
-      <ReflectionCardWithIconArea reflections={reflections} />
+      <SettingUsernameModalContainer
+        open={open}
+        currentUsername={currentUsername}
+      />
+      <ReflectionAllArea
+        reflections={reflections}
+        currentUsername={currentUsername}
+      />
       <LogoutButton />
     </>
   );

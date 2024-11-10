@@ -15,7 +15,7 @@ const updateUsernameSchema = z.object({
 
 type UpdateUsernameSchemaType = z.infer<typeof updateUsernameSchema>;
 
-export const useUpdateUsernameForm = (username: string | undefined) => {
+export const useUpdateUsernameForm = (username: string | null) => {
   const router = useRouter();
 
   const {
@@ -24,7 +24,7 @@ export const useUpdateUsernameForm = (username: string | undefined) => {
     formState: { isSubmitting, isSubmitSuccessful, errors },
   } = useForm<UpdateUsernameSchemaType>({
     resolver: zodResolver(updateUsernameSchema),
-    defaultValues: { username: username },
+    defaultValues: { username: username || "" },
   });
 
   const onSubmit = handleSubmit(async (formData: UpdateUsernameSchemaType) => {

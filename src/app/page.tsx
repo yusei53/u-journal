@@ -14,7 +14,7 @@ const page = async () => {
   return (
     <RootPage
       open={false}
-      currentUser={currentUser?.id}
+      currentUsername={currentUser?.username || null}
       reflections={result.reflections}
     />
   );
