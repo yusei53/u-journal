@@ -18,7 +18,6 @@ const ReflectionCardWithIcon: React.FC<ReflectionCardWithIconProps> = ({
         component={Link}
         href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
         sx={articleImage}
-        prefetch={true}
       >
         <Typography
           fontSize={26}
@@ -41,7 +40,6 @@ const ReflectionCardWithIcon: React.FC<ReflectionCardWithIconProps> = ({
           <Typography
             component={Link}
             href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
-            prefetch={true}
             sx={{
               ...link,
               whiteSpace: "nowrap",
