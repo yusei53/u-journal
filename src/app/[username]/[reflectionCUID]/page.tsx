@@ -49,7 +49,6 @@ const page = async ({ params }: PageProps) => {
 
   const currentUser = await getCurrentUser();
 
-  // TODO: fetchURLで実際にapi叩きたいけど何故か404しか返ってこないからserverActionで取得
   const reflection = await reflectionAPI.getReflectionByCUID(reflectionCUID);
   if (
     reflection === 404 ||

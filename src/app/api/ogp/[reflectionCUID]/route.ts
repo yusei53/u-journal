@@ -28,7 +28,8 @@ export async function GET(
     }
 
     return NextResponse.json({
-      reflection,
+      title: reflection.title,
+      user: reflection.user,
     });
   } catch (error) {
     console.error("Error fetching reflection:", error);
