@@ -1,3 +1,4 @@
+import opengraphAPI from "@/src/api/opengraph-api";
 import { ImageResponse } from "next/og";
 
 export const size = {
@@ -12,22 +13,30 @@ export default async function Image({
   params: { reflectionCUID: string };
 }) {
   const { reflectionCUID } = params;
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/reflection/detail/${reflectionCUID}`;
-
-  const res = await fetch(apiUrl);
-
-  if (!res.ok) {
-    return new Response("Not Found", { status: 404 });
+  const reflection = await opengraphAPI.getOGPByCUID(reflectionCUID);
+  if (reflection === 404) {
+    {
+      return new ImageResponse(
+        (
+          <OgImage
+            userImage="404"
+            title="404 | u-journal"
+            username="このページは見つかりません"
+          />
+        ),
+        {
+          ...size,
+        }
+      );
+    }
   }
-
-  const reflection = await res.json();
 
   return new ImageResponse(
     (
       <OgImage
-        userImage={reflection.user?.image || ""}
+        userImage={reflection.user.image}
         title={reflection.title}
-        username={reflection.user?.username || ""}
+        username={reflection.user.username}
       />
     ),
     {
@@ -45,7 +54,7 @@ type OgImageProps = {
 const OgImage = ({ userImage, title, username }: OgImageProps) => (
   <div
     style={{
-      backgroundImage: `url(${process.env.NEXT_PUBLIC_API_URL}/ogp.png)`,
+      backgroundImage: `url(${process.env.NEXT_PUBLIC_API_URL}/ogpp.png)`,
       backgroundSize: "100% 100%",
       height: "100%",
       width: "100%",

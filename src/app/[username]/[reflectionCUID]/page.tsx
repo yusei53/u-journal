@@ -3,24 +3,35 @@ import { ReflectionDetail } from "@/src/components/reflection-detail/";
 import { reflectionAPI } from "@/src/api/reflection-api";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
 import { Metadata } from "next";
+import opengraphAPI from "@/src/api/opengraph-api";
 
 export const generateMetadata = async ({
   params,
 }: {
   params: { reflectionCUID: string };
 }): Promise<Metadata> => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/reflection/detail/${params.reflectionCUID}`
-  );
-  const data = await res.json();
+  const { reflectionCUID } = params;
+  const reflection = await opengraphAPI.getOGPByCUID(reflectionCUID);
+  if (reflection === 404) {
+    return {
+      title: "404 | u-journal",
+      description: "このページは見つかりません",
+      openGraph: {
+        type: "website",
+        title: "404 | u-journal",
+        description: "このページは見つかりません",
+        siteName: "u-journal",
+      },
+    };
+  }
 
   return {
-    title: `${data.title} | u-journal`,
-    description: `by ${data.user?.username}`,
+    title: `${reflection.title} | u-journal`,
+    description: `by ${reflection.user.username}`,
     openGraph: {
       type: "website",
-      title: `${data.title} | u-journal`,
-      description: `by ${data.user?.username}`,
+      title: `${reflection.title} | u-journal`,
+      description: `by ${reflection.user?.username}`,
       siteName: "u-journal",
     },
   };
