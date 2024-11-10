@@ -22,6 +22,7 @@ type FormValues = {
 type ReflectionPostFormProps = {
   control: Control<FormValues>;
   isSubmitting: boolean;
+  isSubmitSuccessful: boolean;
   errors: FieldErrors<FormValues>;
   onSubmit: (event: React.FormEvent) => Promise<void>;
 };
@@ -30,6 +31,7 @@ type ReflectionPostFormProps = {
 const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   control,
   isSubmitting,
+  isSubmitSuccessful,
   errors,
   onSubmit,
 }) => {
@@ -81,8 +83,8 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
             />
           )}
         />
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "投稿中..." : "投稿する"}
+        <Button type="submit" disabled={isSubmitting || isSubmitSuccessful}>
+          {isSubmitting || isSubmitSuccessful ? "投稿中..." : "投稿する"}
         </Button>
       </Box>
       <Container maxWidth="sm" sx={{ my: 15 }}>

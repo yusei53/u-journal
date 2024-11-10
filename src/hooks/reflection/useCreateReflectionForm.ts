@@ -23,7 +23,7 @@ export const useCreateReflectionForm = (username: string | undefined) => {
   const {
     handleSubmit,
     control,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting, isSubmitSuccessful, errors },
   } = useForm<CreateReflectionSchemaType>({
     resolver: zodResolver(createReflectionSchema),
     defaultValues: { title: "", content: "", charStamp: "💭", isPublic: false },
@@ -33,6 +33,7 @@ export const useCreateReflectionForm = (username: string | undefined) => {
     async (formData: CreateReflectionSchemaType) => {
       const res = await reflectionAPI.createReflection(formData);
 
+      // TODO: 401が返ってきたらログイン画面に遷移
       if (res === 401) {
         return notFound();
       } else {
@@ -44,6 +45,7 @@ export const useCreateReflectionForm = (username: string | undefined) => {
   return {
     control,
     isSubmitting,
+    isSubmitSuccessful,
     errors,
     onSubmit,
   };

@@ -11,7 +11,7 @@ const ReflectionPostFormPage: React.FC<ReflectionPostFormPageProps> = ({
   username,
 }) => {
   const router = useRouter();
-  const { control, isSubmitting, errors, onSubmit } =
+  const { control, isSubmitting, isSubmitSuccessful, errors, onSubmit } =
     useCreateReflectionForm(username);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,6 +27,7 @@ const ReflectionPostFormPage: React.FC<ReflectionPostFormPageProps> = ({
     <ReflectionPostForm
       control={control}
       isSubmitting={isSubmitting}
+      isSubmitSuccessful={isSubmitSuccessful}
       errors={errors}
       onSubmit={handleSubmit}
     />

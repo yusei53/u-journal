@@ -18,6 +18,7 @@ type SettingUsernameModalProps = {
   open: boolean;
   onClose: () => void;
   isSubmitting: boolean;
+  isSubmitSuccessful: boolean;
 };
 
 const modal = {
@@ -43,6 +44,7 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
   open,
   onClose,
   isSubmitting,
+  isSubmitSuccessful,
 }) => {
   return (
     <Modal open={open} disableEscapeKeyDown>
@@ -103,10 +105,10 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
             </Box>
             <Button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || isSubmitSuccessful}
               sx={{ display: "block", margin: "auto" }}
             >
-              {isSubmitting ? "設定中..." : "設定する"}
+              {isSubmitting || isSubmitSuccessful ? "設定中..." : "設定する"}
             </Button>
           </Box>
         </Box>

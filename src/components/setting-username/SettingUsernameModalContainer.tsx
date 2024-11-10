@@ -11,7 +11,7 @@ const SettingUsernameModalContainer: React.FC<
   SettingUsernameModalContainerProps
 > = ({ open, username }) => {
   const router = useRouter();
-  const { control, isSubmitting, errors, onSubmit } =
+  const { control, isSubmitting, isSubmitSuccessful, errors, onSubmit } =
     useUpdateUsernameForm(username);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,6 +31,7 @@ const SettingUsernameModalContainer: React.FC<
       open={open}
       onClose={handleClose}
       isSubmitting={isSubmitting}
+      isSubmitSuccessful={isSubmitSuccessful}
     />
   );
 };

@@ -21,7 +21,7 @@ export const useUpdateUsernameForm = (username: string | undefined) => {
   const {
     handleSubmit,
     control,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting, isSubmitSuccessful, errors },
   } = useForm<UpdateUsernameSchemaType>({
     resolver: zodResolver(updateUsernameSchema),
     defaultValues: { username: username },
@@ -30,6 +30,7 @@ export const useUpdateUsernameForm = (username: string | undefined) => {
   const onSubmit = handleSubmit(async (formData: UpdateUsernameSchemaType) => {
     const res = await usernameAPI.updateUsername(formData);
 
+    // MEMO: 401が返ってきたらログイン画面に遷移
     if (res === 401) {
       router.push(`/`);
     } else {
@@ -40,6 +41,7 @@ export const useUpdateUsernameForm = (username: string | undefined) => {
   return {
     control,
     isSubmitting,
+    isSubmitSuccessful,
     errors,
     onSubmit,
   };
