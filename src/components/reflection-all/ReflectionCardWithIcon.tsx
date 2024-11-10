@@ -13,7 +13,14 @@ const ReflectionCardWithIcon: React.FC<ReflectionCardWithIconProps> = ({
   reflection,
 }) => {
   return (
-    <Box component={"article"}>
+    <Box
+      component={"article"}
+      //MEMO: 文字をはみ出さないようにするため
+      maxWidth={{
+        xs: 300,
+        sm: 240,
+      }}
+    >
       <Box
         component={Link}
         href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
@@ -28,28 +35,28 @@ const ReflectionCardWithIcon: React.FC<ReflectionCardWithIconProps> = ({
           {reflection.charStamp}
         </Typography>
       </Box>
-      <Box display={"flex"} mt={1} ml={0.5}>
-        <Image
-          src={reflection.user.image}
-          alt={"アイコン"}
-          width={25}
-          height={25}
-          style={{ borderRadius: 20 }}
-        />
-        <Box display={"flex"} flexDirection={"column"} ml={1}>
+      <Box display={"flex"} flexDirection={"column"} mt={1} ml={0.5}>
+        <Box display={"flex"} alignItems={"center"}>
+          <Image
+            src={reflection.user.image}
+            alt={"アイコン"}
+            width={25}
+            height={25}
+            style={{ borderRadius: 20 }}
+          />
           <Typography
             component={Link}
             href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
-            sx={{
-              ...link,
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              maxWidth: { xs: 260, md: 200 },
-            }}
+            ml={0.5}
+            whiteSpace={"nowrap"}
+            overflow={"hidden"}
+            textOverflow={"ellipsis"}
+            sx={link}
           >
             {reflection.title}
           </Typography>
+        </Box>
+        <Box ml={"29px"} mt={-0.5}>
           <Typography
             component={"time"}
             color={theme.palette.grey[500]}
@@ -57,7 +64,7 @@ const ReflectionCardWithIcon: React.FC<ReflectionCardWithIconProps> = ({
           >
             {formatDate(reflection.createdAt)}
           </Typography>
-          <Typography color={theme.palette.grey[500]} fontSize={13}>
+          <Typography color={theme.palette.grey[500]} fontSize={13} mt={-0.5}>
             {reflection.user.username}
           </Typography>
         </Box>
