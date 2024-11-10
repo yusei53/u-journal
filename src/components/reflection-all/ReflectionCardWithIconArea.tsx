@@ -19,7 +19,7 @@ const ReflectionCardListArea: React.FC<ReflectionCardListAreaProps> = ({
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
-          mb={2}
+          mb={3.5}
         >
           <ReflectionCardWithIcon reflection={reflection} />
         </Grid>
