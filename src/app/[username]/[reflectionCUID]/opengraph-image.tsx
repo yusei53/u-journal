@@ -78,7 +78,7 @@ const OgImage = ({ userImage, title, username }: OgImageProps) => (
     <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
       <div
         style={{
-          backgroundImage: `url(${userImage})`,
+          // backgroundImage: `url(${userImage})`,
           backgroundSize: "100% 100%",
           height: 70,
           width: 70,
