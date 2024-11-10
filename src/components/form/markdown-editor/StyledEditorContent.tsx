@@ -35,6 +35,12 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
       },
     },
 
+    a: {
+      color: "#0D83FD",
+      textDecoration: "underline",
+      cursor: "pointer",
+    },
+
     /* Heading styles */
     "h1, h2, h3, h4, h5, h6": {
       lineHeight: 1.1,
