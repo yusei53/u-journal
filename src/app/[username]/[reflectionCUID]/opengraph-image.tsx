@@ -74,12 +74,11 @@ const OgImage = ({ userImage, title, username }: OgImageProps) => (
           height: 60,
           width: 60,
           borderRadius: "50%",
-          border: "2px solid #1E1E1E",
         }}
       ></div>
       <div
         style={{
-          fontSize: 18,
+          fontSize: 38,
           color: "1E1E1E",
           fontWeight: "bold",
         }}

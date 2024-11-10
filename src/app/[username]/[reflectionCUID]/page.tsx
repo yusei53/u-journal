@@ -16,7 +16,13 @@ export const generateMetadata = async ({
 
   return {
     title: `${data.title} | u-journal`,
-    description: `testだよ`,
+    description: `by ${data.user?.username}`,
+    openGraph: {
+      type: "website",
+      title: `${data.title} | u-journal`,
+      description: `by ${data.user?.username}`,
+      siteName: "u-journal",
+    },
   };
 };
 
