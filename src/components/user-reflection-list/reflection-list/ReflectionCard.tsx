@@ -19,6 +19,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
         component={Link}
         href={`/${username}/${reflection.reflectionCUID}`}
         sx={articleImage}
+        prefetch={true}
       >
         <Typography
           fontSize={26}
@@ -34,6 +35,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
           component={Link}
           href={`/${username}/${reflection.reflectionCUID}`}
           sx={link}
+          prefetch={true}
         >
           {reflection.title}
         </Typography>

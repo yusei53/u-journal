@@ -1,9 +1,20 @@
 import { notFound } from "next/navigation";
-import { ReflectionDetail } from "@/src/components/reflection-detail/";
 import { reflectionAPI } from "@/src/api/reflection-api";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
 import { Metadata } from "next";
 import opengraphAPI from "@/src/api/opengraph-api";
+import dynamic from "next/dynamic";
+import { Loading } from "@/src/components/shared/loading";
+
+const ReflectionDetail = dynamic(
+  () =>
+    import("@/src/components/reflection-detail").then(
+      (mod) => mod.ReflectionDetail
+    ),
+  {
+    loading: () => <Loading />,
+  }
+);
 
 export const generateMetadata = async ({
   params,
