@@ -37,13 +37,15 @@ const ReflectionCardWithIcon: React.FC<ReflectionCardWithIconProps> = ({
       </Box>
       <Box display={"flex"} flexDirection={"column"} mt={1} ml={0.5}>
         <Box display={"flex"} alignItems={"center"}>
-          <Image
-            src={reflection.user.image}
-            alt={"アイコン"}
-            width={25}
-            height={25}
-            style={{ borderRadius: 20 }}
-          />
+          <Link href={`/${reflection.user.username}`}>
+            <Image
+              src={reflection.user.image}
+              alt={`${reflection.user.username}のアイコン`}
+              width={25}
+              height={25}
+              style={{ borderRadius: 20, display: "block" }}
+            />
+          </Link>
           <Typography
             component={Link}
             href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
@@ -56,16 +58,31 @@ const ReflectionCardWithIcon: React.FC<ReflectionCardWithIconProps> = ({
             {reflection.title}
           </Typography>
         </Box>
-        <Box ml={"29px"} mt={-0.5}>
+        {/* MEMO: ml={"30px"} はアイコンサイズとmarginの合計+1 */}
+        <Box display={"flex"} flexDirection={"column"} ml={"30px"} my={0.2}>
+          <Typography
+            component={Link}
+            href={`/${reflection.user.username}`}
+            color={theme.palette.grey[500]}
+            fontSize={13}
+            lineHeight={1}
+            borderBottom={"1px solid transparent"}
+            width={"fit-content"}
+            sx={{
+              textDecoration: "none",
+              "&:hover": {
+                borderBottom: `1px solid ${theme.palette.grey[400]}`,
+              },
+            }}
+          >
+            {reflection.user.username}
+          </Typography>
           <Typography
             component={"time"}
             color={theme.palette.grey[500]}
             fontSize={13}
           >
             {formatDate(reflection.createdAt)}
-          </Typography>
-          <Typography color={theme.palette.grey[500]} fontSize={13} mt={-0.5}>
-            {reflection.user.username}
           </Typography>
         </Box>
       </Box>
