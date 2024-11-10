@@ -34,23 +34,11 @@ export const generateMetadata = async ({
       title: `${username} | Overview`,
       description: `${username} has ${userInformation.totalReflections} reflections`,
       siteName: "u-journal",
-      images: {
-        url: userInformation.user.image,
-        alt: `${username}'s profile image`,
-        width: 100,
-        height: 100,
-      },
     },
     twitter: {
       title: `${username} | Overview`,
       description: `${username} has ${userInformation.totalReflections} reflections`,
       card: "summary",
-      images: {
-        url: userInformation.user.image,
-        alt: `${username}'s profile image`,
-        width: 100,
-        height: 100,
-      },
     },
   };
 };
@@ -74,12 +62,14 @@ const page = async ({ params }: { params: { username: string } }) => {
   ]);
 
   return (
-    <UserReflectionListPage
-      userImage={reflectionsWithUser.userImage}
-      username={username}
-      reflectionCount={reflectionCount}
-      reflections={reflectionsWithUser.reflections}
-    />
+    <>
+      <UserReflectionListPage
+        userImage={reflectionsWithUser.userImage}
+        username={username}
+        reflectionCount={reflectionCount}
+        reflections={reflectionsWithUser.reflections}
+      />
+    </>
   );
 };
 
