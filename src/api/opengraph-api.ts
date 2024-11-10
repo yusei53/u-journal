@@ -23,6 +23,7 @@ const opengraphAPI = {
     const path = `/api/${username}/ogp`;
     const options: FetchURLOptions = {
       method: "GET",
+      cache: "no-store",
     };
     return await fetchURL<UserInformation, 404>(path, options);
   },
@@ -33,6 +34,7 @@ const opengraphAPI = {
     const path = `/api/ogp/${refectionCUID}`;
     const options: FetchURLOptions = {
       method: "GET",
+      cache: "no-store",
     };
     return await fetchURL<ReflectionInformation, 404>(path, options);
   },
