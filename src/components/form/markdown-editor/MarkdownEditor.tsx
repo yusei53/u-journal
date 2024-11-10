@@ -2,6 +2,7 @@ import { forwardRef, useImperativeHandle } from "react";
 import Highlight from "@tiptap/extension-highlight";
 import Typography from "@tiptap/extension-typography";
 import Placeholder from "@tiptap/extension-placeholder";
+import Link from "@tiptap/extension-link";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import StyledEditorContent from "./StyledEditorContent";
@@ -28,6 +29,10 @@ export const MarkdownEditor = forwardRef<
       Typography,
       Placeholder.configure({
         placeholder: "文章を入力",
+      }),
+      Link.configure({
+        openOnClick: true, // クリックでリンクを開く
+        autolink: true, // 自動リンク化
       }),
     ],
     content: value,
