@@ -66,7 +66,7 @@ const OgImage = ({ userImage, title, username }: OgImageProps) => (
   >
     <p
       style={{
-        fontSize: 50,
+        fontSize: 55,
         color: "1E1E1E",
         textAlign: "left",
         lineHeight: 1.5,
@@ -80,14 +80,14 @@ const OgImage = ({ userImage, title, username }: OgImageProps) => (
         style={{
           backgroundImage: `url(${userImage})`,
           backgroundSize: "100% 100%",
-          height: 60,
-          width: 60,
+          height: 70,
+          width: 70,
           borderRadius: "50%",
         }}
       ></div>
       <div
         style={{
-          fontSize: 38,
+          fontSize: 40,
           color: "1E1E1E",
           fontWeight: "bold",
         }}
