@@ -60,8 +60,8 @@ const page = async ({ params }: PageProps) => {
   return (
     <ReflectionDetail
       title={reflection.title}
-      userImage={reflection.user?.image || ""}
-      username={reflection.user?.username || ""}
+      userImage={reflection.user.image}
+      username={reflection.user.username}
       content={reflection.content}
       createdAt={reflection.createdAt}
     />

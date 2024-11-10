@@ -29,8 +29,8 @@ export type ReflectionDetail = Reflection & {
   content: string;
   userId: string;
   user: {
-    image: string | null;
-    username: string | null;
+    image: string;
+    username: string;
   };
 };
 
