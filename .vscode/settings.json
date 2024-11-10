@@ -1,4 +1,10 @@
 {
   // disabling lint warning
-  "cSpell.words": ["tiptap", "nextauth", "hookform", "googleusercontent"]
+  "cSpell.words": [
+    "tiptap",
+    "nextauth",
+    "hookform",
+    "googleusercontent",
+    "opengraph"
+  ]
 }
