@@ -14,7 +14,14 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
   reflection,
 }) => {
   return (
-    <Box component={"article"}>
+    <Box
+      component={"article"}
+      //MEMO: 文字をはみ出さないようにするため
+      maxWidth={{
+        xs: 300,
+        sm: 240,
+      }}
+    >
       <Box
         component={Link}
         href={`/${username}/${reflection.reflectionCUID}`}
@@ -33,6 +40,9 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
         <Typography
           component={Link}
           href={`/${username}/${reflection.reflectionCUID}`}
+          whiteSpace={"nowrap"}
+          overflow={"hidden"}
+          textOverflow={"ellipsis"}
           sx={link}
         >
           {reflection.title}
