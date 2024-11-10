@@ -2,6 +2,23 @@ import { notFound } from "next/navigation";
 import { ReflectionDetail } from "@/src/components/reflection-detail/";
 import { reflectionAPI } from "@/src/api/reflection-api";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
+import { Metadata } from "next";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { reflectionCUID: string };
+}): Promise<Metadata> => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/reflection/detail/${params.reflectionCUID}`
+  );
+  const data = await res.json();
+
+  return {
+    title: `${data.title} | u-journal`,
+    description: `testだよ`,
+  };
+};
 
 type PageProps = {
   params: {

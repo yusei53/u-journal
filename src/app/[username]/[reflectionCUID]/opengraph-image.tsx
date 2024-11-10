@@ -12,7 +12,7 @@ export default async function Image({
   params: { reflectionCUID: string };
 }) {
   const { reflectionCUID } = params;
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/reflections/${reflectionCUID}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/reflection/detail/${reflectionCUID}`;
 
   const res = await fetch(apiUrl);
 
