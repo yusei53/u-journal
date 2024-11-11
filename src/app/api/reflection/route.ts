@@ -6,8 +6,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
+    const page = parseInt(req.nextUrl.searchParams.get("page") || "1", 10);
+    const reflectionsPerPage = 15;
+    const offset = (page - 1) * reflectionsPerPage;
+
     const reflections = await prisma.reflection.findMany({
       orderBy: { createdAt: "desc" },
+      take: reflectionsPerPage,
+      skip: offset,
       select: {
         title: true,
         reflectionCUID: true,
