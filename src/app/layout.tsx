@@ -1,14 +1,27 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { NextAuthProvider } from "../providers";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../utils/theme/theme";
 
-const inter = Inter({ subsets: ["latin"] });
-
+const siteName = "u-journal | 振り返りプラットフォーム";
+const description = "日々の振り返りを手助けする振り返りプラットフォーム";
 export const metadata: Metadata = {
-  title: "u-journal ",
-  description: "日々の振り返りを手助けする振り返りプラットフォーム",
+  // metadataBase: new URL("https://www.renlaku.com/"),
+  title: {
+    default: siteName,
+    template: "%s | u-journal",
+  },
+  description: description,
+
+  openGraph: {
+    title: siteName,
+    description: description,
+  },
+  twitter: {
+    title: siteName,
+    description: description,
+    card: "summary",
+  },
 };
 
 export default async function RootLayout({
