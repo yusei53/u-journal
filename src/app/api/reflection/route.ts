@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
     });
     const MaxPage: number = ReflectionCount / reflectionsPerPage + 1;
     const reflections = await prisma.reflection.findMany({
+      where: { isPublic: true },
       orderBy: { createdAt: "desc" },
       take: reflectionsPerPage,
       skip: offset,
