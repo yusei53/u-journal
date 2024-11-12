@@ -18,6 +18,7 @@ export type ReflectionWithUser = Reflection & {
 
 type ReflectionAll = {
   reflections: ReflectionWithUser[];
+  totalPage: number;
 };
 
 export type Reflections = {
