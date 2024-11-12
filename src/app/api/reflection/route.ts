@@ -9,7 +9,10 @@ export async function GET(req: NextRequest) {
     const page = parseInt(req.nextUrl.searchParams.get("page") || "1", 10);
     const reflectionsPerPage = 15;
     const offset = (page - 1) * reflectionsPerPage;
-
+    const ReflectionCount = await prisma.reflection.count({
+      where: { isPublic: true },
+    });
+    const MaxPage: number = ReflectionCount / reflectionsPerPage + 1;
     const reflections = await prisma.reflection.findMany({
       orderBy: { createdAt: "desc" },
       take: reflectionsPerPage,
@@ -38,6 +41,7 @@ export async function GET(req: NextRequest) {
     }
     return NextResponse.json({
       reflections,
+      MaxPage,
     });
   } catch (error) {
     console.error(error);
