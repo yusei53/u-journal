@@ -1,7 +1,6 @@
-"use client";
 import { Box } from "@mui/material";
 import { signOut } from "next-auth/react";
-import { AuthButton } from "../shared/button";
+import { AuthButton } from "./AuthButton";
 
 const LogoutButton = () => {
   return (

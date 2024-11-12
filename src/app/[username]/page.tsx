@@ -26,17 +26,17 @@ export const generateMetadata = async ({
   }
 
   return {
-    title: `${username} | u-journal`,
+    title: `${username}`,
     description: `${username} has ${userInformation.totalReflections} reflections. Find new insights with u-journal!`,
     openGraph: {
       type: "website",
       url: `https://u-journal.vercel.app/${username}`,
-      title: `${username} | Overview`,
+      title: `${username} | u-journal`,
       description: `${username} has ${userInformation.totalReflections} reflections. Find new insights with u-journal!`,
       siteName: "u-journal",
     },
     twitter: {
-      title: `${username} | Overview`,
+      title: `${username} | u-journal`,
       description: `${username} has ${userInformation.totalReflections} reflections .Find new insights with u-journal!`,
       card: "summary",
     },

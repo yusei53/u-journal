@@ -1,0 +1,56 @@
+import {
+  Box,
+  ButtonProps,
+  Button as MuiButton,
+  SxProps,
+  Typography,
+} from "@mui/material";
+import { IconType } from "react-icons";
+
+type AuthButtonProps = {
+  label: string;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  icon?: IconType;
+  sx?: SxProps;
+} & ButtonProps;
+
+export const AuthButton: React.FC<AuthButtonProps> = ({
+  label,
+  onClick,
+  icon: Icon,
+  sx,
+}) => {
+  return (
+    <MuiButton
+      onClick={onClick}
+      sx={{
+        position: "relative",
+        textTransform: "none",
+        fontSize: { xs: 13, md: 14 },
+        width: "100%",
+        color: "black",
+        border: "1px solid #c4c4c4",
+        fontWeight: "bold",
+        letterSpacing: 1,
+
+        ...sx,
+      }}
+    >
+      {Icon && (
+        <Box
+          display={"flex"}
+          alignItems={"center"}
+          position={"absolute"}
+          left={{ xs: 15, md: 24 }}
+          fontSize={{ xs: 20, md: 25 }}
+        >
+          <Icon />
+        </Box>
+      )}
+      {label}
+      <Typography component={"span"} fontSize={{ xs: 13, md: 14 }}>
+        でログイン
+      </Typography>
+    </MuiButton>
+  );
+};

@@ -59,14 +59,14 @@ const OgImage = ({ userImage, title, username }: OgImageProps) => (
       height: "100%",
       width: "100%",
       display: "flex",
-      padding: "0 120px",
+      padding: "0 110px",
       flexDirection: "column",
       justifyContent: "center",
     }}
   >
     <p
       style={{
-        fontSize: 55,
+        fontSize: 53,
         color: "1E1E1E",
         textAlign: "left",
         lineHeight: 1.5,

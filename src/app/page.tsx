@@ -3,6 +3,8 @@ import { reflectionAPI } from "../api/reflection-api";
 import RootPage from "./page.client";
 import getCurrentUser from "../utils/actions/get-current-user";
 
+// MEMO: routePageのみmetadataをlayout.tsxで設定
+
 const page = async () => {
   const currentUser = await getCurrentUser();
 

@@ -18,6 +18,7 @@ export type ReflectionWithUser = Reflection & {
 
 type ReflectionAll = {
   reflections: ReflectionWithUser[];
+  totalPage: number;
 };
 
 export type Reflections = {
@@ -35,8 +36,10 @@ export type ReflectionDetail = Reflection & {
 };
 
 export const reflectionAPI = {
-  async getReflectionAll(): Promise<Result<ReflectionAll, 404>> {
-    const path = `/api/reflection`;
+  async getReflectionAll(
+    page: number = 1
+  ): Promise<Result<ReflectionAll, 404>> {
+    const path = `/api/reflection?page=${page}`;
     const options: FetchURLOptions = {
       method: "GET",
       next: { tags: ["reflections-all"] },

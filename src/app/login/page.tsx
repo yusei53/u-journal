@@ -1,8 +1,12 @@
-"use client";
-import LoginForm from "@/src/components/auth/LoginForm";
+import { Metadata } from "next";
+import LoginFormPage from "./page.client";
+
+export const metadata: Metadata = {
+  title: "ログイン",
+};
 
 const page = () => {
-  return <LoginForm />;
+  return <LoginFormPage />;
 };
 
 export default page;

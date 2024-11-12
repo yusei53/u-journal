@@ -25,7 +25,7 @@ export const generateMetadata = async ({
   const reflection = await opengraphAPI.getOGPByCUID(reflectionCUID);
   if (reflection === 404) {
     return {
-      title: "404 | u-journal",
+      title: "404",
       description: "このページは見つかりません",
       openGraph: {
         type: "website",
@@ -37,7 +37,7 @@ export const generateMetadata = async ({
   }
 
   return {
-    title: `${reflection.title} | u-journal`,
+    title: `${reflection.title}`,
     description: `by ${reflection.user.username}`,
     openGraph: {
       type: "website",

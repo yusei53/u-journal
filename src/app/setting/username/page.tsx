@@ -2,6 +2,11 @@ import { reflectionAPI } from "@/src/api/reflection-api";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
 import { notFound } from "next/navigation";
 import RootPage from "../../page.client";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ユーザーネーム設定",
+};
 
 const page = async () => {
   const currentUser = await getCurrentUser();
