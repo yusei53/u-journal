@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     const ReflectionCount = await prisma.reflection.count({
       where: { isPublic: true },
     });
-    const MaxPage: number = ReflectionCount / reflectionsPerPage + 1;
+    const TotalPage = Math.ceil(ReflectionCount / reflectionsPerPage);
     const reflections = await prisma.reflection.findMany({
       where: { isPublic: true },
       orderBy: { createdAt: "desc" },
@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
     }
     return NextResponse.json({
       reflections,
-      MaxPage,
+      TotalPage,
     });
   } catch (error) {
     console.error(error);
