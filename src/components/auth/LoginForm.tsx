@@ -1,25 +1,64 @@
-import { Box, Typography } from "@mui/material";
-import GoogleLoginButton from "./GoogleLoginButton";
-import DiscordLoginButton from "./DiscordLoginButton";
+import { Box, Typography, Divider, Stack } from "@mui/material";
+import { AuthButton } from "../shared/button";
+import { FaDiscord } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
   return (
     <Box
-      mt={15}
-      mx={{ md: 25 }}
+      mt={10}
+      mx={{ md: 28 }}
       py={5}
       px={1}
       border={"1px solid #c4c4c4"}
       borderRadius={"10px"}
     >
-      <Typography textAlign={"center"} fontWeight={"bold"} fontSize={20}>
-        ここにアプリ名
+      <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
+        <Typography
+          component={"h1"}
+          fontWeight={"bold"}
+          fontSize={21}
+          letterSpacing={1.2}
+        >
+          u-journal
+        </Typography>
+        <Typography fontSize={16} mt={0.4} mx={0.4}>
+          に
+        </Typography>
+        <Typography
+          component={"h2"}
+          textAlign={"center"}
+          fontSize={19}
+          letterSpacing={1.2}
+        >
+          ログイン
+        </Typography>
+      </Box>
+      <Typography textAlign={"center"} my={3} fontSize={14}>
+        ログインすると投稿作成ができます
       </Typography>
-      <Typography textAlign={"center"} my={4} fontSize={14}>
-        ログインすると〇〇の機能が使えるようになります
-      </Typography>
-      <GoogleLoginButton />
-      <DiscordLoginButton />
+      <Divider sx={{ borderColor: "#c4c4c4", mx: 3 }} />
+      <Stack gap={2} mx={6} mt={3.5}>
+        <AuthButton
+          label="Google"
+          icon={FcGoogle}
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: "/setting/username",
+            })
+          }
+        />
+        <AuthButton
+          label="Discord"
+          icon={FaDiscord}
+          onClick={() =>
+            signIn("discord", {
+              callbackUrl: "/setting/username",
+            })
+          }
+        />
+      </Stack>
     </Box>
   );
 };
