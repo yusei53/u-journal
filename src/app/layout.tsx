@@ -12,10 +12,12 @@ export const metadata: Metadata = {
     template: "%s | u-journal",
   },
   description: description,
-
   openGraph: {
+    type: "website",
+    url: "https://u-journal.vercel.app/",
     title: siteName,
     description: description,
+    siteName: "u-journal",
   },
   twitter: {
     title: siteName,
