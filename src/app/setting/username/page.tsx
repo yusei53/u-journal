@@ -4,8 +4,20 @@ import { notFound } from "next/navigation";
 import RootPage from "../../page.client";
 import { Metadata } from "next";
 
+const description = "u-journalのユーザーネーム設定ページ";
 export const metadata: Metadata = {
   title: "ユーザーネーム設定",
+  description: description,
+  openGraph: {
+    type: "website",
+    url: "https://u-journal.vercel.app/setting/username",
+    title: "ユーザーネーム設定 | u-journal",
+    description: description,
+  },
+  twitter: {
+    title: "ユーザーネーム設定 | u-journal",
+    description: description,
+  },
 };
 
 const page = async () => {
