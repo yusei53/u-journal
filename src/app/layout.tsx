@@ -6,7 +6,6 @@ import { theme } from "../utils/theme/theme";
 const siteName = "u-journal | 振り返りプラットフォーム";
 const description = "日々の振り返りを手助けする振り返りプラットフォーム";
 export const metadata: Metadata = {
-  // metadataBase: new URL("https://www.renlaku.com/"),
   title: {
     default: siteName,
     template: "%s | u-journal",
