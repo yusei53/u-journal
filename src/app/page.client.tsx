@@ -35,16 +35,16 @@ const RootPage: React.FC<RootPageProps> = ({
       />
 
       <ReflectionAllArea
-        reflections={reflections}
         currentUsername={currentUsername}
-        count={totalPages}
-        page={currentPage}
-        onChange={handleChange}
+        reflections={reflections}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handleChange={handleChange}
       />
 
       <PaginationButton
-        totalPages={totalPages}
         currentPage={currentPage}
+        totalPages={totalPages}
         handleChange={handleChange}
       />
       <LogoutButton />

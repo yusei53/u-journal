@@ -11,17 +11,17 @@ import { ChangeEvent } from "react";
 type ReflectionAllAreaProps = {
   reflections: ReflectionWithUser[];
   currentUsername: User["username"];
-  count: number;
-  page: number;
-  onChange: (event: ChangeEvent<unknown>, value: number) => void;
+  currentPage: number;
+  totalPages: number;
+  handleChange: (event: ChangeEvent<unknown>, value: number) => void;
 };
 
 const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
   reflections,
   currentUsername,
-  count,
-  page,
-  onChange,
+  currentPage,
+  totalPages,
+  handleChange,
 }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -51,7 +51,11 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
     <Box mt={12} position={"relative"}>
       <Header />
       <Box position={"absolute"} mt={2} right={18}>
-        <ArrowOnlyPagination count={count} page={page} onChange={onChange} />
+        <ArrowOnlyPagination
+          page={currentPage}
+          count={totalPages}
+          onChange={handleChange}
+        />
       </Box>
       <Grid container mt={6}>
         {reflections.map((reflection) => (

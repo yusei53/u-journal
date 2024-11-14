@@ -13,8 +13,8 @@ const ArrowOnlyPagination: React.FC<ArrowOnlyPaginationProps> = ({
 }) => {
   return (
     <Pagination
-      count={count}
       page={page}
+      count={count}
       onChange={onChange}
       renderItem={(item) =>
         item.type === "previous" || item.type === "next" ? (
