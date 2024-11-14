@@ -3,19 +3,19 @@ import { ChangeEvent } from "react";
 
 type PaginationButtonProps = {
   currentPage: number;
-  totalPages: number;
+  totalPage: number;
   handleChange: (event: ChangeEvent<unknown>, value: number) => void;
 };
 const PaginationButton: React.FC<PaginationButtonProps> = ({
   currentPage,
-  totalPages,
+  totalPage,
   handleChange,
 }) => {
   return (
     <Box display={"flex"} justifyContent={"center"} mb={5}>
       <Pagination
         page={currentPage}
-        count={totalPages}
+        count={totalPage}
         onChange={handleChange}
         sx={{
           "& .Mui-selected": {

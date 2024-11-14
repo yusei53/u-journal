@@ -12,7 +12,7 @@ type RootPageProps = {
   currentUsername: User["username"];
   reflections: ReflectionWithUser[];
   currentPage: number;
-  totalPages: number;
+  totalPage: number;
 };
 
 const RootPage: React.FC<RootPageProps> = ({
@@ -20,7 +20,7 @@ const RootPage: React.FC<RootPageProps> = ({
   currentUsername,
   reflections,
   currentPage,
-  totalPages,
+  totalPage,
 }) => {
   const router = useRouter();
 
@@ -38,13 +38,13 @@ const RootPage: React.FC<RootPageProps> = ({
         currentUsername={currentUsername}
         reflections={reflections}
         currentPage={currentPage}
-        totalPages={totalPages}
+        totalPage={totalPage}
         handleChange={handleChange}
       />
 
       <PaginationButton
         currentPage={currentPage}
-        totalPages={totalPages}
+        totalPage={totalPage}
         handleChange={handleChange}
       />
       <LogoutButton />

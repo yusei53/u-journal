@@ -19,7 +19,7 @@ const page = async ({ searchParams }: { searchParams: { page?: string } }) => {
       currentUsername={currentUser?.username || null}
       reflections={result.reflections}
       currentPage={currentPage}
-      totalPages={result.totalPage}
+      totalPage={result.totalPage}
     />
   );
 };
