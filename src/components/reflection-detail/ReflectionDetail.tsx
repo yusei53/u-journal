@@ -49,7 +49,7 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
             {title}
           </Typography>
         </Box>
-        <Box mt={6}>
+        <Box mt={6} mb={3.5}>
           <Link
             href={`/${username}`}
             style={{
