@@ -6,7 +6,6 @@ import ReflectionAllArea from "../components/reflection-all/ReflectionAllArea";
 import { User } from "@prisma/client";
 import { Box, Pagination } from "@mui/material";
 import { useRouter } from "next/navigation";
-import ArrowOnlyPagination from "./ArrowOnlyPagination";
 
 type RootPageProps = {
   open: boolean;
@@ -30,24 +29,29 @@ const RootPage: React.FC<RootPageProps> = ({
   };
   return (
     <>
-      <ArrowOnlyPagination
-        count={totalPages}
-        page={currentPage}
-        onChange={handleChange}
-      />
       <SettingUsernameModalContainer
         open={open}
         currentUsername={currentUsername}
       />
+
       <ReflectionAllArea
         reflections={reflections}
         currentUsername={currentUsername}
+        count={totalPages}
+        page={currentPage}
+        onChange={handleChange}
       />
-      <Box display={"flex"} justifyContent={"center"} mb={3.5}>
+
+      <Box display={"flex"} justifyContent={"center"} mb={5}>
         <Pagination
           count={totalPages}
           page={currentPage}
           onChange={handleChange}
+          sx={{
+            "& .Mui-selected": {
+              backgroundColor: "#f0f7ff",
+            },
+          }}
         />
       </Box>
       <LogoutButton />
