@@ -15,11 +15,11 @@ const page = async ({ searchParams }: { searchParams: { page?: string } }) => {
 
   return (
     <RootPage
+      open={false}
       currentUsername={currentUser?.username || null}
       reflections={result.reflections}
       currentPage={currentPage}
       totalPages={result.totalPage}
-      open={false}
     />
   );
 };

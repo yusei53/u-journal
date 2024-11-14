@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   },
 };
 
-const page = async () => {
+const page = async ({ searchParams }: { searchParams: { page?: string } }) => {
   const currentUser = await getCurrentUser();
-
+  const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1;
   const result = await reflectionAPI.getReflectionAll();
   if (result === 404) {
     return notFound();
@@ -33,6 +33,8 @@ const page = async () => {
       open
       currentUsername={currentUser?.username || null}
       reflections={result.reflections}
+      currentPage={currentPage}
+      totalPages={result.totalPage}
     />
   );
 };
