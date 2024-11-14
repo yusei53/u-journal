@@ -4,8 +4,8 @@ import SettingUsernameModalContainer from "../components/setting-username/Settin
 import { ReflectionWithUser } from "../api/reflection-api";
 import ReflectionAllArea from "../components/reflection-all/ReflectionAllArea";
 import { User } from "@prisma/client";
-import { Box, Pagination } from "@mui/material";
 import { useRouter } from "next/navigation";
+import PaginationButton from "../components/pagination/PaginationButton";
 
 type RootPageProps = {
   open: boolean;
@@ -42,18 +42,11 @@ const RootPage: React.FC<RootPageProps> = ({
         onChange={handleChange}
       />
 
-      <Box display={"flex"} justifyContent={"center"} mb={5}>
-        <Pagination
-          count={totalPages}
-          page={currentPage}
-          onChange={handleChange}
-          sx={{
-            "& .Mui-selected": {
-              backgroundColor: "#f0f7ff",
-            },
-          }}
-        />
-      </Box>
+      <PaginationButton
+        totalPages={totalPages}
+        currentPage={currentPage}
+        handleChange={handleChange}
+      />
       <LogoutButton />
     </>
   );

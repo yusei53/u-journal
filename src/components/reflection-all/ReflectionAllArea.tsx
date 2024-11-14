@@ -5,7 +5,7 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import { theme } from "@/src/utils/theme";
 import ToOtherPageButton from "./ToOtherPageButton";
 import { User } from "@prisma/client";
-import ArrowOnlyPagination from "@/src/app/ArrowOnlyPagination";
+import ArrowOnlyPagination from "@/src/components/pagination/ArrowOnlyPagination";
 import { ChangeEvent } from "react";
 
 type ReflectionAllAreaProps = {
