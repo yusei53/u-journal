@@ -1,13 +1,13 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { ReflectionPerDate } from "@/src/api/reflections-count-api";
-import "react-calendar-heatmap/dist/styles.css";
-import "./calendar.css";
 import { theme } from "@/src/utils/theme";
 import { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
-import { IOSSwitch } from "@/src/components/shared/switch";
 import { useToggleJapaneseLabels } from "@/src/hooks/calendar/useToggleJapaneseLabels";
 import { memo, useEffect, useRef } from "react";
 import Calendar from "./Calendar";
+import ToggleJapaneseLabel from "./ToggleJapaneseLabel";
+import "react-calendar-heatmap/dist/styles.css";
+import "./calendar.css";
 
 type CalendarAreaProps = {
   startDate: Date;
@@ -51,13 +51,7 @@ const CalendarArea: React.FC<CalendarAreaProps> = ({
   return (
     <Box my={5} mx={3}>
       {isSmallScreen && (
-        // TODO: コンポーネント化する
-        <Box display="flex" alignItems="center" mb={1} mx={1}>
-          <Typography fontSize={11} mr={0.8}>
-            日本語表示
-          </Typography>
-          <IOSSwitch onClick={handleToggleLabels} />
-        </Box>
+        <ToggleJapaneseLabel onToggleLabel={handleToggleLabels} />
       )}
       <Box
         display={"flex"}
@@ -71,17 +65,7 @@ const CalendarArea: React.FC<CalendarAreaProps> = ({
             : `${totalReflections} reflections in the last year`}
         </Typography>
         {!isSmallScreen && (
-          <Box
-            display={"flex"}
-            alignItems={"center"}
-            mx={0.5}
-            whiteSpace={"nowrap"}
-          >
-            <Typography fontSize={11} mr={0.8}>
-              日本語表示
-            </Typography>
-            <IOSSwitch onClick={handleToggleLabels} />
-          </Box>
+          <ToggleJapaneseLabel onToggleLabel={handleToggleLabels} />
         )}
       </Box>
       <Box
