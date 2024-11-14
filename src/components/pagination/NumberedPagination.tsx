@@ -1,12 +1,12 @@
 import { Box, Pagination } from "@mui/material";
 import { ChangeEvent } from "react";
 
-type PaginationButtonProps = {
+type NumberedPaginationProps = {
   currentPage: number;
   totalPage: number;
   handleChange: (event: ChangeEvent<unknown>, value: number) => void;
 };
-const PaginationButton: React.FC<PaginationButtonProps> = ({
+const NumberedPagination: React.FC<NumberedPaginationProps> = ({
   currentPage,
   totalPage,
   handleChange,
@@ -27,4 +27,4 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
   );
 };
 
-export default PaginationButton;
+export default NumberedPagination;

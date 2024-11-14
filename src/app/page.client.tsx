@@ -5,7 +5,7 @@ import { ReflectionWithUser } from "../api/reflection-api";
 import ReflectionAllArea from "../components/reflection-all/ReflectionAllArea";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import PaginationButton from "../components/pagination/PaginationButton";
+import PaginationButton from "../components/pagination/NumberedPagination";
 
 type RootPageProps = {
   open: boolean;

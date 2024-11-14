@@ -5,7 +5,7 @@ import { Box, keyframes, Typography, useMediaQuery } from "@mui/material";
 import { theme } from "@/src/utils/theme";
 import ToOtherPageButton from "./ToOtherPageButton";
 import { User } from "@prisma/client";
-import ArrowOnlyPagination from "@/src/components/pagination/ArrowOnlyPagination";
+import ArrowOnlyPagination from "@/src/components/pagination/ArrowPagination";
 import { ChangeEvent } from "react";
 import { animation } from "../shared/animation";
 

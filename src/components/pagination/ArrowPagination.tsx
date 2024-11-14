@@ -1,12 +1,12 @@
 import { Pagination, PaginationItem } from "@mui/material";
 
-type ArrowOnlyPaginationProps = {
+type ArrowPaginationProps = {
   currentPage: number;
   totalPage: number;
   onChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 };
 
-const ArrowOnlyPagination: React.FC<ArrowOnlyPaginationProps> = ({
+const ArrowPagination: React.FC<ArrowPaginationProps> = ({
   currentPage,
   totalPage,
   onChange,
@@ -30,4 +30,4 @@ const ArrowOnlyPagination: React.FC<ArrowOnlyPaginationProps> = ({
   );
 };
 
-export default ArrowOnlyPagination;
+export default ArrowPagination;
