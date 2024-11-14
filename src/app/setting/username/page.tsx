@@ -1,6 +1,6 @@
 import { reflectionAPI } from "@/src/api/reflection-api";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import RootPage from "../../page.client";
 import { Metadata } from "next";
 
@@ -26,6 +26,11 @@ const page = async () => {
   const result = await reflectionAPI.getReflectionAll();
   if (result === 404) {
     return notFound();
+  }
+
+  //usernameが設定されている場合、/${currentUser.username}にリダイレクト
+  if (currentUser?.username) {
+    redirect(`/${currentUser.username}`);
   }
 
   return (
