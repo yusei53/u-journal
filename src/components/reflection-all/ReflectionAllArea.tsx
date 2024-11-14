@@ -53,8 +53,8 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
       <Header />
       <Box position={"absolute"} mt={2} right={18}>
         <ArrowOnlyPagination
-          page={currentPage}
-          count={totalPage}
+          currentPage={currentPage}
+          totalPage={totalPage}
           onChange={handleChange}
         />
       </Box>

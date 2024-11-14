@@ -1,20 +1,20 @@
 import { Pagination, PaginationItem } from "@mui/material";
 
 type ArrowOnlyPaginationProps = {
-  count: number;
-  page: number;
+  currentPage: number;
+  totalPage: number;
   onChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 };
 
 const ArrowOnlyPagination: React.FC<ArrowOnlyPaginationProps> = ({
-  count,
-  page,
+  currentPage,
+  totalPage,
   onChange,
 }) => {
   return (
     <Pagination
-      page={page}
-      count={count}
+      page={currentPage}
+      count={totalPage}
       onChange={onChange}
       renderItem={(item) =>
         item.type === "previous" || item.type === "next" ? (
