@@ -22,7 +22,7 @@ const ReflectionAllHeader: React.FC<ReflectionAllHeaderProps> = ({
   return (
     <>
       {isSmallScreen && (
-        <Box position={"absolute"} top={-45} right={30}>
+        <Box display={"flex"} justifyContent={"flex-end"} mr={3} mb={2}>
           <ToOtherPageButton currentUsername={currentUsername} />
         </Box>
       )}
@@ -38,7 +38,7 @@ const ReflectionAllHeader: React.FC<ReflectionAllHeaderProps> = ({
           <ToOtherPageButton currentUsername={currentUsername} />
         )}
       </Box>
-      <Box position={"absolute"} mt={2} right={18}>
+      <Box display={"flex"} justifyContent={"flex-end"} mt={6} mr={2}>
         <ArrowPagination
           currentPage={currentPage}
           totalPage={totalPage}

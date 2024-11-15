@@ -26,14 +26,14 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
   handleChange,
 }) => {
   return (
-    <Box mt={12} position={"relative"}>
+    <Box mt={12}>
       <ReflectionAllHeader
         currentUsername={currentUsername}
         currentPage={currentPage}
         totalPage={totalPage}
         handleChange={handleChange}
       />
-      <Grid container my={{ xs: 4, md: 8 }}>
+      <Grid container my={0.5}>
         {reflections.map((reflection, index) => (
           <Grid
             key={reflection.reflectionCUID}
