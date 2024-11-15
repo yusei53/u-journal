@@ -1,10 +1,11 @@
 import Grid from "@mui/material/Grid2";
 import { ReflectionWithUser } from "@/src/api/reflection-api";
 import ReflectionCardWithIcon from "./ReflectionCardWithIcon";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box, keyframes, Typography, useMediaQuery } from "@mui/material";
 import { theme } from "@/src/utils/theme";
 import ToOtherPageButton from "./ToOtherPageButton";
 import { User } from "@prisma/client";
+import { animation } from "../shared/animation";
 
 type ReflectionAllAreaProps = {
   reflections: ReflectionWithUser[];
@@ -43,14 +44,15 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
     <Box mt={12} position={"relative"}>
       <Header />
       <Grid container my={{ xs: 4, md: 8 }}>
-        {reflections.map((reflection) => (
+        {reflections.map((reflection, index) => (
           <Grid
-            size={{ xs: 12, sm: 6, md: 4 }}
             key={reflection.reflectionCUID}
+            size={{ xs: 12, sm: 6, md: 4 }}
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
             mb={3.5}
+            sx={animation(index)}
           >
             <ReflectionCardWithIcon reflection={reflection} />
           </Grid>

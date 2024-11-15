@@ -1,12 +1,12 @@
 "use client";
 import { Box, Container, Stack, Typography } from "@mui/material";
-import "../shared/input/input.css";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import StyledMarkdown from "./StyledMarkdown";
 import { theme } from "@/src/utils/theme";
-import Link from "next/link";
 import { formatDate } from "@/src/utils/date-helper";
+import Link from "next/link";
 import Image from "next/image";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import "../shared/input/input.css";
 
 type ReflectionDetailProps = {
   title: string;
@@ -49,7 +49,7 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
             {title}
           </Typography>
         </Box>
-        <Box mt={6}>
+        <Box mt={6} mb={3.5}>
           <Link
             href={`/${username}`}
             style={{

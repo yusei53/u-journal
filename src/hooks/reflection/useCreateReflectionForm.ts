@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { reflectionAPI } from "@/src/api/reflection-api";
 
 const createReflectionSchema = z.object({
@@ -33,9 +33,8 @@ export const useCreateReflectionForm = (username: string | undefined) => {
     async (formData: CreateReflectionSchemaType) => {
       const res = await reflectionAPI.createReflection(formData);
 
-      // TODO: 401が返ってきたらログイン画面に遷移
       if (res === 401) {
-        return notFound();
+        router.push(`/login`);
       } else {
         router.push(`/${username}`);
       }
