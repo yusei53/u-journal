@@ -1,22 +1,14 @@
-import { Box, Typography, useMediaQuery } from "@mui/material";
-import ToOtherPageButton from "../reflection-all/ToOtherPageButton";
 import { theme } from "@/src/utils/theme";
+import { Box, Typography, useMediaQuery } from "@mui/material";
+import ToOtherPageButton from "./ToOtherPageButton";
 import { User } from "@prisma/client";
-import { ChangeEvent } from "react";
-import ArrowPagination from "./ArrowPagination";
 
-type ReflectionAllHeaderProps = {
+type ReflectionAllHeaerProps = {
   currentUsername: User["username"];
-  currentPage: number;
-  totalPage: number;
-  handleChange: (event: ChangeEvent<unknown>, value: number) => void;
 };
 
-const ReflectionAllHeader: React.FC<ReflectionAllHeaderProps> = ({
+const ReflectionHeader: React.FC<ReflectionAllHeaerProps> = ({
   currentUsername,
-  currentPage,
-  totalPage,
-  handleChange,
 }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
@@ -38,15 +30,8 @@ const ReflectionAllHeader: React.FC<ReflectionAllHeaderProps> = ({
           <ToOtherPageButton currentUsername={currentUsername} />
         )}
       </Box>
-      <Box display={"flex"} justifyContent={"flex-end"} mt={6} mr={2}>
-        <ArrowPagination
-          currentPage={currentPage}
-          totalPage={totalPage}
-          onChange={handleChange}
-        />
-      </Box>
     </>
   );
 };
 
-export default ReflectionAllHeader;
+export default ReflectionHeader;
