@@ -38,7 +38,7 @@ const RootPage: React.FC<RootPageProps> = ({
         reflections={reflections}
         currentPage={currentPage}
         totalPage={totalPage}
-        handleChange={handleChange}
+        onChange={handleChange}
       />
       <LogoutButton />
     </>

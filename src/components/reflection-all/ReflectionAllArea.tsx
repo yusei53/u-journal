@@ -14,7 +14,7 @@ type ReflectionAllAreaProps = {
   reflections: ReflectionWithUser[];
   currentPage: number;
   totalPage: number;
-  handleChange: (event: ChangeEvent<unknown>, value: number) => void;
+  onChange: (event: ChangeEvent<unknown>, value: number) => void;
 };
 
 const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
@@ -22,7 +22,7 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
   reflections,
   currentPage,
   totalPage,
-  handleChange,
+  onChange,
 }) => {
   return (
     <Box mt={12}>
@@ -30,7 +30,7 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
       <ArrowPagination
         currentPage={currentPage}
         totalPage={totalPage}
-        onChange={handleChange}
+        onChange={onChange}
       />
       <Grid container my={0.5}>
         {reflections.map((reflection, index) => (
@@ -50,7 +50,7 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
       <NumberedPagination
         currentPage={currentPage}
         totalPage={totalPage}
-        handleChange={handleChange}
+        onChange={onChange}
       />
     </Box>
   );
