@@ -33,16 +33,9 @@ const RootPage: React.FC<RootPageProps> = ({
         open={open}
         currentUsername={currentUsername}
       />
-
       <ReflectionAllArea
         currentUsername={currentUsername}
         reflections={reflections}
-        currentPage={currentPage}
-        totalPage={totalPage}
-        handleChange={handleChange}
-      />
-
-      <PaginationButton
         currentPage={currentPage}
         totalPage={totalPage}
         handleChange={handleChange}

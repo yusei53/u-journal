@@ -1,14 +1,13 @@
 import Grid from "@mui/material/Grid2";
 import { ReflectionWithUser } from "@/src/api/reflection-api";
 import ReflectionCardWithIcon from "./ReflectionCardWithIcon";
-import { Box, Typography, useMediaQuery } from "@mui/material";
-import { theme } from "@/src/utils/theme";
-import ToOtherPageButton from "./ToOtherPageButton";
+import { Box } from "@mui/material";
 import { User } from "@prisma/client";
 import { ChangeEvent } from "react";
 import { animation } from "../shared/animation";
-import ArrowPagination from "@/src/components/pagination/ArrowPagination";
-import ReflectionAllHeader from "../pagination/ReflectionAllHeader";
+import ArrowPagination from "../pagination/ArrowPagination";
+import NumberedPagination from "../pagination/NumberedPagination";
+import ReflectionAllHeader from "./ReflectionAllHeader";
 
 type ReflectionAllAreaProps = {
   currentUsername: User["username"];
@@ -27,11 +26,11 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
 }) => {
   return (
     <Box mt={12}>
-      <ReflectionAllHeader
-        currentUsername={currentUsername}
+      <ReflectionAllHeader currentUsername={currentUsername} />
+      <ArrowPagination
         currentPage={currentPage}
         totalPage={totalPage}
-        handleChange={handleChange}
+        onChange={handleChange}
       />
       <Grid container my={0.5}>
         {reflections.map((reflection, index) => (
@@ -48,6 +47,11 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
           </Grid>
         ))}
       </Grid>
+      <NumberedPagination
+        currentPage={currentPage}
+        totalPage={totalPage}
+        handleChange={handleChange}
+      />
     </Box>
   );
 };
