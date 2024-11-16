@@ -5,10 +5,10 @@ import getCurrentUser from "../utils/actions/get-current-user";
 
 // MEMO: routePageのみmetadataをlayout.tsxで設定
 
-const page = async () => {
+const page = async ({ searchParams }: { searchParams: { page?: string } }) => {
+  const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1;
   const currentUser = await getCurrentUser();
-
-  const result = await reflectionAPI.getReflectionAll();
+  const result = await reflectionAPI.getReflectionAll(currentPage);
   if (result === 404) {
     return notFound();
   }
@@ -18,6 +18,8 @@ const page = async () => {
       open={false}
       currentUsername={currentUser?.username || null}
       reflections={result.reflections}
+      currentPage={currentPage}
+      totalPage={result.totalPage}
     />
   );
 };

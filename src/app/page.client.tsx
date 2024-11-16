@@ -4,18 +4,29 @@ import SettingUsernameModalContainer from "../components/setting-username/Settin
 import { ReflectionWithUser } from "../api/reflection-api";
 import ReflectionAllArea from "../components/reflection-all/ReflectionAllArea";
 import { User } from "@prisma/client";
+import { useRouter } from "next/navigation";
+import PaginationButton from "../components/pagination/NumberedPagination";
 
 type RootPageProps = {
   open: boolean;
   currentUsername: User["username"];
   reflections: ReflectionWithUser[];
+  currentPage: number;
+  totalPage: number;
 };
 
 const RootPage: React.FC<RootPageProps> = ({
   open,
   currentUsername,
   reflections,
+  currentPage,
+  totalPage,
 }) => {
+  const router = useRouter();
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    router.push(`?page=${value}`);
+  };
   return (
     <>
       <SettingUsernameModalContainer
@@ -23,8 +34,11 @@ const RootPage: React.FC<RootPageProps> = ({
         currentUsername={currentUsername}
       />
       <ReflectionAllArea
-        reflections={reflections}
         currentUsername={currentUsername}
+        reflections={reflections}
+        currentPage={currentPage}
+        totalPage={totalPage}
+        onChange={handleChange}
       />
       <LogoutButton />
     </>
