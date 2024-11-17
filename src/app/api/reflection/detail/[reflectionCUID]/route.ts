@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/src/lib/prisma";
+import getCurrentUser from "@/src/utils/actions/get-current-user";
 
 export async function GET(
   request: NextRequest,
@@ -46,6 +47,43 @@ export async function GET(
     });
   } catch (error) {
     console.error("Error fetching reflection:", error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { reflectionCUID: string } }
+) {
+  try {
+    const { reflectionCUID } = params;
+
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser?.id || !currentUser?.email) {
+      return new NextResponse("認証されていません", { status: 401 });
+    }
+
+    const reflection = await prisma.reflection.delete({
+      where: { reflectionCUID },
+    });
+
+    if (!reflection) {
+      return NextResponse.json(
+        { message: "Reflection not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { message: "Reflection deleted" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error deleting reflection:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }
