@@ -36,7 +36,7 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
         {reflections.map((reflection, index) => (
           <Grid
             key={reflection.reflectionCUID}
-            size={{ xs: 12, sm: 6, md: 4 }}
+            size={{ xs: 12, md: 6 }}
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
