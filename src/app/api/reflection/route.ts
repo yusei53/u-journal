@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     const page = parseInt(req.nextUrl.searchParams.get("page") || "1", 10);
-    const reflectionsPerPage = 15;
+    const reflectionsPerPage = 14;
     const offset = (page - 1) * reflectionsPerPage;
     const reflectionCount = await prisma.reflection.count({
       where: { isPublic: true },
