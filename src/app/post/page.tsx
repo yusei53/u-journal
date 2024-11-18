@@ -2,18 +2,18 @@ import { Metadata } from "next";
 import ReflectionPostFormPage from "./page.client";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
 
-const description = "u-journalの投稿作成ページ";
+const description = "リフティの投稿作成ページ";
 export const metadata: Metadata = {
   title: "投稿作成",
   description: description,
   openGraph: {
     type: "website",
-    url: "https://u-journal.vercel.app/post",
-    title: "投稿作成 | u-journal",
+    url: "https://www.refty.jp/post",
+    title: "投稿作成 | リフティ",
     description: description,
   },
   twitter: {
-    title: "投稿作成 | u-journal",
+    title: "投稿作成 | リフティ",
     description: description,
   },
 };

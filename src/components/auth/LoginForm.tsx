@@ -21,7 +21,7 @@ const LoginForm = () => {
           fontSize={21}
           letterSpacing={1.2}
         >
-          u-journal
+          リフティ
         </Typography>
         <Typography fontSize={16} mt={0.4} mx={0.4}>
           に

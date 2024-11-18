@@ -29,9 +29,9 @@ export const generateMetadata = async ({
       description: "このページは見つかりません",
       openGraph: {
         type: "website",
-        title: "404 | u-journal",
+        title: "404 | リフティ",
         description: "このページは見つかりません",
-        siteName: "u-journal",
+        siteName: "リフティ",
       },
     };
   }
@@ -41,9 +41,9 @@ export const generateMetadata = async ({
     description: `by ${reflection.user.username}`,
     openGraph: {
       type: "website",
-      title: `${reflection.title} | u-journal`,
+      title: `${reflection.title} | リフティ`,
       description: `by ${reflection.user?.username}`,
-      siteName: "u-journal",
+      siteName: "リフティ",
     },
   };
 };

@@ -14,30 +14,30 @@ export const generateMetadata = async ({
   const userInformation = await opengraphAPI.getOGPByUsername(username);
   if (userInformation === 404) {
     return {
-      title: "404 | u-journal",
+      title: "404 | リフティ",
       description: "このページは見つかりません",
       openGraph: {
         type: "website",
-        title: "404 | u-journal",
+        title: "404 | リフティ",
         description: "存在しないユーザーです",
-        siteName: "u-journal",
+        siteName: "リフティ",
       },
     };
   }
 
   return {
     title: `${username}`,
-    description: `${username} has ${userInformation.totalReflections} reflections. Find new insights with u-journal!`,
+    description: `${username} has ${userInformation.totalReflections} reflections. Find new insights with refty!`,
     openGraph: {
       type: "website",
-      url: `https://u-journal.vercel.app/${username}`,
-      title: `${username} | u-journal`,
-      description: `${username} has ${userInformation.totalReflections} reflections. Find new insights with u-journal!`,
-      siteName: "u-journal",
+      url: `https://www.refty.jp/${username}`,
+      title: `${username} | リフティ`,
+      description: `${username} has ${userInformation.totalReflections} reflections. Find new insights with refty!`,
+      siteName: "リフティ",
     },
     twitter: {
-      title: `${username} | u-journal`,
-      description: `${username} has ${userInformation.totalReflections} reflections .Find new insights with u-journal!`,
+      title: `${username} | リフティ`,
+      description: `${username} has ${userInformation.totalReflections} reflections .Find new insights with refty!`,
       card: "summary",
     },
   };

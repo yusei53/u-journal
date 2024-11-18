@@ -67,7 +67,7 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
         <Box sx={modal}>
           <Image
             src={"/favicon.svg"}
-            alt={"u-journalのロゴ"}
+            alt={"リフティのロゴ"}
             width={80}
             height={80}
           />
@@ -80,7 +80,9 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
           <Box component={"form"} onSubmit={onSubmit}>
             <Box my={5}>
               <Box display={"flex"} whiteSpace={"nowrap"}>
-                <Typography>u-journal.vercel.app/</Typography>
+                <Typography letterSpacing={0.5}>
+                  https://www.refty.jp/
+                </Typography>
                 <Controller
                   name="username"
                   control={control}

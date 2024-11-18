@@ -1,18 +1,18 @@
 import { Metadata } from "next";
 import LoginFormPage from "./page.client";
 
-const description = "u-journalのログインページ";
+const description = "リフティのログインページ";
 export const metadata: Metadata = {
   title: "ログイン",
   description: description,
   openGraph: {
     type: "website",
-    url: "https://u-journal.vercel.app/login",
-    title: "ログイン | u-journal",
+    url: "https://www.refty.jp/login",
+    title: "ログイン | リフティ",
     description: description,
   },
   twitter: {
-    title: "ログイン | u-journal",
+    title: "ログイン | リフティ",
     description: description,
   },
 };

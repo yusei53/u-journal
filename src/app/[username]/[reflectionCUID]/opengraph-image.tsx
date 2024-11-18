@@ -20,7 +20,7 @@ export default async function Image({
         (
           <OgImage
             userImage="404"
-            title="404 | u-journal"
+            title="404 | リフティ"
             username="このページは見つかりません"
           />
         ),

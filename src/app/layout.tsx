@@ -3,20 +3,20 @@ import { NextAuthProvider } from "../providers";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../utils/theme/theme";
 
-const siteName = "u-journal | 振り返りプラットフォーム";
+const siteName = "リフティ | 振り返りプラットフォーム";
 const description = "日々の振り返りを手助けする振り返りプラットフォーム";
 export const metadata: Metadata = {
   title: {
     default: siteName,
-    template: "%s | u-journal",
+    template: "%s | リフティ",
   },
   description: description,
   openGraph: {
     type: "website",
-    url: "https://u-journal.vercel.app/",
+    url: "https://www.refty.jp/",
     title: siteName,
     description: description,
-    siteName: "u-journal",
+    siteName: "リフティ",
   },
   twitter: {
     title: siteName,
@@ -46,7 +46,7 @@ export default async function RootLayout({
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
-        <meta name="apple-mobile-web-app-title" content="u-journal" />
+        <meta name="apple-mobile-web-app-title" content="リフティ" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body style={{ margin: 0 }}>
