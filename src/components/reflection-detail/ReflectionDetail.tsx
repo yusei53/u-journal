@@ -1,6 +1,6 @@
 "use client";
 import { Box, Container, Stack, Typography } from "@mui/material";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import StyledMarkdown from "./StyledMarkdown";
 import { theme } from "@/src/utils/theme";
 import { formatDate } from "@/src/utils/date-helper";
@@ -60,13 +60,17 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
                 width={25}
                 height={25}
                 priority
-                style={{ borderRadius: 100, marginRight: 8 }}
+                style={{ borderRadius: 10, marginRight: 8 }}
               />
               <Typography sx={link}>{username}</Typography>
             </Link>
-            <AccessTimeIcon
-              color={"disabled"}
-              sx={{ ml: 1.5, mr: 0.5, fontSize: 13 }}
+            <CalendarTodayIcon
+              sx={{
+                color: theme.palette.grey[600],
+                ml: 1.5,
+                mr: 0.5,
+                fontSize: 13,
+              }}
             />
             <Typography component={"time"} color={theme.palette.grey[600]}>
               {formatDate(createdAt)}
