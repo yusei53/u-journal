@@ -3,6 +3,7 @@ import UserProfileArea from "@/src/components/reflection-list/profile/UserProfil
 import ReflectionCardListArea from "@/src/components/reflection-list/list/ReflectionCardListArea";
 import { Reflection } from "@/src/api/reflection-api";
 import { ReflectionsCount } from "@/src/api/reflections-count-api";
+import { PostNavigationButton } from "@/src/components/shared/button";
 
 type UserReflectionListPageProps = {
   userImage: string;
@@ -30,6 +31,13 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
       ) : (
         <ReflectionCardListArea username={username} reflections={reflections} />
       )}
+      <PostNavigationButton
+        sx={{
+          position: "fixed",
+          right: { xs: 40, md: 100 },
+          bottom: 50,
+        }}
+      />
     </>
   );
 };

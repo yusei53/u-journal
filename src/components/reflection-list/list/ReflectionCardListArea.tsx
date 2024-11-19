@@ -29,13 +29,6 @@ const ReflectionCardListArea: React.FC<ReflectionCardListAreaProps> = ({
           </Grid>
         ))}
       </Grid>
-      <PostNavigationButton
-        sx={{
-          position: "fixed",
-          right: { xs: 40, md: 100 },
-          bottom: 50,
-        }}
-      />
     </>
   );
 };
