@@ -2,10 +2,9 @@
 import LogoutButton from "../components/auth/LogoutButton";
 import SettingUsernameModalContainer from "../components/setting-username/SettingUsernameModalContainer";
 import { ReflectionWithUser } from "../api/reflection-api";
-import ReflectionAllArea from "../components/reflection-all/ReflectionAllArea";
+import ReflectionAllArea from "../components/reflection-all-list/ReflectionAllArea";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import PaginationButton from "../components/shared/pagination/NumberedPagination";
 
 type RootPageProps = {
   open: boolean;
