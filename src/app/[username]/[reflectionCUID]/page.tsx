@@ -45,6 +45,11 @@ export const generateMetadata = async ({
       description: `by ${reflection.user?.username}`,
       siteName: "リフティ",
     },
+    twitter: {
+      title: `${reflection.title} | リフティ`,
+      description: `by ${reflection.user?.username}`,
+      card: "summary_large_image",
+    },
   };
 };
 
