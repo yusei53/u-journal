@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid2";
 import { ReflectionWithUser } from "@/src/api/reflection-api";
-import ReflectionCardWithIcon from "./ReflectionCardWithIcon";
+import ReflectionCardWithUser from "./ReflectionCardWithUser";
 import { Box } from "@mui/material";
 import { User } from "@prisma/client";
 import { ChangeEvent } from "react";
@@ -43,7 +43,7 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
             mb={3.5}
             sx={animation(index)}
           >
-            <ReflectionCardWithIcon reflection={reflection} />
+            <ReflectionCardWithUser reflection={reflection} />
           </Grid>
         ))}
       </Grid>
