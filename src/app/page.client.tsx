@@ -1,10 +1,12 @@
 "use client";
+import { useState } from "react";
 import { ReflectionWithUser } from "../api/reflection-api";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import ReflectionAllArea from "../components/reflection-all-list/list/ReflectionAllListArea";
 import LogoutButton from "../components/auth/LogoutButton";
 import SettingUsernameModalContainer from "../components/setting-username/SettingUsernameModalContainer";
+import { Loading } from "../components/shared/loading";
 
 type RootPageProps = {
   open: boolean;
@@ -22,12 +24,20 @@ const RootPage: React.FC<RootPageProps> = ({
   totalPage,
 }) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handleChange = async (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setIsLoading(true);
     router.push(`?page=${value}`);
+    setIsLoading(false);
   };
+
   return (
     <>
+      {isLoading && <Loading />}
       <SettingUsernameModalContainer
         open={open}
         currentUsername={currentUsername}
@@ -38,6 +48,7 @@ const RootPage: React.FC<RootPageProps> = ({
         currentPage={currentPage}
         totalPage={totalPage}
         onChange={handleChange}
+        isLoading={isLoading}
       />
       <LogoutButton />
     </>
