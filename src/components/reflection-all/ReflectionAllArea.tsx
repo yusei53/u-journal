@@ -5,8 +5,8 @@ import { Box } from "@mui/material";
 import { User } from "@prisma/client";
 import { ChangeEvent } from "react";
 import { animation } from "../shared/animation";
-import ArrowPagination from "../pagination/ArrowPagination";
-import NumberedPagination from "../pagination/NumberedPagination";
+import ArrowPagination from "../shared/pagination/ArrowPagination";
+import NumberedPagination from "../shared/pagination/NumberedPagination";
 import ReflectionAllHeader from "./ReflectionAllHeader";
 
 type ReflectionAllAreaProps = {
