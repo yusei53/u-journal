@@ -1,6 +1,6 @@
 "use client";
 import UserProfileArea from "@/src/components/reflection-list/profile/UserProfileArea";
-import ReflectionCardListArea from "@/src/components/reflection-list/reflection-list/ReflectionCardListArea";
+import ReflectionCardListArea from "@/src/components/reflection-list/list/ReflectionCardListArea";
 import { Reflection } from "@/src/api/reflection-api";
 import { ReflectionsCount } from "@/src/api/reflections-count-api";
 
