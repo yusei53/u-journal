@@ -1,13 +1,13 @@
 import { theme } from "@/src/utils/theme";
 import { Box, Typography, useMediaQuery } from "@mui/material";
-import ToOtherPageButton from "./ToOtherPageButton";
 import { User } from "@prisma/client";
+import { ToOtherPageButton } from "../button";
 
-type ReflectionAllHeaerProps = {
+type ReflectionAllHeaderProps = {
   currentUsername: User["username"];
 };
 
-const ReflectionHeader: React.FC<ReflectionAllHeaerProps> = ({
+export const ReflectionAllHeader: React.FC<ReflectionAllHeaderProps> = ({
   currentUsername,
 }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -33,5 +33,3 @@ const ReflectionHeader: React.FC<ReflectionAllHeaerProps> = ({
     </>
   );
 };
-
-export default ReflectionHeader;

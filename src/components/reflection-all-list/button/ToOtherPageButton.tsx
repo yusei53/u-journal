@@ -8,7 +8,7 @@ type ToOtherPageButtonProps = {
   currentUsername: User["username"];
 };
 
-const ToOtherPageButton: React.FC<ToOtherPageButtonProps> = ({
+export const ToOtherPageButton: React.FC<ToOtherPageButtonProps> = ({
   currentUsername,
 }) => {
   const text = currentUsername ? "マイページへ" : "ログインする";
@@ -38,5 +38,3 @@ const ToOtherPageButton: React.FC<ToOtherPageButtonProps> = ({
     </Typography>
   );
 };
-
-export default ToOtherPageButton;

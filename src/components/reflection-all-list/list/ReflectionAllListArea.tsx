@@ -4,10 +4,10 @@ import ReflectionCardWithUser from "./ReflectionCardWithUser";
 import { Box } from "@mui/material";
 import { User } from "@prisma/client";
 import { ChangeEvent } from "react";
-import { animation } from "../shared/animation";
-import ArrowPagination from "../shared/pagination/ArrowPagination";
-import NumberedPagination from "../shared/pagination/NumberedPagination";
-import ReflectionAllHeader from "./ReflectionAllHeader";
+import { animation } from "../../shared/animation";
+import ArrowPagination from "../../shared/pagination/ArrowPagination";
+import NumberedPagination from "../../shared/pagination/NumberedPagination";
+import { ReflectionAllHeader } from "../header";
 
 type ReflectionAllAreaProps = {
   currentUsername: User["username"];
