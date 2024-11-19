@@ -1,13 +1,12 @@
 import Grid from "@mui/material/Grid2";
 import { ReflectionWithUser } from "@/src/api/reflection-api";
 import ReflectionCardWithUser from "./ReflectionCardWithUser";
-import { Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import { User } from "@prisma/client";
 import { ChangeEvent } from "react";
 import { animation } from "../../shared/animation";
 import { ReflectionAllHeader } from "../header";
 import { ArrowPagination, NumberedPagination } from "../../shared/pagination";
-import { Loading } from "../../shared/loading";
 
 type ReflectionAllAreaProps = {
   currentUsername: User["username"];
@@ -48,7 +47,6 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
           </Grid>
         ))}
       </Grid>
-
       <NumberedPagination
         currentPage={currentPage}
         totalPage={totalPage}
