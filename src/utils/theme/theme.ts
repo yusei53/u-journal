@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material";
 
 export const theme = createTheme({
   typography: {
-    fontSize: 12.5,
+    fontSize: 13.5,
   },
   palette: {
     // mainが背景色で、lightがaタグ, contrastTextがhover

@@ -5,7 +5,7 @@ import { EditorContent } from "@tiptap/react";
 const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
   letterSpacing: "0.04em",
   lineHeight: 1.7,
-  fontSize: "0.9rem",
+  fontSize: "1.05rem",
   fontWeight: 500,
   ".tiptap p.is-editor-empty:first-of-type::before": {
     color: "#adb5bd",
@@ -55,19 +55,19 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     },
 
     h1: {
-      fontSize: "1.2rem",
+      fontSize: "1.4rem",
     },
 
     h2: {
-      fontSize: "1.1rem",
+      fontSize: "1.3rem",
     },
 
     h3: {
-      fontSize: "1rem",
+      fontSize: "1.2rem",
     },
 
     "h4, h5, h6": {
-      fontSize: "0.8rem",
+      fontSize: "1.1rem",
     },
 
     /* Code and preformatted text styles */
@@ -75,7 +75,7 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
       backgroundColor: "#f0f0f0",
       borderRadius: "0.4rem",
       color: "var(--black)",
-      fontSize: "0.85rem",
+      fontSize: "0.95rem",
       padding: "0.25em 0.3em",
     },
 
@@ -89,7 +89,7 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
 
       "& code": {
         backgroundColor: "transparent",
-        fontSize: "0.8rem",
+        fontSize: "0.9rem",
       },
     },
 
