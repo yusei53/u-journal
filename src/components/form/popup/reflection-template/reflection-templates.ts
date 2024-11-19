@@ -26,6 +26,34 @@ export const REFLECTION_TEMPLATES = {
       description: "悪かったことの改善方法を書きましょう",
     },
   ],
+  FunDoneLearn: [
+    {
+      title: "Fun",
+      description: "楽しかったことを思いつく限り書きましょう",
+    },
+    {
+      title: "Done",
+      description: "完了したことを思いつく限り書きましょう",
+    },
+    {
+      title: "Learn",
+      description: "学んだことを思いつく限り書きましょう",
+    },
+  ],
+  FromResPectedSeniors: [
+    {
+      title: "今回の振り返りで自分に点数つけたら何点？",
+      description: "正直に書きましょう",
+    },
+    {
+      title: "なんで上の点数なの？",
+      description: "正直に書きましょう",
+    },
+    {
+      title: "NextAction何する？",
+      description: "正直に書きましょう",
+    },
+  ],
 } as const;
 
 export type ReflectionTemplateType = typeof REFLECTION_TEMPLATES;
@@ -33,6 +61,8 @@ export type ReflectionTemplateType = typeof REFLECTION_TEMPLATES;
 const reflectionTemplateName: Record<keyof ReflectionTemplateType, string> = {
   GKPT: "GKPT",
   DeveloperReflection: "開発者が使う振り返り手法",
+  FunDoneLearn: "Fun・Done・Learn",
+  FromResPectedSeniors: "あなたの一番尊敬する先輩から",
 };
 
 export const getReflectionTemplateName = (
