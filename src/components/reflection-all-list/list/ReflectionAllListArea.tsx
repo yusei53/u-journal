@@ -15,7 +15,6 @@ type ReflectionAllAreaProps = {
   currentPage: number;
   totalPage: number;
   onChange: (event: ChangeEvent<unknown>, value: number) => void;
-  isLoading: boolean; // ローディング状態を受け取るプロップスを追加
 };
 
 const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
@@ -24,7 +23,6 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
   currentPage,
   totalPage,
   onChange,
-  isLoading, // ローディング状態を受け取る
 }) => {
   return (
     <Box mt={12} position={"relative"}>
@@ -34,11 +32,6 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
         totalPage={totalPage}
         onChange={onChange}
       />
-      {isLoading && (
-        <Box position={"fixed"} top={"50%"} left={{ xs: "45%", md: "48.5%" }}>
-          <CircularProgress size={45} sx={{ color: "#8FC9F9" }} />
-        </Box>
-      )}
       <Grid container my={0.5}>
         {/* MEMO: indexはアニメーションのために必要 */}
         {reflections.map((reflection, index) => (
