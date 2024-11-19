@@ -10,6 +10,7 @@ type ReflectionCardProps = {
   reflection: Reflection;
 };
 
+// MEMO: ここ書き換えたら、../../reflection-all/ReflectionCardWithUser.tsxも書き換える
 const ReflectionCard: React.FC<ReflectionCardProps> = ({
   username,
   reflection,
@@ -55,7 +56,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
             alignItems={"center"}
             justifyContent={"center"}
           >
-            <Typography fontSize={35}>{reflection.charStamp}</Typography>
+            <Typography fontSize={33}>{reflection.charStamp}</Typography>
           </Box>
           <Box
             component={"time"}

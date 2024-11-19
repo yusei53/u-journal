@@ -9,6 +9,8 @@ import { formatDate } from "@/src/utils/date-helper";
 type ReflectionCardWithUserProps = {
   reflection: ReflectionWithUser;
 };
+
+// MEMO: ここ書き換えたら、../user-reflection-list/reflection-list/ReflectionCard.tsxも書き換える
 const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
   reflection,
 }) => {
@@ -55,7 +57,7 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
               alignItems={"center"}
               justifyContent={"center"}
             >
-              <Typography fontSize={35}>{reflection.charStamp}</Typography>
+              <Typography fontSize={33}>{reflection.charStamp}</Typography>
             </Box>
           </Link>
           <Box
