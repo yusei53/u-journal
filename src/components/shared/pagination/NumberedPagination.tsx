@@ -6,7 +6,8 @@ type NumberedPaginationProps = {
   totalPage: number;
   onChange: (event: ChangeEvent<unknown>, value: number) => void;
 };
-const NumberedPagination: React.FC<NumberedPaginationProps> = ({
+
+export const NumberedPagination: React.FC<NumberedPaginationProps> = ({
   currentPage,
   totalPage,
   onChange,
@@ -26,5 +27,3 @@ const NumberedPagination: React.FC<NumberedPaginationProps> = ({
     </Box>
   );
 };
-
-export default NumberedPagination;

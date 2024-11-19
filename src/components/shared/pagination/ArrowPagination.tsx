@@ -6,7 +6,7 @@ type ArrowPaginationProps = {
   onChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 };
 
-const ArrowPagination: React.FC<ArrowPaginationProps> = ({
+export const ArrowPagination: React.FC<ArrowPaginationProps> = ({
   currentPage,
   totalPage,
   onChange,
@@ -31,5 +31,3 @@ const ArrowPagination: React.FC<ArrowPaginationProps> = ({
     </Box>
   );
 };
-
-export default ArrowPagination;
