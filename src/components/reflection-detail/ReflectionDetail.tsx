@@ -6,7 +6,7 @@ import { theme } from "@/src/utils/theme";
 import { formatDate } from "@/src/utils/date-helper";
 import Link from "next/link";
 import Image from "next/image";
-import "../shared/input/input.css";
+import { animation } from "../shared/animation";
 
 type ReflectionDetailProps = {
   title: string;
@@ -42,7 +42,7 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
 }) => {
   return (
     //TODO: ContainerとStackの部分はReflectionPostForm.tsxと同じなので、共通化を検討
-    <Container maxWidth="sm" sx={{ my: 15 }}>
+    <Container maxWidth="sm" sx={{ ...animation(0.6), my: 15 }}>
       <Stack m={{ md: 2 }}>
         <Box mb={3}>
           <Box display={"flex"} alignItems={"center"} my={1}>
