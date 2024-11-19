@@ -33,6 +33,7 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
         onChange={onChange}
       />
       <Grid container my={0.5}>
+        {/* MEMO: indexはアニメーションのために必要 */}
         {reflections.map((reflection, index) => (
           <Grid
             key={reflection.reflectionCUID}
