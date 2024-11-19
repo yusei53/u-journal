@@ -23,6 +23,16 @@ const link = {
   },
 };
 
+// MEMO: ../shared/input/input.cssで定義したスタイルを適用させる
+// MEMO: 本番でたまにここのcssが効かないので、importでclassNameを使わず以下をsxで指定する
+const h1 = {
+  p: 0,
+  width: "100%",
+  fontSize: "22px",
+  border: "none",
+  outline: "none",
+};
+
 export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
   title,
   userImage,
@@ -62,7 +72,7 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
               {formatDate(createdAt)}
             </Typography>
           </Box>
-          <Typography component={"h1"} className="custom-input">
+          <Typography component={"h1"} sx={h1}>
             {title}
           </Typography>
         </Box>
