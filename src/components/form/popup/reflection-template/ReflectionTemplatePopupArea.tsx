@@ -50,7 +50,7 @@ const ReflectionTemplatePopupArea: React.FC<
       >
         テンプレートを使う
       </Button>
-      <Popper id="template-popper" open={open} anchorEl={anchorEl} transition>
+      <Popper open={open} anchorEl={anchorEl} transition sx={{ zIndex: 2 }}>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
             <Box boxShadow={1} bgcolor="white" borderRadius={1}>
