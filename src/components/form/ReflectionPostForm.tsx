@@ -67,7 +67,20 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
 
   return (
     <Box component={"form"} onSubmit={onSubmit}>
-      <Box display={"flex"} position={"fixed"} top={25} right={35}>
+      <Box
+        component={"header"}
+        display={"flex"}
+        justifyContent={"flex-end"}
+        position={"fixed"}
+        top={{ xs: 0, md: 25 }}
+        right={{ xs: 0, md: 35 }}
+        bgcolor={{ xs: "white", md: "transparent" }}
+        width={{ xs: "100%", md: "auto" }}
+        px={{ xs: 1.5, md: 0 }}
+        py={{ xs: 1, md: 0 }}
+        zIndex={1}
+        boxShadow={{ xs: "0px 1px 2.5px rgba(0, 0, 0, 0.1)", md: "none" }}
+      >
         <ReflectionTemplatePopupAreaContainer
           onInsertTemplate={handleInsertTemplate}
           onClearContent={handleClearContent}
@@ -87,8 +100,8 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
           {isSubmitting || isSubmitSuccessful ? "投稿中..." : "投稿する"}
         </Button>
       </Box>
-      <Container maxWidth="sm" sx={{ my: 15 }}>
-        <Stack gap={4} m={{ md: 2 }}>
+      <Box my={{ xs: 12, md: 10 }} mx={{ xs: 0.5, md: 12 }}>
+        <Stack gap={3} m={{ md: 2 }}>
           <Controller
             name="title"
             control={control}
@@ -142,7 +155,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
             )}
           />
         </Stack>
-      </Container>
+      </Box>
     </Box>
   );
 };
