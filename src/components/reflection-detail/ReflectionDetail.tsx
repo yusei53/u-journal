@@ -42,9 +42,9 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
 }) => {
   return (
     //TODO: ContainerとStackの部分はReflectionPostForm.tsxと同じなので、共通化を検討
-    <Container maxWidth="sm" sx={{ ...animation(0.6), my: 15 }}>
-      <Stack m={{ md: 2 }}>
-        <Box mb={3}>
+    <Box sx={{ ...animation(0.6), my: 10, mx: { xs: 1, md: 12 } }}>
+      <Stack my={{ md: 2 }}>
+        <Box mb={2}>
           <Box display={"flex"} alignItems={"center"} my={1}>
             <Link
               href={`/${username}`}
@@ -84,6 +84,6 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
           dangerouslySetInnerHTML={{ __html: content }}
         ></StyledMarkdown>
       </Stack>
-    </Container>
+    </Box>
   );
 };
