@@ -3,7 +3,7 @@
   width: 100%;
   /* ここはtiptapの公式docsと揃えるためrem指定 */
   /* ↑rem指定していたが本番でたまに聴いてないのでpx指定 */
-  font-size: 22px;
+  font-size: 21px;
   border: none;
   outline: none;
 }
