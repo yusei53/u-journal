@@ -92,10 +92,10 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
                   color={theme.palette.grey[600]}
                   ml={0.5}
                   sx={{
+                    zIndex: 1,
                     "&:hover": {
                       textDecoration: "underline",
                     },
-                    zIndex: 1,
                   }}
                 >
                   {reflection.user.username}
