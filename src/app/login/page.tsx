@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import LoginFormPage from "./page.client";
+import getCurrentUser from "@/src/utils/actions/get-current-user";
+import { redirect } from "next/navigation";
 
 const description = "リフティのログインページ";
 export const metadata: Metadata = {
@@ -17,7 +19,12 @@ export const metadata: Metadata = {
   },
 };
 
-const page = () => {
+const page = async () => {
+  const currentUser = await getCurrentUser();
+  if (currentUser) {
+    redirect(`${currentUser.username}`);
+  }
+
   return <LoginFormPage />;
 };
 
