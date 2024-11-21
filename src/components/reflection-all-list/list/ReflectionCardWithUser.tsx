@@ -21,12 +21,12 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
         p={2}
         sx={{
           textDecoration: "none",
-          ...articleImage,
+          ...article,
         }}
       >
       <Link
         href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
-        style={{ position: "absolute", top: 0, left: 0, display: "block", width: "100%", height: "100%" }}
+        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
       />
         <Box display={"flex"} mt={1.2}>
             <Typography
@@ -71,7 +71,6 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  zIndex: 1,
                 }}
               >
                 <Image
@@ -118,9 +117,10 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
     </Box>
   );
 };
-const articleImage = {
+const article = {
   width: { xs: 295, sm: 380 },
   height: 120,
+  display: "block",
   borderRadius: 3,
   border: `1.2px solid ${theme.palette.primary.main}`,
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 1px rgba(0, 0, 0, 0.03)",
