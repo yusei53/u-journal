@@ -12,7 +12,7 @@ const FirstView = () => {
       alignItems={"center"}
       justifyContent={"center"}
       flexDirection={"column"}
-      my={10}
+      my={{ xs: 8, md: 10 }}
     >
       <Typography
         component={"h1"}
@@ -20,7 +20,7 @@ const FirstView = () => {
         letterSpacing={1}
         // MEMO: 開発環境は折り返してるけど、本番は折り返さない文字の大きさだから22でOK
         fontSize={{
-          xs: 22,
+          xs: 21,
           md: 40,
         }}
       >

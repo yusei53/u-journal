@@ -29,7 +29,7 @@ const EffectSection: React.FC<EffectSectionProps> = ({
         md: isEvenNumber ? "row-reverse" : "row",
       }}
       gap={4}
-      my={12}
+      my={{ xs: 8, md: 12 }}
       alignItems={{ xs: "flex-start", md: "center" }}
     >
       {!isSmallScreen && (
