@@ -24,11 +24,11 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
           ...articleImage,
         }}
       >
+      <Link
+        href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
+        style={{ position: "absolute", top: 0, left: 0, display: "block", width: "100%", height: "100%" }}
+      />
         <Box display={"flex"} mt={1.2}>
-          <Link
-            href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
-            style={{ textDecoration: "none" }}
-          >
             <Typography
               color={"black"}
               overflow={"hidden"}
@@ -59,7 +59,6 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
             >
               <Typography fontSize={33}>{reflection.charStamp}</Typography>
             </Box>
-          </Link>
           <Box
             display={"flex"}
             alignItems={"center"}
@@ -72,6 +71,7 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
                 style={{
                   display: "flex",
                   alignItems: "center",
+                  zIndex: 1,
                 }}
               >
                 <Image
@@ -122,7 +122,6 @@ const articleImage = {
   width: { xs: 295, sm: 380 },
   height: 120,
   borderRadius: 3,
-  display: "block", // aタグにblock要素を指定すると長方形が表示できる
   border: `1.2px solid ${theme.palette.primary.main}`,
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 1px rgba(0, 0, 0, 0.03)",
   transition: "box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s",
