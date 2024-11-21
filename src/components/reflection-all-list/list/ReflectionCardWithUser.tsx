@@ -24,41 +24,47 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
           ...article,
         }}
       >
-      <Link
-        href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
-        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
-      />
+        <Link
+          href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        />
         <Box display={"flex"} mt={1.2}>
-            <Typography
-              color={"black"}
-              overflow={"hidden"}
-              textOverflow={"ellipsis"}
-              display={"-webkit-box"}
-              pr={10}
-              letterSpacing={0.9}
-              lineHeight={1.4}
-              sx={{
-                // MEMO: 2行で切り捨てるためのcss
-                WebkitBoxOrient: "vertical",
-                WebkitLineClamp: 2,
-              }}
-            >
-              {reflection.title}
-            </Typography>
-            <Box
-              position={"absolute"}
-              right={20}
-              top={20}
-              borderRadius={10}
-              width={55}
-              height={55}
-              bgcolor={theme.palette.primary.main}
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"center"}
-            >
-              <Typography fontSize={33}>{reflection.charStamp}</Typography>
-            </Box>
+          <Typography
+            color={"black"}
+            overflow={"hidden"}
+            textOverflow={"ellipsis"}
+            display={"-webkit-box"}
+            pr={10}
+            letterSpacing={0.9}
+            lineHeight={1.4}
+            sx={{
+              // MEMO: 2行で切り捨てるためのcss
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 2,
+            }}
+          >
+            {reflection.title}
+          </Typography>
+          <Box
+            position={"absolute"}
+            right={20}
+            top={20}
+            borderRadius={10}
+            width={55}
+            height={55}
+            bgcolor={theme.palette.primary.main}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Typography fontSize={33}>{reflection.charStamp}</Typography>
+          </Box>
           <Box
             display={"flex"}
             alignItems={"center"}
