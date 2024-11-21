@@ -106,7 +106,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
             name="title"
             control={control}
             render={({ field }) => (
-              <Box>
+              <Box mt={{ xs: 2, md: 5 }}>
                 <CustomInput
                   id="title"
                   placeholder="タイトル"
