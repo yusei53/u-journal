@@ -21,45 +21,51 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
         p={2}
         sx={{
           textDecoration: "none",
-          ...articleImage,
+          ...article,
         }}
       >
+        <Link
+          href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+          }}
+        />
         <Box display={"flex"} mt={1.2}>
-          <Link
-            href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
-            style={{ textDecoration: "none" }}
+          <Typography
+            color={"black"}
+            overflow={"hidden"}
+            textOverflow={"ellipsis"}
+            display={"-webkit-box"}
+            pr={10}
+            letterSpacing={0.9}
+            lineHeight={1.4}
+            sx={{
+              // MEMO: 2行で切り捨てるためのcss
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 2,
+            }}
           >
-            <Typography
-              color={"black"}
-              overflow={"hidden"}
-              textOverflow={"ellipsis"}
-              display={"-webkit-box"}
-              pr={10}
-              letterSpacing={0.9}
-              lineHeight={1.4}
-              sx={{
-                // MEMO: 2行で切り捨てるためのcss
-                WebkitBoxOrient: "vertical",
-                WebkitLineClamp: 2,
-              }}
-            >
-              {reflection.title}
-            </Typography>
-            <Box
-              position={"absolute"}
-              right={20}
-              top={20}
-              borderRadius={10}
-              width={55}
-              height={55}
-              bgcolor={theme.palette.primary.main}
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"center"}
-            >
-              <Typography fontSize={33}>{reflection.charStamp}</Typography>
-            </Box>
-          </Link>
+            {reflection.title}
+          </Typography>
+          <Box
+            position={"absolute"}
+            right={20}
+            top={20}
+            borderRadius={10}
+            width={55}
+            height={55}
+            bgcolor={theme.palette.primary.main}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Typography fontSize={33}>{reflection.charStamp}</Typography>
+          </Box>
           <Box
             display={"flex"}
             alignItems={"center"}
@@ -72,6 +78,7 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
                 style={{
                   display: "flex",
                   alignItems: "center",
+                  textDecoration: "none",
                 }}
               >
                 <Image
@@ -81,21 +88,19 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
                   height={22}
                   style={{ borderRadius: 10 }}
                 />
+                <Typography
+                  color={theme.palette.grey[600]}
+                  ml={0.5}
+                  zIndex={1}
+                  sx={{
+                    "&:hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                >
+                  {reflection.user.username}
+                </Typography>
               </Link>
-              <Typography
-                component={Link}
-                href={`/${reflection.user.username}`}
-                color={theme.palette.grey[600]}
-                ml={0.5}
-                sx={{
-                  textDecoration: "none",
-                  "&:hover": {
-                    textDecoration: "underline",
-                  },
-                }}
-              >
-                {reflection.user.username}
-              </Typography>
             </Box>
             <Box
               component={"time"}
@@ -118,11 +123,10 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
     </Box>
   );
 };
-const articleImage = {
+const article = {
   width: { xs: 295, sm: 380 },
   height: 120,
   borderRadius: 3,
-  display: "block", // aタグにblock要素を指定すると長方形が表示できる
   border: `1.2px solid ${theme.palette.primary.main}`,
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 1px rgba(0, 0, 0, 0.03)",
   transition: "box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s",
