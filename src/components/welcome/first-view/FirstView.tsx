@@ -28,7 +28,7 @@ const FirstView = () => {
       </Typography>
       <Typography
         textAlign={"center"}
-        letterSpacing={0.8}
+        letterSpacing={{ xs: 0.5, md: 0.8 }}
         my={3}
         lineHeight={1.8}
         fontSize={{ md: 18 }}
@@ -45,8 +45,8 @@ const FirstView = () => {
           </>
         )}
       </Typography>
-      <Box display={"flex"} gap={{ xs: 1, md: 3 }}>
-        <Button href={"/login"}>さっそくはじめる</Button>
+      <Box display={"flex"} gap={{ xs: 2, md: 3 }}>
+        <Button href={"/login"}>はじめる</Button>
         <Button href={"/"}>みんなの振り返り</Button>
       </Box>
     </Box>
