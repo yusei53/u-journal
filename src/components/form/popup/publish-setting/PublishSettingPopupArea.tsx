@@ -33,7 +33,6 @@ const PublishSettingPopupArea: React.FC<PublishSettingPopupAreaProps> = ({
           display: "flex",
           alignItems: "center",
         }}
-        disableRipple
       >
         <Image
           src={value ? "/unlock.png" : "/lock.png"}

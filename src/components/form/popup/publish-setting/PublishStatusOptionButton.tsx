@@ -29,7 +29,6 @@ const PublishStatusOptionButton: React.FC<PublishStatusOptionButtonProps> = ({
       borderRadius: "none",
       "&:hover": { backgroundColor: theme.palette.primary.contrastText },
     }}
-    disableRipple
   >
     <Box display={"flex"} alignItems={"center"}>
       <Image
