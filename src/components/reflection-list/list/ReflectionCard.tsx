@@ -24,7 +24,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
         p={2}
         sx={{
           textDecoration: "none",
-          ...articleImage,
+          ...article,
         }}
       >
         <Box display={"flex"} mt={1.5}>
@@ -78,7 +78,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
     </Box>
   );
 };
-const articleImage = {
+const article = {
   width: { xs: 295, sm: 380 },
   height: { xs: 110, sm: 110 },
   borderRadius: 3,

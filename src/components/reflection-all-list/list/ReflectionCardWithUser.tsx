@@ -32,6 +32,7 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
             left: 0,
             width: "100%",
             height: "100%",
+            zIndex: 1,
           }}
         />
         <Box display={"flex"} mt={1.2}>
@@ -77,6 +78,7 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
                 style={{
                   display: "flex",
                   alignItems: "center",
+                  textDecoration: "none",
                 }}
               >
                 <Image
@@ -86,21 +88,19 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
                   height={22}
                   style={{ borderRadius: 10 }}
                 />
+                <Typography
+                  color={theme.palette.grey[600]}
+                  ml={0.5}
+                  sx={{
+                    "&:hover": {
+                      textDecoration: "underline",
+                    },
+                    zIndex: 1,
+                  }}
+                >
+                  {reflection.user.username}
+                </Typography>
               </Link>
-              <Typography
-                component={Link}
-                href={`/${reflection.user.username}`}
-                color={theme.palette.grey[600]}
-                ml={0.5}
-                sx={{
-                  textDecoration: "none",
-                  "&:hover": {
-                    textDecoration: "underline",
-                  },
-                }}
-              >
-                {reflection.user.username}
-              </Typography>
             </Box>
             <Box
               component={"time"}
@@ -126,7 +126,6 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
 const article = {
   width: { xs: 295, sm: 380 },
   height: 120,
-  display: "block",
   borderRadius: 3,
   border: `1.2px solid ${theme.palette.primary.main}`,
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 1px rgba(0, 0, 0, 0.03)",
