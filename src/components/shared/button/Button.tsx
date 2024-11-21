@@ -10,6 +10,7 @@ export const Button: React.FC<CustomButtonProps> = ({
   ...props
 }) => (
   <MuiButton
+    disableRipple
     sx={{
       color: "black",
       border: "1px solid #DCDFE3",

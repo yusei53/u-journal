@@ -46,7 +46,6 @@ const ReflectionTemplatePopupArea: React.FC<
           border: "none",
           p: 0,
         }}
-        disableRipple
       >
         テンプレートを使う
       </Button>
@@ -69,7 +68,6 @@ const ReflectionTemplatePopupArea: React.FC<
                         backgroundColor: theme.palette.primary.contrastText,
                       },
                     }}
-                    disableRipple
                   >
                     {getReflectionTemplateName(
                       categoryKey as keyof ReflectionTemplateType
@@ -90,7 +88,6 @@ const ReflectionTemplatePopupArea: React.FC<
                     backgroundColor: theme.palette.warning.main,
                   },
                 }}
-                disableRipple
               >
                 リセット
                 <Typography fontSize={10} color={theme.palette.grey[500]}>
