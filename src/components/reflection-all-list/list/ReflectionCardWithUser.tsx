@@ -91,8 +91,8 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
                 <Typography
                   color={theme.palette.grey[600]}
                   ml={0.5}
+                  zIndex={1}
                   sx={{
-                    zIndex: 1,
                     "&:hover": {
                       textDecoration: "underline",
                     },
