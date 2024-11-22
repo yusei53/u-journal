@@ -19,7 +19,7 @@ const EffectSection: React.FC<EffectSectionProps> = ({
   isEvenNumber = false,
   isShareSection = false,
 }) => {
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box
@@ -30,7 +30,6 @@ const EffectSection: React.FC<EffectSectionProps> = ({
       }}
       gap={4}
       my={{ xs: 8, md: 12 }}
-      alignItems={{ xs: "flex-start", md: "center" }}
     >
       {!isSmallScreen && (
         <CustomImage
@@ -47,8 +46,9 @@ const EffectSection: React.FC<EffectSectionProps> = ({
       >
         <Typography
           component={"h2"}
-          fontSize={{ xs: 24, md: 28 }}
+          fontSize={{ xs: 20, md: 28 }}
           fontWeight={"bold"}
+          letterSpacing={{ xs: 1, md: 0.8 }}
           whiteSpace={"pre-line"}
           mb={{ md: 1.5 }}
         >
@@ -58,8 +58,8 @@ const EffectSection: React.FC<EffectSectionProps> = ({
           <CustomImage
             src={image}
             alt={"feature image"}
-            width={350}
-            height={350}
+            width={360}
+            height={360}
           />
         )}
         <Typography
@@ -77,6 +77,7 @@ const EffectSection: React.FC<EffectSectionProps> = ({
               textAlign: "right",
               marginTop: 6,
               fontSize: 14,
+              marginRight: 6,
             }}
           >
             みんなの振り返りはこちら
@@ -89,9 +90,9 @@ const EffectSection: React.FC<EffectSectionProps> = ({
 
 const CustomImage = styled(Image)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
-    width: 190,
-    height: 190,
-    margin: "10px 0px",
+    width: 180,
+    height: 180,
+    margin: "15px 0px",
   },
 }));
 
