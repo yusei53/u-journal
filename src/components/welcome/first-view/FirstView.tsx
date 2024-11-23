@@ -19,10 +19,7 @@ const FirstView = () => {
         fontWeight={"bold"}
         letterSpacing={1}
         // MEMO: 開発環境は折り返してるけど、本番は折り返さない文字の大きさだから22でOK
-        fontSize={{
-          xs: 21,
-          md: 40,
-        }}
+        fontSize={{ xs: 22, md: 40 }}
       >
         毎日の足跡を、そっと書き留める
       </Typography>
