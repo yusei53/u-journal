@@ -1,5 +1,6 @@
 import FirstView from "@/src/components/welcome/first-view/FirstView";
 import SecondView from "@/src/components/welcome/second-view/SecondView";
+import ThirdView from "@/src/components/welcome/third-view/ThirdView";
 import { Metadata } from "next";
 
 const description = "日々の振り返りを手助けする振り返りプラットフォーム";
@@ -23,6 +24,7 @@ const page = () => {
     <>
       <FirstView />
       <SecondView />
+      <ThirdView />
     </>
   );
 };

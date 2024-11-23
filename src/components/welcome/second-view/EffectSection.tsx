@@ -37,6 +37,7 @@ const EffectSection: React.FC<EffectSectionProps> = ({
           alt={"feature image"}
           width={350}
           height={350}
+          priority
         />
       )}
       <Box
@@ -45,7 +46,7 @@ const EffectSection: React.FC<EffectSectionProps> = ({
         justifyContent={{ md: "center" }}
       >
         <Typography
-          component={"h2"}
+          component={"h3"}
           fontSize={{ xs: 20, md: 28 }}
           fontWeight={"bold"}
           letterSpacing={{ xs: 1, md: 0.8 }}
@@ -60,6 +61,7 @@ const EffectSection: React.FC<EffectSectionProps> = ({
             alt={"feature image"}
             width={360}
             height={360}
+            priority
           />
         )}
         <Typography
@@ -74,10 +76,8 @@ const EffectSection: React.FC<EffectSectionProps> = ({
             href={"/"}
             style={{
               color: "black",
-              textAlign: "right",
-              marginTop: 6,
+              marginTop: 15,
               fontSize: 14,
-              marginRight: 6,
             }}
           >
             みんなの振り返りはこちら
