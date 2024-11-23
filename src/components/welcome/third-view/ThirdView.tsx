@@ -38,7 +38,7 @@ const ThirdView = () => {
             alignItems={"center"}
             justifyContent={"center"}
             px={{ md: 1 }}
-            my={{ xs: 1.5, md: 2 }}
+            my={{ xs: 0.5, md: 2 }}
           >
             <AppealCard
               image={appeal.image}
