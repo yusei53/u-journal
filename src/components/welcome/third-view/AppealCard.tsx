@@ -6,12 +6,14 @@ export type AppealCardProps = {
   image: string;
   title: string;
   description: string;
+  isComingSoon?: boolean;
 };
 
 const AppealCard: React.FC<AppealCardProps> = ({
   image,
   title,
   description,
+  isComingSoon = false,
 }) => {
   return (
     <Box
@@ -19,7 +21,31 @@ const AppealCard: React.FC<AppealCardProps> = ({
       justifyContent={"center"}
       alignItems={"center"}
       flexDirection={{ xs: "row", sm: "column" }}
+      position={"relative"}
     >
+      {isComingSoon && (
+        <Box
+          position={"absolute"}
+          top={0}
+          left={0}
+          width={"100%"}
+          height={"100%"}
+          bgcolor={"rgba(0, 0, 0, 0.4)"}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          borderRadius={2}
+        >
+          <Typography
+            color={"white"}
+            fontSize={{ xs: 28, md: 32 }}
+            fontWeight={"bold"}
+            fontStyle={"italic"}
+          >
+            Coming Soon
+          </Typography>
+        </Box>
+      )}
       <CustomImage
         src={`/lp/appeal/${image}`}
         alt={"feature image"}

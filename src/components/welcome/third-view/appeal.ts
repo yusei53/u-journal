@@ -36,5 +36,6 @@ export const appeals: AppealCardProps[] = [
     title: "自分だけの管理画面",
     description:
       "自分の好みに合わせて情報をカスタマイズし、あなただけのプロフィールを作成できます。",
+    isComingSoon: true,
   },
 ];

@@ -44,6 +44,7 @@ const ThirdView = () => {
               image={appeal.image}
               title={appeal.title}
               description={appeal.description}
+              isComingSoon={appeal.isComingSoon}
             />
           </Grid>
         ))}
