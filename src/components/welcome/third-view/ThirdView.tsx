@@ -16,7 +16,7 @@ const ThirdView = () => {
         component={"h2"}
         fontWeight={"bold"}
         letterSpacing={1}
-        fontSize={{ xs: 22, md: 35 }}
+        fontSize={{ xs: 22, md: 38 }}
       >
         継続して振り返りができる工夫
       </Typography>
