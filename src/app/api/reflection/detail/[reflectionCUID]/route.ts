@@ -63,7 +63,7 @@ export async function DELETE(
 
     const currentUser = await getCurrentUser();
 
-    if (!currentUser?.id || !currentUser?.email) {
+    if (!currentUser?.id) {
       return new NextResponse("認証されていません", { status: 401 });
     }
 
