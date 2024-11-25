@@ -29,7 +29,7 @@ const EffectSection: React.FC<EffectSectionProps> = ({
         md: isEvenNumber ? "row-reverse" : "row",
       }}
       gap={4}
-      my={{ xs: 8, md: 12 }}
+      my={{ xs: 6, md: 12 }}
     >
       {!isSmallScreen && (
         <CustomImage
@@ -47,22 +47,25 @@ const EffectSection: React.FC<EffectSectionProps> = ({
       >
         <Typography
           component={"h3"}
-          fontSize={{ xs: 20, md: 28 }}
+          fontSize={{ xs: 21, md: 28 }}
           fontWeight={"bold"}
           letterSpacing={{ xs: 1, md: 0.8 }}
           whiteSpace={"pre-line"}
+          m={{ xs: "0 auto", md: 0 }}
           mb={{ md: 1.5 }}
         >
           {title}
         </Typography>
         {isSmallScreen && (
-          <CustomImage
-            src={image}
-            alt={"feature image"}
-            width={360}
-            height={360}
-            priority
-          />
+          <Box m={{ xs: "0 auto", md: 0 }}>
+            <CustomImage
+              src={image}
+              alt={"feature image"}
+              width={360}
+              height={360}
+              priority
+            />
+          </Box>
         )}
         <Typography
           letterSpacing={0.5}
@@ -90,8 +93,8 @@ const EffectSection: React.FC<EffectSectionProps> = ({
 
 const CustomImage = styled(Image)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
-    width: 180,
-    height: 180,
+    width: 170,
+    height: 170,
     margin: "15px 0px",
   },
 }));
