@@ -40,16 +40,16 @@ export const ReflectionTemplatePopupAreaContainer: React.FC<
   };
 
   return (
-    <Box py={"8px"}>
-      <ReflectionTemplatePopupArea
-        anchorEl={anchorEl}
-        open={open}
-        reflectionTemplateType={reflectionTemplateType}
-        onClick={handleClick}
-        onClose={handleClose}
-        onTemplateSelect={handleTemplateSelect}
-        onClearContent={onClearContent}
-      />
-    </Box>
+    // <Box py={"8px"}>
+    <ReflectionTemplatePopupArea
+      anchorEl={anchorEl}
+      open={open}
+      reflectionTemplateType={reflectionTemplateType}
+      onClick={handleClick}
+      onClose={handleClose}
+      onTemplateSelect={handleTemplateSelect}
+      onClearContent={onClearContent}
+    />
+    // </Box>
   );
 };
