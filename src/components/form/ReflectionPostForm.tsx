@@ -92,8 +92,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
         >
           <ReflectionTemplateInstruct
             title={"ヒント"}
-            description={"テンプレートを使用して<br>より良い振り返りを"}
-            position="right"
+            description={"テンプレートを使用して\nより良い振り返りを"}
             fadeOut
           />
 
