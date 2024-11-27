@@ -11,6 +11,7 @@ import {
   ReflectionTemplatePopupAreaContainer,
 } from "./popup/reflection-template";
 import { PublishSettingPopupAreaContainer } from "./popup/publish-setting";
+import ReflectionTemplateInstruct from "./popup/reflection-template/ReflectionTemplateInstruct";
 
 type FormValues = {
   title: string;
@@ -81,24 +82,40 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
         zIndex={1}
         boxShadow={{ xs: "0px 1px 2.5px rgba(0, 0, 0, 0.1)", md: "none" }}
       >
-        <ReflectionTemplatePopupAreaContainer
-          onInsertTemplate={handleInsertTemplate}
-          onClearContent={handleClearContent}
-          reflectionTemplateType={REFLECTION_TEMPLATES}
-        />
-        <Controller
-          name="isPublic"
-          control={control}
-          render={({ field }) => (
-            <PublishSettingPopupAreaContainer
-              value={field.value}
-              onChange={field.onChange}
-            />
-          )}
-        />
-        <Button type="submit" disabled={isSubmitting || isSubmitSuccessful}>
-          {isSubmitting || isSubmitSuccessful ? "投稿中..." : "投稿する"}
-        </Button>
+        <Box
+          display={"flex"}
+          justifyContent={"flex-start"}
+          alignItems={"flex-start"}
+          position={"fixed"}
+          top={25}
+          right={35}
+        >
+          <ReflectionTemplateInstruct
+            title={"ヒント"}
+            description={"テンプレートを使用して<br>より良い振り返りを"}
+            position="right"
+            fadeOut
+          />
+
+          <ReflectionTemplatePopupAreaContainer
+            onInsertTemplate={handleInsertTemplate}
+            onClearContent={handleClearContent}
+            reflectionTemplateType={REFLECTION_TEMPLATES}
+          />
+          <Controller
+            name="isPublic"
+            control={control}
+            render={({ field }) => (
+              <PublishSettingPopupAreaContainer
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
+          />
+          <Button type="submit" disabled={isSubmitting || isSubmitSuccessful}>
+            {isSubmitting || isSubmitSuccessful ? "投稿中..." : "投稿する"}
+          </Button>
+        </Box>
       </Box>
       <Box my={{ xs: 12, md: 10 }} mx={{ xs: 0.5, md: 12 }}>
         <Stack gap={3} m={{ md: 2 }}>
