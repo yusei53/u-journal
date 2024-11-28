@@ -7,6 +7,8 @@ import { formatDate } from "@/src/utils/date-helper";
 import Link from "next/link";
 import Image from "next/image";
 import { animation } from "../shared/animation";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { useRouter } from "next/navigation";
 
 type ReflectionDetailProps = {
   title: string;
@@ -23,8 +25,6 @@ const link = {
   },
 };
 
-// MEMO: ../shared/input/input.cssで定義したスタイルを適用させる
-// MEMO: 本番でたまにここのcssが効かないので、importでclassNameを使わず以下をsxで指定する
 const h1 = {
   p: 0,
   width: "100%",
@@ -40,8 +40,36 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
   content,
   createdAt,
 }) => {
+  const router = useRouter();
+
+  const handleBackNavigation = () => {
+    // MEMO: 前のページが存在する場合は戻る、それ以外は /username に遷移
+    if (
+      document.referrer &&
+      document.referrer.includes(window.location.origin)
+    ) {
+      router.back();
+    } else {
+      router.push(`/${username}`);
+    }
+  };
+
   return (
-    <Box my={10} mx={{ xs: 0.5, md: 12 }} sx={{ ...animation(0.6) }}>
+    <Box
+      my={10}
+      mx={{ xs: 0.5, md: 12 }}
+      position={"relative"}
+      sx={{ ...animation(0.6) }}
+    >
+      <KeyboardBackspaceIcon
+        onClick={handleBackNavigation}
+        sx={{
+          position: { xs: "absolute", md: "fixed" },
+          left: { xs: 0, md: 20 },
+          top: { xs: -60, md: 20 },
+          cursor: "pointer",
+        }}
+      />
       <Box mb={5}>
         <Box display={"flex"} alignItems={"center"} my={0.5}>
           <Link
