@@ -32,7 +32,7 @@ export const ReflectionTemplateInstruct: React.FC<
   };
 
   return (
-    <Box display="flex" py={2}>
+    <Box display={"flex"} py={2}>
       <Box
         position={"relative"}
         bgcolor={theme.palette.grey[400]}
