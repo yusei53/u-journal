@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { NextAuthProvider } from "../providers";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../utils/theme/theme";
+import { GoogleAnalytics } from "@next/third-parties/google";
+
+export const GA_TAG_ID = process.env.NEXT_PUBLIC_GA_ID as string;
 
 const siteName = "リフティ | 振り返りプラットフォーム";
 const description = "日々の振り返りを手助けする振り返りプラットフォーム";
@@ -59,6 +62,7 @@ export default async function RootLayout({
           </ThemeProvider>
         </NextAuthProvider>
       </body>
+      <GoogleAnalytics gaId={GA_TAG_ID} />
     </html>
   );
 }
