@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ReflectionTemplateType } from "./reflection-templates";
 import ReflectionTemplatePopupArea from "./ReflectionTemplatePopupArea";
 import { marked } from "marked";
-import { Box } from "@mui/material";
 
 type ReflectionTemplatePopupAreaContainerProps = {
   onInsertTemplate: (template: string) => void;
@@ -40,7 +39,6 @@ export const ReflectionTemplatePopupAreaContainer: React.FC<
   };
 
   return (
-    // <Box py={"8px"}>
     <ReflectionTemplatePopupArea
       anchorEl={anchorEl}
       open={open}
@@ -50,6 +48,5 @@ export const ReflectionTemplatePopupAreaContainer: React.FC<
       onTemplateSelect={handleTemplateSelect}
       onClearContent={onClearContent}
     />
-    // </Box>
   );
 };
