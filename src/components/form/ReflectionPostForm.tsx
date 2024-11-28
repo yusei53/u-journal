@@ -83,37 +83,49 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
         boxShadow={{ xs: "0px 1px 2.5px rgba(0, 0, 0, 0.1)", md: "none" }}
       >
         <Box
-          display={"flex"}
-          justifyContent={"flex-start"}
-          alignItems={"flex-start"}
           position={"fixed"}
           top={25}
           right={35}
+          display={"flex"}
+          flexDirection={{ xs: "column", md: "row" }}
         >
-          <ReflectionTemplateInstruct
-            title={"ヒント"}
-            description={"テンプレートを使用して\nより良い振り返りを"}
-            fadeOut
-          />
-
-          <ReflectionTemplatePopupAreaContainer
-            onInsertTemplate={handleInsertTemplate}
-            onClearContent={handleClearContent}
-            reflectionTemplateType={REFLECTION_TEMPLATES}
-          />
-          <Controller
-            name="isPublic"
-            control={control}
-            render={({ field }) => (
-              <PublishSettingPopupAreaContainer
-                value={field.value}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <Button type="submit" disabled={isSubmitting || isSubmitSuccessful}>
-            {isSubmitting || isSubmitSuccessful ? "投稿中..." : "投稿する"}
-          </Button>
+          <Box order={{ xs: 1, md: 0 }} mb={{ xs: 4, md: 0 }}>
+            <ReflectionTemplateInstruct
+              title={"ヒント"}
+              description={"テンプレートの利用でより良い振り返りを"}
+              fadeOut
+            />
+          </Box>
+          <Box
+            display={"flex"}
+            flexDirection={"row"}
+            alignItems={"center"}
+            order={0}
+          >
+            <ReflectionTemplatePopupAreaContainer
+              onInsertTemplate={handleInsertTemplate}
+              onClearContent={handleClearContent}
+              reflectionTemplateType={REFLECTION_TEMPLATES}
+            />
+            <Controller
+              name="isPublic"
+              control={control}
+              render={({ field }) => (
+                <PublishSettingPopupAreaContainer
+                  value={field.value}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+            <Box width={100}>
+              <Button
+                type="submit"
+                disabled={isSubmitting || isSubmitSuccessful}
+              >
+                {isSubmitting || isSubmitSuccessful ? "投稿中..." : "投稿する"}
+              </Button>
+            </Box>
+          </Box>
         </Box>
       </Box>
       <Box my={{ xs: 12, md: 10 }} mx={{ xs: 0.5, md: 12 }}>
