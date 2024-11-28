@@ -1,5 +1,5 @@
 "use client";
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import StyledMarkdown from "./StyledMarkdown";
 import { theme } from "@/src/utils/theme";
@@ -42,8 +42,8 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
 }) => {
   return (
     <Box my={10} mx={{ xs: 0.5, md: 12 }} sx={{ ...animation(0.6) }}>
-      <Box mb={3}>
-        <Box display={"flex"} alignItems={"center"} my={1}>
+      <Box mb={5}>
+        <Box display={"flex"} alignItems={"center"} my={0.5}>
           <Link
             href={`/${username}`}
             style={{
@@ -66,7 +66,7 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
             sx={{
               color: theme.palette.grey[600],
               ml: 1.5,
-              mr: 0.5,
+              mr: 0.3,
               fontSize: 13,
             }}
           />
