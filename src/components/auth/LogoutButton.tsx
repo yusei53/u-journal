@@ -1,19 +1,8 @@
-import { Box } from "@mui/material";
+import { Button } from "@/src/components/shared/button";
 import { signOut } from "next-auth/react";
-import { AuthButton } from "./AuthButton";
 
 const LogoutButton = () => {
-  return (
-    <Box>
-      <AuthButton
-        label="ログアウト"
-        onClick={() => signOut()}
-        sx={{
-          border: "1px solid #c4c4c4",
-        }}
-      />
-    </Box>
-  );
+  return <Button onClick={() => signOut()}>ログアウト</Button>;
 };
 
 export default LogoutButton;
