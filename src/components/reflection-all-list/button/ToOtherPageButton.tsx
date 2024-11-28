@@ -11,7 +11,7 @@ type ToOtherPageButtonProps = {
 export const ToOtherPageButton: React.FC<ToOtherPageButtonProps> = ({
   currentUsername,
 }) => {
-  const text = currentUsername ? "マイページへ" : "ログインする";
+  const text = currentUsername ? "マイページ" : "ログインする";
   const href = currentUsername ? `/${currentUsername}` : "/login";
 
   return (

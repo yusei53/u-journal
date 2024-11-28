@@ -20,7 +20,7 @@ export const ToHomePageButton: React.FC = () => {
         },
       }}
     >
-      ホームへ
+      みんなの振り返り
       <ExitToAppIcon
         fontSize="small"
         sx={{ color: theme.palette.primary.light, ml: 0.5 }}
