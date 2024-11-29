@@ -7,7 +7,8 @@ import { reflectionAPI } from "@/src/api/reflection-api";
 const createReflectionSchema = z.object({
   title: z
     .string()
-    .min(1, { message: "タイトルは1文字以上で入力してください。" }),
+    .min(1, { message: "タイトルは1文字以上で入力してください。" })
+    .max(40, { message: "タイトルは40文字以内で入力してください。" }),
   content: z
     .string()
     .min(3, { message: "本文は3文字以上で入力してください。" }),
