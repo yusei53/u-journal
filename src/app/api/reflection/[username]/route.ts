@@ -36,6 +36,7 @@ export async function GET(
             title: true,
             charStamp: true,
             createdAt: true,
+            isPublic: true,
           },
         },
       },
