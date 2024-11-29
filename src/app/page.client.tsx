@@ -3,7 +3,6 @@ import { ReflectionWithUser } from "../api/reflection-api";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import ReflectionAllArea from "../components/reflection-all-list/list/ReflectionAllListArea";
-import LogoutButton from "../components/auth/LogoutButton";
 import SettingUsernameModalContainer from "../components/setting-username/SettingUsernameModalContainer";
 
 type RootPageProps = {
