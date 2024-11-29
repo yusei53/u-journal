@@ -2,8 +2,10 @@ import { Box, Typography } from "@mui/material";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Link from "next/link";
 import { theme } from "@/src/utils/theme";
-import { Reflection } from "@/src/api/reflection-api";
+import { Reflection, ReflectionWithUser } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
+import Image from "next/image";
+import { useEffect } from "react";
 
 type ReflectionCardProps = {
   username: string;
@@ -72,6 +74,16 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
             <Typography color={theme.palette.grey[600]} ml={0.8}>
               {formatDate(reflection.createdAt)}
             </Typography>
+            {!reflection.isPublic && (
+              <Box mt={0.5} ml={1}>
+                <Image
+                  src="/lock.png"
+                  alt="非公開マーク"
+                  width={15}
+                  height={15}
+                />
+              </Box>
+            )}
           </Box>
         </Box>
       </Box>
