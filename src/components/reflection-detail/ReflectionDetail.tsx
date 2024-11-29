@@ -56,6 +56,7 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
 
   return (
     <Box
+      minHeight={"80vh"}
       my={10}
       mx={{ xs: 0.5, md: 12 }}
       position={"relative"}
