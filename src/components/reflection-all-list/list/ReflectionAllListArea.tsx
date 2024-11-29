@@ -24,7 +24,7 @@ const ReflectionAllArea: React.FC<ReflectionAllAreaProps> = ({
   onChange,
 }) => {
   return (
-    <Box mt={12} position={"relative"}>
+    <Box mt={{ xs: 4, md: 12 }} position={"relative"}>
       <ReflectionAllHeader currentUsername={currentUsername} />
       <ArrowPagination
         currentPage={currentPage}

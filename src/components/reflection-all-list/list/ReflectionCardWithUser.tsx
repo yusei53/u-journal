@@ -107,7 +107,7 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
               display={"flex"}
               alignItems={"center"}
               position={"absolute"}
-              left={{ xs: 110, md: 140 }}
+              left={{ xs: 125, md: 140 }}
             >
               <CalendarTodayIcon
                 fontSize={"small"}
@@ -124,7 +124,7 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
   );
 };
 const article = {
-  width: { xs: 295, sm: 380 },
+  width: { xs: 305, sm: 380 },
   height: 120,
   borderRadius: 3,
   border: `1.2px solid ${theme.palette.primary.main}`,
