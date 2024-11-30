@@ -4,6 +4,7 @@ import { reflectionAPI } from "@/src/api/reflection-api";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import opengraphAPI from "@/src/api/opengraph-api";
+import getCurrentUser from "@/src/utils/actions/get-current-user";
 
 export const generateMetadata = async ({
   params,
@@ -50,6 +51,7 @@ const page = async ({
   params: { username: string };
   searchParams: { page?: string };
 }) => {
+  const currentUser = await getCurrentUser();
   const { username } = params;
   const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1;
 
@@ -72,6 +74,7 @@ const page = async ({
   return (
     <>
       <UserReflectionListPage
+        currentUsername={currentUser?.username || null}
         userImage={reflectionsWithUser.userImage}
         username={username}
         reflectionCount={reflectionCount}

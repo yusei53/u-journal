@@ -9,8 +9,10 @@ import {
   NumberedPagination,
 } from "@/src/components/shared/pagination";
 import { useRouter } from "next/navigation";
+import { User } from "@prisma/client";
 
 type UserReflectionListPageProps = {
+  currentUsername: User["username"];
   userImage: string;
   username: string;
   reflectionCount: ReflectionsCount;
@@ -20,6 +22,7 @@ type UserReflectionListPageProps = {
 };
 
 const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
+  currentUsername,
   userImage,
   username,
   reflectionCount,
@@ -28,6 +31,13 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
   totalPage,
 }) => {
   const router = useRouter();
+
+  const isCurrentUser = currentUsername === username;
+
+  // MEMO: 自分の投稿は全て表示、他人の投稿は公開設定のもののみ表示
+  const filteredReflections = isCurrentUser
+    ? reflections
+    : reflections.filter((reflection) => reflection.isPublic);
 
   const handleChange = async (
     event: React.ChangeEvent<unknown>,
@@ -57,7 +67,7 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
           )}
           <ReflectionCardListArea
             username={username}
-            reflections={reflections}
+            reflections={filteredReflections}
           />
           {totalPage > 1 && (
             <NumberedPagination
