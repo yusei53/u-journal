@@ -26,7 +26,7 @@ export const PostNavigationButton: React.FC<PostNavigationButtonProps> = ({
       }}
     >
       <IconButton
-        aria-label={"post"}
+        aria-label={"投稿するボタン"}
         sx={{
           bgcolor: "white",
           border: "1px solid #DCDFE3",
@@ -36,7 +36,7 @@ export const PostNavigationButton: React.FC<PostNavigationButtonProps> = ({
         }}
         href={"/post"}
       >
-        <AddOutlinedIcon sx={{ fontSize: 35 }} />
+        <AddOutlinedIcon sx={{ fontSize: 38 }} />
       </IconButton>
     </Tooltip>
   );

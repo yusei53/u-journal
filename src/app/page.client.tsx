@@ -4,6 +4,7 @@ import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import ReflectionAllArea from "../components/reflection-all-list/list/ReflectionAllListArea";
 import SettingUsernameModalContainer from "../components/setting-username/SettingUsernameModalContainer";
+import { PostNavigationButton } from "../components/shared/button";
 
 type RootPageProps = {
   open: boolean;
@@ -41,6 +42,13 @@ const RootPage: React.FC<RootPageProps> = ({
         currentPage={currentPage}
         totalPage={totalPage}
         onChange={handleChange}
+      />
+      <PostNavigationButton
+        sx={{
+          position: "fixed",
+          right: { xs: 40, md: 100 },
+          bottom: 50,
+        }}
       />
     </>
   );
