@@ -44,16 +44,12 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
 
   const handleBackNavigation = () => {
     // MEMO: 前のページが存在する場合は戻る、それ以外は /username に遷移
-    if (
-      document.referrer &&
-      document.referrer.includes(window.location.origin)
-    ) {
+    if (window.history.length > 1) {
       router.back();
     } else {
       router.push(`/${username}`);
     }
   };
-
   return (
     <Box
       minHeight={"80vh"}
