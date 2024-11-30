@@ -31,10 +31,8 @@ export async function GET(
     const page = parseInt(req.nextUrl.searchParams.get("page") || "1", 10);
     const offset = (page - 1) * COUNT_PER_PAGE;
 
-    const isCurrentUser = currentUser?.id === userId;
-
     const reflectionCount = await prisma.reflection.count({
-      where: isCurrentUser ? { userId } : { userId, isPublic: true },
+      where: { userId },
     });
 
     const totalPage = Math.ceil(reflectionCount / COUNT_PER_PAGE);
@@ -44,7 +42,8 @@ export async function GET(
       select: {
         image: true,
         reflections: {
-          where: isCurrentUser ? { userId } : { userId, isPublic: true },
+          where: { userId },
+
           orderBy: { createdAt: "desc" },
           take: COUNT_PER_PAGE,
           skip: offset,
