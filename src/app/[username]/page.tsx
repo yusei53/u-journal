@@ -43,12 +43,20 @@ export const generateMetadata = async ({
   };
 };
 
-const page = async ({ params }: { params: { username: string } }) => {
+const page = async ({
+  params,
+  searchParams,
+}: {
+  params: { username: string };
+  searchParams: { page?: string };
+}) => {
   const { username } = params;
+  const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1;
 
   const countResult = await reflectionsCountAPI.getReflectionsCount(username);
   const reflectionsResult = await reflectionAPI.getReflectionsByUsername(
-    username
+    username,
+    currentPage
   );
 
   if (countResult === 404 || reflectionsResult === 404) {
@@ -68,6 +76,8 @@ const page = async ({ params }: { params: { username: string } }) => {
         username={username}
         reflectionCount={reflectionCount}
         reflections={reflectionsWithUser.reflections}
+        currentPage={currentPage}
+        totalPage={reflectionsWithUser.totalPage}
       />
     </>
   );
