@@ -23,7 +23,6 @@ export async function GET(req: NextRequest) {
         reflectionCUID: true,
         charStamp: true,
         createdAt: true,
-        content: true,
         isPublic: true,
         user: {
           select: {
