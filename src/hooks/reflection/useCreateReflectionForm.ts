@@ -27,7 +27,7 @@ export const useCreateReflectionForm = (username: string | undefined) => {
     formState: { isSubmitting, isSubmitSuccessful, errors },
   } = useForm<CreateReflectionSchemaType>({
     resolver: zodResolver(createReflectionSchema),
-    defaultValues: { title: "", content: "", charStamp: "💭", isPublic: false },
+    defaultValues: { title: "", content: "", charStamp: "💭", isPublic: true },
   });
 
   const onSubmit = handleSubmit(

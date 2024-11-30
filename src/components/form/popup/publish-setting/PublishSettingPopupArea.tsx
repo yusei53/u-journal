@@ -35,7 +35,7 @@ const PublishSettingPopupArea: React.FC<PublishSettingPopupAreaProps> = ({
         }}
       >
         <Image
-          src={value ? "/unlock.png" : "/lock.png"}
+          src={value ? "/lock.png" : "/unlock.png"}
           alt={value ? "公開アイコン" : "非公開アイコン"}
           width={18}
           height={18}
