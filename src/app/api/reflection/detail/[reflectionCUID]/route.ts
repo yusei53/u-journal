@@ -33,7 +33,7 @@ export async function GET(
       );
     }
 
-    //MEMO: ほんとはここで公開非公開の設定したいけどcurrentUserのidがが取れないからコンポーネントでやってる
+    //MEMO: ほんとはここで公開非公開の設定したいけどcurrentUserのidが取れないからコンポーネントでやってる
     // if (reflection.userId !== currentUser?.id && !reflection.isPublic) {
     //   return NextResponse.json(
     //     { message: "Unauthorized access to this reflection" },

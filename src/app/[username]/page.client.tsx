@@ -48,7 +48,7 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
         <div>このユーザーはまだ投稿をしていません。</div>
       ) : (
         <>
-          {reflections.length > 12 && (
+          {totalPage > 1 && (
             <ArrowPagination
               currentPage={currentPage}
               totalPage={totalPage}
@@ -59,7 +59,7 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
             username={username}
             reflections={reflections}
           />
-          {reflections.length > 12 && (
+          {totalPage > 1 && (
             <NumberedPagination
               currentPage={currentPage}
               totalPage={totalPage}
