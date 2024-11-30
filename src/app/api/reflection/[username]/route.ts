@@ -9,6 +9,7 @@ export async function GET(
 ) {
   const currentUser = await getCurrentUser();
   const username = params.username;
+  const COUNT_PER_PAGE = 12;
 
   if (!username) {
     return NextResponse.json(
@@ -28,8 +29,7 @@ export async function GET(
 
   try {
     const page = parseInt(req.nextUrl.searchParams.get("page") || "1", 10);
-    const reflectionsPerPage = 14;
-    const offset = (page - 1) * reflectionsPerPage;
+    const offset = (page - 1) * COUNT_PER_PAGE;
 
     const isCurrentUser = currentUser?.id === userId;
 
@@ -37,7 +37,7 @@ export async function GET(
       where: isCurrentUser ? { userId } : { userId, isPublic: true },
     });
 
-    const totalPage = Math.ceil(reflectionCount / reflectionsPerPage);
+    const totalPage = Math.ceil(reflectionCount / COUNT_PER_PAGE);
 
     const userWithReflections = await prisma.user.findUnique({
       where: { id: userId },
@@ -46,7 +46,7 @@ export async function GET(
         reflections: {
           where: isCurrentUser ? { userId } : { userId, isPublic: true },
           orderBy: { createdAt: "desc" },
-          take: reflectionsPerPage,
+          take: COUNT_PER_PAGE,
           skip: offset,
           select: {
             title: true,

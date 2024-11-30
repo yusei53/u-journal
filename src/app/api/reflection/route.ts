@@ -6,17 +6,21 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
+    const COUNT_PER_PAGE = 12;
+
     const page = parseInt(req.nextUrl.searchParams.get("page") || "1", 10);
-    const reflectionsPerPage = 14;
-    const offset = (page - 1) * reflectionsPerPage;
+    const offset = (page - 1) * COUNT_PER_PAGE;
+
     const reflectionCount = await prisma.reflection.count({
       where: { isPublic: true },
     });
-    const totalPage = Math.ceil(reflectionCount / reflectionsPerPage);
+
+    const totalPage = Math.ceil(reflectionCount / COUNT_PER_PAGE);
+
     const reflections = await prisma.reflection.findMany({
       where: { isPublic: true },
       orderBy: { createdAt: "desc" },
-      take: reflectionsPerPage,
+      take: COUNT_PER_PAGE,
       skip: offset,
       select: {
         title: true,
