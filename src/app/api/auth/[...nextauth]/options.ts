@@ -40,7 +40,7 @@ const authOptions: NextAuthOptions = {
 
 export default authOptions;
 
-//メールアドレス認証もし使う時はこれ
+// MEMO: メールアドレス認証もし使う時はこれ
 // CredentialsProvider({
 //   name: "credentials",
 //   credentials: {
