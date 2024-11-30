@@ -77,6 +77,8 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
       color: "var(--black)",
       fontSize: "0.95rem",
       padding: "0.25em 0.3em",
+      overflowX: "auto",
+      wordBreak: "break-word",
     },
 
     pre: {
@@ -86,6 +88,9 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
       borderRadius: "0.4rem",
       margin: "1.5rem 0",
       padding: "0.75rem 1rem",
+      overflowX: "auto",
+      maxWidth: "100%",
+      boxSizing: "border-box",
 
       "& code": {
         backgroundColor: "transparent",
