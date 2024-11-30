@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import ReflectionPostFormPage from "./page.client";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
+import { redirect } from "next/navigation";
 
 const description = "リフティの投稿作成ページ";
 export const metadata: Metadata = {
@@ -21,9 +22,11 @@ export const metadata: Metadata = {
 const page = async () => {
   const currentUser = await getCurrentUser();
 
-  return (
-    <ReflectionPostFormPage username={currentUser?.username || undefined} />
-  );
+  if (!currentUser?.username) {
+    redirect("/login");
+  }
+
+  return <ReflectionPostFormPage username={currentUser.username} />;
 };
 
 export default page;

@@ -66,7 +66,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   };
 
   return (
-    <Box component={"form"} onSubmit={onSubmit}>
+    <Box component={"form"} onSubmit={onSubmit} minHeight={"80vh"}>
       <Box
         component={"header"}
         display={"flex"}

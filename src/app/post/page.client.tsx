@@ -1,16 +1,14 @@
 "use client";
 import { useCreateReflectionForm } from "@/src/hooks/reflection/useCreateReflectionForm";
 import ReflectionPostForm from "@/src/components/form/ReflectionPostForm";
-import { useRouter } from "next/navigation";
 
 type ReflectionPostFormPageProps = {
-  username: string | undefined;
+  username: string;
 };
 
 const ReflectionPostFormPage: React.FC<ReflectionPostFormPageProps> = ({
   username,
 }) => {
-  const router = useRouter();
   const { control, isSubmitting, isSubmitSuccessful, errors, onSubmit } =
     useCreateReflectionForm(username);
 
@@ -18,10 +16,6 @@ const ReflectionPostFormPage: React.FC<ReflectionPostFormPageProps> = ({
     e.preventDefault();
     await onSubmit(e);
   };
-
-  if (!username) {
-    router.push("/setting/username");
-  }
 
   return (
     <ReflectionPostForm
