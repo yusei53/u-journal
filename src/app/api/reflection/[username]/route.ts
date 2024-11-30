@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/src/lib/prisma";
 import { getUserIdByUsername } from "@/src/utils/actions/get-userId-by-username";
+import getCurrentUser from "@/src/utils/actions/get-current-user";
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { username: string } }
 ) {
+  const currentUser = await getCurrentUser();
   const username = params.username;
 
   if (!username) {
@@ -29,8 +31,10 @@ export async function GET(
     const reflectionsPerPage = 14;
     const offset = (page - 1) * reflectionsPerPage;
 
+    const isCurrentUser = currentUser?.id === userId;
+
     const reflectionCount = await prisma.reflection.count({
-      where: { userId },
+      where: isCurrentUser ? { userId } : { userId, isPublic: true },
     });
 
     const totalPage = Math.ceil(reflectionCount / reflectionsPerPage);
@@ -40,6 +44,7 @@ export async function GET(
       select: {
         image: true,
         reflections: {
+          where: isCurrentUser ? { userId } : { userId, isPublic: true },
           orderBy: { createdAt: "desc" },
           take: reflectionsPerPage,
           skip: offset,
@@ -55,7 +60,10 @@ export async function GET(
     });
 
     if (!userWithReflections) {
-      return NextResponse.json({ status: 404 });
+      return NextResponse.json(
+        { message: "振り返りが見つかりません" },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json({
