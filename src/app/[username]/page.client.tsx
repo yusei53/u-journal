@@ -31,13 +31,15 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
       ) : (
         <ReflectionCardListArea username={username} reflections={reflections} />
       )}
-      <PostNavigationButton
-        sx={{
-          position: "fixed",
-          right: { xs: 40, md: 100 },
-          bottom: 50,
-        }}
-      />
+      {username && (
+        <PostNavigationButton
+          sx={{
+            position: "fixed",
+            right: { xs: 40, md: 100 },
+            bottom: 50,
+          }}
+        />
+      )}
     </>
   );
 };
