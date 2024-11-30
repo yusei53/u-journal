@@ -43,13 +43,15 @@ const RootPage: React.FC<RootPageProps> = ({
         totalPage={totalPage}
         onChange={handleChange}
       />
-      <PostNavigationButton
-        sx={{
-          position: "fixed",
-          right: { xs: 40, md: 100 },
-          bottom: 50,
-        }}
-      />
+      {currentUsername && (
+        <PostNavigationButton
+          sx={{
+            position: "fixed",
+            right: { xs: 40, md: 100 },
+            bottom: 50,
+          }}
+        />
+      )}
     </>
   );
 };
