@@ -2,10 +2,9 @@ import { Box, Typography } from "@mui/material";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Link from "next/link";
 import { theme } from "@/src/utils/theme";
-import { Reflection, ReflectionWithUser } from "@/src/api/reflection-api";
+import { Reflection } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
 import Image from "next/image";
-import { useEffect } from "react";
 
 type ReflectionCardProps = {
   username: string;
