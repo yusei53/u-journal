@@ -27,7 +27,7 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     },
     /* List styles */
     "ul, ol": {
-      padding: "0 1rem",
+      padding: "0 0.3rem 0 1rem",
       margin: "0.4rem 0rem 1.25rem 0.4rem",
       "& li p": {
         marginTop: "0.25em",
