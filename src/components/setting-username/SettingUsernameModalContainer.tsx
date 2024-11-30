@@ -1,5 +1,4 @@
 import UsernameModal from "../setting-username/SettingUsernameModal";
-import { useRouter } from "next/navigation";
 import { useUpdateUsernameForm } from "@/src/hooks/username/useUpdateUsernameForm";
 import { User } from "@prisma/client";
 
@@ -11,7 +10,6 @@ type SettingUsernameModalContainerProps = {
 const SettingUsernameModalContainer: React.FC<
   SettingUsernameModalContainerProps
 > = ({ open, currentUsername }) => {
-  const router = useRouter();
   const { control, isSubmitting, isSubmitSuccessful, errors, onSubmit } =
     useUpdateUsernameForm(currentUsername);
 
@@ -20,17 +18,12 @@ const SettingUsernameModalContainer: React.FC<
     await onSubmit(e);
   };
 
-  const handleClose = () => {
-    router.push("/");
-  };
-
   return (
     <UsernameModal
       onSubmit={handleSubmit}
       control={control}
       errors={errors}
       open={open}
-      onClose={handleClose}
       isSubmitting={isSubmitting}
       isSubmitSuccessful={isSubmitSuccessful}
     />
