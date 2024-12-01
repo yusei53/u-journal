@@ -39,6 +39,7 @@ const StyledMarkdown = styled(Box)(({ theme }) => ({
       color: theme.palette.primary.light,
       textDecoration: "underline",
       cursor: "pointer",
+      wordBreak: "break-word",
     },
 
     /* Heading styles */

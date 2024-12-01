@@ -39,6 +39,7 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
       color: theme.palette.primary.light,
       textDecoration: "underline",
       cursor: "pointer",
+      wordBreak: "break-word",
     },
 
     /* Heading styles */
