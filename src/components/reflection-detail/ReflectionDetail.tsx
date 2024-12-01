@@ -9,6 +9,7 @@ import Image from "next/image";
 import { animation } from "../shared/animation";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { useRouter } from "next/navigation";
+import UserInformationSection from "./UserInformationSection";
 
 type ReflectionDetailProps = {
   title: string;
@@ -33,6 +34,7 @@ const h1 = {
   fontSize: "21px",
   border: "none",
   outline: "none",
+  marginBottom: 8,
 };
 
 export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
@@ -70,7 +72,8 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
           cursor: "pointer",
         }}
       />
-      <Box mb={5}>
+      {/* // TODO: articleタグとしてコンポーネント分割する */}
+      <Box component={"article"}>
         <Box display={"flex"} alignItems={"center"} my={0.5}>
           <Link
             href={`/${username}`}
@@ -105,38 +108,15 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
         <Typography component={"h1"} sx={h1}>
           {title}
         </Typography>
+        <StyledMarkdown dangerouslySetInnerHTML={{ __html: content }} />
       </Box>
-      <StyledMarkdown dangerouslySetInnerHTML={{ __html: content }} />
-      <Box mt={14} mb={10}>
-        <Divider sx={{ borderColor: theme.palette.grey[400] }} />
-        <Box my={3} display={"flex"} alignItems={"center"}>
-          <Link
-            href={`/${username}`}
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              src={userImage}
-              alt={`${username}の画像`}
-              width={55}
-              height={55}
-              priority
-              style={{ borderRadius: 100, marginRight: 8 }}
-            />
-          </Link>
-          <Box display={"flex"} flexDirection={"column"} gap={0.5}>
-            <Typography component={Link} href={`/${username}`} sx={link}>
-              {username}
-            </Typography>
-            <Typography color={`${theme.palette.grey[600]}`}>
-              {`${username}`} has shared {reflectionCount} reflections. Discover
-              new insights this platform.
-            </Typography>
-          </Box>
-        </Box>
-        <Divider sx={{ borderColor: theme.palette.grey[400] }} />
+      <Box component={"section"} mt={14} mb={10}>
+        <UserInformationSection
+          username={username}
+          userImage={userImage}
+          reflectionCount={reflectionCount}
+          link={link}
+        />
       </Box>
     </Box>
   );
