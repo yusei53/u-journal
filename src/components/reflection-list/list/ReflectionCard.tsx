@@ -80,7 +80,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
 };
 const article = {
   width: { xs: 305, sm: 380 },
-  height: 110,
+  height: 120,
   borderRadius: 3,
   display: "block", // aタグにblock要素を指定すると長方形が表示できる
   border: `1.2px solid ${theme.palette.primary.main}`,
