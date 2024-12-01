@@ -2,6 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from "next-auth/providers/discord";
+import LineProvider from "next-auth/providers/line";
 import prisma from "@/src/lib/prisma";
 
 const authOptions: NextAuthOptions = {
@@ -14,6 +15,10 @@ const authOptions: NextAuthOptions = {
     DiscordProvider({
       clientId: process.env.AUTH_DISCORD_ID as string,
       clientSecret: process.env.AUTH_DISCORD_SECRET as string,
+    }),
+    LineProvider({
+      clientId: process.env.LINE_CLIENT_ID as string,
+      clientSecret: process.env.LINE_CLIENT_SECRET as string,
     }),
   ],
   session: {

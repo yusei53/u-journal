@@ -1,6 +1,6 @@
 import { Box, Typography, Divider, Stack } from "@mui/material";
 import { AuthButton } from "./AuthButton";
-import { FaDiscord } from "react-icons/fa";
+import { FaDiscord, FaLine } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 
@@ -54,6 +54,15 @@ const LoginForm = () => {
           icon={FaDiscord}
           onClick={() =>
             signIn("discord", {
+              callbackUrl: "/setting/username",
+            })
+          }
+        />
+        <AuthButton
+          label="LINE"
+          icon={FaLine}
+          onClick={() =>
+            signIn("line", {
               callbackUrl: "/setting/username",
             })
           }
