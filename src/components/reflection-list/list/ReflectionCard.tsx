@@ -66,22 +66,22 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
             position={"absolute"}
             bottom={{ xs: 12, sm: 15 }}
           >
-            <CalendarTodayIcon
-              fontSize={"small"}
-              sx={{ color: theme.palette.grey[600] }}
+            <Image
+              src={"/calendar.svg"}
+              alt={"カレンダーアイコン"}
+              width={20}
+              height={20}
             />
-            <Typography color={theme.palette.grey[600]} ml={0.8}>
+            <Typography color={theme.palette.grey[600]} mx={0.8}>
               {formatDate(reflection.createdAt)}
             </Typography>
             {!reflection.isPublic && (
-              <Box mt={0.5} ml={1}>
-                <Image
-                  src="/lock.png"
-                  alt="非公開マーク"
-                  width={15}
-                  height={15}
-                />
-              </Box>
+              <Image
+                src="/lock-google.svg"
+                alt="非公開マーク"
+                width={20}
+                height={20}
+              />
             )}
           </Box>
         </Box>
