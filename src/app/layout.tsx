@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { NextAuthProvider } from "../providers";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../utils/theme/theme";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Footer } from "../components/shared/footer";
+import getCurrentUser from "../utils/actions/get-current-user";
+
+const GA_TAG_ID = process.env.NEXT_PUBLIC_GA_ID as string;
 
 const siteName = "リフティ | 振り返りプラットフォーム";
 const description = "日々の振り返りを手助けする振り返りプラットフォーム";
@@ -30,6 +35,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentUser = await getCurrentUser();
+
   return (
     <html lang="en">
       <head>
@@ -56,9 +63,11 @@ export default async function RootLayout({
             <Container maxWidth="md" sx={{ my: 6 }}>
               {children}
             </Container>
+            <Footer currentUser={currentUser ? currentUser.username : null} />
           </ThemeProvider>
         </NextAuthProvider>
       </body>
+      <GoogleAnalytics gaId={GA_TAG_ID} />
     </html>
   );
 }

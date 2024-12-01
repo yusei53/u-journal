@@ -3,8 +3,8 @@ import { ReflectionWithUser } from "../api/reflection-api";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import ReflectionAllArea from "../components/reflection-all-list/list/ReflectionAllListArea";
-import LogoutButton from "../components/auth/LogoutButton";
 import SettingUsernameModalContainer from "../components/setting-username/SettingUsernameModalContainer";
+import { PostNavigationButton } from "../components/shared/button";
 
 type RootPageProps = {
   open: boolean;
@@ -43,7 +43,15 @@ const RootPage: React.FC<RootPageProps> = ({
         totalPage={totalPage}
         onChange={handleChange}
       />
-      <LogoutButton />
+      {currentUsername && (
+        <PostNavigationButton
+          sx={{
+            position: "fixed",
+            right: { xs: 40, md: 100 },
+            bottom: 50,
+          }}
+        />
+      )}
     </>
   );
 };

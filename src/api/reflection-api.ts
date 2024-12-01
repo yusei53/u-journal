@@ -24,6 +24,7 @@ type ReflectionAll = {
 export type Reflections = {
   userImage: string;
   reflections: Reflection[];
+  totalPage: number;
 };
 
 export type ReflectionDetail = Reflection & {
@@ -33,6 +34,7 @@ export type ReflectionDetail = Reflection & {
     image: string;
     username: string;
   };
+  reflectionCount: number;
 };
 
 export const reflectionAPI = {
@@ -48,9 +50,10 @@ export const reflectionAPI = {
   },
 
   async getReflectionsByUsername(
-    username: string
+    username: string,
+    page: number = 1
   ): Promise<Result<Reflections, 404>> {
-    const path = `/api/reflection/${username}`;
+    const path = `/api/reflection/${username}?page=${page}`;
     const options: FetchURLOptions = {
       method: "GET",
       next: { tags: [`reflections-${username}`] },
@@ -64,7 +67,6 @@ export const reflectionAPI = {
     const path = `/api/reflection/detail/${reflectionCUID}`;
     const options: FetchURLOptions = {
       method: "GET",
-      next: { tags: ["reflection-detail"] },
     };
     return await fetchURL<ReflectionDetail, 404>(path, options);
   },

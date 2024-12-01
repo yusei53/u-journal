@@ -4,6 +4,7 @@ import { reflectionAPI } from "@/src/api/reflection-api";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import opengraphAPI from "@/src/api/opengraph-api";
+import getCurrentUser from "@/src/utils/actions/get-current-user";
 
 export const generateMetadata = async ({
   params,
@@ -43,12 +44,21 @@ export const generateMetadata = async ({
   };
 };
 
-const page = async ({ params }: { params: { username: string } }) => {
+const page = async ({
+  params,
+  searchParams,
+}: {
+  params: { username: string };
+  searchParams: { page?: string };
+}) => {
+  const currentUser = await getCurrentUser();
   const { username } = params;
+  const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1;
 
   const countResult = await reflectionsCountAPI.getReflectionsCount(username);
   const reflectionsResult = await reflectionAPI.getReflectionsByUsername(
-    username
+    username,
+    currentPage
   );
 
   if (countResult === 404 || reflectionsResult === 404) {
@@ -64,10 +74,13 @@ const page = async ({ params }: { params: { username: string } }) => {
   return (
     <>
       <UserReflectionListPage
+        currentUsername={currentUser?.username || null}
         userImage={reflectionsWithUser.userImage}
         username={username}
         reflectionCount={reflectionCount}
         reflections={reflectionsWithUser.reflections}
+        currentPage={currentPage}
+        totalPage={reflectionsWithUser.totalPage}
       />
     </>
   );

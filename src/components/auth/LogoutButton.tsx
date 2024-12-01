@@ -1,18 +1,36 @@
-import { Box } from "@mui/material";
+"use client";
+import { theme } from "@/src/utils/theme";
+import { Button } from "@mui/material";
 import { signOut } from "next-auth/react";
-import { AuthButton } from "./AuthButton";
 
+// TODO: 内製Buttonコンポーネントを使う
 const LogoutButton = () => {
+  const handleSignOut = () => {
+    signOut({
+      callbackUrl: "/",
+    });
+    window.location.reload();
+  };
+
   return (
-    <Box>
-      <AuthButton
-        label="ログアウト"
-        onClick={() => signOut()}
-        sx={{
-          border: "1px solid #c4c4c4",
-        }}
-      />
-    </Box>
+    <Button
+      sx={{
+        fontSize: 13,
+        display: "block",
+        color: `${theme.palette.grey[600]}`,
+        border: "none",
+        borderRadius: 0,
+        p: 0,
+        transform: "none",
+        "&:hover": {
+          textDecoration: "underline",
+        },
+      }}
+      disableRipple
+      onClick={handleSignOut}
+    >
+      ログアウト
+    </Button>
   );
 };
 

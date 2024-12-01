@@ -27,7 +27,7 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
     },
     /* List styles */
     "ul, ol": {
-      padding: "0 1rem",
+      padding: "0 0.3rem 0 1rem",
       margin: "0.4rem 0rem 1.25rem 0.4rem",
       "& li p": {
         marginTop: "0.25em",
@@ -39,6 +39,7 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
       color: theme.palette.primary.light,
       textDecoration: "underline",
       cursor: "pointer",
+      wordBreak: "break-word",
     },
 
     /* Heading styles */
@@ -77,6 +78,8 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
       color: "var(--black)",
       fontSize: "0.95rem",
       padding: "0.25em 0.3em",
+      overflowX: "auto",
+      wordBreak: "break-word",
     },
 
     pre: {
@@ -86,6 +89,9 @@ const StyledEditorContent = styled(EditorContent)(({ theme }) => ({
       borderRadius: "0.4rem",
       margin: "1.5rem 0",
       padding: "0.75rem 1rem",
+      overflowX: "auto",
+      maxWidth: "100%",
+      boxSizing: "border-box",
 
       "& code": {
         backgroundColor: "transparent",

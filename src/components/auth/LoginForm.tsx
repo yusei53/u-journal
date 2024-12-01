@@ -1,8 +1,9 @@
 import { Box, Typography, Divider, Stack } from "@mui/material";
 import { AuthButton } from "./AuthButton";
-import { FaDiscord } from "react-icons/fa";
+import { FaDiscord, FaLine } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 
 const LoginForm = () => {
   return (
@@ -35,9 +36,22 @@ const LoginForm = () => {
           ログイン
         </Typography>
       </Box>
-      <Typography textAlign={"center"} my={3} fontSize={14}>
-        ログインすると投稿作成ができます
-      </Typography>
+      <Box
+        display={"flex"}
+        alignItems={"center"}
+        flexDirection={"column"}
+        my={1.5}
+      >
+        <Image
+          src="/favicon.svg"
+          alt="リフティのアイコン"
+          width={100}
+          height={100}
+        />
+        <Typography fontSize={14} my={1}>
+          ログインすると投稿作成ができます
+        </Typography>
+      </Box>
       <Divider sx={{ borderColor: "#c4c4c4", mx: 3 }} />
       <Stack gap={2} mx={6} mt={3.5}>
         <AuthButton
@@ -52,8 +66,19 @@ const LoginForm = () => {
         <AuthButton
           label="Discord"
           icon={FaDiscord}
+          iconColor={"#5865F2"}
           onClick={() =>
             signIn("discord", {
+              callbackUrl: "/setting/username",
+            })
+          }
+        />
+        <AuthButton
+          label="LINE"
+          icon={FaLine}
+          iconColor={"#00b900"}
+          onClick={() =>
+            signIn("line", {
               callbackUrl: "/setting/username",
             })
           }

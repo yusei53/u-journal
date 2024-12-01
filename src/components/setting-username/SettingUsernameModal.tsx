@@ -16,7 +16,6 @@ type SettingUsernameModalProps = {
   control: Control<FormValues>;
   errors: FieldErrors<FormValues>;
   open: boolean;
-  onClose: () => void;
   isSubmitting: boolean;
   isSubmitSuccessful: boolean;
 };
@@ -42,14 +41,14 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
   control,
   errors,
   open,
-  onClose,
   isSubmitting,
   isSubmitSuccessful,
 }) => {
   return (
     <Modal open={open} disableEscapeKeyDown>
       <Box>
-        <IconButton
+        {/* MEMO: ユーザーネーム設定をしないユーザーがいくつかいるためコメントアウト */}
+        {/* <IconButton
           onClick={onClose}
           sx={{
             position: "absolute",
@@ -63,8 +62,12 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
               color: "white",
             }}
           />
-        </IconButton>
+        </IconButton> */}
         <Box sx={modal}>
+          <Typography component={"h2"} fontWeight={550} mb={2} fontSize={18}>
+            ユーザーネーム設定
+          </Typography>
+
           <Image
             src={"/favicon.svg"}
             alt={"リフティのロゴ"}
@@ -73,7 +76,7 @@ const SettingUsernameModal: React.FC<SettingUsernameModalProps> = ({
           />
           <Box mt={3}>
             <Typography>あなただけのURLを設定しましょう！</Typography>
-            <Typography fontSize={12} color={theme.palette.grey[500]}>
+            <Typography fontSize={12} color={theme.palette.grey[600]}>
               ※あとで変更可能です
             </Typography>
           </Box>
