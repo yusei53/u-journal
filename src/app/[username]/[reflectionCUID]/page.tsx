@@ -80,6 +80,7 @@ const page = async ({ params }: PageProps) => {
       username={reflection.user.username}
       content={reflection.content}
       createdAt={reflection.createdAt}
+      reflectionCount={reflection.reflectionCount}
     />
   );
 };

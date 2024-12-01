@@ -34,6 +34,7 @@ export type ReflectionDetail = Reflection & {
     image: string;
     username: string;
   };
+  reflectionCount: number;
 };
 
 export const reflectionAPI = {
@@ -66,7 +67,6 @@ export const reflectionAPI = {
     const path = `/api/reflection/detail/${reflectionCUID}`;
     const options: FetchURLOptions = {
       method: "GET",
-      next: { tags: ["reflection-detail"] },
     };
     return await fetchURL<ReflectionDetail, 404>(path, options);
   },

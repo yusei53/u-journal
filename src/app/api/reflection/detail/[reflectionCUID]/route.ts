@@ -33,16 +33,15 @@ export async function GET(
       );
     }
 
-    //MEMO: ほんとはここで公開非公開の設定したいけどcurrentUserのidが取れないからコンポーネントでやってる
-    // if (reflection.userId !== currentUser?.id && !reflection.isPublic) {
-    //   return NextResponse.json(
-    //     { message: "Unauthorized access to this reflection" },
-    //     { status: 403 }
-    //   );
-    // }
+    const reflectionCount = await prisma.reflection.count({
+      where: {
+        userId: reflection.userId,
+      },
+    });
 
     return NextResponse.json({
       ...reflection,
+      reflectionCount,
       createdAt: reflection.createdAt.toISOString(),
     });
   } catch (error) {
