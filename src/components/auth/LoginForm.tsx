@@ -52,6 +52,7 @@ const LoginForm = () => {
         <AuthButton
           label="Discord"
           icon={FaDiscord}
+          iconColor={"#5865F2"}
           onClick={() =>
             signIn("discord", {
               callbackUrl: "/setting/username",
@@ -61,6 +62,7 @@ const LoginForm = () => {
         <AuthButton
           label="LINE"
           icon={FaLine}
+          iconColor={"#00b900"}
           onClick={() =>
             signIn("line", {
               callbackUrl: "/setting/username",

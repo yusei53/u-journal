@@ -11,6 +11,7 @@ type AuthButtonProps = {
   label: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   icon?: IconType;
+  iconColor?: string;
   sx?: SxProps;
 } & ButtonProps;
 
@@ -18,6 +19,7 @@ export const AuthButton: React.FC<AuthButtonProps> = ({
   label,
   onClick,
   icon: Icon,
+  iconColor,
   sx,
 }) => {
   return (
@@ -44,11 +46,19 @@ export const AuthButton: React.FC<AuthButtonProps> = ({
           left={{ xs: 15, md: 24 }}
           fontSize={{ xs: 20, md: 25 }}
         >
-          <Icon />
+          <Icon
+            style={{
+              color: iconColor,
+            }}
+          />
         </Box>
       )}
       {label}
-      <Typography component={"span"} fontSize={{ xs: 13, md: 14 }}>
+      <Typography
+        component={"span"}
+        fontSize={{ xs: 13, md: 14 }}
+        letterSpacing={0.8}
+      >
         でログイン
       </Typography>
     </MuiButton>
