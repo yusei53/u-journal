@@ -18,7 +18,7 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
   onClose,
 }) => {
   return (
-    <>
+    <Box position={"relative"} display={"flex"} alignItems={"center"}>
       <Tooltip
         title={"書き方のヒント"}
         placement={"top"}
@@ -44,7 +44,6 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
           display={"flex"}
           alignItems={"center"}
           onClick={onClick}
-          onBlur={onClose}
           sx={{ cursor: "pointer" }}
         >
           <InfoOutlinedIcon
@@ -54,6 +53,18 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
           />
         </Box>
       </Tooltip>
+      {open && (
+        // MEMO: なぜかこのPopperは外側をクリックしてもスマホで閉じないため、透明なBoxを設置
+        <Box
+          onClick={onClose}
+          position={"fixed"}
+          top={0}
+          left={0}
+          width={"100vw"}
+          height={"100vh"}
+          zIndex={1}
+        />
+      )}
       <Popper open={open} anchorEl={anchorEl} transition sx={{ zIndex: 2 }}>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
@@ -61,7 +72,7 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
               boxShadow={1}
               borderRadius={2.5}
               bgcolor={"white"}
-              zIndex={2}
+              zIndex={3}
               maxWidth={"320px"}
               maxHeight={"400px"}
               overflow={"auto"}
@@ -79,6 +90,7 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
                   backgroundColor: theme.palette.grey[600],
                 },
               }}
+              onClick={(e) => e.stopPropagation()}
             >
               {markdownList.map((markdown) => (
                 <MarkdownSection
@@ -92,7 +104,7 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
           </Fade>
         )}
       </Popper>
-    </>
+    </Box>
   );
 };
 

@@ -24,7 +24,6 @@ const PublishSettingPopupArea: React.FC<PublishSettingPopupAreaProps> = ({
   return (
     <>
       <Button
-        aria-describedby="simple-popper"
         onClick={onToggle}
         onBlur={onClose}
         sx={{
