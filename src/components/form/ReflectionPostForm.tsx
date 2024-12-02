@@ -1,4 +1,4 @@
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import { CustomInput } from "../shared/input";
 import { Button } from "../shared/button";
@@ -6,6 +6,7 @@ import { ErrorMessage } from "../shared/alert";
 import { MarkdownEditor, MarkdownEditorRef } from "./markdown-editor";
 import { useRef, useState } from "react";
 import EmojiPicker from "./EmojiPicker";
+import { MarkdownSupportPopupAreaContainer } from "./popup/markdown-support";
 import {
   REFLECTION_TEMPLATES,
   ReflectionTemplatePopupAreaContainer,
@@ -81,6 +82,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
         zIndex={1}
         boxShadow={{ xs: "0px 1px 2.5px rgba(0, 0, 0, 0.1)", md: "none" }}
       >
+        <MarkdownSupportPopupAreaContainer />
         <ReflectionTemplatePopupAreaContainer
           onInsertTemplate={handleInsertTemplate}
           onClearContent={handleClearContent}
@@ -100,7 +102,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
           {isSubmitting || isSubmitSuccessful ? "投稿中..." : "投稿する"}
         </Button>
       </Box>
-      <Box my={{ xs: 12, md: 10 }} mx={{ xs: 0.5, md: 12 }}>
+      <Box my={{ xs: 14, md: 10 }} mx={{ xs: 0.5, md: 12 }}>
         <Stack gap={3} m={{ md: 2 }}>
           <Controller
             name="title"
