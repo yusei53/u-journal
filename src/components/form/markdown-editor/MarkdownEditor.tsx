@@ -6,6 +6,7 @@ import Link from "@tiptap/extension-link";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import StyledEditorContent from "./StyledEditorContent";
+import HighlightMark from "./highlight-mark";
 
 type MarkdownEditorProps = {
   value: string;
@@ -26,6 +27,7 @@ export const MarkdownEditor = forwardRef<
     extensions: [
       StarterKit,
       Highlight,
+      HighlightMark,
       Typography,
       Placeholder.configure({
         placeholder: "文章を入力",
