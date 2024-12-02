@@ -65,7 +65,23 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
           zIndex={1}
         />
       )}
-      <Popper open={open} anchorEl={anchorEl} transition sx={{ zIndex: 2 }}>
+      <Popper
+        open={open}
+        anchorEl={anchorEl}
+        transition
+        modifiers={[
+          {
+            name: "offset",
+            options: {
+              offset: [0, 10], // x軸: 0, y軸: 8px
+            },
+          },
+        ]}
+        sx={{
+          zIndex: 2,
+          // transform: "translateY(-8px) !important",
+        }}
+      >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
             <Box
