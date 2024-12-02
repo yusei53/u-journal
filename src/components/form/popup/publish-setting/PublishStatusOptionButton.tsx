@@ -41,7 +41,7 @@ const PublishStatusOptionButton: React.FC<PublishStatusOptionButtonProps> = ({
       {text}
       {isActive && <CheckIcon fontSize="small" sx={{ ml: 1 }} />}
     </Box>
-    <Typography fontSize={12} color={theme.palette.grey[500]}>
+    <Typography fontSize={12} color={theme.palette.grey[600]}>
       {description}
     </Typography>
   </Button>
