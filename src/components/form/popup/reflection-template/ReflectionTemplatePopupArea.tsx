@@ -52,7 +52,27 @@ const ReflectionTemplatePopupArea: React.FC<
       <Popper open={open} anchorEl={anchorEl} transition sx={{ zIndex: 2 }}>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
-            <Box boxShadow={1} bgcolor="white" borderRadius={1}>
+            <Box
+              boxShadow={1}
+              borderRadius={2.5}
+              bgcolor={"white"}
+              zIndex={2}
+              maxHeight={"320px"}
+              overflow={"auto"}
+              sx={{
+                "&::-webkit-scrollbar": {
+                  width: "4px",
+                  height: "4px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  backgroundColor: theme.palette.grey[400],
+                  borderRadius: "4px",
+                },
+                "&::-webkit-scrollbar-thumb:hover": {
+                  backgroundColor: theme.palette.grey[600],
+                },
+              }}
+            >
               {Object.keys(reflectionTemplateType).map((categoryKey) => (
                 <Fragment key={categoryKey}>
                   <Button
@@ -64,6 +84,7 @@ const ReflectionTemplatePopupArea: React.FC<
                     sx={{
                       ...button,
                       borderRadius: "none",
+                      letterSpacing: 0.8,
                       "&:hover": {
                         backgroundColor: theme.palette.primary.contrastText,
                       },

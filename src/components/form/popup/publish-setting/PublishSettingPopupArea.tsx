@@ -28,7 +28,7 @@ const PublishSettingPopupArea: React.FC<PublishSettingPopupAreaProps> = ({
         onClick={onToggle}
         onBlur={onClose}
         sx={{
-          width: "100px",
+          width: "90px",
           border: "none",
           display: "flex",
           alignItems: "center",
