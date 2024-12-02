@@ -1,5 +1,5 @@
-import { Box, Button as MuiButton } from "@mui/material";
-import { useState } from "react";
+import { Box, Button as MuiButton, Typography } from "@mui/material";
+import { useState, useRef } from "react";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import { theme } from "@/src/utils/theme";
@@ -16,6 +16,19 @@ const EmojiPicker: React.FC<EmojiPickerProps> = ({
   onChange,
 }) => {
   const [showPicker, setShowPicker] = useState(false);
+  const pickerRef = useRef<HTMLDivElement>(null);
+
+  const handleBlur = (e: React.FocusEvent) => {
+    //MEMO: Picker内の要素をクリックした場合は閉じない。Picker以外をクリックした場合は閉じる
+    if (
+      pickerRef.current &&
+      e.relatedTarget &&
+      pickerRef.current.contains(e.relatedTarget as Node)
+    ) {
+      return;
+    }
+    setShowPicker(false);
+  };
 
   return (
     <Box
@@ -34,24 +47,23 @@ const EmojiPicker: React.FC<EmojiPickerProps> = ({
           bgcolor: theme.palette.primary.main,
         }}
         onClick={() => setShowPicker(!showPicker)}
-        onBlur={() => setShowPicker(false)}
+        onBlur={handleBlur}
       >
         {selectedEmoji}
       </MuiButton>
-      <Box
-        component={"span"}
-        color={theme.palette.grey[500]}
-        mx={3}
-        fontSize={"0.8rem"}
-      >
-        この振り返りを一つの絵文字で表現してみよう!
+      <Box mx={2} display={"flex"} alignItems={"center"}>
+        <Typography fontSize={20}>👈</Typography>
+        <Typography
+          component={"span"}
+          color={theme.palette.grey[600]}
+          fontSize={"0.8rem"}
+          px={1}
+        >
+          この振り返りを一つの絵文字で表現してみよう!
+        </Typography>
       </Box>
       {showPicker && (
-        <Box
-          position={"absolute"}
-          top={"100%"}
-          onMouseDown={(e) => e.preventDefault()}
-        >
+        <Box position={"absolute"} top={"100%"} ref={pickerRef} tabIndex={-1}>
           <Picker
             data={data}
             onEmojiSelect={(emoji: any) => {
