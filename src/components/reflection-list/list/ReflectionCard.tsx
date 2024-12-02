@@ -59,30 +59,33 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
           >
             <Typography fontSize={33}>{reflection.charStamp}</Typography>
           </Box>
-          <Box
-            component={"time"}
-            display={"flex"}
-            alignItems={"center"}
-            position={"absolute"}
-            bottom={{ xs: 12, sm: 15 }}
-          >
-            <Image
-              src={"/calendar.svg"}
-              alt={"カレンダーアイコン"}
-              width={20}
-              height={20}
-            />
-            <Typography color={theme.palette.grey[600]} mx={0.8}>
-              {formatDate(reflection.createdAt)}
-            </Typography>
-            {!reflection.isPublic && (
-              <Image
-                src="/lock-google.svg"
-                alt="非公開マーク"
-                width={18}
-                height={18}
-              />
-            )}
+          <Box position={"absolute"} bottom={{ xs: 12, sm: 15 }}>
+            <Box display={"flex"} alignItems={"center"}>
+              <Box
+                component={"time"}
+                display={"flex"}
+                alignItems={"center"}
+                mr={2}
+              >
+                <Image
+                  src={"/calendar.svg"}
+                  alt={"カレンダーアイコン"}
+                  width={20}
+                  height={20}
+                />
+                <Typography color={theme.palette.grey[600]} ml={0.8} pt={0.2}>
+                  {formatDate(reflection.createdAt)}
+                </Typography>
+              </Box>
+              {!reflection.isPublic && (
+                <Image
+                  src="/lock-google.svg"
+                  alt="非公開マーク"
+                  width={20}
+                  height={20}
+                />
+              )}
+            </Box>
           </Box>
         </Box>
       </Box>
