@@ -11,7 +11,7 @@ const createReflectionSchema = z.object({
     .max(40, { message: "タイトルは40文字以内で入力してください。" }),
   content: z
     .string()
-    .min(3, { message: "本文は3文字以上で入力してください。" }),
+    .min(1, { message: "本文は1文字以上で入力してください。" }),
   charStamp: z.string(),
   isPublic: z.boolean(),
 });
