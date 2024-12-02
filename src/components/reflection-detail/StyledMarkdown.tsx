@@ -107,7 +107,8 @@ const StyledMarkdown = styled(Box)(({ theme }) => ({
     },
 
     blockquote: {
-      borderLeft: "3px solid grey",
+      borderLeft: "3px solid #B7B8B8",
+      color: "#7d8186",
       margin: "1.5rem 0",
       paddingLeft: "1rem",
     },
