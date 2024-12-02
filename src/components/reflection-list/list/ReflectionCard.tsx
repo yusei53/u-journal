@@ -79,8 +79,8 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
               <Image
                 src="/lock-google.svg"
                 alt="非公開マーク"
-                width={20}
-                height={20}
+                width={18}
+                height={18}
               />
             )}
           </Box>
