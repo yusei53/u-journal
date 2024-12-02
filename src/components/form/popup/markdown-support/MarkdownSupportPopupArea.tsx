@@ -1,4 +1,4 @@
-import { Box, Popper, Fade } from "@mui/material";
+import { Box, Popper, Fade, Tooltip } from "@mui/material";
 import { theme } from "@/src/utils/theme";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { markdownList } from "./markdown-list";
@@ -19,24 +19,41 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
 }) => {
   return (
     <>
-      <Box
-        component={"button"}
-        type={"button"}
-        bgcolor={"transparent"}
-        border={"none"}
-        mr={1.2}
-        display={"flex"}
-        alignItems={"center"}
-        onClick={onClick}
-        onBlur={onClose}
-        sx={{ cursor: "pointer" }}
+      <Tooltip
+        title={"書き方のヒント"}
+        placement={"top"}
+        slotProps={{
+          popper: {
+            modifiers: [
+              {
+                name: "offset",
+                options: {
+                  offset: [0, -10],
+                },
+              },
+            ],
+          },
+        }}
       >
-        <InfoOutlinedIcon
-          sx={{
-            color: `${theme.palette.grey[600]}`,
-          }}
-        />
-      </Box>
+        <Box
+          component={"button"}
+          type={"button"}
+          bgcolor={"transparent"}
+          border={"none"}
+          mr={1.2}
+          display={"flex"}
+          alignItems={"center"}
+          onClick={onClick}
+          onBlur={onClose}
+          sx={{ cursor: "pointer" }}
+        >
+          <InfoOutlinedIcon
+            sx={{
+              color: `${theme.palette.grey[600]}`,
+            }}
+          />
+        </Box>
+      </Tooltip>
       <Popper open={open} anchorEl={anchorEl} transition sx={{ zIndex: 2 }}>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
