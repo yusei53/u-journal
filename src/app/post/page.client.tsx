@@ -9,8 +9,15 @@ type ReflectionPostFormPageProps = {
 const ReflectionPostFormPage: React.FC<ReflectionPostFormPageProps> = ({
   username,
 }) => {
-  const { control, isSubmitting, isSubmitSuccessful, errors, onSubmit } =
-    useCreateReflectionForm(username);
+  const {
+    control,
+    isSubmitting,
+    isSubmitSuccessful,
+    errors,
+    onSubmit,
+    selectedEmoji,
+    handleEmojiChange,
+  } = useCreateReflectionForm(username);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,6 +31,8 @@ const ReflectionPostFormPage: React.FC<ReflectionPostFormPageProps> = ({
       isSubmitSuccessful={isSubmitSuccessful}
       errors={errors}
       onSubmit={handleSubmit}
+      selectedEmoji={selectedEmoji}
+      onEmojiChange={handleEmojiChange}
     />
   );
 };

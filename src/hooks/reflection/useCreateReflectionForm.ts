@@ -3,8 +3,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { reflectionAPI } from "@/src/api/reflection-api";
+import { useState } from "react";
 
-const createReflectionSchema = z.object({
+export const createReflectionSchema = z.object({
   title: z
     .string()
     .min(1, { message: "タイトルは1文字以上で入力してください。" })
@@ -16,19 +17,31 @@ const createReflectionSchema = z.object({
   isPublic: z.boolean(),
 });
 
-type CreateReflectionSchemaType = z.infer<typeof createReflectionSchema>;
+export type CreateReflectionSchemaType = z.infer<typeof createReflectionSchema>;
 
 export const useCreateReflectionForm = (username: string | undefined) => {
   const router = useRouter();
+  const [selectedEmoji, setSelectedEmoji] = useState("💭");
 
   const {
     handleSubmit,
     control,
+    setValue,
     formState: { isSubmitting, isSubmitSuccessful, errors },
   } = useForm<CreateReflectionSchemaType>({
     resolver: zodResolver(createReflectionSchema),
-    defaultValues: { title: "", content: "", charStamp: "💭", isPublic: true },
+    defaultValues: {
+      title: "",
+      content: "",
+      charStamp: selectedEmoji,
+      isPublic: true,
+    },
   });
+
+  const handleEmojiChange = (emoji: string) => {
+    setSelectedEmoji(emoji);
+    setValue("charStamp", emoji);
+  };
 
   const onSubmit = handleSubmit(
     async (formData: CreateReflectionSchemaType) => {
@@ -48,5 +61,7 @@ export const useCreateReflectionForm = (username: string | undefined) => {
     isSubmitSuccessful,
     errors,
     onSubmit,
+    selectedEmoji,
+    handleEmojiChange,
   };
 };

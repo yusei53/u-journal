@@ -26,6 +26,8 @@ type ReflectionPostFormProps = {
   isSubmitSuccessful: boolean;
   errors: FieldErrors<FormValues>;
   onSubmit: (event: React.FormEvent) => Promise<void>;
+  selectedEmoji: string;
+  onEmojiChange: (emoji: string) => void;
 };
 
 // TODO: UIとロジックが微妙に混在気味なのでコンポーネント分割を検討
@@ -35,8 +37,9 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
   isSubmitSuccessful,
   errors,
   onSubmit,
+  selectedEmoji,
+  onEmojiChange,
 }) => {
-  const [selectedEmoji, setSelectedEmoji] = useState("💭");
   const [isComposing, setIsComposing] = useState(false);
   const editorRef = useRef<MarkdownEditorRef>(null);
 
@@ -147,7 +150,7 @@ const ReflectionPostForm: React.FC<ReflectionPostFormProps> = ({
               <Box>
                 <EmojiPicker
                   selectedEmoji={selectedEmoji}
-                  setSelectedEmoji={setSelectedEmoji}
+                  setSelectedEmoji={onEmojiChange}
                   onChange={field.onChange}
                 />
                 {errors.charStamp && (
