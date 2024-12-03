@@ -109,11 +109,13 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
               position={"absolute"}
               left={{ xs: 125, md: 140 }}
             >
-              <CalendarTodayIcon
-                fontSize={"small"}
-                sx={{ color: theme.palette.grey[600] }}
+              <Image
+                src={"/calendar.svg"}
+                alt={"カレンダーアイコン"}
+                width={20}
+                height={20}
               />
-              <Typography color={theme.palette.grey[600]} ml={0.8}>
+              <Typography color={theme.palette.grey[600]} ml={0.8} pt={0.2}>
                 {formatDate(reflection.createdAt)}
               </Typography>
             </Box>
