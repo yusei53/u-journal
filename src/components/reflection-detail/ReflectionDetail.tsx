@@ -1,6 +1,5 @@
 "use client";
-import { Box, Typography, Divider } from "@mui/material";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import { Box, Typography } from "@mui/material";
 import StyledMarkdown from "./StyledMarkdown";
 import { theme } from "@/src/utils/theme";
 import { formatDate } from "@/src/utils/date-helper";
@@ -8,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { animation } from "../shared/animation";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import UserInformationSection from "./UserInformationSection";
 
 type ReflectionDetailProps = {
@@ -39,22 +38,26 @@ const h1 = {
 
 export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
   title,
-  userImage,
-  username,
   content,
   createdAt,
+  userImage,
+  username,
   reflectionCount,
 }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleBackNavigation = () => {
-    // MEMO: 前のページが存在する場合は戻る、それ以外は /username に遷移
-    if (window.history.length > 1) {
+    // MEMO: 更新後のリダイレクトで来た場合と外部からきたときは/usernameに戻り、それ以外は普通に戻る
+    if (searchParams.get("updated") === "true") {
+      router.push(`/${username}`);
+    } else if (window.history.length > 1) {
       router.back();
     } else {
       router.push(`/${username}`);
     }
   };
+
   return (
     <Box
       minHeight={"80vh"}
