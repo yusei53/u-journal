@@ -55,8 +55,6 @@ const page = async ({ params }: PageProps) => {
     redirect("/login");
   }
 
-  console.log(reflection);
-
   return (
     <ReflectionUpdateFormPage
       username={currentUser.username}
