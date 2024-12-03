@@ -52,20 +52,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
           height={22}
         />
       </Box>
-      <Popper
-        open={open}
-        anchorEl={anchorEl}
-        transition
-        modifiers={[
-          {
-            name: "offset",
-            options: {
-              offset: [0, 10],
-            },
-          },
-        ]}
-        sx={{ zIndex: 2 }}
-      >
+      <Popper open={open} anchorEl={anchorEl} transition sx={{ zIndex: 2 }}>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
             <Box boxShadow={1} borderRadius={2.5} bgcolor={"white"} zIndex={3}>
@@ -83,7 +70,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
               >
                 <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
                   <Image
-                    src={"/lock.png"}
+                    src={"/edit.svg"}
                     alt={`Icon`}
                     width={18}
                     height={18}
