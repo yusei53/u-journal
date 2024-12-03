@@ -97,4 +97,33 @@ export const reflectionAPI = {
     };
     return await fetchURL<void, 401>(path, options);
   },
+
+  async updateReflection({
+    reflectionCUID,
+    title,
+    content,
+    charStamp,
+    isPublic,
+  }: {
+    reflectionCUID: string;
+    title: string;
+    content: string;
+    charStamp: string;
+    isPublic: boolean;
+  }): Promise<Result<void, 400 | 401 | 403>> {
+    const path = `/api/reflection/detail/${reflectionCUID}`;
+    const options: FetchURLOptions = {
+      method: "PATCH",
+      body: {
+        title,
+        content,
+        charStamp,
+        isPublic,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return await fetchURL<void, 400 | 401 | 403>(path, options);
+  },
 };
