@@ -115,7 +115,7 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
                 width={20}
                 height={20}
               />
-              <Typography color={theme.palette.grey[600]} ml={0.8}>
+              <Typography color={theme.palette.grey[600]} ml={0.8} pt={0.2}>
                 {formatDate(reflection.createdAt)}
               </Typography>
             </Box>

@@ -91,17 +91,21 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
               priority
               style={{ borderRadius: 10, marginRight: 8 }}
             />
-            <Typography sx={link}>{username}</Typography>
+            <Typography sx={link} mr={1.5}>
+              {username}
+            </Typography>
           </Link>
-          <CalendarTodayIcon
-            sx={{
-              color: theme.palette.grey[600],
-              ml: 1.5,
-              mr: 0.3,
-              fontSize: 13,
-            }}
+          <Image
+            src={"/calendar.svg"}
+            alt={"カレンダーアイコン"}
+            width={15}
+            height={15}
           />
-          <Typography component={"time"} color={theme.palette.grey[600]}>
+          <Typography
+            component={"time"}
+            color={theme.palette.grey[600]}
+            ml={0.3}
+          >
             {formatDate(createdAt)}
           </Typography>
         </Box>
