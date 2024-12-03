@@ -31,6 +31,7 @@ const PublishSettingPopupArea: React.FC<PublishSettingPopupAreaProps> = ({
           border: "none",
           display: "flex",
           alignItems: "center",
+          whiteSpace: "nowrap",
         }}
       >
         <Image
