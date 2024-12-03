@@ -1,17 +1,18 @@
 import Grid from "@mui/material/Grid2";
 import ReflectionCard from "./ReflectionCard";
 import { Reflection } from "@/src/api/reflection-api";
-import { PostNavigationButton } from "../../shared/button";
 import { animation } from "../../shared/animation";
 
 type ReflectionCardListAreaProps = {
   username: string;
   reflections: Reflection[];
+  isCurrentUser: boolean;
 };
 
 const ReflectionCardListArea: React.FC<ReflectionCardListAreaProps> = ({
   username,
   reflections,
+  isCurrentUser,
 }) => {
   return (
     <>
@@ -25,7 +26,11 @@ const ReflectionCardListArea: React.FC<ReflectionCardListAreaProps> = ({
             mb={3.5}
             sx={animation(index)}
           >
-            <ReflectionCard username={username} reflection={reflection} />
+            <ReflectionCard
+              username={username}
+              reflection={reflection}
+              isCurrentUser={isCurrentUser}
+            />
           </Grid>
         ))}
       </Grid>

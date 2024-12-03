@@ -68,6 +68,7 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
           <ReflectionCardListArea
             username={username}
             reflections={filteredReflections}
+            isCurrentUser={isCurrentUser}
           />
           {totalPage > 1 && (
             <NumberedPagination

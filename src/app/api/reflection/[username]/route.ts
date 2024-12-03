@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/src/lib/prisma";
 import { getUserIdByUsername } from "@/src/utils/actions/get-userId-by-username";
-import getCurrentUser from "@/src/utils/actions/get-current-user";
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { username: string } }
 ) {
-  const currentUser = await getCurrentUser();
   const username = params.username;
   const COUNT_PER_PAGE = 12;
 

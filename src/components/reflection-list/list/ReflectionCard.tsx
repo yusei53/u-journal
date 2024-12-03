@@ -1,32 +1,52 @@
 import { Box, Typography } from "@mui/material";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Link from "next/link";
 import { theme } from "@/src/utils/theme";
 import { Reflection } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
 import Image from "next/image";
+import { KebabMenuButton } from "../../shared/popup";
+import { useState } from "react";
 
 type ReflectionCardProps = {
   username: string;
   reflection: Reflection;
+  isCurrentUser: boolean;
 };
 
 // MEMO: ここ書き換えたら、../../reflection-all/ReflectionCardWithUser.tsxも書き換える
 const ReflectionCard: React.FC<ReflectionCardProps> = ({
   username,
   reflection,
+  isCurrentUser,
 }) => {
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <Box component={"article"} sx={{ cursor: "pointer" }}>
+    <Box component={"article"} position={"relative"} sx={article}>
+      {isCurrentUser && (
+        <KebabMenuButton
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClick={handleClick}
+          onClose={handleClose}
+          username={username}
+          reflectionCUID={reflection.reflectionCUID}
+          sx={{ position: "absolute", right: 2, top: 10, zIndex: 2 }}
+        />
+      )}
       <Box
         component={Link}
         href={`/${username}/${reflection.reflectionCUID}`}
-        position={"relative"}
         p={2}
-        sx={{
-          textDecoration: "none",
-          ...article,
-        }}
+        sx={box}
       >
         <Box display={"flex"} mt={1.5}>
           <Typography
@@ -47,8 +67,8 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
           </Typography>
           <Box
             position={"absolute"}
-            right={20}
-            top={20}
+            right={30}
+            top={22}
             borderRadius={10}
             width={55}
             height={55}
@@ -92,17 +112,25 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
     </Box>
   );
 };
+
 const article = {
-  width: { xs: 305, sm: 380 },
-  height: 120,
-  borderRadius: 3,
-  display: "block", // aタグにblock要素を指定すると長方形が表示できる
-  border: `1.2px solid ${theme.palette.primary.main}`,
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 1px rgba(0, 0, 0, 0.03)",
+
+  borderRadius: 3,
+  cursor: "pointer",
+  border: `1.2px solid ${theme.palette.primary.main}`,
+
   transition: "box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s",
   "&:hover": {
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04)",
     transform: "translateY(-3px)",
   },
+};
+
+const box = {
+  textDecoration: "none",
+  width: { xs: 305, sm: 380 },
+  height: 120,
+  display: "block", // aタグにblock要素を指定すると長方形が表示できる
 };
 export default ReflectionCard;
