@@ -50,7 +50,7 @@ export const useCreateReflectionForm = (username: string | undefined) => {
       if (res === 401) {
         router.push(`/login`);
       } else {
-        router.push(`/${username}`);
+        router.push(`/${username}?status=posted`);
       }
     }
   );

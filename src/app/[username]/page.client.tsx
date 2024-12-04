@@ -1,4 +1,5 @@
 "use client";
+import { useSearchParams, useRouter } from "next/navigation";
 import UserProfileArea from "@/src/components/reflection-list/profile/UserProfileArea";
 import ReflectionCardListArea from "@/src/components/reflection-list/list/ReflectionCardListArea";
 import { Reflection } from "@/src/api/reflection-api";
@@ -8,8 +9,8 @@ import {
   ArrowPagination,
   NumberedPagination,
 } from "@/src/components/shared/pagination";
-import { useRouter } from "next/navigation";
 import { User } from "@prisma/client";
+import GoodJobModal from "@/src/components/reflection-list/modal/GoodJobModal";
 
 type UserReflectionListPageProps = {
   currentUsername: User["username"];
@@ -30,7 +31,13 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
   currentPage,
   totalPage,
 }) => {
+  const searchParams = useSearchParams();
   const router = useRouter();
+  const isModalOpen = searchParams.get("status") === "posted";
+
+  const handleCloseModal = () => {
+    router.push(`/${username}`);
+  };
 
   const isCurrentUser = currentUsername === username;
 
@@ -88,6 +95,7 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
           }}
         />
       )}
+      <GoodJobModal open={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 };
