@@ -2,9 +2,12 @@
 import { Box, Container, Typography, useMediaQuery } from "@mui/material";
 import { theme } from "@/src/utils/theme";
 import Image from "next/image";
+import LogoutButton from "../../auth/LogoutButton";
 import { CustomLink } from "./CustomLink";
+import { useSession } from "next-auth/react";
 
 export const Footer = () => {
+  const { data: session } = useSession();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
@@ -38,13 +41,31 @@ export const Footer = () => {
               >
                 日々の振り返りを手助けする振り返りアプリ
               </Typography>
+              {!isSmallScreen && session && <LogoutButton />}
             </Box>
             <Box display={"flex"} gap={8}>
               <Box display={"flex"} flexDirection={"column"} gap={2}>
                 <CustomLink href="/welcome">リフティとは</CustomLink>
                 <CustomLink href="/">みんなの振り返り</CustomLink>
               </Box>
+              <Box display={"flex"} flexDirection={"column"} gap={2}>
+                {session ? (
+                  <>
+                    <CustomLink href={`/${session.user.username}`}>
+                      マイページ
+                    </CustomLink>
+                    <CustomLink href="/post">投稿する</CustomLink>
+                  </>
+                ) : (
+                  <CustomLink href="/login">ログイン</CustomLink>
+                )}
+              </Box>
             </Box>
+            {isSmallScreen && session && (
+              <Box mt={8}>
+                <LogoutButton />
+              </Box>
+            )}
           </Box>
           <Typography
             color={theme.palette.grey[600]}
