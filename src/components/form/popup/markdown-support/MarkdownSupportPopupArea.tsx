@@ -1,8 +1,9 @@
-import { Box, Popper, Fade, Tooltip } from "@mui/material";
+import { Box, Typography, Popper, Fade, Tooltip } from "@mui/material";
 import { theme } from "@/src/utils/theme";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { markdownList } from "./markdown-list";
 import MarkdownSection from "./MarkDownSection";
+import { useState } from "react";
 
 type MarkdownSupportPopupAreaProps = {
   anchorEl: HTMLElement | null;
@@ -17,11 +18,27 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
   onClick,
   onClose,
 }) => {
+  const [showInitialTooltip, setShowInitialTooltip] = useState(true);
+  const [hasRendered, setHasRendered] = useState(false);
+
+  if (!hasRendered) {
+    setHasRendered(true);
+    setTimeout(() => {
+      setShowInitialTooltip(false);
+    }, 2800);
+  }
+
+  const handleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
+    setShowInitialTooltip(false);
+    onClick(event);
+  };
   return (
     <Box position={"relative"} display={"flex"} alignItems={"center"}>
       <Tooltip
-        title={"書き方のヒント"}
-        placement={"top"}
+        title={<Typography fontSize={13}>書き方ガイドはこちら</Typography>}
+        placement={"bottom"}
+        open={showInitialTooltip}
+        arrow
         slotProps={{
           popper: {
             modifiers: [
@@ -43,7 +60,7 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
           mr={1.2}
           display={"flex"}
           alignItems={"center"}
-          onClick={onClick}
+          onClick={handleButtonClick}
           sx={{ cursor: "pointer" }}
         >
           <InfoOutlinedIcon
