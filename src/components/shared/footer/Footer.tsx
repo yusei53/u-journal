@@ -2,15 +2,9 @@
 import { Box, Container, Typography, useMediaQuery } from "@mui/material";
 import { theme } from "@/src/utils/theme";
 import Image from "next/image";
-import LogoutButton from "../../auth/LogoutButton";
-import { User } from "@prisma/client";
 import { CustomLink } from "./CustomLink";
 
-type FooterProps = {
-  currentUser: User["username"] | null;
-};
-
-export const Footer: React.FC<FooterProps> = ({ currentUser }) => {
+export const Footer = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
@@ -44,29 +38,13 @@ export const Footer: React.FC<FooterProps> = ({ currentUser }) => {
               >
                 日々の振り返りを手助けする振り返りアプリ
               </Typography>
-              {!isSmallScreen && currentUser && <LogoutButton />}
             </Box>
             <Box display={"flex"} gap={8}>
               <Box display={"flex"} flexDirection={"column"} gap={2}>
-                <CustomLink href="/">みんなの振り返り</CustomLink>
                 <CustomLink href="/welcome">リフティとは</CustomLink>
-              </Box>
-              <Box display={"flex"} flexDirection={"column"} gap={2}>
-                {currentUser ? (
-                  <>
-                    <CustomLink href={`/${currentUser}`}>マイページ</CustomLink>
-                    <CustomLink href="/post">投稿する</CustomLink>
-                  </>
-                ) : (
-                  <CustomLink href="/login">ログイン</CustomLink>
-                )}
+                <CustomLink href="/">みんなの振り返り</CustomLink>
               </Box>
             </Box>
-            {isSmallScreen && currentUser && (
-              <Box mt={8}>
-                <LogoutButton />
-              </Box>
-            )}
           </Box>
           <Typography
             color={theme.palette.grey[600]}
