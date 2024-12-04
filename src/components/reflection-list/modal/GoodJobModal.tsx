@@ -45,6 +45,7 @@ export const GoodJobModal: React.FC<GoodJobModalProps> = ({
           component={"h2"}
           fontWeight={550}
           mt={2}
+          letterSpacing={0.5}
           fontSize={{ xs: 20, sm: 23 }}
         >
           今日も一日お疲れさまでした
