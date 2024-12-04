@@ -68,6 +68,7 @@ export const GoodJobModal: React.FC<GoodJobModalProps> = ({
           alt={"リフティのロゴ"}
           width={230}
           height={180}
+          priority
           style={{ marginBlock: 10 }}
         />
       </Box>
