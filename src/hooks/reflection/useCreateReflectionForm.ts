@@ -52,7 +52,8 @@ export const useCreateReflectionForm = (username: string | undefined) => {
       }
 
       const now = new Date();
-      const currentHourInJapan = now.getUTCHours() + 9;
+      //MEMO: UTC時間を日本時間に変換し、剰余演算子を使って24時間表記に変換
+      const currentHourInJapan = (now.getUTCHours() + 9) % 24;
 
       // MEMO: 日本時間で18時〜翌朝4時の判定
       const isEveningOrNight =
