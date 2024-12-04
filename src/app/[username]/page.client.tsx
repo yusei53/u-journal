@@ -10,7 +10,7 @@ import {
   NumberedPagination,
 } from "@/src/components/shared/pagination";
 import { User } from "@prisma/client";
-import GoodJobModal from "@/src/components/reflection-list/modal/GoodJobModal";
+import { GoodJobModal } from "@/src/components/reflection-list/modal";
 
 type UserReflectionListPageProps = {
   currentUsername: User["username"];

@@ -24,7 +24,10 @@ const modal = {
   outline: "none",
 };
 
-const GoodJobModal: React.FC<GoodJobModalProps> = ({ open, onClose }) => {
+export const GoodJobModal: React.FC<GoodJobModalProps> = ({
+  open,
+  onClose,
+}) => {
   return (
     <Modal open={open} disableEscapeKeyDown>
       <Box sx={modal}>
@@ -70,4 +73,3 @@ const GoodJobModal: React.FC<GoodJobModalProps> = ({ open, onClose }) => {
     </Modal>
   );
 };
-export default GoodJobModal;
