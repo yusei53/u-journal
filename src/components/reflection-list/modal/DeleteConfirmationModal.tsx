@@ -1,6 +1,5 @@
 import { Modal, Box, Typography, IconButton, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import Image from "next/image";
 import { useDeleteReflection } from "@/src/hooks/reflection/useDeleteReflection";
 
 type DeleteConfirmationModalProps = {
