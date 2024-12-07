@@ -26,12 +26,8 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const handleDeleteModalOpen = () => {
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleDeleteModalClose = () => {
-    setIsDeleteModalOpen(false);
+  const handleDeleteModalToggle = () => {
+    setIsDeleteModalOpen(!isDeleteModalOpen);
   };
 
   return (
@@ -92,7 +88,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 </Box>
               </Button>
               <Button
-                onClick={handleDeleteModalOpen}
+                onClick={handleDeleteModalToggle}
                 sx={{
                   border: "none",
                   display: "block",
@@ -120,7 +116,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
       </Popper>
       <DeleteConfirmationModal
         open={isDeleteModalOpen}
-        onClose={handleDeleteModalClose}
+        onClose={handleDeleteModalToggle}
         reflectionCUID={reflectionCUID}
       />
     </>
