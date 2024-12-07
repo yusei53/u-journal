@@ -1,6 +1,7 @@
 import { Modal, Box, Typography, IconButton, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
+import { useDeleteReflection } from "@/src/hooks/reflection/useDeleteReflection";
 
 type DeleteConfirmationModalProps = {
   open: boolean;
@@ -28,6 +29,10 @@ const modal = {
 export const DeleteConfirmationModal: React.FC<
   DeleteConfirmationModalProps
 > = ({ open, onClose, reflectionCUID }) => {
+  const { handleDeleteReflection } = useDeleteReflection({
+    reflectionCUID,
+  });
+
   return (
     <Modal open={open} disableEscapeKeyDown>
       <Box sx={modal}>
@@ -79,7 +84,11 @@ export const DeleteConfirmationModal: React.FC<
           >
             キャンセル
           </Button>
-          <Button variant="contained" color="error">
+          <Button
+            variant="contained"
+            color="error"
+            onClick={handleDeleteReflection}
+          >
             削除する
           </Button>
         </Box>
