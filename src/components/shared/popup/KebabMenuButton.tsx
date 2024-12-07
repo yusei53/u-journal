@@ -64,6 +64,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
             <Box boxShadow={1} borderRadius={2.5} bgcolor={"white"} zIndex={3}>
+              {/* // TODO: ボタンを共通コンポーネント化する */}
               <Button
                 href={`/${username}/${reflectionCUID}/edit`}
                 sx={{
