@@ -31,22 +31,17 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
 
   const handlePin = async () => {
     try {
-      // APIリクエストを送信
       const result = await reflectionAPI.pinnedReflection({
         reflectionCUID: reflection.reflectionCUID,
         isPinned: !reflection.isPinned,
       });
 
-      // 成功時の処理
       if (result) {
-        console.log("ピン止めが成功しました！");
-        console.log("Pinned: " + reflection.isPinned);
         window.location.reload();
       } else {
         console.error("ピン止めに失敗しました。");
       }
     } catch (error) {
-      // エラー処理
       console.error("エラーが発生しました:", error);
     }
   };

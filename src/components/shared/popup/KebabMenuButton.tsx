@@ -2,7 +2,6 @@ import { theme } from "@/src/utils/theme";
 import { Box, Popper, Fade, SxProps } from "@mui/material";
 import Image from "next/image";
 import { Button } from "../button";
-import Typography from "@tiptap/extension-typography";
 
 type KebabMenuButtonProps = {
   anchorEl: HTMLElement | null;
