@@ -11,6 +11,7 @@ type KebabMenuButtonProps = {
   sx?: SxProps;
   reflectionCUID: string;
   username: string;
+  onPin: () => void;
 };
 
 export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
@@ -20,6 +21,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
   onClose,
   username,
   reflectionCUID,
+  onPin,
   sx,
 }) => {
   return (
@@ -77,6 +79,30 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                     style={{ marginRight: 10 }}
                   />
                   編集する
+                </Box>
+              </Button>
+              {/* ピン止めするボタン */}
+              <Button
+                onClick={onPin} // ピン止め処理用のイベント
+                sx={{
+                  border: "none",
+                  display: "block",
+                  textAlign: "left",
+                  borderRadius: "none",
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.contrastText,
+                  },
+                }}
+              >
+                <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
+                  <Image
+                    src={"/pin.svg"} // ピンアイコンの画像パス
+                    alt={`Pin Icon`}
+                    width={18}
+                    height={18}
+                    style={{ marginRight: 10 }}
+                  />
+                  ピン止めする
                 </Box>
               </Button>
             </Box>

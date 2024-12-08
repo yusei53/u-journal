@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { theme } from "@/src/utils/theme";
-import { Reflection } from "@/src/api/reflection-api";
+import { Reflection, reflectionAPI } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
 import Image from "next/image";
 import { KebabMenuButton } from "../../shared/popup";
@@ -29,6 +29,28 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
     setAnchorEl(null);
   };
 
+  const handlePin = async () => {
+    try {
+      // APIリクエストを送信
+      const result = await reflectionAPI.pinnedReflection({
+        reflectionCUID: reflection.reflectionCUID,
+        isPinned: !reflection.isPinned,
+      });
+
+      // 成功時の処理
+      if (result) {
+        console.log("ピン止めが成功しました！");
+        console.log("Pinned: " + reflection.isPinned);
+        window.location.reload();
+      } else {
+        console.error("ピン止めに失敗しました。");
+      }
+    } catch (error) {
+      // エラー処理
+      console.error("エラーが発生しました:", error);
+    }
+  };
+
   return (
     <Box component={"article"} position={"relative"} sx={article}>
       {isCurrentUser && (
@@ -37,6 +59,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
           open={Boolean(anchorEl)}
           onClick={handleClick}
           onClose={handleClose}
+          onPin={handlePin}
           username={username}
           reflectionCUID={reflection.reflectionCUID}
           sx={{ position: "absolute", right: 2, top: 10, zIndex: 2 }}
