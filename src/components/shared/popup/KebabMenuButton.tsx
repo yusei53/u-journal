@@ -2,16 +2,18 @@ import { theme } from "@/src/utils/theme";
 import { Box, Popper, Fade, SxProps } from "@mui/material";
 import Image from "next/image";
 import { Button } from "../button";
+import Typography from "@tiptap/extension-typography";
 
 type KebabMenuButtonProps = {
   anchorEl: HTMLElement | null;
   open: boolean;
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   onClose: () => void;
+  onPin: () => void;
   sx?: SxProps;
   reflectionCUID: string;
   username: string;
-  onPin: () => void;
+  isPinned: boolean;
 };
 
 export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
@@ -19,10 +21,11 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
   open,
   onClick,
   onClose,
+  onPin,
   username,
   reflectionCUID,
-  onPin,
   sx,
+  isPinned,
 }) => {
   return (
     <>
@@ -102,7 +105,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                     height={18}
                     style={{ marginRight: 10 }}
                   />
-                  ピン止めする
+                  {isPinned ? "ピン止めを解除" : "ピン止めする"}
                 </Box>
               </Button>
             </Box>

@@ -63,6 +63,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
           username={username}
           reflectionCUID={reflection.reflectionCUID}
           sx={{ position: "absolute", right: 2, top: 10, zIndex: 2 }}
+          isPinned={reflection.isPinned}
         />
       )}
       <Box
@@ -124,6 +125,14 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
                 <Image
                   src={"/lock-google.svg"}
                   alt={"非公開アイコン"}
+                  width={20}
+                  height={20}
+                />
+              )}
+              {reflection.isPinned && (
+                <Image
+                  src={"/pin.svg"}
+                  alt={"ピン止めアイコン"}
                   width={20}
                   height={20}
                 />
