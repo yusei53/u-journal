@@ -92,7 +92,7 @@ export const ReflectionDetail: React.FC<ReflectionDetailProps> = ({
               width={25}
               height={25}
               priority
-              style={{ borderRadius: 10, marginRight: 8 }}
+              style={{ borderRadius: 20, marginRight: 8 }}
             />
             <Typography sx={link} mr={1.5}>
               {username}

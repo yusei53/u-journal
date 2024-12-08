@@ -2,6 +2,8 @@ import { theme } from "@/src/utils/theme";
 import { Box, Popper, Fade, SxProps } from "@mui/material";
 import Image from "next/image";
 import { Button } from "../button";
+import { useState } from "react";
+import { DeleteConfirmationModal } from "../../reflection-list/modal/DeleteConfirmationModal";
 
 type KebabMenuButtonProps = {
   anchorEl: HTMLElement | null;
@@ -26,6 +28,12 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
   sx,
   isPinned,
 }) => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleDeleteModalToggle = () => {
+    setIsDeleteModalOpen(!isDeleteModalOpen);
+  };
+
   return (
     <>
       <Box
@@ -60,6 +68,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
             <Box boxShadow={1} borderRadius={2.5} bgcolor={"white"} zIndex={3}>
+              {/* // TODO: ボタンを共通コンポーネント化する */}
               <Button
                 href={`/${username}/${reflectionCUID}/edit`}
                 sx={{
@@ -83,9 +92,31 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                   編集する
                 </Box>
               </Button>
-              {/* ピン止めするボタン */}
               <Button
-                onClick={onPin} // ピン止め処理用のイベント
+                onClick={handleDeleteModalToggle}
+                sx={{
+                  border: "none",
+                  display: "block",
+                  textAlign: "left",
+                  borderRadius: "none",
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.contrastText,
+                  },
+                }}
+              >
+                <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
+                  <Image
+                    src={"/delete.svg"}
+                    alt={`Icon`}
+                    width={18}
+                    height={18}
+                    style={{ marginRight: 10 }}
+                  />
+                  削除する
+                </Box>
+              </Button>
+              <Button
+                onClick={onPin}
                 sx={{
                   border: "none",
                   display: "block",
@@ -111,6 +142,11 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
           </Fade>
         )}
       </Popper>
+      <DeleteConfirmationModal
+        open={isDeleteModalOpen}
+        onClose={handleDeleteModalToggle}
+        reflectionCUID={reflectionCUID}
+      />
     </>
   );
 };

@@ -128,6 +128,14 @@ export const reflectionAPI = {
     return await fetchURL<void, 400 | 401 | 403>(path, options);
   },
 
+  async deleteReflection(reflectionCUID: string): Promise<Result<void, 401>> {
+    const path = `/api/reflection/detail/${reflectionCUID}`;
+    const options: FetchURLOptions = {
+      method: "DELETE",
+    };
+    return await fetchURL<void, 401>(path, options);
+  },
+
   async pinnedReflection({
     reflectionCUID,
     isPinned,
