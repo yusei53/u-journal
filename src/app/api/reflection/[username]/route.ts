@@ -51,6 +51,7 @@ export async function GET(
             charStamp: true,
             createdAt: true,
             isPublic: true,
+            isPinned: true,
           },
         },
       },

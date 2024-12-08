@@ -7,6 +7,7 @@ export type Reflection = {
   charStamp: string;
   isPublic: boolean;
   createdAt: string;
+  isPinned: boolean;
 };
 
 export type ReflectionWithUser = Reflection & {
@@ -134,7 +135,7 @@ export const reflectionAPI = {
     reflectionCUID: string;
     isPinned: boolean;
   }): Promise<Result<void, 401>> {
-    const path = `/api/reflection/detail/${reflectionCUID}`;
+    const path = `/api/reflection/pinned/${reflectionCUID}`;
     const options: FetchURLOptions = {
       method: "PATCH",
       body: {
