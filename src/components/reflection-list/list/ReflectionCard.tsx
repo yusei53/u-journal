@@ -1,11 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { theme } from "@/src/utils/theme";
-import { Reflection } from "@/src/api/reflection-api";
+import { Reflection, reflectionAPI } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
 import Image from "next/image";
 import { KebabMenuButton } from "../../shared/popup";
 import { useState } from "react";
+import { usePinnedReflection } from "@/src/hooks/reflection/usePinnedReflection";
 
 type ReflectionCardProps = {
   username: string;
@@ -29,6 +30,8 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
     setAnchorEl(null);
   };
 
+  const { handlePin } = usePinnedReflection({ reflection });
+
   return (
     <Box component={"article"} position={"relative"} sx={article}>
       {isCurrentUser && (
@@ -37,9 +40,11 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
           open={Boolean(anchorEl)}
           onClick={handleClick}
           onClose={handleClose}
+          onPin={handlePin}
           username={username}
           reflectionCUID={reflection.reflectionCUID}
           sx={{ position: "absolute", right: 2, top: 10, zIndex: 2 }}
+          isPinned={reflection.isPinned}
         />
       )}
       <Box
@@ -101,6 +106,14 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
                 <Image
                   src={"/lock-google.svg"}
                   alt={"非公開アイコン"}
+                  width={20}
+                  height={20}
+                />
+              )}
+              {reflection.isPinned && (
+                <Image
+                  src={"/pin.svg"}
+                  alt={"ピン止めアイコン"}
                   width={20}
                   height={20}
                 />

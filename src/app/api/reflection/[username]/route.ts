@@ -41,8 +41,7 @@ export async function GET(
         image: true,
         reflections: {
           where: { userId },
-
-          orderBy: { createdAt: "desc" },
+          orderBy: [{ isPinned: "desc" }, { createdAt: "desc" }],
           take: COUNT_PER_PAGE,
           skip: offset,
           select: {
@@ -51,6 +50,7 @@ export async function GET(
             charStamp: true,
             createdAt: true,
             isPublic: true,
+            isPinned: true,
           },
         },
       },
