@@ -6,6 +6,7 @@ import { formatDate } from "@/src/utils/date-helper";
 import Image from "next/image";
 import { KebabMenuButton } from "../../shared/popup";
 import { useState } from "react";
+import { usePinnedReflection } from "@/src/hooks/reflection/usePinnedReflection";
 
 type ReflectionCardProps = {
   username: string;
@@ -29,22 +30,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
     setAnchorEl(null);
   };
 
-  const handlePin = async () => {
-    try {
-      const result = await reflectionAPI.pinnedReflection({
-        reflectionCUID: reflection.reflectionCUID,
-        isPinned: !reflection.isPinned,
-      });
-
-      if (result) {
-        window.location.reload();
-      } else {
-        console.error("ピン止めに失敗しました。");
-      }
-    } catch (error) {
-      console.error("エラーが発生しました:", error);
-    }
-  };
+  const { handlePin } = usePinnedReflection({ reflection });
 
   return (
     <Box component={"article"} position={"relative"} sx={article}>
