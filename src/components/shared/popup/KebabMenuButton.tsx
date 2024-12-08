@@ -129,7 +129,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
               >
                 <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
                   <Image
-                    src={"/pin.svg"} // ピンアイコンの画像パス
+                    src={"/pin.svg"}
                     alt={`Pin Icon`}
                     width={18}
                     height={18}
