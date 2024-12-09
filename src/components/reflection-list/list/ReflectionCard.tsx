@@ -1,12 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { theme } from "@/src/utils/theme";
-import { Reflection, reflectionAPI } from "@/src/api/reflection-api";
+import { Reflection } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
 import Image from "next/image";
 import { KebabMenuButton } from "../../shared/popup";
 import { useState } from "react";
-import { usePinnedReflection } from "@/src/hooks/reflection/usePinnedReflection";
+import { useUpdatePinnedReflection } from "@/src/hooks/reflection/useUpdatePinnedReflection";
 
 type ReflectionCardProps = {
   username: string;
@@ -22,7 +22,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleUpdateReflection = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -30,7 +30,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
     setAnchorEl(null);
   };
 
-  const { handlePin } = usePinnedReflection({ reflection });
+  const { handleUpdatePinned } = useUpdatePinnedReflection({ reflection });
 
   return (
     <Box component={"article"} position={"relative"} sx={article}>
@@ -38,9 +38,9 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
         <KebabMenuButton
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
-          onClick={handleClick}
+          onUpdateReflection={handleUpdateReflection}
           onClose={handleClose}
-          onPin={handlePin}
+          onUpdatePinned={handleUpdatePinned}
           username={username}
           reflectionCUID={reflection.reflectionCUID}
           sx={{ position: "absolute", right: 2, top: 10, zIndex: 2 }}

@@ -1,17 +1,17 @@
 import { Reflection, reflectionAPI } from "@/src/api/reflection-api";
 import { useRouter } from "next/navigation";
 
-type usePinnedReflectionProps = {
+type useupdatePinnedReflectionProps = {
   reflection: Reflection;
 };
 
-export const usePinnedReflection = ({
+export const useUpdatePinnedReflection = ({
   reflection,
-}: usePinnedReflectionProps) => {
+}: useupdatePinnedReflectionProps) => {
   const router = useRouter();
 
-  const handlePin = async () => {
-    const result = await reflectionAPI.pinnedReflection({
+  const handleUpdatePinned = async () => {
+    const result = await reflectionAPI.updatePinnedReflection({
       reflectionCUID: reflection.reflectionCUID,
       isPinned: !reflection.isPinned,
     });
@@ -23,5 +23,5 @@ export const usePinnedReflection = ({
     }
   };
 
-  return { handlePin };
+  return { handleUpdatePinned };
 };

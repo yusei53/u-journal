@@ -8,9 +8,9 @@ import { DeleteConfirmationModal } from "../../reflection-list/modal/DeleteConfi
 type KebabMenuButtonProps = {
   anchorEl: HTMLElement | null;
   open: boolean;
-  onClick: (event: React.MouseEvent<HTMLElement>) => void;
+  onUpdateReflection: (event: React.MouseEvent<HTMLElement>) => void;
   onClose: () => void;
-  onPin: () => void;
+  onUpdatePinned: () => void;
   sx?: SxProps;
   reflectionCUID: string;
   username: string;
@@ -20,9 +20,9 @@ type KebabMenuButtonProps = {
 export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
   anchorEl,
   open,
-  onClick,
+  onUpdateReflection,
   onClose,
-  onPin,
+  onUpdatePinned,
   username,
   reflectionCUID,
   sx,
@@ -47,7 +47,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
-        onClick={onClick}
+        onClick={onUpdateReflection}
         onBlur={onClose}
         sx={{
           cursor: "pointer",
@@ -116,7 +116,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 </Box>
               </Button>
               <Button
-                onClick={onPin}
+                onClick={onUpdatePinned}
                 sx={{
                   border: "none",
                   display: "block",

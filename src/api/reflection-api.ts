@@ -136,7 +136,7 @@ export const reflectionAPI = {
     return await fetchURL<void, 401>(path, options);
   },
 
-  async pinnedReflection({
+  async updatePinnedReflection({
     reflectionCUID,
     isPinned,
   }: {
