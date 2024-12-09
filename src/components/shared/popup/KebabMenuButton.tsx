@@ -93,29 +93,6 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 </Box>
               </Button>
               <Button
-                onClick={handleDeleteModalToggle}
-                sx={{
-                  border: "none",
-                  display: "block",
-                  textAlign: "left",
-                  borderRadius: "none",
-                  "&:hover": {
-                    backgroundColor: theme.palette.primary.contrastText,
-                  },
-                }}
-              >
-                <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
-                  <Image
-                    src={"/delete.svg"}
-                    alt={`Icon`}
-                    width={18}
-                    height={18}
-                    style={{ marginRight: 10 }}
-                  />
-                  削除する
-                </Box>
-              </Button>
-              <Button
                 onClick={onUpdatePinned}
                 sx={{
                   border: "none",
@@ -136,6 +113,29 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                     style={{ marginRight: 10 }}
                   />
                   {isPinned ? "ピン止めを解除" : "ピン止めする"}
+                </Box>
+              </Button>
+              <Button
+                onClick={handleDeleteModalToggle}
+                sx={{
+                  border: "none",
+                  display: "block",
+                  textAlign: "left",
+                  borderRadius: "none",
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.contrastText,
+                  },
+                }}
+              >
+                <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
+                  <Image
+                    src={"/delete.svg"}
+                    alt={`Icon`}
+                    width={18}
+                    height={18}
+                    style={{ marginRight: 10 }}
+                  />
+                  削除する
                 </Box>
               </Button>
             </Box>
