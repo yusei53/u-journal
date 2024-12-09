@@ -17,9 +17,8 @@ export const useUpdatePinnedReflection = ({
     });
     if (result === 401) {
       router.push(`/login`);
-      return;
     } else {
-      window.location.reload();
+      router.refresh();
     }
   };
 
