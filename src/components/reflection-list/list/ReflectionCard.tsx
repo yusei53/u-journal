@@ -22,7 +22,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-  const handleUpdateReflection = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -38,7 +38,7 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
         <KebabMenuButton
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
-          onUpdateReflection={handleUpdateReflection}
+          onClick={handleClick}
           onClose={handleClose}
           onUpdatePinned={handleUpdatePinned}
           username={username}
