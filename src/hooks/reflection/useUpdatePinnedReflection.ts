@@ -1,13 +1,13 @@
 import { Reflection, reflectionAPI } from "@/src/api/reflection-api";
 import { useRouter } from "next/navigation";
 
-type useupdatePinnedReflectionProps = {
-  reflection: Reflection;
+type useUpdatePinnedReflectionProps = {
+  reflection: Pick<Reflection, "reflectionCUID" | "isPinned">;
 };
 
 export const useUpdatePinnedReflection = ({
   reflection,
-}: useupdatePinnedReflectionProps) => {
+}: useUpdatePinnedReflectionProps) => {
   const router = useRouter();
 
   const handleUpdatePinned = async () => {
