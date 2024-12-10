@@ -64,10 +64,15 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
           height={22}
         />
       </Box>
-      <Popper open={open} anchorEl={anchorEl} transition sx={{ zIndex: 2 }}>
+      <Popper
+        open={open}
+        anchorEl={anchorEl}
+        transition
+        placement={"bottom-end"}
+      >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
-            <Box boxShadow={1} borderRadius={2.5} bgcolor={"white"} zIndex={3}>
+            <Box boxShadow={1} borderRadius={2.5} bgcolor={"white"}>
               {/* // TODO: ボタンを共通コンポーネント化する */}
               <Button
                 href={`/${username}/${reflectionCUID}/edit`}
@@ -76,6 +81,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                   display: "block",
                   textAlign: "left",
                   borderRadius: "none",
+                  width: "100%",
                   "&:hover": {
                     backgroundColor: theme.palette.primary.contrastText,
                   },
@@ -99,6 +105,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                   display: "block",
                   textAlign: "left",
                   borderRadius: "none",
+                  width: "100%",
                   "&:hover": {
                     backgroundColor: theme.palette.primary.contrastText,
                   },
@@ -122,6 +129,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                   display: "block",
                   textAlign: "left",
                   borderRadius: "none",
+                  width: "100%",
                   "&:hover": {
                     backgroundColor: theme.palette.primary.contrastText,
                   },
