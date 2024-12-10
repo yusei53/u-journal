@@ -7,6 +7,7 @@ export type Reflection = {
   charStamp: string;
   isPublic: boolean;
   createdAt: string;
+  isPinned: boolean;
 };
 
 export type ReflectionWithUser = Reflection & {
@@ -131,6 +132,26 @@ export const reflectionAPI = {
     const path = `/api/reflection/detail/${reflectionCUID}`;
     const options: FetchURLOptions = {
       method: "DELETE",
+    };
+    return await fetchURL<void, 401>(path, options);
+  },
+
+  async updatePinnedReflection({
+    reflectionCUID,
+    isPinned,
+  }: {
+    reflectionCUID: string;
+    isPinned: boolean;
+  }): Promise<Result<void, 401>> {
+    const path = `/api/reflection/pinned/${reflectionCUID}`;
+    const options: FetchURLOptions = {
+      method: "PATCH",
+      body: {
+        isPinned,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
     };
     return await fetchURL<void, 401>(path, options);
   },

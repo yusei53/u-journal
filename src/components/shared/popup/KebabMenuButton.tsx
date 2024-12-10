@@ -10,9 +10,11 @@ type KebabMenuButtonProps = {
   open: boolean;
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   onClose: () => void;
+  onUpdatePinned: () => void;
   sx?: SxProps;
   reflectionCUID: string;
   username: string;
+  isPinned: boolean;
 };
 
 export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
@@ -20,9 +22,11 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
   open,
   onClick,
   onClose,
+  onUpdatePinned,
   username,
   reflectionCUID,
   sx,
+  isPinned,
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -86,6 +90,29 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                     style={{ marginRight: 10 }}
                   />
                   編集する
+                </Box>
+              </Button>
+              <Button
+                onClick={onUpdatePinned}
+                sx={{
+                  border: "none",
+                  display: "block",
+                  textAlign: "left",
+                  borderRadius: "none",
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.contrastText,
+                  },
+                }}
+              >
+                <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
+                  <Image
+                    src={"/pin.svg"}
+                    alt={`Pin Icon`}
+                    width={18}
+                    height={18}
+                    style={{ marginRight: 10 }}
+                  />
+                  {isPinned ? "ピン止めを解除" : "ピン止めする"}
                 </Box>
               </Button>
               <Button
