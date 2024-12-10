@@ -90,13 +90,12 @@ const MarkdownSupportPopupArea: React.FC<MarkdownSupportPopupAreaProps> = ({
           {
             name: "offset",
             options: {
-              offset: [0, 10], // x軸: 0, y軸: 8px
+              offset: [0, 10],
             },
           },
         ]}
         sx={{
           zIndex: 2,
-          // transform: "translateY(-8px) !important",
         }}
       >
         {({ TransitionProps }) => (

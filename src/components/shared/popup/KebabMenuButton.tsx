@@ -39,6 +39,12 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
   const handleCopyLink = () => {
     const link = `${process.env.NEXT_PUBLIC_API_URL}/${username}/${reflectionCUID}`;
     navigator.clipboard.writeText(link);
+    onClose();
+  };
+
+  const handlePinToggle = () => {
+    onUpdatePinned();
+    onClose();
   };
 
   return (
@@ -130,7 +136,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 </Box>
               </Button>
               <Button
-                onClick={onUpdatePinned}
+                onClick={handlePinToggle}
                 sx={{
                   border: "none",
                   display: "block",
