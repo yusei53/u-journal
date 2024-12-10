@@ -5,25 +5,19 @@ import Image from "next/image";
 import { theme } from "@/src/utils/theme";
 import { ReflectionWithUser } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
+import { text } from "stream/consumers";
 
 type ReflectionCardWithUserProps = {
   reflection: ReflectionWithUser;
 };
 
-// MEMO: ここ書き換えたら、../user-reflection-list/reflection-list/ReflectionCard.tsxも書き換える
+// MEMO: ここ書き換えたら、../reflection-list/reflection-list/ReflectionCard.tsxも書き換える
 const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
   reflection,
 }) => {
   return (
     <Box component={"article"}>
-      <Box
-        position={"relative"}
-        p={2}
-        sx={{
-          textDecoration: "none",
-          ...article,
-        }}
-      >
+      <Box position={"relative"} p={2} sx={article}>
         <Link
           href={`/${reflection.user.username}/${reflection.reflectionCUID}`}
           style={{
@@ -125,13 +119,17 @@ const ReflectionCardWithUser: React.FC<ReflectionCardWithUserProps> = ({
     </Box>
   );
 };
+
+//MEMO: ../reflection-list/reflection-list/ReflectionCard.tsxとhtml構造が微妙に違うのは申し訳ない。共通化できるようにいつかはしたい
 const article = {
-  width: { xs: 305, sm: 380 },
+  // MEMO: 79vwはスマホの様々な画面幅に合わせている(px固定値じゃ対応できない)
+  width: { xs: "79vw", sm: 380 },
   height: 120,
   borderRadius: 3,
   border: `1.2px solid ${theme.palette.primary.main}`,
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 1px rgba(0, 0, 0, 0.03)",
   transition: "box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s",
+  textDecoration: "none",
   "&:hover": {
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04)",
     transform: "translateY(-3px)",
