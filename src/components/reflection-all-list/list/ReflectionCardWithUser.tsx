@@ -1,11 +1,9 @@
 import { Box, Typography } from "@mui/material";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Link from "next/link";
 import Image from "next/image";
 import { theme } from "@/src/utils/theme";
 import { ReflectionWithUser } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
-import { text } from "stream/consumers";
 
 type ReflectionCardWithUserProps = {
   reflection: ReflectionWithUser;
