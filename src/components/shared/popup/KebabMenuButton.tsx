@@ -17,6 +17,7 @@ type KebabMenuButtonProps = {
   isPinned: boolean;
 };
 
+// MEMO: 今Card側にロジック書いてしまっているけど、Popup側にロジックを書くべきかも(Container層とかに分けるべき)
 export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
   anchorEl,
   open,
@@ -119,7 +120,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                     height={18}
                     style={{ marginRight: 10 }}
                   />
-                  {isPinned ? "ピン止めを解除" : "ピン止めする"}
+                  {isPinned ? "固定解除する" : "固定する"}
                 </Box>
               </Button>
               <Button
