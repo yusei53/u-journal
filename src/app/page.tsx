@@ -1,13 +1,15 @@
 import { notFound } from "next/navigation";
 import { reflectionAPI } from "../api/reflection-api";
 import RootPage from "./page.client";
-import getCurrentUser from "../utils/actions/get-current-user";
+import { getServerSession } from "next-auth";
+import authOptions from "./api/auth/[...nextauth]/options";
 
 // MEMO: routePageのみmetadataをlayout.tsxで設定
 
 const page = async ({ searchParams }: { searchParams: { page?: string } }) => {
   const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1;
-  const currentUser = await getCurrentUser();
+  // const currentUser = await getCurrentUser();
+  const session = await getServerSession(authOptions);
   const result = await reflectionAPI.getReflectionAll(currentPage);
   if (result === 404) {
     return notFound();
@@ -16,7 +18,7 @@ const page = async ({ searchParams }: { searchParams: { page?: string } }) => {
   return (
     <RootPage
       open={false}
-      currentUsername={currentUser?.username || null}
+      currentUsername={session?.user.username || null}
       reflections={result.reflections}
       currentPage={currentPage}
       totalPage={result.totalPage}
