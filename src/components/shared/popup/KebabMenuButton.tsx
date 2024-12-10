@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "../button";
 import { useState } from "react";
 import { DeleteConfirmationModal } from "../../reflection-list/modal/DeleteConfirmationModal";
+import { red } from "@mui/material/colors";
 
 type KebabMenuButtonProps = {
   anchorEl: HTMLElement | null;
@@ -33,6 +34,15 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
 
   const handleDeleteModalToggle = () => {
     setIsDeleteModalOpen(!isDeleteModalOpen);
+  };
+
+  const handleCopyLink = async () => {
+    try {
+      const link = `${process.env.NEXT_PUBLIC_API_URL}/${username}/${reflectionCUID}`;
+      await navigator.clipboard.writeText(link);
+    } catch (error) {
+      console.error("リンクのコピーに失敗しました", error);
+    }
   };
 
   return (
@@ -76,6 +86,30 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
             <Box boxShadow={1} borderRadius={2.5} bgcolor={"white"}>
               {/* // TODO: ボタンを共通コンポーネント化する */}
               <Button
+                onClick={handleCopyLink}
+                sx={{
+                  border: "none",
+                  display: "block",
+                  textAlign: "left",
+                  borderRadius: "none",
+                  width: "100%",
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.contrastText,
+                  },
+                }}
+              >
+                <Box display={"flex"} alignItems={"center"} letterSpacing={0.5}>
+                  <Image
+                    src={"/share.svg"}
+                    alt={`リンクをコピーするボタン`}
+                    width={18}
+                    height={18}
+                    style={{ marginRight: 10 }}
+                  />
+                  リンクをコピーする
+                </Box>
+              </Button>
+              <Button
                 href={`/${username}/${reflectionCUID}/edit`}
                 sx={{
                   border: "none",
@@ -88,7 +122,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                   },
                 }}
               >
-                <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
+                <Box display={"flex"} alignItems={"center"} letterSpacing={0.5}>
                   <Image
                     src={"/edit.svg"}
                     alt={`編集するボタン`}
@@ -112,7 +146,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                   },
                 }}
               >
-                <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
+                <Box display={"flex"} alignItems={"center"} letterSpacing={0.5}>
                   <Image
                     src={"/pin.svg"}
                     alt={`プロフィールに固定するボタン`}
@@ -136,7 +170,12 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                   },
                 }}
               >
-                <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                  letterSpacing={0.5}
+                  color={red[400]}
+                >
                   <Image
                     src={"/delete.svg"}
                     alt={`投稿削除ボタン`}
