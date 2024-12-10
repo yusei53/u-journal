@@ -36,13 +36,9 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
     setIsDeleteModalOpen(!isDeleteModalOpen);
   };
 
-  const handleCopyLink = async () => {
-    try {
-      const link = `${process.env.NEXT_PUBLIC_API_URL}/${username}/${reflectionCUID}`;
-      await navigator.clipboard.writeText(link);
-    } catch (error) {
-      console.error("リンクのコピーに失敗しました", error);
-    }
+  const handleCopyLink = () => {
+    const link = `${process.env.NEXT_PUBLIC_API_URL}/${username}/${reflectionCUID}`;
+    navigator.clipboard.writeText(link);
   };
 
   return (
