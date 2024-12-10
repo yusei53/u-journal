@@ -91,7 +91,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
                   <Image
                     src={"/edit.svg"}
-                    alt={`Icon`}
+                    alt={`編集するボタン`}
                     width={18}
                     height={18}
                     style={{ marginRight: 10 }}
@@ -115,7 +115,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
                   <Image
                     src={"/pin.svg"}
-                    alt={`Pin Icon`}
+                    alt={`プロフィールに固定するボタン`}
                     width={18}
                     height={18}
                     style={{ marginRight: 10 }}
@@ -139,7 +139,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 <Box display={"flex"} alignItems={"center"} letterSpacing={0.8}>
                   <Image
                     src={"/delete.svg"}
-                    alt={`Icon`}
+                    alt={`投稿削除ボタン`}
                     width={18}
                     height={18}
                     style={{ marginRight: 10 }}
