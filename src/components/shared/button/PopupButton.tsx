@@ -1,23 +1,23 @@
 import { theme } from "@/src/utils/theme";
-import { Button, Box, Typography } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import Image from "next/image";
 
 type PopupButtonProps = {
+  text: string;
   href?: string;
   src: string;
   alt: string;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  text: string;
-  color?: string;
+  textcolor?: string;
 };
 
 const PopupButton: React.FC<PopupButtonProps> = ({
+  text,
   href,
   src,
   alt,
   onClick,
-  text,
-  color,
+  textcolor,
 }) => {
   return (
     <Button
@@ -30,6 +30,7 @@ const PopupButton: React.FC<PopupButtonProps> = ({
         textAlign: "left",
         borderRadius: "none",
         width: "100%",
+        px: 2,
         "&:hover": {
           backgroundColor: theme.palette.primary.contrastText,
         },
@@ -39,14 +40,14 @@ const PopupButton: React.FC<PopupButtonProps> = ({
         display={"flex"}
         alignItems={"center"}
         letterSpacing={0.5}
-        color={color}
+        color={textcolor}
       >
         <Image
           src={src}
           alt={alt}
           width={18}
           height={18}
-          style={{ margin: "0 10px" }}
+          style={{ marginRight: 10 }}
         />
         {text}
       </Box>

@@ -87,31 +87,30 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
             <Box boxShadow={1} borderRadius={2.5} bgcolor={"white"}>
-              {/* // TODO: ボタンを共通コンポーネント化する */}
               <PopupButton
+                text={"リンクをコピーする"}
                 src={"/share.svg"}
                 alt={`リンクをコピーするボタン`}
                 onClick={handleCopyLink}
-                text={"リンクをコピーする"}
               />
               <PopupButton
+                text={"編集する"}
                 href={`/${username}/${reflectionCUID}/edit`}
                 src={"/edit.svg"}
                 alt={`編集するボタン`}
-                text={"編集する"}
               />
               <PopupButton
+                text={isPinned ? "固定解除する" : "固定する"}
                 src={"/pin.svg"}
                 alt={`プロフィールに固定するボタン`}
                 onClick={handlePinToggle}
-                text={isPinned ? "固定解除する" : "固定する"}
               />
               <PopupButton
+                text={"削除する"}
                 src={"/delete.svg"}
                 alt={`投稿削除ボタン`}
                 onClick={handleDeleteModalToggle}
-                text={"削除する"}
-                color={red[400]}
+                textcolor={red[400]}
               />
             </Box>
           </Fade>
