@@ -1,10 +1,10 @@
 import { theme } from "@/src/utils/theme";
 import { Box, Popper, Fade, SxProps } from "@mui/material";
 import Image from "next/image";
-import { Button } from "../button";
 import { useState } from "react";
 import { DeleteConfirmationModal } from "../../reflection-list/modal/DeleteConfirmationModal";
 import { red } from "@mui/material/colors";
+import PopupButton from "./PopupButton";
 
 type KebabMenuButtonProps = {
   anchorEl: HTMLElement | null;
@@ -86,108 +86,31 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={250}>
             <Box boxShadow={1} borderRadius={2.5} bgcolor={"white"}>
-              {/* // TODO: ボタンを共通コンポーネント化する */}
-              <Button
+              <PopupButton
+                text={"リンクをコピーする"}
+                src={"/share.svg"}
+                alt={`リンクをコピーするボタン`}
                 onClick={handleCopyLink}
-                sx={{
-                  border: "none",
-                  display: "block",
-                  textAlign: "left",
-                  borderRadius: "none",
-                  width: "100%",
-                  "&:hover": {
-                    backgroundColor: theme.palette.primary.contrastText,
-                  },
-                }}
-              >
-                <Box display={"flex"} alignItems={"center"} letterSpacing={0.5}>
-                  <Image
-                    src={"/share.svg"}
-                    alt={`リンクをコピーするボタン`}
-                    width={18}
-                    height={18}
-                    style={{ marginRight: 10 }}
-                  />
-                  リンクをコピーする
-                </Box>
-              </Button>
-              <Button
+              />
+              <PopupButton
+                text={"編集する"}
                 href={`/${username}/${reflectionCUID}/edit`}
-                sx={{
-                  border: "none",
-                  display: "block",
-                  textAlign: "left",
-                  borderRadius: "none",
-                  width: "100%",
-                  "&:hover": {
-                    backgroundColor: theme.palette.primary.contrastText,
-                  },
-                }}
-              >
-                <Box display={"flex"} alignItems={"center"} letterSpacing={0.5}>
-                  <Image
-                    src={"/edit.svg"}
-                    alt={`編集するボタン`}
-                    width={18}
-                    height={18}
-                    style={{ marginRight: 10 }}
-                  />
-                  編集する
-                </Box>
-              </Button>
-              <Button
+                src={"/edit.svg"}
+                alt={`編集するボタン`}
+              />
+              <PopupButton
+                text={isPinned ? "固定解除する" : "固定する"}
+                src={"/pin.svg"}
+                alt={`プロフィールに固定するボタン`}
                 onClick={handlePinToggle}
-                sx={{
-                  border: "none",
-                  display: "block",
-                  textAlign: "left",
-                  borderRadius: "none",
-                  width: "100%",
-                  "&:hover": {
-                    backgroundColor: theme.palette.primary.contrastText,
-                  },
-                }}
-              >
-                <Box display={"flex"} alignItems={"center"} letterSpacing={0.5}>
-                  <Image
-                    src={"/pin.svg"}
-                    alt={`プロフィールに固定するボタン`}
-                    width={18}
-                    height={18}
-                    style={{ marginRight: 10 }}
-                  />
-                  {isPinned ? "固定解除する" : "固定する"}
-                </Box>
-              </Button>
-              <Button
+              />
+              <PopupButton
+                text={"削除する"}
+                src={"/delete.svg"}
+                alt={`投稿削除ボタン`}
                 onClick={handleDeleteModalToggle}
-                sx={{
-                  border: "none",
-                  display: "block",
-                  textAlign: "left",
-                  borderRadius: "none",
-                  width: "100%",
-                  "&:hover": {
-                    backgroundColor: theme.palette.primary.contrastText,
-                  },
-                }}
-              >
-                <Box
-                  display={"flex"}
-                  alignItems={"center"}
-                  letterSpacing={0.5}
-                  color={red[400]}
-                >
-                  <Image
-                    src={"/delete.svg"}
-                    alt={`投稿削除ボタン`}
-                    width={18}
-                    height={18}
-                    style={{ marginRight: 10 }}
-                  />
-                  削除する
-                </Box>
-              </Button>
+                textcolor={red[400]}
+              />
             </Box>
           </Fade>
         )}
