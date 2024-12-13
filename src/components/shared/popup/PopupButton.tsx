@@ -17,14 +17,14 @@ const PopupButton: React.FC<PopupButtonProps> = ({
   src,
   alt,
   onClick,
-  textcolor,
+  textcolor = "black",
 }) => {
   return (
     <Button
       onClick={onClick}
       href={href}
       sx={{
-        color: "black",
+        color: { textcolor },
         border: "none",
         display: "block",
         textAlign: "left",
@@ -36,12 +36,7 @@ const PopupButton: React.FC<PopupButtonProps> = ({
         },
       }}
     >
-      <Box
-        display={"flex"}
-        alignItems={"center"}
-        letterSpacing={0.5}
-        color={textcolor}
-      >
+      <Box display={"flex"} alignItems={"center"} letterSpacing={0.5}>
         <Image
           src={src}
           alt={alt}
