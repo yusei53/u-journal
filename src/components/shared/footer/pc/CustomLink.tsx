@@ -1,4 +1,3 @@
-"use client";
 import { styled } from "@mui/material";
 import Link from "next/link";
 import { theme } from "@/src/utils/theme";

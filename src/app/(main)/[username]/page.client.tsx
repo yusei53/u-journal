@@ -11,6 +11,7 @@ import {
 } from "@/src/components/shared/pagination";
 import { User } from "@prisma/client";
 import { GoodJobModal } from "@/src/components/reflection-list/modal";
+import { Box } from "@mui/material";
 
 type UserReflectionListPageProps = {
   currentUsername: User["username"];
@@ -53,8 +54,9 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
     router.push(`?page=${value}`);
   };
 
+  // TODO: ReflectionAllAreaのようなコンポーネントを作ってリファクタする
   return (
-    <>
+    <Box mb={{ xs: -1, sm: 0 }}>
       <UserProfileArea
         userImage={userImage}
         username={username}
@@ -90,13 +92,13 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
         <PostNavigationButton
           sx={{
             position: "fixed",
-            right: { xs: 40, md: 100 },
-            bottom: 50,
+            right: { sm: 130 },
+            bottom: { sm: 50 },
           }}
         />
       )}
       <GoodJobModal open={isModalOpen} onClose={handleCloseModal} />
-    </>
+    </Box>
   );
 };
 

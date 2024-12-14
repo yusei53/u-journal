@@ -4,9 +4,8 @@ import { reflectionAPI } from "@/src/api/reflection-api";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import opengraphAPI from "@/src/api/opengraph-api";
-import getCurrentUser from "@/src/utils/actions/get-current-user";
 import { getServerSession } from "next-auth";
-import authOptions from "../api/auth/[...nextauth]/options";
+import authOptions from "../../api/auth/[...nextauth]/options";
 
 export const generateMetadata = async ({
   params,
