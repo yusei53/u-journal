@@ -4,6 +4,7 @@ import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../utils/theme/theme";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Footer } from "../components/shared/footer";
+import MobileFooter from "../components/shared/footer/MobileFooter";
 
 const GA_TAG_ID = process.env.NEXT_PUBLIC_GA_ID as string;
 
@@ -57,10 +58,7 @@ export default async function RootLayout({
         <NextAuthProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Container maxWidth="md" sx={{ my: 6 }}>
-              {children}
-            </Container>
-            <Footer />
+            {children}
           </ThemeProvider>
         </NextAuthProvider>
       </body>
