@@ -9,7 +9,7 @@ const LoginForm = () => {
   return (
     <Box
       mt={10}
-      mb={{ xs: 8, md: 0 }}
+      mb={{ xs: 9, md: 0 }}
       mx={{ md: 28 }}
       py={5}
       px={1}
