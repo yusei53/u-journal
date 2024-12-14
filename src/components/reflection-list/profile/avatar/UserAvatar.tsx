@@ -16,8 +16,8 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({
       display={"flex"}
       alignItems={"center"}
       justifyContent={"space-between"}
-      mx={{ xs: 4, md: 3 }}
-      mt={8} // MEMO: ほんとは当てたくないけどデザイン的にhotfixで当てている
+      mx={{ xs: 4, sm: 3 }}
+      mt={{ sm: 8 }} // MEMO: ほんとは当てたくないけどデザイン的にhotfixで当てている
     >
       <Box display={"flex"} alignItems={"center"}>
         <Image

@@ -47,8 +47,8 @@ const RootPage: React.FC<RootPageProps> = ({
         <PostNavigationButton
           sx={{
             position: "fixed",
-            right: { xs: 40, md: 100 },
-            bottom: 50,
+            right: { sm: 100 },
+            bottom: { sm: 50 },
           }}
         />
       )}
