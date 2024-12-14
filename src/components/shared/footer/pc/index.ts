@@ -1,0 +1,1 @@
+export { PCFooter } from "./PCFooter";
