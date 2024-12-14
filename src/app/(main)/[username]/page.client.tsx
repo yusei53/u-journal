@@ -92,7 +92,7 @@ const UserReflectionListPage: React.FC<UserReflectionListPageProps> = ({
         <PostNavigationButton
           sx={{
             position: "fixed",
-            right: { sm: 100 },
+            right: { sm: 130 },
             bottom: { sm: 50 },
           }}
         />
