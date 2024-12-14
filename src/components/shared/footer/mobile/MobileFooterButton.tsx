@@ -28,7 +28,7 @@ export const MobileFooterButton: React.FC<MobileFooterButtonProps> = ({
         <Typography
           color={`${theme.palette.grey[600]}`}
           fontWeight={550}
-          fontSize={13.5}
+          fontSize={12.5}
         >
           {title}
         </Typography>
