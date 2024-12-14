@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import ReflectionAllArea from "../components/reflection-all-list/list/ReflectionAllListArea";
 import SettingUsernameModalContainer from "../components/setting-username/SettingUsernameModalContainer";
 import { PostNavigationButton } from "../components/shared/button";
+import { Footer } from "../components/shared/footer";
 
 type RootPageProps = {
   open: boolean;
@@ -47,11 +48,12 @@ const RootPage: React.FC<RootPageProps> = ({
         <PostNavigationButton
           sx={{
             position: "fixed",
-            right: { sm: 100 },
+            right: { sm: 130 },
             bottom: { sm: 50 },
           }}
         />
       )}
+      <Footer />
     </>
   );
 };
