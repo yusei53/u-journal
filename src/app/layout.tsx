@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { NextAuthProvider } from "../providers";
-import { Container, CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../utils/theme/theme";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Footer } from "../components/shared/footer";
-import MobileFooter from "../components/shared/footer/MobileFooter";
 
 const GA_TAG_ID = process.env.NEXT_PUBLIC_GA_ID as string;
 
