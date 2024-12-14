@@ -5,13 +5,6 @@ import { signOut } from "next-auth/react";
 
 // TODO: 内製Buttonコンポーネントを使う
 const LogoutButton = () => {
-  const handleSignOut = () => {
-    signOut({
-      callbackUrl: "/",
-    });
-    window.location.reload();
-  };
-
   return (
     <Button
       sx={{
@@ -27,7 +20,11 @@ const LogoutButton = () => {
         },
       }}
       disableRipple
-      onClick={handleSignOut}
+      onClick={() =>
+        signOut({
+          callbackUrl: "/",
+        })
+      }
     >
       ログアウト
     </Button>
