@@ -1,7 +1,7 @@
 import { reflectionAPI } from "@/src/api/reflection-api";
 import getCurrentUser from "@/src/utils/actions/get-current-user";
 import { notFound, redirect } from "next/navigation";
-import RootPage from "../../page.client";
+import RootPage from "../../../page.client";
 import { Metadata } from "next";
 
 const description = "リフティのユーザーネーム設定ページ";
