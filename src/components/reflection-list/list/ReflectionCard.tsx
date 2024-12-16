@@ -7,6 +7,7 @@ import Image from "next/image";
 import { KebabMenuButton } from "../../shared/popup";
 import { useState } from "react";
 import { useUpdatePinnedReflection } from "@/src/hooks/reflection/useUpdatePinnedReflection";
+import { PopupContainer } from "../../shared/popup/PopupContainer";
 
 type ReflectionCardProps = {
   username: string;
@@ -20,31 +21,15 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
   reflection,
   isCurrentUser,
 }) => {
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const { handleUpdatePinned } = useUpdatePinnedReflection({ reflection });
-
   return (
     <Box component={"article"} position={"relative"} sx={article}>
       {isCurrentUser && (
-        <KebabMenuButton
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClick={handleClick}
-          onClose={handleClose}
-          onUpdatePinned={handleUpdatePinned}
-          username={username}
+        <PopupContainer
           reflectionCUID={reflection.reflectionCUID}
-          sx={{ position: "absolute", right: 2, top: 10, zIndex: 2 }}
+          username={username}
           isPinned={reflection.isPinned}
+          reflection={reflection}
+          sx={{ position: "absolute", right: 2, top: 10, zIndex: 2 }}
         />
       )}
       <Box
