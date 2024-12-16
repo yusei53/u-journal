@@ -11,7 +11,8 @@ type KebabMenuButtonProps = {
   open: boolean;
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   onClose: () => void;
-  onUpdatePinned: () => void;
+  onCopyLink: () => void;
+  onPinToggle: () => void;
   sx?: SxProps;
   reflectionCUID: string;
   username: string;
@@ -24,7 +25,8 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
   open,
   onClick,
   onClose,
-  onUpdatePinned,
+  onCopyLink,
+  onPinToggle,
   username,
   reflectionCUID,
   sx,
@@ -34,17 +36,6 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
 
   const handleDeleteModalToggle = () => {
     setIsDeleteModalOpen(!isDeleteModalOpen);
-  };
-
-  const handleCopyLink = () => {
-    const link = `${process.env.NEXT_PUBLIC_API_URL}/${username}/${reflectionCUID}`;
-    navigator.clipboard.writeText(link);
-    onClose();
-  };
-
-  const handlePinToggle = () => {
-    onUpdatePinned();
-    onClose();
   };
 
   return (
@@ -90,7 +81,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 text={"リンクをコピーする"}
                 src={"/share.svg"}
                 alt={`リンクをコピーするボタン`}
-                onClick={handleCopyLink}
+                onClick={onCopyLink}
               />
               <PopupButton
                 text={"編集する"}
@@ -102,7 +93,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 text={isPinned ? "固定解除する" : "固定する"}
                 src={"/pin.svg"}
                 alt={`プロフィールに固定するボタン`}
-                onClick={handlePinToggle}
+                onClick={onPinToggle}
               />
               <PopupButton
                 text={"削除する"}

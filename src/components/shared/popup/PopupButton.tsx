@@ -24,7 +24,7 @@ const PopupButton: React.FC<PopupButtonProps> = ({
       onClick={onClick}
       href={href}
       sx={{
-        color: { textcolor },
+        color: textcolor,
         border: "none",
         display: "block",
         textAlign: "left",
