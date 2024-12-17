@@ -13,7 +13,6 @@ type KebabMenuButtonProps = {
   onClose: () => void;
   onCopyLink: () => void;
   onPinToggle: () => void;
-  sx?: SxProps;
   reflectionCUID: string;
   username: string;
   isPinned: boolean;
@@ -29,7 +28,6 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
   onPinToggle,
   username,
   reflectionCUID,
-  sx,
   isPinned,
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -55,7 +53,10 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
         onBlur={onClose}
         sx={{
           cursor: "pointer",
-          ...sx,
+          position: "absolute",
+          right: 2,
+          top: 10,
+          zIndex: 2,
           "&:hover": {
             bgcolor: `${theme.palette.primary.contrastText}`,
           },

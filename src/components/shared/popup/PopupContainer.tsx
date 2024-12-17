@@ -5,7 +5,6 @@ import { useUpdatePinnedReflection } from "@/src/hooks/reflection/useUpdatePinne
 import { Reflection } from "@/src/api/reflection-api";
 
 type PopupContainerProps = {
-  sx?: SxProps;
   reflectionCUID: string;
   username: string;
   isPinned: boolean;
@@ -15,7 +14,6 @@ type PopupContainerProps = {
 export const PopupContainer: React.FC<PopupContainerProps> = ({
   username,
   reflectionCUID,
-  sx,
   isPinned,
   reflection,
 }) => {
@@ -52,7 +50,6 @@ export const PopupContainer: React.FC<PopupContainerProps> = ({
       onPinToggle={handlePinToggle}
       reflectionCUID={reflectionCUID}
       username={username}
-      sx={sx}
       isPinned={isPinned}
     />
   );

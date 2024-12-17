@@ -29,7 +29,6 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
           username={username}
           isPinned={reflection.isPinned}
           reflection={reflection}
-          sx={{ position: "absolute", right: 2, top: 10, zIndex: 2 }}
         />
       )}
       <Box
