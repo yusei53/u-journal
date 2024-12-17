@@ -7,28 +7,28 @@ import { red } from "@mui/material/colors";
 import PopupButton from "./PopupButton";
 
 type KebabMenuButtonProps = {
-  anchorEl: HTMLElement | null;
-  open: boolean;
-  onClick: (event: React.MouseEvent<HTMLElement>) => void;
-  onClose: () => void;
-  onCopyLink: () => void;
-  onPinToggle: () => void;
   reflectionCUID: string;
   username: string;
+  anchorEl: HTMLElement | null;
+  open: boolean;
   isPinned: boolean;
+  onOpenPopup: (event: React.MouseEvent<HTMLElement>) => void;
+  onClosePopup: () => void;
+  onCopyLink: () => void;
+  onPinToggle: () => void;
 };
 
 // MEMO: 今Card側にロジック書いてしまっているけど、Popup側にロジックを書くべきかも(Container層とかに分けるべき)
 export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
-  anchorEl,
-  open,
-  onClick,
-  onClose,
-  onCopyLink,
-  onPinToggle,
   username,
   reflectionCUID,
+  anchorEl,
+  open,
   isPinned,
+  onOpenPopup,
+  onClosePopup,
+  onCopyLink,
+  onPinToggle,
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -49,8 +49,8 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
-        onClick={onClick}
-        onBlur={onClose}
+        onClick={onOpenPopup}
+        onBlur={onClosePopup}
         sx={{
           cursor: "pointer",
           position: "absolute",
