@@ -53,10 +53,6 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
         onBlur={onClosePopup}
         sx={{
           cursor: "pointer",
-          position: "absolute",
-          right: 2,
-          top: 10,
-          zIndex: 2,
           "&:hover": {
             bgcolor: `${theme.palette.primary.contrastText}`,
           },
