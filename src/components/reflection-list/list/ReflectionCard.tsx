@@ -20,7 +20,15 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
 }) => {
   return (
     <Box component={"article"} position={"relative"} sx={article}>
-      <Box sx={{ position: "absolute", right: 2, top: 10, zIndex: 2 }}>
+      <Box
+        sx={{
+          component: "button",
+          position: "absolute",
+          right: 2,
+          top: 10,
+          zIndex: 2,
+        }}
+      >
         {isCurrentUser && (
           <PopupContainer
             reflectionCUID={reflection.reflectionCUID}
