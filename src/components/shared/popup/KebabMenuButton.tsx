@@ -7,44 +7,32 @@ import { red } from "@mui/material/colors";
 import PopupButton from "./PopupButton";
 
 type KebabMenuButtonProps = {
-  anchorEl: HTMLElement | null;
-  open: boolean;
-  onClick: (event: React.MouseEvent<HTMLElement>) => void;
-  onClose: () => void;
-  onUpdatePinned: () => void;
-  sx?: SxProps;
   reflectionCUID: string;
   username: string;
+  anchorEl: HTMLElement | null;
+  open: boolean;
   isPinned: boolean;
+  onOpenPopup: (event: React.MouseEvent<HTMLElement>) => void;
+  onClosePopup: () => void;
+  onCopyLink: () => void;
+  onPinToggle: () => void;
 };
 
-// MEMO: 今Card側にロジック書いてしまっているけど、Popup側にロジックを書くべきかも(Container層とかに分けるべき)
 export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
-  anchorEl,
-  open,
-  onClick,
-  onClose,
-  onUpdatePinned,
   username,
   reflectionCUID,
-  sx,
+  anchorEl,
+  open,
   isPinned,
+  onOpenPopup,
+  onClosePopup,
+  onCopyLink,
+  onPinToggle,
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleDeleteModalToggle = () => {
     setIsDeleteModalOpen(!isDeleteModalOpen);
-  };
-
-  const handleCopyLink = () => {
-    const link = `${process.env.NEXT_PUBLIC_API_URL}/${username}/${reflectionCUID}`;
-    navigator.clipboard.writeText(link);
-    onClose();
-  };
-
-  const handlePinToggle = () => {
-    onUpdatePinned();
-    onClose();
   };
 
   return (
@@ -60,11 +48,10 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
         display={"flex"}
         alignItems={"center"}
         justifyContent={"center"}
-        onClick={onClick}
-        onBlur={onClose}
+        onClick={onOpenPopup}
+        onBlur={onClosePopup}
         sx={{
           cursor: "pointer",
-          ...sx,
           "&:hover": {
             bgcolor: `${theme.palette.primary.contrastText}`,
           },
@@ -90,7 +77,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 text={"リンクをコピーする"}
                 src={"/share.svg"}
                 alt={`リンクをコピーするボタン`}
-                onClick={handleCopyLink}
+                onClick={onCopyLink}
               />
               <PopupButton
                 text={"編集する"}
@@ -102,7 +89,7 @@ export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
                 text={isPinned ? "固定解除する" : "固定する"}
                 src={"/pin.svg"}
                 alt={`プロフィールに固定するボタン`}
-                onClick={handlePinToggle}
+                onClick={onPinToggle}
               />
               <PopupButton
                 text={"削除する"}
