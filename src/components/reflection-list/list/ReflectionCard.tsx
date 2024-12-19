@@ -23,7 +23,6 @@ const ReflectionCard: React.FC<ReflectionCardProps> = ({
       {isCurrentUser && (
         <Box
           sx={{
-            component: "button",
             position: "absolute",
             right: 2,
             top: 10,

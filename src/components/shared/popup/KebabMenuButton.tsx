@@ -18,7 +18,6 @@ type KebabMenuButtonProps = {
   onPinToggle: () => void;
 };
 
-// MEMO: 今Card側にロジック書いてしまっているけど、Popup側にロジックを書くべきかも(Container層とかに分けるべき)
 export const KebabMenuButton: React.FC<KebabMenuButtonProps> = ({
   username,
   reflectionCUID,
