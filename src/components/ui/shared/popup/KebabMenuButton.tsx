@@ -3,8 +3,8 @@ import { Box, Popper, Fade, SxProps } from "@mui/material";
 import Image from "next/image";
 import { Button } from "../button";
 import { useState } from "react";
-import { DeleteConfirmationModal } from "../../reflection-list/modal/DeleteConfirmationModal";
 import { red } from "@mui/material/colors";
+import { DeleteConfirmationModal } from "@/src/components/reflection-list/modal/DeleteConfirmationModal";
 
 type KebabMenuButtonProps = {
   anchorEl: HTMLElement | null;
