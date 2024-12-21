@@ -1,8 +1,8 @@
 "use client";
-import { Typography, Box, styled } from "@mui/material";
-import { Footer } from "../components/shared/footer";
 import Image from "next/image";
-import { Button } from "../components/shared/button";
+import { Box, styled, Typography } from "@mui/material";
+import { Button } from "../components/ui/shared/button";
+import { Footer } from "../components/ui/shared/footer";
 import { theme } from "../utils/theme";
 
 const NotFound = () => {
@@ -39,8 +39,8 @@ const CustomImage = styled(Image)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     width: 140,
     height: 140,
-    marginRight: 10,
-  },
+    marginRight: 10
+  }
 }));
 
 export default NotFound;

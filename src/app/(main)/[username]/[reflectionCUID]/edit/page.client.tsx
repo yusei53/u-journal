@@ -1,5 +1,5 @@
 "use client";
-import ReflectionPostForm from "@/src/components/form/ReflectionPostForm";
+import ReflectionPostForm from "@/src/components/post-form/ReflectionPostForm";
 import { useUpdateReflectionForm } from "@/src/hooks/reflection/useUpdateReflectionForm";
 
 type ReflectionUpdateFormPageProps = {
@@ -17,7 +17,7 @@ const ReflectionUpdateFormPage: React.FC<ReflectionUpdateFormPageProps> = ({
   title,
   content,
   charStamp,
-  isPublic,
+  isPublic
 }) => {
   const {
     control,
@@ -26,14 +26,14 @@ const ReflectionUpdateFormPage: React.FC<ReflectionUpdateFormPageProps> = ({
     errors,
     onSubmit,
     selectedEmoji,
-    handleEmojiChange,
+    handleEmojiChange
   } = useUpdateReflectionForm({
     reflectionCUID,
     username,
     title,
     content,
     charStamp,
-    isPublic,
+    isPublic
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
