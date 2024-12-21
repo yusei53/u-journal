@@ -4,9 +4,9 @@ import { theme } from "@/src/utils/theme";
 import { Reflection } from "@/src/api/reflection-api";
 import { formatDate } from "@/src/utils/date-helper";
 import Image from "next/image";
-import { KebabMenuButton } from "../../shared/popup";
 import { useState } from "react";
 import { useUpdatePinnedReflection } from "@/src/hooks/reflection/useUpdatePinnedReflection";
+import { KebabMenuButton } from "../../ui/shared/popup";
 
 type ReflectionCardProps = {
   username: string;
